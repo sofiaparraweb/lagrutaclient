@@ -1,26 +1,28 @@
-import { useEffect } from 'react';
+//import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { action } from '../../Redux/actions';
-import TiendaItem from "../../components/TiendaItems/TiendaItems";
+//import { getAllProducts } from '../../Redux/actions';
+import TiendaItemsContenedor from "../../components/TiendaItems/TiendaItemsContenedor";
 import Carrito from "../../components/Carrito/Carrito";
+import NavBar from "../../components/NavBar/NavBar";
+import Footer from "../../components/Footer/Footer";
 
 const Tienda = () => {
-  const dispatch = useDispatch();
-  const products = useSelector(state => state.products);
+  //const dispatch = useDispatch();
+  const allProducts = useSelector(state => state.allProducts);
 
-  useEffect(() => {
-    dispatch(action());
-  }, [dispatch]);
+//   useEffect(() => {
+//     dispatch(getAllProducts());
+//   }, [dispatch]);
 
   return (
     <div>
-      <h2>Tienda</h2>
-      <div>
-        {products.map(product => (
-          <TiendaItem key={product.id} product={product} />
-        ))}
-      </div>
-      <Carrito />
+        <NavBar />
+        <h2>Tienda</h2>
+        <div>
+            <TiendaItemsContenedor products={allProducts}/>
+        </div>
+        <Carrito />
+        <Footer />
     </div>
   );
 };
