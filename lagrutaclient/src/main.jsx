@@ -1,3 +1,4 @@
+// main.jsx
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
@@ -9,10 +10,10 @@ import store from "./Redux/store";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ChakraProvider store={store}>
-    <React.StrictMode>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </React.StrictMode>
-  </ChakraProvider>
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>
+</ChakraProvider>,
 );
