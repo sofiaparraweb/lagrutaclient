@@ -1,4 +1,4 @@
-import TiendaItems from "./TiendaItems";
+import TiendaItems from "../TiendaItems/TiendaItems";
 
 const TiendaItemsContenedor = ({ products }) => {
 
