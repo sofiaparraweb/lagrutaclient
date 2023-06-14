@@ -5,16 +5,16 @@ const NavBar = () => {
 
   return (
     <nav className={style.navContainer}>
-      <div>
         <div className={style.LeftContainer}>
           <Link to="/" className={style.link}>
-            LOGO!!!!
+            LOGO!!!
           </Link>
           <Link to="/about" className={style.link}> 
             About
           </Link>
-          <div className={style.dropdownContainer}>
-            <Link to="/Conocenos" className={style.dropdownLink}>
+        </div>
+        <div className={style.dropdownContainer}>
+            <Link to="/Conocenos" className={style.link}>
               Ayuda Hoy
             </Link>
             <div className={style.dropdownContent}>
@@ -23,14 +23,14 @@ const NavBar = () => {
               <Link to="/SeVoluntario" className={style.dropdownOption}>Se voluntario</Link>
             </div>
           </div>
-          <Link to="/Tienda" className={style.link}>
-            Tienda
-          </Link>
-          <Link to="/Login" className={style.About}>
-            Inicia sesión
-          </Link>
-        </div>
-      </div>
+        <div className={style.rightSection}>
+            <Link to="/Tienda" className={style.link}>
+              Tienda
+            </Link>
+            <Link to="/Login" className={style.link}>
+              Inicia sesión
+            </Link>
+          </div>
     </nav>
   );
 }

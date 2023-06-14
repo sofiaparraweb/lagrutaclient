@@ -1,13 +1,15 @@
 import NavBar from "../../components/NavBar/NavBar";
 import News from "../Noticias/News";
-import Footer from "../../components/Footer";
+import Footer from "../../components/Footer/Footer";
+import style from "./Home.module.css";
 
 const Home = () => {
     
         return (
             <div>
                 <NavBar/>
-                <div>
+                <div className={style.Menu}>
+                    holisss estamos en el Home
                     <div>
                         <News />
                     </div>
