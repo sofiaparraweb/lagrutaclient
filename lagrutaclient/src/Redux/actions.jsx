@@ -2,7 +2,7 @@ import axios from "axios";
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const GET_DETAIL_PRODUCTS = "GET_DETAIL_PRODUCTS";
 
-const url = "La que vaya a ser";
+const url = "http://localhost:3001";
 
 export const getAllProducts = () => {
     return async (dispatch) =>{

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import style from "./NavBar.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
+import logo from '../../assets/logo.png'
 
 const NavBar = ({ isAuthenticated }) => {
   const { logout } = useAuth0();
@@ -13,8 +14,8 @@ const NavBar = ({ isAuthenticated }) => {
   return (
     <nav className={style.navContainer}>
       <div className={style.LeftSection}>
-        <Link to="/" className={style.link}>
-          LOGO!!!
+        <Link to="/">
+          <img src={logo} alt="logo" width="50px" border="1px solid red"></img>
         </Link>
         <Link to="/about" className={style.link}>
           About

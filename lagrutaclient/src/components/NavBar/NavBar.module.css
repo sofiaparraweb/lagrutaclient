@@ -4,7 +4,7 @@
   top: 0; /* Con esto lo fijamos en la posicion 0 */
   justify-content: space-around;
   align-items: center;
-  background-color: orange;
+  background-color: silver;
   height: 75px;
   width: 100%;
   border-bottom: 2px solid silver;
@@ -23,7 +23,7 @@
 
 .link {
   text-decoration: none;
-  color: white;
+  color: black;
   padding: 30px;
   padding-left: 20px;
   padding-right: 20px;
