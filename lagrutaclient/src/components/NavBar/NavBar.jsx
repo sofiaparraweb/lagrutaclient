@@ -14,8 +14,8 @@ const NavBar = ({ isAuthenticated }) => {
   return (
     <nav className={style.navContainer}>
       <div className={style.LeftSection}>
-        <Link to="/">
-          <img src={logo} alt="logo" width="60px" className={style.logo}></img>
+        <Link to="/" className={style.link}>
+          LOGO!!!
         </Link>
         <Link 
           to="/Conocenos" 
