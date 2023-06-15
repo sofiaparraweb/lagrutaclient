@@ -1,9 +1,10 @@
 import TiendaItems from "../TiendaItems/TiendaItems";
+import style from "./TiendaItemsContenedor.module.css"
 
 const TiendaItemsContenedor = ({ products }) => {
 
     return (
-        <div> 
+        <div className={style.TiendaItemsContainer}> 
             {products && products.length > 0 && products?.map((prod) => {
                 return (
                     <TiendaItems
