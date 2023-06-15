@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import style from "./TiendaItemsContenedor.module.css";
 
 const TiendaItemsContenedor = ({ products }) => {
-
+    console.log(products)
     return (
         <div className={style.TiendaItemsContainer}> 
-            {products && products.length > 0 && products?.map((prod) => {
+            {products.length > 0 && products?.map((prod) => {
                 return (
                     <TiendaItems
                         key={prod.id}
@@ -27,7 +27,7 @@ const TiendaItemsContenedor = ({ products }) => {
 //     products: PropTypes.arrayOf( //definimos los propTypes para los prop products y lo que sigue es para indicar que products debe ser un array de objetos
 //         PropTypes.shape({
 //             id: PropTypes.number.isRequired,
-//             image: PropTypes.string.isRequired,
+//             // image: PropTypes.string.isRequired,
 //             name: PropTypes.string.isRequired,
 //             price: PropTypes.number.isRequired,
 //             description: PropTypes.text.isRequired,
