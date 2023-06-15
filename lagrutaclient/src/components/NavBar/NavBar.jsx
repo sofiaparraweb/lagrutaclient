@@ -1,4 +1,3 @@
-// NavBar.js
 import React from "react";
 import { Link } from "react-router-dom";
 import style from "./NavBar.module.css";
@@ -13,35 +12,48 @@ const NavBar = ({ isAuthenticated }) => {
 
   return (
     <nav className={style.navContainer}>
-        <div className={style.LeftContainer}>
-          <Link to="/" className={style.link}>
-            LOGO!!!
+      <div className={style.LeftSection}>
+        <Link to="/" className={style.link}>
+          LOGO!!!
+        </Link>
+        <div className={style.dropdownContainer}>
+          <Link to="/about" className={style.link}>
+            Conócenos
           </Link>
-          <Link to="/about" className={style.link}> 
-            About
+          <div className={style.dropdownContent}>
+            <Link to="/About" className={style.dropdownOption}>
+              Sobre nosotros
+            </Link>
+            <Link to="/Noticias" className={style.dropdownOption}>
+              Nuestros proyectos
+            </Link>
+          </div>
+        </div>
+        <Link to="/Tienda" className={style.link}>
+          Tienda
+        </Link>
+      </div>
+      <div className={style.dropdownContainer}>
+        <Link to="/Conocenos" className={style.link}>
+          Ayuda Hoy
+        </Link>
+        <div className={style.dropdownContent}>
+          <Link to="/Dona" className={style.dropdownOption}>
+            Dona
+          </Link>
+          <Link to="/SePadrino" className={style.dropdownOption}>
+            Sé padrino
+          </Link>
+          <Link to="/SeVoluntario" className={style.dropdownOption}>
+            Sé voluntario
           </Link>
         </div>
-        <div className={style.dropdownContainer}>
-            <Link to="/Conocenos" className={style.link}>
-              Ayuda Hoy
-            </Link>
-            <div className={style.dropdownContent}>
-              <Link to="/Dona" className={style.dropdownOption}>Dona</Link>
-              <Link to="/SePadrino" className={style.dropdownOption}>Se padrino</Link>
-              <Link to="/SeVoluntario" className={style.dropdownOption}>Se voluntario</Link>
-            </div>
-          </div>
-        <div className={style.rightSection}>
-            <Link to="/Tienda" className={style.link}>
-              Tienda
-            </Link>
-            <Link to="/Login" className={style.link}>
-              Inicia sesión
-            </Link>
-            <button onClick={handleLogout} className={style.link}>
-              Cerrar Sesión
-            </button>
-          </>
+      </div>
+      <div className={style.rightSection}>
+        {isAuthenticated ? (
+          <button onClick={handleLogout} className={style.link}>
+            Cerrar Sesión
+          </button>
         ) : (
           <Link to="/LogIn" className={style.link}>
             Inicia sesión
