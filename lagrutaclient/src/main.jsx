@@ -4,6 +4,9 @@ import App from "./App.jsx";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
+import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+
+
 
 import store from "./Redux/store";
 

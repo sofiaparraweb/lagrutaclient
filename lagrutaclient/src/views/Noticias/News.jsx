@@ -1,12 +1,14 @@
 import React from "react";
 
-import HeaderNews from "./../../components/News/HeaderNews";
+import LastNews from "../../components/News/HeaderNews/LastNews.jsx";
+import Homes from "../../components/News/Homes/Homes.jsx";
+
 
 export default function News() {
   return (
     <>
-      <HeaderNews />
-      <div>Prueba de la pagina noticias</div>
+      <LastNews />
+      <Homes />
     </>
   );
 }
