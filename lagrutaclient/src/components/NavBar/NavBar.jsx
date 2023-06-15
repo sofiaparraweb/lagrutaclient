@@ -1,4 +1,3 @@
-// NavBar.js
 import React from "react";
 import { Link } from "react-router-dom";
 import style from "./NavBar.module.css";
@@ -13,7 +12,7 @@ const NavBar = ({ isAuthenticated }) => {
 
   return (
     <nav className={style.navContainer}>
-      <div className={style.LeftContainer}>
+      <div className={style.LeftSection}>
         <Link to="/" className={style.link}>
           LOGO!!!
         </Link>

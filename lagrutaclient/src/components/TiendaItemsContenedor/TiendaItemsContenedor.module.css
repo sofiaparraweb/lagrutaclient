@@ -1,0 +1,10 @@
+.TiendaItemsContainer{
+    display: flex;
+    margin-left: 10%;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 80%;
+    height: fit-content;
+    background-color: transparent;
+}
