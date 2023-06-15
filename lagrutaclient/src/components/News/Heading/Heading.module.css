@@ -1,0 +1,60 @@
+.headingms {
+    margin: 30px 0;
+    height: 45px;
+    background-position: center;
+  }
+
+  .h6ms {
+    color: #444444;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1em;
+    margin: 0;
+    padding-bottom: 20px;
+    position: relative;
+    text-transform: capitalize;
+  }
+
+  .h6ms::before{
+    content: "          ";
+    white-space: pre;
+    font-size: 0.6em;
+    padding: 0.2em 0.4em;
+    margin-right: 1em;
+    border-radius: 0.2em ;
+    background-color: #3756f7;
+    color: white;
+  }
+  
+
+  .headingMx {
+    margin: 30px 0;
+    height: 5px;
+    background-position: center;
+  }
+  
+  .h6Mx {
+    color: #444;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1em;
+    margin: 0;
+    padding-bottom: 20px;
+    position: relative;
+    text-transform: capitalize;
+  }
+
+  .h6Mx::before{
+    content: "          ";
+    white-space: pre;
+    font-size: 0.6em;
+    padding: 0.2em 0.4em;
+    margin-right: 1em;
+    border-radius: 0.2em ;
+    background-color: #3756f7;
+    color: white;
+  }
+  
+
+
+
