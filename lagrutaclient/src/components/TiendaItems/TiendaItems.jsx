@@ -1,12 +1,23 @@
-const TiendaItem = ({ product }) => {
+import PropTypes from 'prop-types';
+
+const TiendaItems = ({ id, image, name, price, description, stock }) => {
   return (
     <div>
-      <img src={product.image} alt={product.name} />
-      <h3>{product.name}</h3>
-      <p>{product.price}</p>
-      <button>Agregar al carrito</button>
+      <img src={image} alt="" />
+      <h3>{name}</h3>
+      <p> {price}</p>
+      <button>Agregar al carrito</button> 
     </div>
   );
 };
 
-export default TiendaItem;
+TiendaItems.propTypes = {
+  id: PropTypes.number.isRequired,
+  image: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  description: PropTypes.text.isRequired,
+  stock: PropTypes.number.isRequired,
+};
+
+export default TiendaItems;
