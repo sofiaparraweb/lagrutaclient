@@ -11,13 +11,13 @@ const TiendaItems = ({ id, image, name, price, description, stock }) => {
   );
 };
 
-TiendaItems.propTypes = {
-  id: PropTypes.number.isRequired,
-  image: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  description: PropTypes.text.isRequired,
-  stock: PropTypes.number.isRequired,
-};
+// TiendaItems.propTypes = {
+//   id: PropTypes.number.isRequired,
+//   image: PropTypes.string.isRequired,
+//   name: PropTypes.string.isRequired,
+//   price: PropTypes.number.isRequired,
+//   description: PropTypes.text.isRequired,
+//   stock: PropTypes.number.isRequired,
+// };
 
 export default TiendaItems;

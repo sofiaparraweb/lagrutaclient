@@ -23,17 +23,17 @@ const TiendaItemsContenedor = ({ products }) => {
     );
 }
 
-TiendaItemsContenedor.propTypes = {
-    products: PropTypes.arrayOf( //definimos los propTypes para los prop products y lo que sigue es para indicar que products debe ser un array de objetos
-        PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            image: PropTypes.string.isRequired,
-            name: PropTypes.string.isRequired,
-            price: PropTypes.number.isRequired,
-            description: PropTypes.text.isRequired,
-            stock: PropTypes.number.isRequired,
-        })
-    ),
-};
+// TiendaItemsContenedor.propTypes = {
+//     products: PropTypes.arrayOf( //definimos los propTypes para los prop products y lo que sigue es para indicar que products debe ser un array de objetos
+//         PropTypes.shape({
+//             id: PropTypes.number.isRequired,
+//             image: PropTypes.string.isRequired,
+//             name: PropTypes.string.isRequired,
+//             price: PropTypes.number.isRequired,
+//             description: PropTypes.text.isRequired,
+//             stock: PropTypes.number.isRequired,
+//         })
+//     ),
+// };
 
 export default TiendaItemsContenedor;
