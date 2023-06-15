@@ -1,20 +1,20 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllProducts } from '../../Redux/actions';
+// import { useEffect } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { getAllProducts } from '../../Redux/actions';
 //import Carrito from "../../components/Carrito/Carrito";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
-import TiendaItemsContenedor from "../../components/TiendaItemsContenedor/TiendaItemsContenedor";
+//import TiendaItemsContenedor from "../../components/TiendaItemsContenedor/TiendaItemsContenedor";
 import style from "./Tienda.module.css";
 
 const Tienda = () => {
 
-  const dispatch = useDispatch();
-  const allProducts = useSelector(state => state.allProducts);
+  // const dispatch = useDispatch();
+  // const allProducts = useSelector(state => state.allProducts);
 
-  useEffect(() => {
-    dispatch(getAllProducts());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getAllProducts());
+  // }, [dispatch]);
 
   return (
     <div>
@@ -22,9 +22,9 @@ const Tienda = () => {
       <div>
         <h1 className={style.tienda}>Tiendaaaaaaaa</h1>
       </div>
-      <div>
+      {/* <div>
         <TiendaItemsContenedor products={allProducts}/>
-      </div>
+      </div> */}
       <Footer />
     </div>
   );

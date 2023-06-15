@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import style from "./NavBar.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
+import logo from '../../assets/logo.png'
 
 const NavBar = ({ isAuthenticated }) => {
   const { logout } = useAuth0();
@@ -13,15 +14,44 @@ const NavBar = ({ isAuthenticated }) => {
   return (
     <nav className={style.navContainer}>
       <div className={style.LeftSection}>
-        <Link to="/" className={style.link}>
-          LOGO!!!
+        <Link to="/">
+          <img src={logo} alt="logo" width="60px" className={style.logo}></img>
         </Link>
-        <Link to="/about" className={style.link}>
+        <Link 
+          to="/Conocenos" 
+          style={{ borderBottom:'6px solid rgba(223,184,55,255)', borderBottomLeftRadius: '5px' }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = 'rgba(223, 184, 55, 255)';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = 'transparent';
+          }} 
+          className={style.link}>
           About
         </Link>
-      </div>
-      <div className={style.dropdownContainer}>
-        <Link to="/Conocenos" className={style.link}>
+        <Link 
+          to="/Tienda" 
+          style={{ borderBottom:'6px solid rgba(234,93,11,255)'}}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = 'rgba(234,93,11,255)';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = 'transparent';
+          }} 
+          className={style.link}> 
+          Tienda
+        </Link>
+        <div className={style.dropdownContainer}>
+        <Link 
+          to="/Ayuda-Hoy" 
+          style={{ borderBottom:'6px solid rgba(195,64,56,255)', borderBottomRightRadius: '5px' }} 
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = 'rgba(195,64,56,255)';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = 'transparent';
+          }} 
+          className={style.link}>
           Ayuda Hoy
         </Link>
         <div className={style.dropdownContent}>
@@ -36,10 +66,8 @@ const NavBar = ({ isAuthenticated }) => {
           </Link>
         </div>
       </div>
+      </div>
       <div className={style.rightSection}>
-        <Link to="/Tienda" className={style.link}>
-          Tienda
-        </Link>
         {isAuthenticated ? (
           <>
             <Link to="/Perfil" className={style.link}>
@@ -50,7 +78,16 @@ const NavBar = ({ isAuthenticated }) => {
             </button>
           </>
         ) : (
-          <Link to="/LogIn" className={style.link}>
+          <Link 
+            to="/LogIn" 
+            style={{ borderBottom:'6px solid rgba(16,68,118,255)', borderRadius: '5px' }}
+            onMouseEnter={(e) => {
+              e.target.style.backgroundColor = 'rgba(16,68,118,255)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.backgroundColor = 'transparent';
+            }}  
+            className={style.link}>
             Inicia sesión
           </Link>
         )}

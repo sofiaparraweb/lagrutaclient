@@ -4,7 +4,7 @@
   top: 0; /* Con esto lo fijamos en la posicion 0 */
   justify-content: space-around;
   align-items: center;
-  background-color: orange;
+  background-color: white;
   height: 75px;
   width: 100%;
   border-bottom: 2px solid silver;
@@ -16,6 +16,11 @@
   align-items: center;
 }
 
+.logo{
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
 .rightSection {
   display: flex; 
   align-items: center; 
@@ -23,18 +28,17 @@
 
 .link {
   text-decoration: none;
-  color: white;
-  padding: 30px;
+  color: grey;
+  padding: 27.5px;
   padding-left: 20px;
   padding-right: 20px;
-  transition: color 0.5s ease;
+  transition: 0.3s ease;
 }
 
 .link:hover {
-  background-color: rgba(246,165,86,255);
-  transition: color 0.5s ease;
-  background-color: white;
-  color: black;
+  transition: 0.3s ease;
+  color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 .dropdownContainer {
@@ -43,10 +47,11 @@
 }
   
 .dropdownContent {
+  margin-left: 5px;
   display: none;
   position: absolute;
   background-color: orange;
-  min-width: 117px;
+  min-width: 108px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
@@ -55,7 +60,7 @@
 .dropdownContent:hover {
   display: block;
   position: absolute;
-  top: 103%;
+  top: 104%;
 }
   
 .dropdownOption {
