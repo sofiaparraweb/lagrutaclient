@@ -13,38 +13,30 @@ const NavBar = ({ isAuthenticated }) => {
 
   return (
     <nav className={style.navContainer}>
-      <div className={style.LeftContainer}>
-        <Link to="/" className={style.link}>
-          LOGO!!!
-        </Link>
-        <Link to="/about" className={style.link}>
-          About
-        </Link>
-      </div>
-      <div className={style.dropdownContainer}>
-        <Link to="/Conocenos" className={style.link}>
-          Ayuda Hoy
-        </Link>
-        <div className={style.dropdownContent}>
-          <Link to="/Dona" className={style.dropdownOption}>
-            Dona
+        <div className={style.LeftContainer}>
+          <Link to="/" className={style.link}>
+            LOGO!!!
           </Link>
-          <Link to="/SePadrino" className={style.dropdownOption}>
-            Se padrino
-          </Link>
-          <Link to="/SeVoluntario" className={style.dropdownOption}>
-            Se voluntario
+          <Link to="/about" className={style.link}> 
+            About
           </Link>
         </div>
-      </div>
-      <div className={style.rightSection}>
-        <Link to="/Tienda" className={style.link}>
-          Tienda
-        </Link>
-        {isAuthenticated ? (
-          <>
-            <Link to="/Perfil" className={style.link}>
-              Perfil
+        <div className={style.dropdownContainer}>
+            <Link to="/Conocenos" className={style.link}>
+              Ayuda Hoy
+            </Link>
+            <div className={style.dropdownContent}>
+              <Link to="/Dona" className={style.dropdownOption}>Dona</Link>
+              <Link to="/SePadrino" className={style.dropdownOption}>Se padrino</Link>
+              <Link to="/SeVoluntario" className={style.dropdownOption}>Se voluntario</Link>
+            </div>
+          </div>
+        <div className={style.rightSection}>
+            <Link to="/Tienda" className={style.link}>
+              Tienda
+            </Link>
+            <Link to="/Login" className={style.link}>
+              Inicia sesión
             </Link>
             <button onClick={handleLogout} className={style.link}>
               Cerrar Sesión
