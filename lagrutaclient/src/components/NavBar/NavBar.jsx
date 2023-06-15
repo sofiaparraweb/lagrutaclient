@@ -5,15 +5,19 @@ const NavBar = () => {
 
   return (
     <nav className={style.navContainer}>
-        <div className={style.LeftContainer}>
+        <div className={style.LeftSection}>
           <Link to="/" className={style.link}>
             LOGO!!!
           </Link>
           <Link to="/about" className={style.link}> 
             About
           </Link>
+          <Link to="/Noticias" className={style.link}> 
+            Noticias
+          </Link>
         </div>
-        <div className={style.dropdownContainer}>
+        <div className={style.rightSection}>
+          <div className={style.dropdownContainer}>
             <Link to="/Conocenos" className={style.link}>
               Ayuda Hoy
             </Link>
@@ -23,7 +27,6 @@ const NavBar = () => {
               <Link to="/SeVoluntario" className={style.dropdownOption}>Se voluntario</Link>
             </div>
           </div>
-        <div className={style.rightSection}>
             <Link to="/Tienda" className={style.link}>
               Tienda
             </Link>
