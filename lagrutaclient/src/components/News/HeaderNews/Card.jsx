@@ -16,7 +16,7 @@ const Card = ({ item: { id, cover, catgeory, title, time } }) => {
           </Link>
           <div className={style.date}>
             <i class="fas fa-calendar-days"></i>
-            <span>{time}</span>
+            <label>{time}</label>
           </div>
         </div>
       </div>
