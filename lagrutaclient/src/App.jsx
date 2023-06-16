@@ -1,10 +1,8 @@
-// App.js
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import { useAuth0 } from "@auth0/auth0-react";
 
-/* Componentes */
 import Home from "./views/Home/Home";
 import News from "./views/Noticias/News";
 import DetailsNews from "./components/News/DetailsNews/DetailsNews";
