@@ -1,0 +1,88 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.box {
+  background-color: #fff;
+  display: flex;
+  position: relative;
+  width: 49%;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  transition: transform .8s, filter .8s;; 
+}
+
+.img:hover {
+
+  transform: scale(1.1);
+  filter: grayscale(100%);
+}
+
+
+.text {
+  padding: 10px;
+}
+
+.date i {
+  width: 30px;
+  color: #ea5d0b;
+  font-size: 13px;
+}
+
+.images {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+
+ .title {
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #444;
+}
+
+.title:hover {
+  color: #1e5fa0;
+}
+
+.date label {
+  font-size: 15px;
+  color: #ea5d0b;
+}
+
+.category {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: auto;
+  cursor: pointer;
+    background: rgba(255, 255, 255, 0.894);
+    border-radius: 5px;
+    color: #ef6d1f;
+    display: inline-block;
+    font-size: 17px;
+    font-weight: 500;
+    padding: 5px 15px;
+    text-align: center;
+    margin: 12px;
+}
+
+.category span {
+  text-transform: capitalize;
+  letter-spacing: 1px;
+}
+.category1:hover {
+  background-position: left bottom;
+}
+.category1 span:hover {
+  color: #fff;
+}
+
+

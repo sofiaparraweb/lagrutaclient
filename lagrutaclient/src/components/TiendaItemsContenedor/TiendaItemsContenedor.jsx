@@ -1,9 +1,11 @@
 import TiendaItems from "../TiendaItems/TiendaItems";
+import PropTypes from 'prop-types';
+import style from "./TiendaItemsContenedor.module.css";
 
 const TiendaItemsContenedor = ({ products }) => {
 
     return (
-        <div> 
+        <div className={style.TiendaItemsContainer}> 
             {products && products.length > 0 && products?.map((prod) => {
                 return (
                     <TiendaItems
@@ -21,16 +23,17 @@ const TiendaItemsContenedor = ({ products }) => {
     );
 }
 
+// TiendaItemsContenedor.propTypes = {
+//     products: PropTypes.arrayOf( //definimos los propTypes para los prop products y lo que sigue es para indicar que products debe ser un array de objetos
+//         PropTypes.shape({
+//             id: PropTypes.number.isRequired,
+//             image: PropTypes.string.isRequired,
+//             name: PropTypes.string.isRequired,
+//             price: PropTypes.number.isRequired,
+//             description: PropTypes.text.isRequired,
+//             stock: PropTypes.number.isRequired,
+//         })
+//     ),
+// };
+
 export default TiendaItemsContenedor;
-
-// function Hello({ name }) {
-//     return <div>Hello {name}</div>;
-//     // 'name' is missing in props validation
-//   }
-
-//   function Hello({ name }) {
-//     return <div>Hello {name}</div>;
-//   }
-//   Hello.propTypes = {
-//     name: PropTypes.string.isRequired
-//   }
