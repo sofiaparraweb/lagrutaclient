@@ -15,46 +15,78 @@ const NavBar = ({ isAuthenticated }) => {
     loginWithRedirect({ appState: { targetUrl: "/perfil" } });
   };
 
+  const handleClick = () => {
+    window.scrollTo({ top: 0 });
+  };
+  
   return (
     <nav className="navContainer">
       <div className="LeftSection">
         <Link to="/home">
-          <img src={logo} alt="logo" width="60px" className="logo" />
+          <img src={logo} alt="logo" width="60px" className={style.logo}></img>
         </Link>
-        <div className="dropdownContainer">
-          <Link to="/about" className="link">
-            Sobre nosotros
+        <div className={style.dropdownContainer}>
+          <Link to="/about" className={style.link}>
+            Conocenos
           </Link>
-          <Link to="/noticias" className="link">
-            Nuestros proyectos
-          </Link>
-        </div>
-       <div>
-       <Link to="/tienda" className="link">
-          Tienda
-        </Link>
-        </div> 
-        <div className="dropdownContainer">
-          <Link to="/ayuda-Hoy" className="link">
-            Ayuda Hoy
-          </Link>
-          <div className="dropdownContent">
-            <Link to="/dona" className="dropdownOption">
-              Dona
+          <div className={style.dropdownContent}>
+            <Link to="/about" className={style.dropdownOption}>
+              Sobre nosotros
             </Link>
-            <Link to="/sePadrino" className="dropdownOption">
-              Sé padrino
-            </Link>
-            <Link to="/seVoluntario" className="dropdownOption">
-              Sé voluntario
+            <Link to="/noticias" className={style.dropdownOption}>
+              Nuestros proyectos
             </Link>
           </div>
         </div>
-        {isAuthenticated ? (
-          <Link to="/perfil" className="link">
-            Perfil
+        <Link 
+          to="/noticias" 
+          style={{ borderBottom:'6px solid rgba(234,93,11,255)'}}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = 'rgba(234,93,11,255)';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = 'transparent';
+          }} 
+          className={style.link}> 
+          Noticias
+        </Link>
+        <Link 
+          to="/tienda" 
+          style={{ borderBottom:'6px solid rgba(195,64,56,255)' }} 
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = 'rgba(195,64,56,255)';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = 'transparent';
+          }} 
+          className={style.link}> 
+          Tienda
+        </Link>
+        <div className={style.dropdownContainer}>
+        <Link 
+          to="/ayuda-Hoy" 
+          style={{ borderBottom:'6px solid rgba(195,64,56,255)', borderBottomRightRadius: '5px' }} 
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = 'rgba(195,64,56,255)';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = 'transparent';
+          }} 
+          className={style.link}>
+          Ayuda Hoy
+        </Link>
+        <div className={style.dropdownContent}>
+          <Link to="/dona" className={style.dropdownOption}>
+            Dona
           </Link>
-        ) : null}
+          <Link to="/sePadrino" className={style.dropdownOption}>
+            Se padrino
+          </Link>
+          <Link to="/seVoluntario" className={style.dropdownOption}>
+            Se voluntario
+          </Link>
+        </div>
+      </div>
       </div>
       <div className="rightSection">
         {isAuthenticated ? (

@@ -4,6 +4,7 @@ import "./App.css";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import Home from "./views/Home/Home";
+import About from "./views/About/About"
 import News from "./views/Noticias/News";
 import DetailsNews from "./components/News/DetailsNews/DetailsNews";
 import Tienda from "./views/Tienda/Tienda";
@@ -24,6 +25,7 @@ const App = () => {
       <NavBar isAuthenticated={isAuthenticated} />
       <Routes>
         <Route path="/home" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="/noticias" element={<News />} />
         <Route path="/tienda" element={<Tienda />} />
         <Route path="/perfil" element={<Perfil />} />
