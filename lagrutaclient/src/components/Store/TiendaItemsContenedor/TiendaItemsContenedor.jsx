@@ -14,7 +14,7 @@ const TiendaItemsContenedor = ({ products }) => {
                         image={prod.image}
                         name={prod.name}
                         price={prod.price}
-                        type={prod.type}
+                        // type={prod.type}
                         description={prod.description}
                         stock={prod.stock}
                     />
