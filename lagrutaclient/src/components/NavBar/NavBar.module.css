@@ -5,7 +5,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  height: 75px;
+  height: 65px;
   width: 100%;
   border-bottom: 2px solid silver;
   z-index:1;
@@ -31,7 +31,7 @@
 .link {
   text-decoration: none;
   color: grey;
-  padding: 27.5px;
+  padding: 22.5px;
   padding-left: 20px;
   padding-right: 20px;
   transition: 0.5s ease;
@@ -61,7 +61,7 @@
   display: block;
   position: absolute;
   background-color: white;
-  top: 109%;
+  top: 110%;
 }
   
 .dropdownOption {
