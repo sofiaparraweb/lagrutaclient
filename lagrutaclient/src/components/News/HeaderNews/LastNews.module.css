@@ -95,6 +95,11 @@
     text-align: center;
 }
 
+.date i {
+  width: 30px;
+  color: #ea5d0b;
+  font-size: 13px;
+}
 
 @media screen and (max-width: 768px) {
 .hero .container {
