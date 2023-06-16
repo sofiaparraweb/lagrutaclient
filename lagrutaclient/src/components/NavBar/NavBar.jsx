@@ -14,22 +14,53 @@ const NavBar = ({ isAuthenticated }) => {
   const handleLogin = () => {
     loginWithRedirect();
   };
+
+  const handleClick = () => {
+    window.scrollTo({ top: 0 });
+  };
   
   return (
     <nav className={style.navContainer}>
       <div className={style.LeftSection}>
         <Link to="/home">
-          <img src={logo} alt="logo" width="60px" className={style.logo}></img>
+          <img src={logo} alt="logo" width="60px" className={style.logo} onClick={handleClick}></img>
         </Link>
         <div className={style.dropdownContainer}>
-          <Link to="/about" className={style.link}>
+          <Link 
+            to="/about" 
+            style={{ borderBottom:'6px solid rgba(223,184,55,255)', borderBottomLeftRadius: '5px' }}
+            onMouseEnter={(e) => {
+              e.target.style.backgroundColor = 'rgba(223, 184, 55, 255)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.backgroundColor = 'transparent';
+            }} 
+            className={style.link}>
             Conocenos
           </Link>
           <div className={style.dropdownContent}>
-            <Link to="/about" className={style.dropdownOption}>
+            <Link 
+              to="/about" 
+              className={style.dropdownOption}
+              style={{ borderBottom:'3px solid rgba(234,93,11,255)'}}
+              onMouseEnter={(e) => {
+                e.target.style.backgroundColor = 'rgba(234,93,11,255)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.backgroundColor = 'transparent';
+              }} >
               Sobre nosotros
             </Link>
-            <Link to="/noticias" className={style.dropdownOption}>
+            <Link 
+              to="/noticias" 
+              className={style.dropdownOption}
+              style={{ borderBottom:'3px solid rgba(195,64,56,255)'}} 
+              onMouseEnter={(e) => {
+                e.target.style.backgroundColor = 'rgba(195,64,56,255)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.backgroundColor = 'transparent';
+              }} >
               Nuestros proyectos
             </Link>
           </div>
@@ -59,27 +90,54 @@ const NavBar = ({ isAuthenticated }) => {
           Tienda
         </Link>
         <div className={style.dropdownContainer}>
-        <Link 
+        <div 
           to="/ayuda-Hoy" 
-          style={{ borderBottom:'6px solid rgba(195,64,56,255)', borderBottomRightRadius: '5px' }} 
+          style={{ borderBottom:'6px solid rgba(16,68,118,255)', borderBottomRightRadius: '5px' }} 
           onMouseEnter={(e) => {
-            e.target.style.backgroundColor = 'rgba(195,64,56,255)';
+            e.target.style.backgroundColor = 'rgba(16,68,118,255)';
           }}
           onMouseLeave={(e) => {
             e.target.style.backgroundColor = 'transparent';
           }} 
           className={style.link}>
           Ayuda Hoy
-        </Link>
+        </div>
         <div className={style.dropdownContent}>
-          <Link to="/dona" className={style.dropdownOption}>
+        <Link 
+            to="/dona" 
+            className={style.dropdownOption}
+            style={{ borderBottom:'3px solid rgba(223,184,55,255)'}}
+            onMouseEnter={(e) => {
+              e.target.style.backgroundColor = 'rgba(223, 184, 55, 255)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.backgroundColor = 'transparent';
+            }}>
             Dona
           </Link>
-          <Link to="/sePadrino" className={style.dropdownOption}>
-            Se padrino
+          <Link 
+            to="/sePadrino" 
+            className={style.dropdownOption}
+            style={{ borderBottom:'3px solid rgba(234,93,11,255)'}}
+            onMouseEnter={(e) => {
+              e.target.style.backgroundColor = 'rgba(234,93,11,255)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.backgroundColor = 'transparent';
+            }} >
+            Sé padrino
           </Link>
-          <Link to="/seVoluntario" className={style.dropdownOption}>
-            Se voluntario
+          <Link 
+            to="/seVoluntario" 
+            className={style.dropdownOption}
+            style={{ borderBottom:'3px solid rgba(195,64,56,255)'}} 
+            onMouseEnter={(e) => {
+              e.target.style.backgroundColor = 'rgba(195,64,56,255)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.backgroundColor = 'transparent';
+            }} >
+            Sé voluntario
           </Link>
         </div>
       </div>
