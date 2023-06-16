@@ -25,13 +25,12 @@ const App = () => {
     <div className="App">
       <NavBar isAuthenticated={isAuthenticated} />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Noticias" element={<News />} />
-        <Route exact path="/Noticias/:id" element={<DetailsNews/>}></Route>
-        <Route path="/Tienda" element={<Tienda />} />
-        <Route path="/Perfil" element={<Perfil />} />
-        <Route path="/LogIn" element={<LogIn />} />
-        <Route path="/LogOut" element={<LogOut />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/noticias" element={<News />} />
+        <Route path="/tienda" element={<Tienda />} />
+        <Route path="/perfil" element={<Perfil />} />
+        <Route path="/login" element={<LogIn />} />
+        <Route path="/logout" element={<LogOut />} />
       </Routes>
     </div>
   );
