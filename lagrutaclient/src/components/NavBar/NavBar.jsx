@@ -14,8 +14,8 @@ const NavBar = ({ isAuthenticated }) => {
   return (
     <nav className={style.navContainer}>
       <div className={style.LeftSection}>
-        <Link to="/" className={style.link}>
-          LOGO!!!
+        <Link to="/">
+          <img src={logo} alt="logo" width="60px" className={style.logo}></img>
         </Link>
         <div className={style.dropdownContainer}>
           <Link to="/about" className={style.link}>
@@ -31,7 +31,7 @@ const NavBar = ({ isAuthenticated }) => {
           </div>
         </div>
         <Link 
-          to="/Tienda" 
+          to="/Noticias" 
           style={{ borderBottom:'6px solid rgba(234,93,11,255)'}}
           onMouseEnter={(e) => {
             e.target.style.backgroundColor = 'rgba(234,93,11,255)';
@@ -40,33 +40,45 @@ const NavBar = ({ isAuthenticated }) => {
             e.target.style.backgroundColor = 'transparent';
           }} 
           className={style.link}> 
+          Noticias
+        </Link>
+        <Link 
+          to="/Tienda" 
+          style={{ borderBottom:'6px solid rgba(195,64,56,255)' }} 
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = 'rgba(195,64,56,255)';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = 'transparent';
+          }} 
+          className={style.link}> 
           Tienda
         </Link>
         <div className={style.dropdownContainer}>
-          <Link 
-            to="/Ayuda-Hoy" 
-            style={{ borderBottom:'6px solid rgba(195,64,56,255)', borderBottomRightRadius: '5px' }} 
-            onMouseEnter={(e) => {
-              e.target.style.backgroundColor = 'rgba(195,64,56,255)';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.backgroundColor = 'transparent';
-            }} 
-            className={style.link}>
-            Ayuda Hoy
+        <Link 
+          to="/Ayuda-Hoy" 
+          style={{ borderBottom:'6px solid rgba(195,64,56,255)', borderBottomRightRadius: '5px' }} 
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = 'rgba(195,64,56,255)';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = 'transparent';
+          }} 
+          className={style.link}>
+          Ayuda Hoy
+        </Link>
+        <div className={style.dropdownContent}>
+          <Link to="/Dona" className={style.dropdownOption}>
+            Dona
           </Link>
-          <div className={style.dropdownContent}>
-            <Link to="/Dona" className={style.dropdownOption}>
-              Dona
-            </Link>
-            <Link to="/SePadrino" className={style.dropdownOption}>
-              Sé padrino
-            </Link>
-            <Link to="/SeVoluntario" className={style.dropdownOption}>
-              Sé voluntario
-            </Link>
-          </div>
+          <Link to="/SePadrino" className={style.dropdownOption}>
+            Se padrino
+          </Link>
+          <Link to="/SeVoluntario" className={style.dropdownOption}>
+            Se voluntario
+          </Link>
         </div>
+      </div>
       </div>
       <div className={style.rightSection}>
         {isAuthenticated ? (
