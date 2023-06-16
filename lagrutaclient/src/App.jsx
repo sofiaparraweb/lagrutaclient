@@ -7,6 +7,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 /* Componentes */
 import Home from "./views/Home/Home";
 import News from "./views/Noticias/News";
+import DetailsNews from "./components/News/DetailsNews/DetailsNews";
 import Tienda from "./views/Tienda/Tienda";
 import Perfil from "./views/Perfil/Perfil";
 import LogIn from "./views/LogIn/LogIn";
@@ -26,6 +27,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Noticias" element={<News />} />
+        <Route exact path="/Noticias/:id" element={<DetailsNews/>}></Route>
         <Route path="/Tienda" element={<Tienda />} />
         <Route path="/Perfil" element={<Perfil />} />
         <Route path="/LogIn" element={<LogIn />} />
