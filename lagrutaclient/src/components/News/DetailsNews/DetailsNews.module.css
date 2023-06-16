@@ -3,7 +3,8 @@ main {
     padding: 60px;
   }
 
-  .row {
+
+  .likeButtonContainer {
     display: flex;
     align-items: center;
     margin-top: -30px;
@@ -16,6 +17,24 @@ main {
     margin-top: -40px;
     color:#2e2cb9;;
   }
+  
+  .likeButtonContainer button {
+    margin-right: 10px; 
+    display: flex;
+    align-items: center;
+  }
+
+.like {
+  padding: 5px;
+}
+
+
+  .row {
+    display: flex;
+    align-items: center;
+    margin-top: -30px;
+  }
+
   
   .details {
     padding-right: 50px;
@@ -42,7 +61,15 @@ main {
     font-size: 13px;
   }
 
-  .details .social {
+  .social1 {
+    display: flex;
+    padding: 20px;
+    font-size: .9333333333rem;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  .details .social{
     display: flex;
     padding: 20px;
     font-size: .9333333333rem;
@@ -54,8 +81,17 @@ main {
     color: #314d7d;
   }
 
+
   .social i {
     padding: 5px;
+  }
+
+  .social:not(:first-child:last-child)::before {
+    content: "\00B7"; 
+    margin-right: 5px;
+    font-size: 60px;
+    margin-top: -40px;
+    color:#2e2cb9;
   }
 
   .details img {
@@ -71,6 +107,7 @@ main {
     margin-top: 30px;
     color: #232f4b;
   }
+
   .quote {
     padding-left: 50px;
     border-left: 5px solid #b9362c;

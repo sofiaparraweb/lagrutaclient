@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { hero } from "../../../dummyData";
 import Side from "../SideBar/side/Side";
 import AutoSlider from "../Homes/NewsCarrousel/AutoSlider.jsx";
+import LikeButton from "./LikeButton";
 
 import style from "./DetailsNews.module.css"
 
@@ -37,9 +38,8 @@ const DetailsNews = () => {
                   <i className='fab fa-facebook-f'></i>
                   <span>Compartir</span>
               </div> 
-              <div className={style.social}>
-                  <i className='fab fa-facebook-f'></i>
-                  <span>Me gusta</span>
+              <div className={style.social1}>
+                  <span><LikeButton/></span> 
               </div>
               </div>
 
