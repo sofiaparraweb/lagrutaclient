@@ -6,7 +6,7 @@ const TiendaItemsContenedor = ({ products }) => {
 
     return (
         <div className={style.TiendaItemsContainer}> 
-            {products && products.length > 0 && products?.map((prod) => {
+            {products.length > 0 && products?.map((prod) => {
                 return (
                     <TiendaItems
                         key={prod.id}

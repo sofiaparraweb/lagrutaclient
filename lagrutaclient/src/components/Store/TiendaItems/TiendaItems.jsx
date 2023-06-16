@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 
-const TiendaItems = ({ id, image, name, price, description, stock }) => {
+const TiendaItems = ({ id, name, image, price, description, stock }) => {
   return (
     <div>
+      <img src={image}  width="100px" alt="" />
       <h3>{name}</h3>
       <p> {price}</p>
       <button>Agregar al carrito</button> 
