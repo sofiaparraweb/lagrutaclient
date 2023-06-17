@@ -1,4 +1,12 @@
-:root {
+body {
+	background-repeat:  no-repeat;
+	background-size:  cover;
+	background-attachment: fixed;
+	margin: 0;
+	font-family: Roboto, Helvetica, Arial, sans-serif;
+
+}
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -11,9 +19,12 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
 }
 
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
 a {
   font-weight: 500;
   color: #646cff;
@@ -39,4 +50,7 @@ body {
   a:hover {
     color: #747bff;
   }
-}
+  button {
+    background-color: #f9f9f9;
+  }
+} */

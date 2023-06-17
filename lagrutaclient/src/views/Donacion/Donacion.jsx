@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, ButtonGroup, Box, Text } from '@chakra-ui/react'
+import { Button, ButtonGroup, Box } from '@chakra-ui/react'
 
 
 

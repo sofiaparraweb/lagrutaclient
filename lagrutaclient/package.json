@@ -10,18 +10,31 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^2.1.0",
     "@chakra-ui/react": "^2.7.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@material/icon-button": "^14.0.0",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.13.5",
+    "@popperjs/core": "^2.11.8",
+    "accounting": "^0.4.1",
     "axios": "^1.4.0",
+    "dotenv": "^16.1.4",
+    "fontawesome": "^5.6.3",
     "framer-motion": "^10.12.16",
+    "install": "^0.13.0",
+    "npm": "^9.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.9.0",
     "react-redux": "^8.0.7",
     "react-router-dom": "^6.12.1",
+    "react-slick": "^0.29.0",
     "redux": "^4.2.1",
     "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.4.2"
+    "redux-thunk": "^2.4.2",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",

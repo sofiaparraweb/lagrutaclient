@@ -1,0 +1,84 @@
+.navContainer {
+  display: flex;
+  position: fixed; /* Para fijar el NavBar */
+  top: 0; /* Con esto lo fijamos en la posicion 0 */
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  height: 65px;
+  width: 100%;
+  border-bottom: 2px solid silver;
+  z-index:1;
+}
+
+.LeftSection {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.logo{
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.rightSection {
+  margin-right: 10px;
+  display: flex; 
+  align-items: center; 
+}
+
+.link {
+  text-decoration: none;
+  color: grey;
+  padding: 22.5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  transition: 0.5s ease;
+}
+
+.link:hover {
+  transition: 0.5s ease;
+  color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdownContainer {
+  display: flex; 
+  align-items: center; 
+}
+  
+.dropdownContent {
+  margin-left: 5px;
+  display: none;
+  position: absolute;
+  min-width: 108px;
+  z-index: 1;
+}
+  
+.link:hover + .dropdownContent,
+.dropdownContent:hover {
+  display: block;
+  position: absolute;
+  background-color: white;
+  top: 110%;
+}
+  
+.dropdownOption {
+  color: grey;
+  padding: 6px 6px;
+  font-size: 15px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  transition: 0.5s ease;
+}
+  
+.dropdownOption:hover {
+  transition: 0.5s ease;
+  color: white;
+}
+
+.avatar {
+  width: 40px; /* Ajusta el tamaño según tus necesidades */
+}
