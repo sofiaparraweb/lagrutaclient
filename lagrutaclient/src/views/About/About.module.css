@@ -3,6 +3,9 @@
 }
 
 .AboutContenedor {
-  margin: 5%;
   margin-top: 7%;
+}
+
+.Introduccion{
+  padding: 45px;
 }
