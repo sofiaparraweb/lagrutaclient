@@ -1,25 +1,58 @@
-import style from "./About.module.css"
-import Mision from "./Mision/Mision"
-import Vision from "./Vision/Vision"
-import Valores from "./Valores/Valores"
+import React from "react";
+import style from "./About.module.css";
+import Mision from "./Mision/Mision";
+import Vision from "./Vision/Vision";
+import Valores from "./Valores/Valores";
 
-const About = () =>{
-    return(
-        <div className={style.AboutContenedor}>
-            <div className={style.Introduccion}>
-                <p> En La Gruta trabajamos muchas personas, estudiantes, profesionales, grandes, chicos, pero lo que sin duda nos une es el Espiritu Juvenil, esas ganas de querer construir JUNTOS un lugar donde todos puedan formar parte.</p>
-                <p> No damos algo a la comunidad, sino que creamos algo JUNTOS. Se tiene como premisa fundamental el resguardo absoluto en la dignidad de la persona.</p>
-                <p> Hoy, después de tantos años, podemos seguir disfrutando de este lugar que tanto nos enseña, y con orgullo podemos contar que contamos con diferentes programas como ser, un comedor infantil, talleres de niños, jóvenes y mujeres. Trabajamos con la comunidad y con su salud.</p>
-            </div>
-            <Mision />
-            <Vision />
-            <Valores />
-            <h1>Que hacemos</h1>
-            <h1>historia</h1>
-            <h1>boton donacion</h1>
-            <h1>Quienes somos. Equipo</h1>
-        </div>
-    )
-}
+const About = () => {
+  return (
+    <div className={style.container}>
+      <header className={style.header}>
+        <h1>La Gruta</h1>
+        <p>Un espacio para construir juntos</p>
+      </header>
+      <div className={style.introduction}>
+  <p>
+    En La Gruta trabajamos con personas de diferentes edades y profesiones.
+    Lo que nos une es el Espíritu Juvenil y el deseo de construir juntos un lugar
+    donde todos puedan formar parte.
+  </p>
+  <p>
+    No solo brindamos a la comunidad, sino que creamos junto a ella. Nuestra
+    premisa fundamental es el absoluto resguardo de la dignidad de cada persona.
+  </p>
+  <p>
+    Después de tantos años, seguimos disfrutando de este lugar que nos enseña
+    tanto. Estamos orgullosos de contar con diversos programas, como un comedor
+    infantil y talleres para niños, jóvenes y mujeres. Trabajamos en colaboración
+    con la comunidad para mejorar su salud y bienestar.
+  </p>
+      </div>
+
+      <Mision />
+      <Vision />
+      <Valores />
+
+      <section className={style.section}>
+        <h2>¿Qué hacemos?</h2>
+        {/* Agrega aquí el contenido de "Qué hacemos" */}
+      </section>
+
+      <section className={style.section}>
+        <h2>Historia</h2>
+        {/* Agrega aquí el contenido de la historia */}
+      </section>
+
+      <section className={style.section}>
+        <h2>¿Quiénes somos? Equipo</h2>
+        {/* Agrega aquí el contenido de "Quiénes somos" y muestra el equipo */}
+      </section>
+
+      <section className={style.section}>
+        <button className={style.donationButton}>Donar</button>
+      </section>
+    </div>
+  );
+};
 
 export default About;

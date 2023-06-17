@@ -2,6 +2,8 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import { useAuth0 } from "@auth0/auth0-react";
+import logo from '../src/assets/logo.png'
+
 
 import Home from "./views/Home/Home";
 import About from "./views/About/About";
@@ -18,7 +20,15 @@ const App = () => {
   const { isAuthenticated, isLoading } = useAuth0();
 
   if (isLoading) {
-    return <div>Cargando...</div>;
+    return (
+      <div className="loading-container">
+        <img
+          src={logo}
+          alt="Loading..."
+          className="loading-image"
+        />
+      </div>
+    );
   }
 
   return (

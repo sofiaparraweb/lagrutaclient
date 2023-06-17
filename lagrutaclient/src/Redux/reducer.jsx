@@ -9,6 +9,8 @@ import {
   FETCH_PROFILE_FAILURE,
   UPDATE_PROFILE_SUCCESS,
   UPDATE_PROFILE_FAILURE,
+  SET_USER,
+  SET_USERS,
 } from "./actions";
 
 const initialState = {
@@ -18,6 +20,9 @@ const initialState = {
   isLoading: false,
   error: null,
   profileData: null,
+  accessToken: null,
+  user: null,
+  users: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -81,9 +86,13 @@ const rootReducer = (state = initialState, action) => {
         isLoading: false,
         error: action.payload,
       };
-    default:
-      return state;
+      case SET_USER:
+      return { ...state, user: action.payload };
+    case SET_USERS:
+      return { ...state, users: action.payload };
+      default:
+        return state;
+    }
   }
-};
 
 export default rootReducer;

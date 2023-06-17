@@ -10,6 +10,8 @@ export const FETCH_PROFILE_SUCCESS = "FETCH_PROFILE_SUCCESS";
 export const FETCH_PROFILE_FAILURE = "FETCH_PROFILE_FAILURE";
 export const UPDATE_PROFILE_SUCCESS = "UPDATE_PROFILE_SUCCESS";
 export const UPDATE_PROFILE_FAILURE = "UPDATE_PROFILE_FAILURE";
+export const SET_USER = 'SET_USER';
+export const SET_USERS = 'SET_USERS'
 
 export const getNews = () => {
   return async (dispatch) => {
@@ -109,4 +111,45 @@ export const updateProfile = (userId, userData) => {
       dispatch(updateProfileFailure(error.message));
     }
   };
+};
+
+
+// Obtener un usuario por ID
+export const getUser = async (id) => {
+  try {
+    const response = await axios.get(`/user/${id}`);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.error);
+  }
+};
+
+// Crear un usuario
+export const createUser = async (userData) => {
+  try {
+    const response = await axios.post('/user', userData);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.error);
+  }
+};
+
+// Obtener todos los usuarios
+export const getAllUsers = async () => {
+  try {
+    const response = await axios.get('/user');
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.error);
+  }
+};
+
+// Actualizar el rol de un usuario
+export const updateUserRole = async (id, newRole) => {
+  try {
+    const response = await axios.put(`/user/${id}`, { role: newRole });
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.error);
+  }
 };
