@@ -16,7 +16,7 @@ const Side = () => {
       <SocialMedia />
       <Heading title="Suscríbete" />
       <section className={style.subscribe}>
-        <h1 className={style.title}>Suscríbete a nuestras Nuevas Historias</h1>
+        <h1 className={style.title}>Suscribete a nuestras Nuevas Historias</h1>
         <form action="">
           <input type="email" placeholder="Correo electrónico..." />
           <button>
