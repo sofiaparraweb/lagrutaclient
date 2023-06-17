@@ -5,26 +5,28 @@ import { Image, Card, Stack, Text, Heading, CardBody, CardFooter, Divider, Butto
 const TiendaItems = ({ id, name, image, price, description, stock, type }) => {
   return (
     <div>
-      <Card maxW='260px' margin="20px 0">
+      <Card width='260px' h='400px' margin="20px 0">
         <CardBody>
-          <Heading size='md' spacing='2'>
-            <Text >{name}</Text>
+          <Heading size='md'>
+            <Text fontSize='md'>{name}</Text>
             <Text color='blue.600' fontSize='l'> $ {price}</Text>
           </Heading>
           <Image
-            src={image}
+            src={image} 
             alt='imagen Producto'
             borderRadius='lg'
+            width='200px'
+            h='200px'
           />
-          <Stack mt='1'>
+          <Stack h='70px' mt='1'>
             <Text>
               {description}
             </Text>     
           </Stack>
         </CardBody>
         <Divider />
-        <CardFooter>
-          <Button variant='ghost' colorScheme='blue'>
+        <CardFooter h='30px'>
+          <Button variant='ghost' colorScheme='blue' margin='-20px'>
             Add to cart
           </Button>
         </CardFooter>
