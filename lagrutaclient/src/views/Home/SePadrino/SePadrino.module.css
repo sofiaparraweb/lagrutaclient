@@ -1,0 +1,59 @@
+.SePadrinoHome{
+    position: relative;
+    margin: 10px 0;
+    height: 400px;
+    padding-left: 150px;
+    margin-bottom: 100px;
+}
+.ImagenContainer{
+    position: relative;
+    float: left;
+}
+.SumateContainer{
+    overflow:hidden;
+}
+
+img[alt="sumate"]{
+    transition: 0.5s ease;
+    border: none;
+}
+
+img[alt="sumate"]:hover{
+    transition: 0.5s ease;
+    -webkit-transform:scale(1.2);transform:scale(1.2);
+}
+
+img[alt="naranja"]{
+    margin-left: 45%;
+    z-index: -1;
+    position: absolute;
+    width: 550px;
+    top: 15%;
+    left: 63%;
+}
+p[id="SePadrino"]{
+    position: absolute;
+    top: 50%;
+    left: 80%;
+    transform: translate(-110%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 1;
+}
+
+.BotonSePadrino{
+    position: absolute;
+    background-image: url("../../../assets/rojo.png");
+    background-size: cover;
+    height: 120px;
+    width: 120px;
+    top: 70%;
+    left: 65%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: -2px;
+    font-size: 18px;
+    font-style: italic;
+}

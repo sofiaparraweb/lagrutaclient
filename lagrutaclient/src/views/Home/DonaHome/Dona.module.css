@@ -1,0 +1,53 @@
+.DonaHome{
+    position: relative;
+    margin: 10px 0;
+    height: 320px;
+    margin-bottom: 20px;
+}
+
+img[alt="yellow"]{
+    margin-left: 10%;
+    z-index: -1;
+    position: absolute;
+    width: 900px;
+}
+img[alt="flechaazul"]{
+    position: absolute;
+    left: 67%;
+    top: 59%;
+}
+
+p[id="PrimerAmarillo"]{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-74%, -110%);
+    font-size: 18px;
+    color: rgba(16, 68, 118, 255);
+    text-align: center;
+}
+p[id="SegundoAmarillo"]{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 18px;
+    transform: translate(-60%, -5%);
+    color: rgba(16, 68, 118, 255);
+    text-align: center;
+}
+
+.BotonMasNoticias[id="Dona"]{
+    position: absolute;
+    background-image: url(../../../assets/corazon.png);
+    background-size: 100px;
+    background-repeat: no-repeat;
+    height: 100px;
+    width: 100px;
+    top: 53%;
+    left: 78%;
+    font-size: 25px;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

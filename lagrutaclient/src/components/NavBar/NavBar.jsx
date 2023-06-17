@@ -24,22 +24,26 @@ const NavBar = ({ isAuthenticated }) => {
     setIsHovered(false);
   };
 
+  const handleClick = () => {
+    window.scrollTo({ top: 0 });
+  };
+
   return (
     <nav className="navContainer">
       <div className="LeftSection">
         <Link to="/home">
-          <img src={logo} alt="logo" width="60px" className="logo" />
+          <img src={logo} alt="logo" width="60px" className="logo" onClick={handleClick}/>
         </Link>
         <div className="dropdownContainer">
-          <Link to="/about" className="link">
+          <Link to="/about" className="link" onClick={handleClick}>
             Conocenos
           </Link>
-          <Link to="/noticias" className="link">
+          <Link to="/noticias" className="link" onClick={handleClick}>
             Noticias
           </Link>
         </div>
         <div>
-          <Link to="/tienda" className="link">
+          <Link to="/tienda" className="link" onClick={handleClick}>
             Tienda
           </Link>
         </div> 
@@ -53,20 +57,20 @@ const NavBar = ({ isAuthenticated }) => {
           </div>
           {isHovered && (
             <div className="dropdownContent">
-              <Link to="/dona" className="dropdownOption">
+              <Link to="/dona" className="dropdownOption" onClick={handleClick}>
                 Dona
               </Link>
-              <Link to="/sePadrino" className="dropdownOption">
+              <Link to="/sePadrino" className="dropdownOption" onClick={handleClick}>
                 Sé padrino
               </Link>
-              <Link to="/seVoluntario" className="dropdownOption">
+              <Link to="/seVoluntario" className="dropdownOption" onClick={handleClick}>
                 Sé voluntario
               </Link>
             </div>
           )}
         </div>
         {isAuthenticated ? (
-          <Link to="/perfil" className="link">
+          <Link to="/perfil" className="link" onClick={handleClick}>
             Perfil
           </Link>
         ) : null}
