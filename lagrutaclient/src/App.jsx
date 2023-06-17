@@ -1,11 +1,10 @@
-// App.js
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import { useAuth0 } from "@auth0/auth0-react";
 
-/* Componentes */
 import Home from "./views/Home/Home";
+import About from "./views/About/About";
 import News from "./views/Noticias/News";
 import DetailsNews from "./components/News/DetailsNews/DetailsNews";
 import Tienda from "./views/Tienda/Tienda";
@@ -25,13 +24,14 @@ const App = () => {
     <div className="App">
       <NavBar isAuthenticated={isAuthenticated} />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Noticias" element={<News />} />
-        <Route exact path="/Noticias/:id" element={<DetailsNews/>}></Route>
-        <Route path="/Tienda" element={<Tienda />} />
-        <Route path="/Perfil" element={<Perfil />} />
-        <Route path="/LogIn" element={<LogIn />} />
-        <Route path="/LogOut" element={<LogOut />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/noticias" element={<News />} />
+        <Route exact path="/noticias/:id" element={<DetailsNews />} />
+        <Route path="/tienda" element={<Tienda />} />
+        <Route path="/perfil" element={<Perfil />} />
+        <Route path="/login" element={<LogIn />} />
+        <Route path="/logout" element={<LogOut />} />
       </Routes>
     </div>
   );

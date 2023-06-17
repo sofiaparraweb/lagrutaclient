@@ -1,134 +1,89 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import style from "./NavBar.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import logo from '../../assets/logo.png'
+import './NavBar.css'; 
 
 const NavBar = ({ isAuthenticated }) => {
-  const { logout } = useAuth0();
+  const { loginWithRedirect, logout, user } = useAuth0();
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleLogout = () => {
     logout({ returnTo: window.location.origin });
   };
 
+  const handleLogin = () => {
+    loginWithRedirect({ appState: { targetUrl: "/perfil" } });
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  const handleClick = () => {
+    window.scrollTo({ top: 0 });
+  };
+
   return (
-    <nav className={style.navContainer}>
-      <div className={style.LeftSection}>
-        <Link to="/">
-          <img src={logo} alt="logo" width="60px" className={style.logo}></img>
+    <nav className="navContainer">
+      <div className="LeftSection">
+        <Link to="/home">
+          <img src={logo} alt="logo" width="60px" className="logo" onClick={handleClick}/>
         </Link>
-        <Link 
-          to="/Conocenos" 
-          style={{ borderBottom:'6px solid rgba(223,184,55,255)', borderBottomLeftRadius: '5px' }}
-          onMouseEnter={(e) => {
-            e.target.style.backgroundColor = 'rgba(223, 184, 55, 255)';
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.backgroundColor = 'transparent';
-          }} 
-          className={style.link}>
-          About
-        </Link>
-        <Link 
-          to="/Noticias" 
-          style={{ borderBottom:'6px solid rgba(234,93,11,255)'}}
-          onMouseEnter={(e) => {
-            e.target.style.backgroundColor = 'rgba(234,93,11,255)';
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.backgroundColor = 'transparent';
-          }} 
-          className={style.link}> 
-          Noticias
-        </Link>
-        <Link 
-          to="/Tienda" 
-          style={{ borderBottom:'6px solid rgba(195,64,56,255)' }} 
-          onMouseEnter={(e) => {
-            e.target.style.backgroundColor = 'rgba(195,64,56,255)';
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.backgroundColor = 'transparent';
-          }} 
-          className={style.link}> 
-          Tienda
-        </Link>
-        <div className={style.dropdownContainer}>
-        <Link 
-          to="/Ayuda-Hoy" 
-          style={{ borderBottom:'6px solid rgba(16,68,118,255)', borderBottomRightRadius: '5px' }} 
-          onMouseEnter={(e) => {
-            e.target.style.backgroundColor = 'rgba(16,68,118,255)';
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.backgroundColor = 'transparent';
-          }} 
-          className={style.link}>
-          Ayuda Hoy
-        </Link>
-        <div className={style.dropdownContent}>
-          <Link 
-            to="/Dona" 
-            className={style.dropdownOption}
-            style={{ borderBottom:'3px solid rgba(223,184,55,255)'}}
-            onMouseEnter={(e) => {
-              e.target.style.backgroundColor = 'rgba(223, 184, 55, 255)';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.backgroundColor = 'transparent';
-            }}>
-            Dona
+        <div className="dropdownContainer">
+          <Link to="/about" className="link" onClick={handleClick}>
+            Conocenos
           </Link>
-          <Link 
-            to="/SePadrino" 
-            className={style.dropdownOption}
-            style={{ borderBottom:'3px solid rgba(234,93,11,255)'}}
-            onMouseEnter={(e) => {
-              e.target.style.backgroundColor = 'rgba(234,93,11,255)';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.backgroundColor = 'transparent';
-            }} >
-            Sé padrino
-          </Link>
-          <Link 
-            to="/SeVoluntario" 
-            className={style.dropdownOption}
-            style={{ borderBottom:'3px solid rgba(195,64,56,255)'}} 
-            onMouseEnter={(e) => {
-              e.target.style.backgroundColor = 'rgba(195,64,56,255)';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.backgroundColor = 'transparent';
-            }} >
-            Sé voluntario
+          <Link to="/noticias" className="link" onClick={handleClick}>
+            Noticias
           </Link>
         </div>
-      </div>
-      </div>
-      <div className={style.rightSection}>
-        {isAuthenticated ? (
-          <>
-            <Link to="/Perfil" className={style.link}>
-              Perfil
-            </Link>
-            <button onClick={handleLogout} className={style.link}>
-              Cerrar Sesión
-            </button>
-          </>
-        ) : (
-          <Link 
-            to="/LogIn" 
-            style={{ borderBottom:'6px solid rgba(16,68,118,255)', borderRadius: '5px' }}
-            onMouseEnter={(e) => {
-              e.target.style.backgroundColor = 'rgba(16,68,118,255)';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.backgroundColor = 'transparent';
-            }}  
-            className={style.link}>
-            Inicia sesión
+        <div>
+          <Link to="/tienda" className="link" onClick={handleClick}>
+            Tienda
           </Link>
+        </div> 
+        <div className="dropdownContainer">
+          <div
+            className={`link ${isHovered ? "active" : ""}`}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+           Ayudar
+          </div>
+          {isHovered && (
+            <div className="dropdownContent">
+              <Link to="/dona" className="dropdownOption" onClick={handleClick}>
+                Dona
+              </Link>
+              <Link to="/sePadrino" className="dropdownOption" onClick={handleClick}>
+                Sé padrino
+              </Link>
+              <Link to="/seVoluntario" className="dropdownOption" onClick={handleClick}>
+                Sé voluntario
+              </Link>
+            </div>
+          )}
+        </div>
+        {isAuthenticated ? (
+          <Link to="/perfil" className="link" onClick={handleClick}>
+            Perfil
+          </Link>
+        ) : null}
+      </div>
+      <div className="rightSection">
+        {isAuthenticated ? (
+          <button onClick={handleLogout} className="link logoutButton">
+            Cerrar Sesión
+          </button>
+        ) : (
+          <button onClick={handleLogin} className="link loginButton">
+            Iniciar sesión
+          </button>
         )}
       </div>
     </nav>

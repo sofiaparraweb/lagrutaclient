@@ -1,11 +1,14 @@
 import axios from "axios";
 
+export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
+export const GET_DETAIL_PRODUCTS = "GET_DETAIL_PRODUCTS";
 export const GET_NEWS = "GET_NEWS";
 
 export function getNews() {
   return async function (dispatch) {
     try {
-      const res = await axios.get(`http://localhost:5173/news`);
+      const res = await axios.get(`http://localhost:3001/news`);
+      // const res = await axios.get("http://localhost:3001/activity/offset?offset=0");
       return dispatch({
         type: GET_NEWS,
         payload: res.data,
@@ -15,14 +18,12 @@ export function getNews() {
     }
   };
 }
-export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
-export const GET_DETAIL_PRODUCTS = "GET_DETAIL_PRODUCTS";
 
 const url = "http://localhost:3001";
 
 export const getAllProducts = () => {
     return async (dispatch) =>{
-        const resp = await axios(`${url}/products`);
+        const resp = await axios(`${url}/products/`);
         return dispatch({type: GET_ALL_PRODUCTS, payload: resp.data})
     }
 }

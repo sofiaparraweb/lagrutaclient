@@ -9,6 +9,7 @@
   display: flex;
   position: relative;
   width: 49%;
+  margin-top: 7px;
 }
 
 .img {
@@ -45,7 +46,10 @@
     font-weight: 700;
     font-size: 20px;
     margin-bottom: 15px;
+    letter-spacing: normal;
     color: #444;
+    font-family: 'Futura PT', sans-serif;   
+    text-transform: none;                    
 }
 
 .title:hover {

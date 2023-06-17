@@ -24,9 +24,16 @@
   }
 
   .title {
-    font-weight: 500;
-    font-size: 17px;
-    margin-bottom: 15px;
+  font-weight: 600;
+  letter-spacing: normal;
+  font-size: 17px;
+  color: #444;
+  font-family: 'Futura PT', sans-serif;   
+  margin-bottom: 15px;
+  }
+
+  .title:hover {
+    color: #444;
   }
   
 

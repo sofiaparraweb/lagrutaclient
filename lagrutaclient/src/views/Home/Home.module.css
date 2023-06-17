@@ -1,7 +1,12 @@
+.Home{
+    margin: 5%;
+}
+
+/* -----------------------------------NOTICIAS----------------------------------- */
+
 .NoticiasContenedor {
-    margin-top: 7%;
-    padding: 0;
     align-items: center;
+    margin-bottom: 100px;
 }
 
 .BotonMasNoticias {
@@ -14,5 +19,4 @@
     width: 13%;
     margin:auto;
     padding: 5px;
-    margin-bottom: 7%;
 }

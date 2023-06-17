@@ -1,24 +1,31 @@
 import TiendaItems from "../TiendaItems/TiendaItems";
 import PropTypes from 'prop-types';
 import style from "./TiendaItemsContenedor.module.css";
+import SideBar from "../SideBar/SideBar"
 
 const TiendaItemsContenedor = ({ products }) => {
 
     return (
-        <div className={style.TiendaItemsContainer}> 
-            {products.length > 0 && products?.map((prod) => {
-                return (
-                    <TiendaItems
-                        key={prod.id}
-                        id={prod.id}
-                        image={prod.image}
-                        name={prod.name}
-                        price={prod.price}
-                        description={prod.description}
-                        stock={prod.stock}
-                    />
-                ); 
-            })}
+        <div className={style.ContenedorTienda}>
+            <div className={style.TiendaSideBar}>
+                <SideBar />
+            </div>
+            <div className={style.TiendaItemsContainer}> 
+                {products.length > 0 && products?.map((prod) => {
+                    return (
+                        <TiendaItems
+                            key={prod.id}
+                            id={prod.id}
+                            image={prod.image}
+                            name={prod.name}
+                            price={prod.price}
+                            // type={prod.type}
+                            description={prod.description}
+                            stock={prod.stock}
+                        />
+                    ); 
+                })}
+            </div>
         </div>
     );
 }
