@@ -1,8 +1,18 @@
 .title {
   font-weight: 500;
+  letter-spacing: normal;
   font-size: 17px;
+  color: #444;
+  font-family: 'Futura PT', sans-serif;   
+  margin-bottom: 15px;font-size: 17px;
   margin-bottom: 15px;
 }
+
+
+.title:hover {
+  color: #444;
+}
+
 
 .img {
   width: 100%;

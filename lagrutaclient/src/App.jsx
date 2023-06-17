@@ -4,7 +4,7 @@ import "./App.css";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import Home from "./views/Home/Home";
-import About from "./views/About/About"
+import About from "./views/About/About";
 import News from "./views/Noticias/News";
 import DetailsNews from "./components/News/DetailsNews/DetailsNews";
 import Tienda from "./views/Tienda/Tienda";
@@ -12,6 +12,7 @@ import Perfil from "./views/Perfil/Perfil";
 import LogIn from "./views/LogIn/LogIn";
 import LogOut from "./views/LogIn/LogOut";
 import NavBar from "./components/NavBar/NavBar";
+import BackToTop from "./components/BackToTop/BackToTop";
 
 const App = () => {
   const { isAuthenticated, isLoading } = useAuth0();
@@ -27,11 +28,13 @@ const App = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/noticias" element={<News />} />
+        <Route exact path="/noticias/:id" element={<DetailsNews />} />
         <Route path="/tienda" element={<Tienda />} />
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/logout" element={<LogOut />} />
       </Routes>
+      <BackToTop />
     </div>
   );
 };

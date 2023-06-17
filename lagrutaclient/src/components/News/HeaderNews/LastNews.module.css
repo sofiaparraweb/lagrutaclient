@@ -68,18 +68,20 @@
   grid-row-end: 9;
 }
 .text h1 {
-  font-weight: 500;
+  font-weight: 600;
   margin: 10px 0;
-  font-size: 15px;
+  letter-spacing: normal;
+  font-size: 17px;
+  color: aliceblue;
+  font-family: 'Futura PT', sans-serif;   
+  text-transform: none;                                           
 }
-.author span {
-  font-size: 14px;
-  margin-right: 20px;
-}
+
 .text {
   position: absolute;
   bottom: 30px;
 }
+
 .box:nth-child(1) h1 {
   font-size: 28px;
 }
