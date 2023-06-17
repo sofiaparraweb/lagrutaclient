@@ -1,29 +1,52 @@
 .sidebarContenedor h1{
-    padding-top: 20px;
-    padding-left: 10px;;
+    /* padding-top: 20px;
+    padding-left: 10px; */
 }
 
-h1{
-    letter-spacing: 8px;
-    text-transform: uppercase;
-    color: silver;
-}
-h1:hover{
-    color: white
+.ContenedorFiltroOrden{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  width: 100%;
+  height: 150px;
+  padding-top: 20px;
+  padding-left: 10px;
 }
 
-  .Changuito {
-    /* Estilos para el contenedor del ícono */
-  }
+.FiltrarOrdenarTexto{
+  position: absolute;
+  left: 23%;
+  top: 12%;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: silver;
+}
+.FiltrarOrdenarTexto:hover{
+  color: white
+}
+
+/* -----------------------------ICONOS----------------------------- */
+.Icon1{
+  display: flex;
+  font-size: 20px;
+  color: silver;
+}
+.Icon1:hover{
+  color: white
+}
+.Changuito {
+  /* Estilos para el contenedor del ícono */
+}
   
-  .Icon {
-    /* Estilos para el ícono en sí */
-    display: flex;
-    margin-left: 10%;
-    margin-top: 10%;
-    font-size: 30px;
-    color: silver;
-  }
-  .Icon:hover{
-    color: white
-  }
+.Icon {
+  /* Estilos para el ícono en sí */
+  display: flex;
+  margin-left: 35%;
+  margin-top: 10%;
+  font-size: 30px;
+  color: silver;
+}
+.Icon:hover{
+  color: white
+}

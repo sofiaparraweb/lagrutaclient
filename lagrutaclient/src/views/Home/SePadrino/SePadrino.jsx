@@ -13,7 +13,7 @@ const SePadrinoHome = () =>{
         <div className={style.SePadrinoHome}>
             <div className={style.ImagenContainer}>
                 <div className={style.SumateContainer}>
-                    <img src={Sumate} alt="sumate" width="400px"></img>
+                    <img src={Sumate} alt="sumate" width="550px"></img>
                 </div>
                 <img src={naranja} alt="naranja"></img>
             </div>

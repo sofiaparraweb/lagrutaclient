@@ -29,7 +29,6 @@
 .BotonMasNoticias:hover {
     transition: 1s ease;
     transform: scale(1.05);
-    
     background: #ef6d1f;
     color: white;
   }

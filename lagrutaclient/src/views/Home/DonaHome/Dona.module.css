@@ -3,26 +3,26 @@
     margin: 10px 0;
     height: 320px;
     margin-bottom: 20px;
-    border: 1px solid red
 }
 
 img[alt="yellow"]{
-    margin-left: 10%;
+    margin-left: 12%;
     z-index: -1;
     position: absolute;
     width: 900px;
 }
 img[alt="flechaazul"]{
     position: absolute;
-    left: 67%;
-    top: 59%;
+    left: 60%;
+    top: 65%;
 }
 
 p[id="PrimerAmarillo"]{
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-74%, -110%);
+    top: 48%;
+    left: 47%;
+    transform: translate(-70%, -100%);
+    width: 45%;
     font-size: 18px;
     color: rgba(16, 68, 118, 255);
     text-align: center;
@@ -32,7 +32,7 @@ p[id="SegundoAmarillo"]{
     top: 50%;
     left: 50%;
     font-size: 18px;
-    transform: translate(-60%, -5%);
+    transform: translate(-60%, -1%);
     color: rgba(16, 68, 118, 255);
     text-align: center;
 }
@@ -40,12 +40,12 @@ p[id="SegundoAmarillo"]{
 .BotonMasNoticias[id="Dona"]{
     position: absolute;
     background-image: url(../../../assets/corazon.png);
-    background-size: 100px;
+    background-size: 120px;
     background-repeat: no-repeat;
-    height: 100px;
-    width: 100px;
-    top: 53%;
-    left: 78%;
+    height: 120px;
+    width: 120px;
+    top:57%;
+    left: 72%;
     font-size: 25px;
     font-style: italic;
     display: flex;

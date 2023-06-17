@@ -4,13 +4,14 @@ import {AiOutlineShoppingCart, AiOutlineFilter, AiOutlineOrderedList} from "reac
 const SideBar = () =>{
   return (
     <div className={style.sidebarContenedor}>
-        <div className={style.FILTRAR}>
-          <AiOutlineFilter className={style.Icon}/>
-          <h1>FILTRAR</h1>
+        <div className={style.ContenedorFiltroOrden}>
+          <AiOutlineFilter className={style.Icon1}/>
+          <h1 className={style.FiltrarOrdenarTexto}>FILTRAR</h1>
         </div>
         <hr color="white"></hr>
-        <div className={style.FILTRAR}>
-          <h1>ORDENAR</h1>
+        <div className={style.ContenedorFiltroOrden}>
+          <AiOutlineOrderedList className={style.Icon1}/>
+          <h1 className={style.FiltrarOrdenarTexto}>ORDENAR</h1>
         </div>
         <hr color="white"></hr>
         <div className={style.Changuito}>
