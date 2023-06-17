@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const Tienda = () => {
 
- 
   const dispatch = useDispatch();
   const allProducts = useSelector(state => state.allProducts);
 
