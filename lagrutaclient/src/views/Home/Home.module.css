@@ -1,23 +1,35 @@
 .Home{
-    margin: 0;
-    padding: 50px;
+    
 }
 
 /* -----------------------------------NOTICIAS----------------------------------- */
 
 .NoticiasContenedor {
+    position: relative;
     align-items: center;
-    margin-bottom: 100px;
+    background-color:rgba(250,245,215,0.6);
+    padding: 50px;
 }
 
 .BotonMasNoticias {
-    display: flex;
-    justify-content: center;
-    background-color: rgba(234,93,11,255);
+    position: absolute;
+    top: 88%;
+    left: 43%;
+    background-color: white;
+    color: #ef6d1f;
     border-radius: 5px;
-    color: white;
-    font-size: 15px;
-    width: 13%;
-    margin:auto;
-    padding: 5px;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 3px 15px;
+    text-align: center;
+    transition: 1s ease;
 }
+
+.BotonMasNoticias:hover {
+    transition: 1s ease;
+    transform: scale(1.05);
+    
+    background: #ef6d1f;
+    color: white;
+  }
