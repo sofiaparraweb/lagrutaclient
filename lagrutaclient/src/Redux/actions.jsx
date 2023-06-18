@@ -46,8 +46,8 @@ export const filterByType = (productType) => {
     const response = await axios.get(`${url}/filter/byType?productType=${productType}`);
     dispatch({
       type: 'FILTER_BY_TYPE',
-      payload: response.data.name
-    });
+      payload: response.data
+    })
     // try {
     //   const response = await axios.get(`${url}/filter/byType?productType=${productType}`);
     //   dispatch({
