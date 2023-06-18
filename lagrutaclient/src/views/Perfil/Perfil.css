@@ -1,0 +1,117 @@
+.container {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-control {
+  border-radius: 5px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.profile-picture-container {
+  position: relative;
+  width: 400px;
+  height: 300px;
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+.profile-picture {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 30px;
+}
+
+.profile-picture-label {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding: 5px 10px;
+  background-color: #1d2636;
+  color: #fff;
+  font-size: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.custom-input {
+  text-align: left;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #f8f8f8;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.custom-select {
+  text-align: left;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #f8f8f8;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.labels {
+  font-size: 12px;
+  color: #777;
+  margin-bottom: 3px;
+}
+
+.profile-title {
+  font-size: 34px;
+  font-weight: bold;
+  color: #1d2636;
+  margin-bottom: 20px;
+}
+
+.profile-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.profile-button:hover {
+  background-color: #0056b3;
+}
+
+.profile-button:focus {
+  outline: none;
+}
+
+.profile-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
+@media (max-width: 576px) {
+  .container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+
+  .col-md-3,
+  .col-md-5 {
+    border-right: none;
+  }
+}

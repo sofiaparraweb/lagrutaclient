@@ -23,7 +23,6 @@ const Tienda = () => {
       <div className={style.tienda}>
         <TiendaItemsContenedor products={allProducts} />
       </div>
-      <Footer />
     </div>
   );
 }

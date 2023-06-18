@@ -5,11 +5,16 @@ export const GET_DETAIL_PRODUCTS = "GET_DETAIL_PRODUCTS";
 export const GET_NEWS = "GET_NEWS";
 export const FILTER_BY_NAME = "FILTER_BY_NAME";
 export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
+export const FETCH_PROFILE_SUCCESS = "FETCH_PROFILE_SUCCESS";
+export const CREATE_PROFILE_SUCCESS = "CREATE_PROFILE_SUCCESS";
+export const UPDATE_PROFILE_SUCCESS = "UPDATE_PROFILE_SUCCESS";
+
+const url = "http://localhost:3001";
 
 export function getNews() {
   return async function (dispatch) {
     try {
-      const res = await axios.get(`http://localhost:3001/news`);
+      const res = await axios.get(`${url}/news`);
       // const res = await axios.get("http://localhost:3001/activity/offset?offset=0");
       return dispatch({
         type: GET_NEWS,
@@ -20,8 +25,6 @@ export function getNews() {
     }
   };
 }
-
-const url = "http://localhost:3001";
 
 export const getAllProducts = () =>{
   return async (dispatch) =>{
@@ -60,5 +63,47 @@ export const filterByType = (productType) => {
     //     payload: error.response.data.error
     //   });
     // }
+  };
+};
+
+export const fetchProfile = (userId) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`${url}/${userId}`);
+      dispatch({
+        type: FETCH_PROFILE_SUCCESS,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const createProfile = (userData) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`${url}`, userData);
+      dispatch({
+        type: CREATE_PROFILE_SUCCESS,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const updateProfile = (userId, updatedUserData) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.put(`${url}/status/${userId}`, updatedUserData);
+      dispatch({
+        type: UPDATE_PROFILE_SUCCESS,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
