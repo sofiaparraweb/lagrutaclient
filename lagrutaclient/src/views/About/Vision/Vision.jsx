@@ -8,7 +8,14 @@ const Vision = () =>{
                 <h1 className={style.Tittle} style={{ backgroundColor:'rgba(234,93,11,0.8)' }}> VISION </h1>
             </section>
             <div className={style.Parrafos} style={{ backgroundColor:'rgba(234,93,11,255)' }}>
-                <p>ESCRIBIR LA VISION</p>
+                <p>La visión de La Gruta es un mundo que es reflejo del Reino de Dios:
+                    <li>Donde prevalecen la justicia, la paz, la libertad y la solidaridad</li>
+                    <li>En el que la dignidad de la persona humana, hecha a imagen de Dios, es lo más importante</li>
+                    <li>Donde no existe exclusión, discriminación, ni pobreza que deshumanicen</li>
+                    <li>Donde los bienes de la Tierra son compartidos entre todos</li>
+                    <li>Donde se respeta y cuida todo lo creado, por el bien común de las generaciones futuras</li>
+                    <li>En el que todas las personas, sobre todo las más pobres, marginadas y oprimidas, como parte de la comunidad mundial, tienen esperanza y están habilitadas a llegar a la plenitud de su humanidad.</li>
+                </p>
             </div>
         </>
     )

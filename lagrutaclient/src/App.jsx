@@ -25,7 +25,7 @@ const App = () => {
     <div className="App">
       <NavBar isAuthenticated={isAuthenticated} />
       <Routes>
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/noticias" element={<News />} />
         <Route exact path="/noticias/:id" element={<DetailsNews />} />

@@ -5,6 +5,7 @@ export const GET_DETAIL_PRODUCTS = "GET_DETAIL_PRODUCTS";
 export const GET_NEWS = "GET_NEWS";
 export const FILTER_BY_NAME = "FILTER_BY_NAME";
 export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
+export const ORDER_BY_PRICE = "ORDER_BY_PRICE"
 
 export function getNews() {
   return async function (dispatch) {
@@ -45,7 +46,7 @@ export const filterByType = (productType) => {
   return async (dispatch) => {
     const response = await axios.get(`${url}/filter/byType?productType=${productType}`);
     dispatch({
-      type: 'FILTER_BY_TYPE',
+      type: FILTER_BY_TYPE,
       payload: response.data
     })
     // try {
@@ -62,3 +63,13 @@ export const filterByType = (productType) => {
     // }
   };
 };
+
+export const orderByPrice = (price) =>{
+  return async (dispatch) => {
+    const response = await axios.get(`${url}/order/byPrice?price=${price}`);
+    dispatch({
+      type: 'ORDER_BY_PRICE',
+      payload: response.data
+    })
+  }
+}

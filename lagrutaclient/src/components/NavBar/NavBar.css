@@ -7,11 +7,12 @@
   align-items: center;
   background-color: white;
   height: 65px;
-  width: 100%;
+  width: 100%; 
   border-bottom: 2px solid silver;
   z-index: 1;
 }
 
+/* -------------------------------------LeftSection------------------------------------- */
 .LeftSection {
   margin-left: 10px;
   display: flex;
@@ -21,12 +22,6 @@
 .logo {
   margin-right: 15px;
   margin-left: 15px;
-}
-
-.rightSection {
-  margin-right: 10px;
-  display: flex;
-  align-items: center;
 }
 
 .link {
@@ -44,13 +39,71 @@
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
+/* -------------------------------------Conocenos */
+.link[id="conocenosNav"]{
+  border-bottom:6px solid rgba(223,184,55,255);
+  border-bottom-left-radius: 5px;
+}
+.link[id="conocenosNav"]:hover{
+  background-color: rgba(223,184,55,255);
+}
+
+/* -------------------------------------Noticias */
+.link[id="noticiasNav"]{
+  border-bottom:6px solid rgba(234,93,11,255);
+}
+.link[id="noticiasNav"]:hover{
+  background-color: rgba(234,93,11,255);
+}
+
+/* -------------------------------------Tienda */
+.link[id="tiendaNav"]{
+  border-bottom:6px solid rgba(195,64,56,255);
+}
+.link[id="tiendaNav"]:hover{
+  background-color: rgba(195,64,56,255);
+}
+
+/* -------------------------------------Ayudar */
+.link[id="ayudarNav"]{
+  border-bottom:6px solid rgba(16,68,118,255);
+  border-bottom-right-radius: 5px;
+}
+.link[id="ayudarNav"]:hover{
+  background-color: rgba(16,68,118,255);
+}
+
+/* -------------------------------------Dona */
+.link[id="donaNav"]{
+  border-bottom:3px solid rgba(223,184,55,255);
+}
+.link[id="donaNav"]:hover{
+  background-color: rgba(223,184,55,255);
+}
+
+/* -------------------------------------SePadrino */
+.link[id="sepadrinoNav"]{
+  border-bottom:3px solid rgba(234,93,11,255);
+}
+.link[id="sepadrinoNav"]:hover{
+  background-color: rgba(234,93,11,255);
+}
+
+/* -------------------------------------SeVoluntario */
+.link[id="sevoluntarioNav"]{
+  border-bottom:3px solid rgba(195,64,56,255);
+}
+.link[id="sevoluntarioNav"]:hover{
+  background-color: rgba(195,64,56,255);
+}
+
+
 .dropdownContainer {
   display: flex;
   align-items: center;
 }
 
 .dropdownContent {
-  margin-left: 5px;
   display: none;
   position: absolute;
   min-width: 108px;
@@ -62,7 +115,7 @@
   display: block;
   position: absolute;
   background-color: white;
-  top: 110%;
+  top: 100%;
 }
 
 .dropdownOption {
@@ -80,12 +133,17 @@
   color: white;
 }
 
-.logoutButton {
+/* -------------------------------------RightSection------------------------------------- */
+.rightSection {
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+button[id="cerrariniciarNav"]{
   border-bottom: 6px solid rgba(16, 68, 118, 255);
   border-radius: 5px;
 }
-
-.loginButton {
-  border-bottom: 6px solid rgba(16, 68, 118, 255);
-  border-radius: 5px;
+button[id="cerrariniciarNav"]:hover{
+  background-color: rgba(16, 68, 118, 255);
 }
