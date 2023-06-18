@@ -11,7 +11,7 @@ const initialstate = {
 function rootReducer(state = initialstate, action) {
   switch (action.type) {
     case GET_ALL_PRODUCTS:
-      return { ...state, allProducts: action.payload};
+      return { ...state, allProducts: action.payload, products: action.payload};
     case GET_DETAIL_PRODUCTS:
       return { ...state, ProductsDetail: action.payload};
     case FILTER_BY_NAME:

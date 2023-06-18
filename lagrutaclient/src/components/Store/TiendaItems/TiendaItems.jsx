@@ -23,7 +23,7 @@ const TiendaItems = ({ id, name, image, price, description, stock, ProductsTypes
           </Heading>
           <Stack height='63px' mt='1'>
             <Text color='grey' textAlign={'center'}>
-              {description}
+              {ProductsTypes} - {description}
             </Text>     
           </Stack>
         </CardBody>

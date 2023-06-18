@@ -6,11 +6,11 @@
 }
 
 .ImagenesCarrusel {
-  width: 315px;
+  width: 350px;
   height: 350px;
 }
 .ImagenesCarrusel img {
-  width: 315px;
+  width: 350px;
   height: 350px;
   object-fit: cover;
 }
