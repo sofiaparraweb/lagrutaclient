@@ -18,6 +18,7 @@ const handleSubmit = (event) => {
     return;
   }
   alert("¡Formulario enviado!");
+  setEmail("");
 };
 
 const isValidEmail = (email) => {
