@@ -30,23 +30,23 @@ export const getAllProducts = () =>{
   }
 }
 
-// export const getDetailProducts = (id_products) =>{
-//   return async (dispatch) =>{
-//       const {data} = await axios.get(`${url}/products/${id_products}`);
-//       return dispatch({type: GET_DETAIL_PRODUCTS, payload: data})
-//   }
-// }
+export const getDetailProducts = (id_products) =>{
+  return async (dispatch) =>{
+      const {data} = await axios.get(`${url}/products/${id_products}`);
+      return dispatch({type: GET_DETAIL_PRODUCTS, payload: data})
+  }
+}
 
-// export const filterByName = (payload) =>{
-//   return { type: FILTER_BY_NAME, payload };
-// }
+export const filterByName = (payload) =>{
+  return { type: FILTER_BY_NAME, payload };
+}
 
 export const filterByType = (productType) => {
   return async (dispatch) => {
     const response = await axios.get(`${url}/filter/byType?productType=${productType}`);
     dispatch({
       type: 'FILTER_BY_TYPE',
-      payload: response.data
+      payload: response.data.name
     });
     // try {
     //   const response = await axios.get(`${url}/filter/byType?productType=${productType}`);

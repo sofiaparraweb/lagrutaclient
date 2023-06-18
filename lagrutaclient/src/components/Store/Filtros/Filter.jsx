@@ -19,7 +19,16 @@ const Filter = () => {
             <p className={style.LabelFilter}>Categorias</p>
             <ul >
                 <li className={style.FilterLI}>
-                    <button onChange={() => handleFilter('Tresom')}>Tresom</button>
+                    <button onClick={() => handleFilter('Otcom')}>Otcom</button>
+                </li>
+                <li className={style.FilterLI}>
+                    <button onClick={() => handleFilter('Cardguard')}>Cardguard</button>
+                </li>
+                <li className={style.FilterLI}>
+                    <button onClick={() => handleFilter('Tresom')}>Tresom</button>
+                </li>
+                <li className={style.FilterLI}>
+                    <button onClick={() => handleFilter('Lotlux')}>Lotlux</button>
                 </li>
                 <li className={style.FilterLI}>
                     <button onClick={() => handleFilter('Stringtough')}>Stringtough</button>
