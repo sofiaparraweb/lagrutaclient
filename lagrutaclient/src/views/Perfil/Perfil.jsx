@@ -19,7 +19,7 @@ const Perfil = () => {
   const [address, setAddress] = useState("");
   const [occupation, setOccupation] = useState("");
   const [role, setRole] = useState("");
-  const [image, setImage] = useState(user.image);
+  const [profileImage, setProfileImage] = useState(user.image);
 
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.profile);
@@ -35,11 +35,11 @@ const Perfil = () => {
       setName(profile.name || "");
       setEmail(profile.email || "");
       setBirthdate(profile.birthdate || "");
-      setMobileNumber(profile.mobileNumber || "");
+      setPhone(profile.phone || "");
       setAddress(profile.address || "");
-      setOcupation(profile.ocupation || "");
+      setOccupation(profile.occupation || "");
       setRole(profile.role || "");
-      setProfilePicture(profile.picture || "");
+      setImage(profile.image || "");
     }
   }, [profile]);
 
@@ -56,25 +56,25 @@ const Perfil = () => {
   };
 
   const handlePhoneChange = (e) => {
-    setMobileNumber(e.target.value);
+    setPhone(e.target.value);
   };
 
   const handleAddressChange = (e) => {
     setAddress(e.target.value);
   };
 
-  const handleOcupationChange = (e) => {
-    setOcupation(e.target.value);
+  const handleOccupationChange = (e) => {
+    setOccupation(e.target.value);
   };
 
   const handleRoleChange = (e) => {
     setRole(e.target.value);
   };
 
-  const handleProfilePictureChange = (e) => {
+  const handleProfileImageChange = (e) => {
     const file = e.target.files[0];
     const imageUrl = URL.createObjectURL(file);
-    setProfilePicture(imageUrl);
+    setProfileImage(imageUrl);
   };
 
   const handleUpdateProfile = () => {
@@ -86,7 +86,7 @@ const Perfil = () => {
       address,
       occupation,
       role,
-      image,
+      profileImage,
     };
     dispatch(updateProfile(user.sub, updatedUserData));
   };
@@ -108,7 +108,7 @@ const Perfil = () => {
                 <div className="profile-picture-container">
                   <img
                     className="rounded-circle profile-picture"
-                    src={profilePicture || "https://img.freepik.com/vector-premium/diseno-avatar-persona_24877-38130.jpg?w=2000"}
+                    src={profileImage || "https://img.freepik.com/vector-premium/diseno-avatar-persona_24877-38130.jpg?w=2000"}
                     alt="Profile"
                   />
                   <label htmlFor="profile-picture" className="profile-picture-label">
@@ -116,7 +116,7 @@ const Perfil = () => {
                       id="profile-picture"
                       type="file"
                       accept="image/*"
-                      onChange={handleProfilePictureChange}
+                      onChange={handleProfileImageChange}
                     />
                   </label>
                 </div>
@@ -161,8 +161,8 @@ const Perfil = () => {
                       type="text"
                       className="form-control"
                       placeholder="Tu número de teléfono"
-                      value={mobileNumber}
-                      onChange={handleMobileNumberChange}
+                      value={phone}
+                      onChange={handlePhoneChange}
                     />
                   </div>
                   <div className="col-md-12">
@@ -181,8 +181,8 @@ const Perfil = () => {
                       type="text"
                       className="form-control"
                       placeholder="Ayúdanos a conocerte más"
-                      value={ocupation}
-                      onChange={handleOcupationChange}
+                      value={occupation}
+                      onChange={handleOccupationChange}
                     />
                   </div>
                   <div className="col-md-12">
