@@ -1,5 +1,5 @@
 .Home{
-    
+    margin-top: 66px;
 }
 
 /* -----------------------------------NOTICIAS----------------------------------- */
@@ -7,13 +7,11 @@
 .NoticiasContenedor {
     position: relative;
     align-items: center;
-    background-color:rgba(250,245,215,0.6);
-    padding: 50px;
 }
 
 .BotonMasNoticias {
     position: absolute;
-    top: 88%;
+    top: 95%;
     left: 43%;
     background-color: white;
     color: #ef6d1f;
@@ -29,7 +27,6 @@
 .BotonMasNoticias:hover {
     transition: 1s ease;
     transform: scale(1.05);
-    
     background: #ef6d1f;
     color: white;
-  }
+}

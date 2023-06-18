@@ -1,29 +1,26 @@
-.sidebarContenedor h1{
-    padding-top: 20px;
-    padding-left: 10px;;
+.sidebarContenedor{
+  position: relative;
+  padding-top: 100px;
 }
 
-h1{
-    letter-spacing: 8px;
-    text-transform: uppercase;
-    color: silver;
-}
-h1:hover{
-    color: white
+.ContenedorFiltroOrden{
+  position: relative;
+  width: 100%;
+  height: 220px;
 }
 
-  .Changuito {
-    /* Estilos para el contenedor del ícono */
-  }
+.Changuito {
+  /* Estilos para el contenedor del ícono */
+}
   
-  .Icon {
-    /* Estilos para el ícono en sí */
-    display: flex;
-    margin-left: 10%;
-    margin-top: 10%;
-    font-size: 30px;
-    color: silver;
-  }
-  .Icon:hover{
-    color: white
-  }
+.Icon {
+  /* Estilos para el ícono en sí */
+  display: flex;
+  margin-left: 35%;
+  margin-bottom: 20%;
+  font-size: 30px;
+  color: silver;
+}
+.Icon:hover{
+  color: white
+}
