@@ -15,6 +15,7 @@ import LogIn from "./views/LogIn/LogIn";
 import LogOut from "./views/LogIn/LogOut";
 import NavBar from "./components/NavBar/NavBar";
 import BackToTop from "./components/BackToTop/BackToTop";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
   const { isAuthenticated, isLoading } = useAuth0();
@@ -44,6 +45,7 @@ const App = () => {
         <Route path="/login" element={<LogIn />} />
         <Route path="/logout" element={<LogOut />} />
       </Routes>
+      <Footer />
       <BackToTop />
     </div>
   );
