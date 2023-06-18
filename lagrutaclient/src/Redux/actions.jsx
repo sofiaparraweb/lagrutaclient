@@ -69,7 +69,7 @@ export const filterByType = (productType) => {
 export const fetchProfile = (userId) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${url}/:id_user`);
+      const response = await axios.get(`${url}/${userId}`);
       dispatch({
         type: FETCH_PROFILE_SUCCESS,
         payload: response.data,
@@ -97,7 +97,7 @@ export const createProfile = (userData) => {
 export const updateProfile = (userId, updatedUserData) => {
   return async (dispatch) => {
     try {
-      const response = await axios.put(`${url}/status/:${userId}`, updatedUserData);
+      const response = await axios.put(`${url}/status/${userId}`, updatedUserData);
       dispatch({
         type: UPDATE_PROFILE_SUCCESS,
         payload: response.data,

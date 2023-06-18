@@ -101,24 +101,24 @@ const Perfil = () => {
         <div className="container rounded bg-white mt-5 mb-5">
           <div className="row">
             <div className="d-flex justify-content-between align-items-center mb-3">
-              <h4 className="text-right">TU PERFIL</h4>
+              <h4 className="text-left profile-title">TU PERFIL</h4>
             </div>
             <div className="col-md-3 border-right">
               <div className="d-flex flex-column align-items-center text-center p-3 py-5">
-                <div className="profile-picture-container">
-                  <img
-                    className="rounded-circle profile-picture"
-                    src={profileImage || "https://img.freepik.com/vector-premium/diseno-avatar-persona_24877-38130.jpg?w=2000"}
-                    alt="Profile"
-                  />
-                  <label htmlFor="profile-picture" className="profile-picture-label">
-                    <input
-                      id="profile-picture"
-                      type="file"
-                      accept="image/*"
-                      onChange={handleProfileImageChange}
-                    />
-                  </label>
+              <div className="profile-picture-container">
+  <img
+    className="rounded-circle profile-picture"
+    src={profileImage || "https://www.pngmart.com/files/21/Account-Avatar-Profile-PNG-Clipart.png"}
+    alt="Profile"
+  />
+  <div className="profile-picture-label"> 
+    <input
+      id="profile-picture"
+      type="file"
+      accept="image/*"
+      onChange={handleProfileImageChange}
+    />
+  </div>
                 </div>
               </div>
             </div>
@@ -129,7 +129,7 @@ const Perfil = () => {
                     <label className="labels">Nombre y Apellido</label>
                     <Input
                       type="text"
-                      className="form-control"
+                      className="form-control custom-input"
                       placeholder="Nombre completo"
                       value={name}
                       onChange={handleNameChange}
@@ -139,7 +139,7 @@ const Perfil = () => {
                     <label className="labels">Email</label>
                     <Input
                       type="text"
-                      className="form-control"
+                      className="form-control custom-input"
                       placeholder="Ingresa tu correo electrónico"
                       value={email}
                       onChange={handleEmailChange}
@@ -149,7 +149,7 @@ const Perfil = () => {
                     <label className="labels">Fecha de Nacimiento</label>
                     <Input
                       type="date"
-                      className="form-control"
+                      className="form-control custom-input"
                       placeholder="Ingresa tu fecha de nacimiento"
                       value={birthdate}
                       onChange={handleBirthdateChange}
@@ -159,7 +159,7 @@ const Perfil = () => {
                     <label className="labels">Número de Teléfono</label>
                     <Input
                       type="text"
-                      className="form-control"
+                      className="form-control custom-input"
                       placeholder="Tu número de teléfono"
                       value={phone}
                       onChange={handlePhoneChange}
@@ -169,26 +169,23 @@ const Perfil = () => {
                     <label className="labels">Dirección</label>
                     <Input
                       type="text"
-                      className="form-control"
+                      className="form-control custom-input"
                       placeholder="Tu dirección"
                       value={address}
                       onChange={handleAddressChange}
                     />
                   </div>
-                  <div className="col-md-12">
                     <label className="labels">Ocupación</label>
                     <Input
                       type="text"
-                      className="form-control"
+                      className="form-control custom-input"
                       placeholder="Ayúdanos a conocerte más"
                       value={occupation}
                       onChange={handleOccupationChange}
                     />
-                  </div>
-                  <div className="col-md-12">
                     <label className="labels">Rol</label>
                     <Select
-                      className="form-control"
+                      className="form-control custom-select"
                       value={role}
                       onChange={handleRoleChange}
                     >
@@ -197,11 +194,10 @@ const Perfil = () => {
                       <option value="padrino">Padrino</option>
                       <option value="miembro">Miembro</option>
                     </Select>
-                  </div>
                 </div>
-                <div className="mt-5 text-center">
+                <div>
                   <Button
-                    className="btn btn-primary profile-button"
+                    className="profile-button"
                     type="button"
                     onClick={handleUpdateProfile}
                   >
