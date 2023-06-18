@@ -1,15 +1,26 @@
-/* aquí deberian ir las actions */
-import {GET_ALL_PRODUCTS, GET_DETAIL_PRODUCTS, FILTER_BY_NAME, FILTER_BY_TYPE, ORDER_BY_PRICE} from "./actions"
+import {
+  GET_ALL_PRODUCTS, 
+  GET_DETAIL_PRODUCTS, 
+  GET_NEWS, 
+  FILTER_BY_NAME, 
+  FILTER_BY_TYPE,
+  FETCH_PROFILE_SUCCESS,
+  CREATE_PROFILE_SUCCESS,
+  UPDATE_PROFILE_SUCCESS,
+} from "./actions"
 
 const initialstate = {
-  Noticias: [],
+  noticias: [],
   allProducts: [],
   products: [],
   ProductsDetail: [],
+  profile: null,
  };
 
 function rootReducer(state = initialstate, action) {
   switch (action.type) {
+    case GET_NEWS:
+return {...state, noticias: action.payload};
     case GET_ALL_PRODUCTS:
       return { ...state, allProducts: action.payload};
     case GET_DETAIL_PRODUCTS:
@@ -18,8 +29,6 @@ function rootReducer(state = initialstate, action) {
       return {...state, products: action.payload};
     case FILTER_BY_TYPE:
       return {...state, products: action.payload};
-    case ORDER_BY_PRICE:
-      return {...state, allProducts: action.payload}
     /* distintos casos */
 
     default:
@@ -28,3 +37,4 @@ function rootReducer(state = initialstate, action) {
 }
 
 export default rootReducer;
+

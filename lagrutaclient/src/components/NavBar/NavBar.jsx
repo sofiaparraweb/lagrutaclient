@@ -7,7 +7,8 @@ import './NavBar.css';
 const NavBar = ({ isAuthenticated }) => {
   const { loginWithRedirect, logout, user } = useAuth0();
   const [isHovered, setIsHovered] = useState(false);
-
+  const [isOptionHovered, setIsOptionHovered] = useState(false);
+  
   const handleLogout = () => {
     logout({ returnTo: window.location.origin }); 
   };
@@ -22,6 +23,14 @@ const NavBar = ({ isAuthenticated }) => {
 
   const handleMouseLeave = () => {
     setIsHovered(false);
+  };
+
+  const handleOptionMouseEnter = () => {
+    setIsOptionHovered(true);
+  };
+
+  const handleOptionMouseLeave = () => {
+    setIsOptionHovered(false);
   };
 
   const handleClick = () => {
@@ -44,16 +53,20 @@ const NavBar = ({ isAuthenticated }) => {
           Tienda
           </Link>
         <div className="dropdownContainer">
-          <div
+        <div
             className={`link ${isHovered ? "active" : ""}`}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             id="ayudarNav"
           >
-           Ayudar 
+            Ayudar
           </div>
-          {isHovered && (
-            <div className="dropdownContent">
+          {(isHovered || isOptionHovered) && (
+            <div
+              className="dropdownContent"
+              onMouseEnter={handleOptionMouseEnter}
+              onMouseLeave={handleOptionMouseLeave}
+            >
               <Link to="/dona" className="dropdownOption" id="donaNav" onClick={handleClick}>
                 Dona
               </Link>
