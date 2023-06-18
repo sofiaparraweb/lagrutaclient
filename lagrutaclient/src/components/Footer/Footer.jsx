@@ -1,9 +1,30 @@
 import style from "./Footer.module.css"
 import React from "react"
+import {useState} from "react"
 import { FaFacebook, FaTwitter,FaInstagram, FaYoutube } from 'react-icons/fa';
 
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+
+const handleEmailChange = (event) => {
+  setEmail(event.target.value);
+};
+
+const handleSubmit = (event) => {
+  event.preventDefault();
+  if (!isValidEmail(email)) {
+    alert("Correo electrónico no válido");
+    return;
+  }
+  alert("¡Formulario enviado!");
+};
+
+const isValidEmail = (email) => {
+  const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+  return emailRegex.test(email.trim());
+};
+
     
     return (  
        <footer className={style.mainFooter}>
@@ -27,19 +48,26 @@ const Footer = () => {
         <div className={style.footerSection}>
           <h3 className={style.title}>Campañas</h3>
           <ul>
-            <li className={style.itemsTex}>Eventos especiales</li>
-            <li className={style.itemsTex}>Acciones solidarias</li>
-            <li className={style.itemsTex}>Emergencias</li>
+            <li className={style.itemsTex}>
+              <a href="/">Eventos especiales</a>
+            </li>
+            <li className={style.itemsTex}>
+            <a href="/">Acciones solidarias</a>
+            </li>
+            <li className={style.itemsTex}>
+            <a href="/">Emergencias</a>
+            </li>
           </ul>
         </div>
 
-        <form className={style.footerSection}>
-          <h3 className={style.title}>Para conocer mas novedades dejanos tu email</h3>
+        <form className={style.footerSection} onSubmit={handleSubmit}>
+          <h3 className={style.title}>Para conocer más novedades dejanos tu email</h3>
           <input className={style.input} 
           type="email" 
           name="email"
           placeholder="Ingresar Email" 
-          required 
+          value={email}
+          onChange={handleEmailChange}
           />
           <button className={style.btn} type="submit">SUSCRIBIRSE</button>
         </form>
