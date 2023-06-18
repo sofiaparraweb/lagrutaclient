@@ -3,6 +3,8 @@ import {
   CLEANDETAIL,
   GET_ALL_PRODUCTS,
   GET_DETAIL_PRODUCTS,
+  FILTER_BY_NAME,
+  FILTER_BY_TYPE,
   GET_ACTIVITY,
   GET_DETAIL_ACTIVITY,
   GET_TYPEACTY,
@@ -14,6 +16,7 @@ const initialstate = {
   activityTypes: [],
   activityDetail: [],
   allProducts: [],
+  products: [],
   ProductsDetail: [],
 };
 
@@ -56,6 +59,11 @@ function rootReducer(state = initialstate, action) {
         activityDetail: {},
       };
 
+    case FILTER_BY_NAME:
+      return { ...state, products: action.payload };
+
+    case FILTER_BY_TYPE:
+      return { ...state, products: action.payload };
     /* distintos casos */
 
     default:

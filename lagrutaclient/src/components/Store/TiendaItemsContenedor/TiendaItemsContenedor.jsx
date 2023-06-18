@@ -19,7 +19,7 @@ const TiendaItemsContenedor = ({ products }) => {
                             image={prod.image}
                             name={prod.name}
                             price={prod.price}
-                            // type={prod.type}
+                            ProductsTypes={prod.ProductsTypes?.map((v) => v.name).join(' / ')}
                             description={prod.description}
                             stock={prod.stock}
                         />

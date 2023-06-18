@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import style from "./TiendaItems.module.css";
 import { Image, Card, Stack, Text, Heading, CardBody, CardFooter, Divider, Button } from '@chakra-ui/react'
 
-const TiendaItems = ({ id, name, image, price, description, stock, type }) => {
+const TiendaItems = ({ id, name, image, price, description, stock, ProductsTypes }) => {
   return (
     <div>
       <Card width='280px' h='400px' margin="20px 0" _hover={{ boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)'}}>
@@ -11,8 +11,8 @@ const TiendaItems = ({ id, name, image, price, description, stock, type }) => {
             src={image} 
             alt='imagen Producto'
             borderRadius='lg'
-            Mw='250px'
-            h='200px'
+            maxWidth='250px'
+            height='200px'
             display='block'
             marginLeft='auto'
             marginRight='auto'
@@ -21,9 +21,9 @@ const TiendaItems = ({ id, name, image, price, description, stock, type }) => {
             <Text fontSize='md' textAlign={'center'}>{name}</Text>
             <Text fontSize='l' textAlign={'center'}> $ {price}</Text>
           </Heading>
-          <Stack h='63px' mt='1'>
+          <Stack height='63px' mt='1'>
             <Text color='grey' textAlign={'center'}>
-              {description}
+              {ProductsTypes} - {description}
             </Text>     
           </Stack>
         </CardBody>
