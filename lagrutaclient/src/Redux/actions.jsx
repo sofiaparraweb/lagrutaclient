@@ -2,15 +2,22 @@ import axios from "axios";
 
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const GET_DETAIL_PRODUCTS = "GET_DETAIL_PRODUCTS";
-export const GET_NEWS = "GET_NEWS";
+export const GET_ACTIVITY = "GET_NEWS";
+export const GET_DETAIL_ACTIVITY = "GET_DETAIL_ACTIVITY";
+export const CLEANDETAIL = "CREALDETAIL";
+export const GET_TYPEACTY = "GET_TYPEACTY"
 
-export function getNews() {
+
+
+const LOCAL_URL = 'http://localhost:3001';
+
+
+export function getActivity() {
   return async function (dispatch) {
     try {
-      const res = await axios.get(`http://localhost:3001/news`);
-      // const res = await axios.get("http://localhost:3001/activity/offset?offset=0");
+     const res = await axios.get(`${LOCAL_URL}/activity/offset?offset=0`);
       return dispatch({
-        type: GET_NEWS,
+        type: GET_ACTIVITY,
         payload: res.data,
       });
     } catch (err) {
@@ -18,6 +25,42 @@ export function getNews() {
     }
   };
 }
+
+export function getTypeActi () {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`${LOCAL_URL}/byType`);
+      return dispatch({
+        type: GET_TYPEACTY, 
+        payload: res.data
+      })
+    } catch (err) {
+      console.error(err);
+    }
+  }
+}
+
+export function getActiId (id_activity) {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`${LOCAL_URL}/activity/${id_activity}`);
+      return dispatch({
+        type: GET_DETAIL_ACTIVITY,
+        payload: res.data
+      })
+    }
+    catch (err) {
+      console.error("Error", err);
+    }
+  }
+}
+
+export const cleanDetail = () => {
+  return { type: CLEANDETAILCLEANDETAIL }
+}
+
+
+/* tienda */
 
 const url = "http://localhost:3001";
 
