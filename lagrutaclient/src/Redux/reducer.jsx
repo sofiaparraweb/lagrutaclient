@@ -1,9 +1,10 @@
 /* aquí deberian ir las actions */
-import {GET_ALL_PRODUCTS, GET_DETAIL_PRODUCTS} from "./actions"
+import {GET_ALL_PRODUCTS, GET_DETAIL_PRODUCTS, FILTER_BY_NAME, FILTER_BY_TYPE} from "./actions"
 
 const initialstate = {
   Noticias: [],
   allProducts: [],
+  products: [],
   ProductsDetail: [],
  };
 
@@ -13,6 +14,10 @@ function rootReducer(state = initialstate, action) {
       return { ...state, allProducts: action.payload};
     case GET_DETAIL_PRODUCTS:
       return { ...state, ProductsDetail: action.payload};
+    case FILTER_BY_NAME:
+      return {...state, products: action.payload};
+    case FILTER_BY_TYPE:
+      return {...state, products: action.payload};
     /* distintos casos */
 
     default:

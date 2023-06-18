@@ -14,13 +14,13 @@
 }
 
 img[alt="sumate"]{
-    transition: 0.5s ease;
+    transition: 1s ease;
     border: none;
 }
 
 img[alt="sumate"]:hover{
-    transition: 0.5s ease;
-    -webkit-transform:scale(1.1);transform:scale(1.1);
+    transition: 1s ease;
+    -webkit-transform:scale(1.05);transform:scale(1.05);
 }
 
 img[alt="naranja"]{
