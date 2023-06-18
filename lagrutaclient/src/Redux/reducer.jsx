@@ -42,54 +42,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         productsDetail: action.payload,
       };
-    case UPDATE_USER_REQUEST:
-      return {
-        ...state,
-        isLoading: true,
-        error: null,
-      };
-    case UPDATE_USER_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        error: null,
-      };
-    case UPDATE_USER_FAILURE:
-      return {
-        ...state,
-        isLoading: false,
-        error: action.payload,
-      };
-    case FETCH_PROFILE_SUCCESS:
-      return {
-        ...state,
-        profileData: action.payload,
-        isLoading: false,
-        error: null,
-      };
-    case FETCH_PROFILE_FAILURE:
-      return {
-        ...state,
-        isLoading: false,
-        error: action.payload,
-      };
-    case UPDATE_PROFILE_SUCCESS:
-      return {
-        ...state,
-        profileData: action.payload,
-        isLoading: false,
-        error: null,
-      };
-    case UPDATE_PROFILE_FAILURE:
-      return {
-        ...state,
-        isLoading: false,
-        error: action.payload,
-      };
-      case SET_USER:
-      return { ...state, user: action.payload };
-    case SET_USERS:
-      return { ...state, users: action.payload };
       default:
         return state;
     }

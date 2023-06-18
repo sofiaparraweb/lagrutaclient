@@ -15,11 +15,11 @@ const Perfil = () => {
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
   const [birthdate, setBirthdate] = useState("");
-  const [mobileNumber, setMobileNumber] = useState("");
+  const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
-  const [ocupation, setOcupation] = useState("");
+  const [occupation, setOccupation] = useState("");
   const [role, setRole] = useState("");
-  const [profilePicture, setProfilePicture] = useState(user.image);
+  const [image, setImage] = useState(user.image);
 
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.profile);
@@ -55,7 +55,7 @@ const Perfil = () => {
     setBirthdate(e.target.value);
   };
 
-  const handleMobileNumberChange = (e) => {
+  const handlePhoneChange = (e) => {
     setMobileNumber(e.target.value);
   };
 
@@ -82,11 +82,11 @@ const Perfil = () => {
       name,
       email,
       birthdate,
-      mobileNumber,
+      phone,
       address,
-      ocupation,
+      occupation,
       role,
-      picture,
+      image,
     };
     dispatch(updateProfile(user.sub, updatedUserData));
   };
