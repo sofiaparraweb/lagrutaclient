@@ -7,9 +7,10 @@ import './NavBar.css';
 const NavBar = ({ isAuthenticated }) => {
   const { loginWithRedirect, logout, user } = useAuth0();
   const [isHovered, setIsHovered] = useState(false);
-
+  const [isOptionHovered, setIsOptionHovered] = useState(false);
+  
   const handleLogout = () => {
-    logout({ returnTo: window.location.origin });
+    logout({ returnTo: window.location.origin }); 
   };
 
   const handleLogin = () => {
@@ -24,6 +25,14 @@ const NavBar = ({ isAuthenticated }) => {
     setIsHovered(false);
   };
 
+  const handleOptionMouseEnter = () => {
+    setIsOptionHovered(true);
+  };
+
+  const handleOptionMouseLeave = () => {
+    setIsOptionHovered(false);
+  };
+
   const handleClick = () => {
     window.scrollTo({ top: 0 });
   };
@@ -31,57 +40,58 @@ const NavBar = ({ isAuthenticated }) => {
   return (
     <nav className="navContainer">
       <div className="LeftSection">
-        <Link to="/home">
+        <Link to="/">
           <img src={logo} alt="logo" width="60px" className="logo" onClick={handleClick}/>
         </Link>
+        <Link to="/about" className="link" id="conocenosNav" onClick={handleClick}> 
+          Conocenos
+        </Link>
+        <Link to="/noticias" className="link" id="noticiasNav" onClick={handleClick}>
+          Noticias
+        </Link>
+        <Link to="/tienda" className="link" id="tiendaNav" onClick={handleClick}>
+          Tienda
+          </Link>
         <div className="dropdownContainer">
-          <Link to="/about" className="link" onClick={handleClick}>
-            Conocenos
-          </Link>
-          <Link to="/noticias" className="link" onClick={handleClick}>
-            Noticias
-          </Link>
-        </div>
-        <div>
-          <Link to="/tienda" className="link" onClick={handleClick}>
-            Tienda
-          </Link>
-        </div> 
-        <div className="dropdownContainer">
-          <div
+        <div
             className={`link ${isHovered ? "active" : ""}`}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            id="ayudarNav"
           >
-           Ayudar
+            Ayudar
           </div>
-          {isHovered && (
-            <div className="dropdownContent">
-              <Link to="/dona" className="dropdownOption" onClick={handleClick}>
+          {(isHovered || isOptionHovered) && (
+            <div
+              className="dropdownContent"
+              onMouseEnter={handleOptionMouseEnter}
+              onMouseLeave={handleOptionMouseLeave}
+            >
+              <Link to="/dona" className="dropdownOption" id="donaNav" onClick={handleClick}>
                 Dona
               </Link>
-              <Link to="/sePadrino" className="dropdownOption" onClick={handleClick}>
+              <Link to="/se-padrino" className="dropdownOption" id="sepadrinoNav" onClick={handleClick}>
                 Sé padrino
               </Link>
-              <Link to="/seVoluntario" className="dropdownOption" onClick={handleClick}>
+              <Link to="/se-voluntario" className="dropdownOption" id="sevoluntarioNav" onClick={handleClick}>
                 Sé voluntario
               </Link>
             </div>
           )}
         </div>
         {isAuthenticated ? (
-          <Link to="/perfil" className="link" onClick={handleClick}>
+          <Link to="/perfil" className="link" id="perfilNav" onClick={handleClick}>
             Perfil
           </Link>
         ) : null}
       </div>
       <div className="rightSection">
         {isAuthenticated ? (
-          <button onClick={handleLogout} className="link logoutButton">
+          <button onClick={handleLogout} id="cerrariniciarNav" className="link logoutButton">
             Cerrar Sesión
           </button>
         ) : (
-          <button onClick={handleLogin} className="link loginButton">
+          <button onClick={handleLogin} id="cerrariniciarNav" className="link loginButton">
             Iniciar sesión
           </button>
         )}

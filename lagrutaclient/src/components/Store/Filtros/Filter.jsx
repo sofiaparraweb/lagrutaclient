@@ -7,9 +7,8 @@ const Filter = () => {
 
     const dispatch = useDispatch();
 
-    const handleFilter = (productType) => {
-        console.log(productType)
-        dispatch(filterByType(productType));
+    const handleFilter = (name) => {
+        dispatch(filterByType(name));
     };
     
     return (
@@ -32,9 +31,6 @@ const Filter = () => {
                 </li>
                 <li className={style.FilterLI}>
                     <button onClick={() => handleFilter('Stringtough')}>Stringtough</button>
-                </li>
-                <li className={style.FilterLI}>
-                    <button onClick={() => handleFilter('Categoria 3')}>Otro</button>
                 </li>
             </ul>
             <p className={style.LabelFilter}>Nombre</p>

@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-// import {ACTION} from "../../../Redux/actions"
+import {orderByPrice} from "../../../Redux/actions"
 import style from "./Order.module.css"
 
 const Order = () => {
@@ -7,7 +7,7 @@ const Order = () => {
     const dispatch = useDispatch();
 
     const orderProductPrice = (event) => {
-        dispatch(ACTION(event.target.value));
+        dispatch(orderByPrice(event.target.value));
     };
 
     return (
@@ -15,8 +15,8 @@ const Order = () => {
             <p className={style.LabelOrder}>Ordenar por</p>
             <select name="orderProductPrice" onChange={orderProductPrice} className={style.SelectorOrder}>
                 <option key={0} value="all" >Mas relevantes</option>  
-                <option key={2} value="asc">Mayor precio</option>
-                <option key={3} value="des">Menor Precio</option>
+                <option key={2} value="asc">Menor precio</option>
+                <option key={3} value="des">Mayor precio</option>
             </select>
         </div>
     )
