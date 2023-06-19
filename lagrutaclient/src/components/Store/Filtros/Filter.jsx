@@ -8,6 +8,7 @@ const Filter = () => {
     const dispatch = useDispatch();
 
     const handleFilter = (name) => {
+        console.log(name)
         dispatch(filterByType(name));
     };
     

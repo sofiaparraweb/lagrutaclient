@@ -8,9 +8,9 @@ const Tpost = () => {
     <>
       <section className={style.tpost}>
         <Heading title="Instagram" />
-        {tpost.map((val) => {
+        {tpost.map((val, index) => {
           return (
-            <div className={style.box}>
+            <div key={index} className={style.box}>
             <div className={style.flexSB}>
               <div className={style.img}>
                 <img src={val.cover} alt="" />
