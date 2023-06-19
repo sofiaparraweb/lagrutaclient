@@ -1,12 +1,12 @@
 .buttonBackTop {
-	background-color: #FF9800;
+	background-color: #ea5d0b;
 	width: 50px;
 	border: none;
 	height: 50px;
 	text-align: center;
 	border-radius: 4px;
 	position: fixed;
-	bottom: 30px;
+	bottom: 50px;
 	right: 30px;
 	transition: background-color .3s;
 	transition: background-color .3s, opacity .5s, visibility .5s;
@@ -26,7 +26,7 @@
 
 .buttonBackTop:hover {
 	cursor: pointer;
-	background-color: #333;
+	background-color: #ff8000;
 }
 
 .buttonBackTop:active {
