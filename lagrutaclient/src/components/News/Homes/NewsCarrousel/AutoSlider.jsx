@@ -39,9 +39,9 @@ const AutoSlider = () => {
 
   return (
     <Slider ref={sliderRef} {...settings}>
-      {lifestyle.map((val) => {
+      {lifestyle.map((val, index) => {
               return (
-                <div className={style.items}>
+                <div key={index} className={style.items}>
                     <div className={style.images}>
                       <div className={style.img}>
                         <img src={val.cover} alt='' />
