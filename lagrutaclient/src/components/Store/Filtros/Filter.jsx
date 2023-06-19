@@ -3,13 +3,14 @@ import {filterByType} from "../../../Redux/actions";
 import style from "./Filter.module.css"
 import { AiOutlineFilter } from "react-icons/ai";
 
-const Filter = () => {
+const Filter = ({ setCurrentPage }) => {
 
     const dispatch = useDispatch();
 
     const handleFilter = (name) => {
         console.log(name)
         dispatch(filterByType(name));
+        setCurrentPage(1)
     };
     
     return (
