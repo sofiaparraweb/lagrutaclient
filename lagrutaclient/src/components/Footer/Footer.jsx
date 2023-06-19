@@ -77,7 +77,7 @@ const isValidEmail = (email) => {
           <button className={style.btn} >DONÁ AHORA</button>
           <ul className={style.redes} >
              <li className={style.itemsRedes} >
-                 <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
+                 <a href="https://www.facebook.com/lagrutacomedor" target="_blank" rel="noreferrer">
                     <FaFacebook />
                  </a>
              </li>
@@ -87,7 +87,7 @@ const isValidEmail = (email) => {
                  </a>
              </li>
              <li className={style.itemsRedes}>
-                 <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
+                 <a href="https://www.instagram.com/lagrutacdi/" target="_blank" rel="noreferrer">
                     <FaInstagram />
                  </a>
              </li>

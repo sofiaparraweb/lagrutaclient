@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, ButtonGroup, Box } from '@chakra-ui/react'
+import style from "./Donacion.module.css";
+import dona1 from "../../assets/Donaciones/dona2.jpg"
 
 
 
@@ -24,13 +25,62 @@ const DonationForm = () => {
 
   return (
     <>
-    <ButtonGroup>
-      <Box>Donation Options</Box>
-      <Button colorScheme='blue' onClick={handleAnonymousDonation}>Anonymous Donation</Button>
-      <Button colorScheme='blue'  onClick={handleLoginDonation}>Donation with Login</Button>
-      <Button colorScheme='blue' onClick={handleConfirmationEmail}>Send Confirmation Email</Button>
-      <Button colorScheme='blue' onClick={handlePaymentRedirect}>Payment Redirect</Button>
-    </ButtonGroup>
+    <div className={style.container} >
+      <div>
+        <img src={dona1} alt="" />
+        <form className={style.contenForm} >
+      <h3>¡DONÁ AHORA!</h3>
+
+      <p>LA GRUTA está presente para ayudar a las niñas y niños que nos necesitan HOY.</p>
+
+      <label>
+        <input
+          type="radio"
+          value="opcion1"
+         
+        />
+       ARS 5.000
+      </label>
+
+      <label>
+        <input
+          type="radio"
+          value="opcion2"
+          
+        />
+        ARS 10.000
+      </label>
+
+      <label>
+        <input
+          type="radio"
+          value="opcion3"
+          
+        />
+       ARS 15.000
+      </label>
+
+      <label>
+        <input
+          type="radio"
+          value="otraOpcion"
+          
+        />
+        Ingresar otro valor:
+        <input
+          type="text"
+          value= ''
+         
+        />
+      </label>
+
+      <button type="submit">Siguiente</button>
+    </form>
+
+       
+      </div>
+    </div>
+   
      
    </>
   );
