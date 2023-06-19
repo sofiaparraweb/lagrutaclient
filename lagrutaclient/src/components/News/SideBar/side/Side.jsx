@@ -25,7 +25,7 @@ const Side = () => {
         </form>
       </section>
       <section className={style.banner}>
-        <img src="./images/sidebar-banner-new.jpg" alt="" />
+       {/*  <img src="./images/sidebar-banner-new.jpg" alt="" /> */}
       </section>
 
       <Tpost />

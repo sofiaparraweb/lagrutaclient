@@ -3,7 +3,7 @@ import style from "./LastNews.module.css";
 import Card from "./Card";
 
 
-const LastNews = ({ allActivity, allTypes }) => {
+const LastNews = ({ allActivity }) => {
 
 
   return (
@@ -18,8 +18,8 @@ const LastNews = ({ allActivity, allTypes }) => {
                 name={i.name}
                 date={i.date}
                 img={i.img}
-                allTypes={i.allTypes}
-              
+                description={i.description}
+                ActivityTypes={i.ActivityTypes}  
               />
             );
           })}

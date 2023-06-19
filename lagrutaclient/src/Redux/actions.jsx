@@ -31,16 +31,18 @@ export function getAllActivity() {
   }
 }
 
-export function getTypeActi(activityTypes) {
+const LOCAL = "http://localhost:3001"
+
+export function getTypeActi() {
   return async function (dispatch) {
     try {
-      const res = await axios.get(`${url}/${activityTypes}`);
+      const res = await axios.get(`${LOCAL}/activityTypes`);
       return dispatch({
         type: GET_TYPEACTY,
         payload: res.data,
       });
     } catch (err) {
-      console.error(err);
+      console.error('hola', err);
     }
   }
 }
@@ -50,6 +52,7 @@ export function getTypeActi(activityTypes) {
     return async function (dispatch) {
       try {
         const res = await axios.get(`${url}/activity/${id}`);
+        console.log(res.data)
       return dispatch({
         type: GET_DETAIL_ACTIVITY,
         payload: res.data,
@@ -58,7 +61,13 @@ export function getTypeActi(activityTypes) {
       console.error(err);
     }
   }
-}
+};
+
+export function cleanDetail () {
+  return { type: CLEANDETAIL }
+  }   
+
+
 
 /* tienda */
 
