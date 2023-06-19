@@ -32,9 +32,9 @@ const GalerySlider = () => {
 
        return (
 <Slider ref={sliderRef} {...settings}>
-        {gallery.map((val) => {
+        {gallery.map((val, index) => {
             return (
-              <div className={style.img}>
+              <div key={index} className={style.img}>
                 <img src={val.cover} alt="" />
               </div>
             );

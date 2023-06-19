@@ -1,27 +1,32 @@
-import React, { useState } from "react"
-import { hero } from "../../../dummyData.js"
+import React, { useEffect } from "react";
 import style from "./LastNews.module.css";
-import Card from "./Card"
+import Card from "./Card";
 
-const LastNews = () => {
-  const [items, setIems] = useState(hero)
+
+const LastNews = ({ allActivity, allTypes }) => {
+
 
   return (
     <>
       <section className={style.hero}>
         <div className={style.container}>
-          {items.map((item) => {
+          {allActivity?.map((i) => {
             return (
-              <>
-                <Card key={item.id} item={item} />
-              </>
-            )
+              <Card
+                key={i.id}
+                id={i.id}
+                name={i.name}
+                date={i.date}
+                img={i.img}
+                allTypes={i.allTypes}
+              
+              />
+            );
           })}
         </div>
       </section>
     </>
-  )
-}
-
+  );
+};
 
 export default LastNews;

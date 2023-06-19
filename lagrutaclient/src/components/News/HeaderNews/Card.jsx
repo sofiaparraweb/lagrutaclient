@@ -2,21 +2,25 @@ import React from "react";
 import { Link } from "react-router-dom";
 import style from "./LastNews.module.css";
 
-const Card = ({ item: { id, cover, catgeory, title, time } }) => {
+const Card = ({ id, img, allTypes, name, date }) => {
   return (
     <>
       <div className={style.box}>
         <div className="img">
-          <img src={cover} alt="" />
+          <img src={img} alt="" />
         </div>
         <div className={style.text}>
-          <span className={style.category}>{catgeory}</span>
+          {allTypes?.map((t, index) => {
+            return (
+              <span key={index} className={style.category}>{t.name}</span>
+            );
+          })}      
           <Link to={`/Noticias/${id}`}>
-            <h1 className="titleBg">{title}</h1>
-          </Link>
+          <h1 className="titleBg">{name}</h1>
+        </Link>
           <div className={style.date}>
-            <i class="fas fa-calendar-days"></i>
-            <label>{time}</label>
+            <i className="fas fa-calendar-days"></i>
+            <label>{date}</label>
           </div>
         </div>
       </div>
