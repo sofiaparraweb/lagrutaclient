@@ -1,5 +1,8 @@
-.tienda {
+.FondoTienda{
     background-color: rgb(241, 241, 241);
+}
+
+.tienda {
     padding-top: 90px;
 }
 
@@ -11,4 +14,11 @@
     text-align: center;
     width: 80%;
     margin-bottom: 1px;
+}
+
+.PaginationConteinerTienda{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    padding-bottom: 40px;
 }
