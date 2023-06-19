@@ -73,27 +73,37 @@
   background-color: rgba(16,68,118,255);
 }
 
+/* -------------------------------------Perfil */
+.link[id="perfilNav"]{
+  border-bottom:3px solid rgba(53,99,70,255);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.link[id="perfilNav"]:hover{
+  background-color: rgba(53,99,70,255);
+}
+
 /* -------------------------------------Dona */
-.link[id="donaNav"]{
+.dropdownOption[id="donaNav"]{
   border-bottom:3px solid rgba(223,184,55,255);
 }
-.link[id="donaNav"]:hover{
+.dropdownOption[id="donaNav"]:hover{
   background-color: rgba(223,184,55,255);
 }
 
 /* -------------------------------------SePadrino */
-.link[id="sepadrinoNav"]{
+.dropdownOption[id="sepadrinoNav"]{
   border-bottom:3px solid rgba(234,93,11,255);
 }
-.link[id="sepadrinoNav"]:hover{
+.dropdownOption[id="sepadrinoNav"]:hover{
   background-color: rgba(234,93,11,255);
 }
 
 /* -------------------------------------SeVoluntario */
-.link[id="sevoluntarioNav"]{
+.dropdownOption[id="sevoluntarioNav"]{
   border-bottom:3px solid rgba(195,64,56,255);
 }
-.link[id="sevoluntarioNav"]:hover{
+.dropdownOption[id="sevoluntarioNav"]:hover{
   background-color: rgba(195,64,56,255);
 }
 
@@ -115,7 +125,7 @@
   display: block;
   position: absolute;
   background-color: white;
-  top: 100%;
+  top: 110%;
 }
 
 .dropdownOption {

@@ -40,10 +40,10 @@ const NavBar = ({ isAuthenticated }) => {
   return (
     <nav className="navContainer">
       <div className="LeftSection">
-        <Link to="/home">
+        <Link to="/">
           <img src={logo} alt="logo" width="60px" className="logo" onClick={handleClick}/>
         </Link>
-        <Link to="/about" className="link" id="conocenosNav" onClick={handleClick}>
+        <Link to="/about" className="link" id="conocenosNav" onClick={handleClick}> 
           Conocenos
         </Link>
         <Link to="/noticias" className="link" id="noticiasNav" onClick={handleClick}>

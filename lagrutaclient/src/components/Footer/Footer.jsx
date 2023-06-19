@@ -34,7 +34,7 @@ const isValidEmail = (email) => {
           <h3 className={style.title}>Conocé LA GRUTA</h3>
           <ul>
           <li className={style.itemsTex} >
-            <a href="/home">Qué hace La Gruta</a>
+            <a href="/about">Qué hace La Gruta</a>
           </li>
           <li className={style.itemsTex}>
             <a href="/noticias">Publicaciones datos</a>
