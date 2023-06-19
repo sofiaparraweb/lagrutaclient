@@ -16,8 +16,7 @@ const Search = () => {
   const handleSubmit = (event) =>{
     event.preventDefault();
     if (productName.length > 0) {
-        const filteredProducts = products.filter(product => product.name.toLowerCase().includes(productName.toLowerCase()));
-        dispatch(filterByName(filteredProducts));
+        dispatch(filterByName(productName));
         setProductName('');
     }
   }

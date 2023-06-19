@@ -15,17 +15,17 @@ const Tienda = () => {
   const prod = useSelector(state => state.products);
 
   const [currentPage, setCurrentPage] = useState(1); 
-  const pokemonsPerPage = 8;
+  const productsPerPage = 9;
 
   const handlePaginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  const indexOfLastPokemon = currentPage * pokemonsPerPage; 
-  const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage;
-  const currentPokemons = prod?.length > 0 && prod.slice(
-    indexOfFirstPokemon,
-    indexOfLastPokemon
+  const indexOfLastProduct = currentPage * productsPerPage; 
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = prod?.length > 0 && prod.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
   );
 
   useEffect(() => {
@@ -39,14 +39,14 @@ const Tienda = () => {
         <div className={style.SearchOrder}>
           <Search />
           <Pagination
-            pokemonsPerPage={pokemonsPerPage}
-            totalPokemons={prod?.length}
+            productsPerPage={productsPerPage}
+            totalProducts={prod?.length}
             currentPage={currentPage}
             handlePaginate={handlePaginate}
           />
-          <Order />
+          <Order setCurrentPage={setCurrentPage}/>
         </div>
-        <TiendaItemsContenedor products={currentPokemons} setCurrentPage={setCurrentPage}/>
+        <TiendaItemsContenedor products={currentProducts} setCurrentPage={setCurrentPage}/>
       </div>
     </div>
   );
