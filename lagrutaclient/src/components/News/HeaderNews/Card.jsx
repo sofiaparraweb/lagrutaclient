@@ -12,9 +12,7 @@ const Card = ({ id, img, allTypes, name, date }) => {
         <div className={style.text}>
           {allTypes?.map((t, index) => {
             return (
-              <span 
-         
-              className={style.category}>{t.name}</span>
+              <span key={index} className={style.category}>{t.name}</span>
             );
           })}      
           <Link to={`/Noticias/${id}`}>
