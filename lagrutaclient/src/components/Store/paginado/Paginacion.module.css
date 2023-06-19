@@ -15,19 +15,34 @@
 }
 
 .PaginationList li{
-  border: 3px solid silver;
-  width: 40px;
+  width: 25px;
+  height: 25px;
   cursor: pointer;
-  color: black;
+  color: grey;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  transition: 0.3s ease;
+}
+.PaginationList li:hover{
+  transition: 0.3s ease;
+  color: rgba(195,64,56,255)
 }
 
 .active {
-  background-color:rgba(53,99,70,255);
-  scale: 1.1;
-  color: white;
+  background-color: rgba(195,64,56,255);
+  color: white !important;
 }
 
 .disabled {
   cursor: not-allowed;
   opacity: 0.7;
+}
+
+/* ------------------------------------IconosPaginacion------------------------------------ */
+.IconPagination:hover{
+  transition: 0.3s ease;
+  color: rgba(195,64,56,255);
+  font-size: 20px;
 }

@@ -4,7 +4,6 @@
     align-items: center;
     width: 250px;
     background-color: transparent; 
-    z-index: 999; 
 }
 
 .LabelOrder {
@@ -35,7 +34,6 @@
     background-color: rgb(241, 241, 241);
     font-size: 12px;
     color: black;
-    border: none;
     outline: none;
 }
 .SelectorOrder option:hover {

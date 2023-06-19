@@ -2,12 +2,13 @@ import { useDispatch } from "react-redux";
 import {orderByPrice} from "../../../Redux/actions"
 import style from "./Order.module.css"
 
-const Order = () => {
+const Order = ({ setCurrentPage }) => {
 
     const dispatch = useDispatch();
 
     const orderProductPrice = (event) => {
         dispatch(orderByPrice(event.target.value));
+        setCurrentPage(1)
     };
 
     return (

@@ -1,3 +1,4 @@
+/* --------------------------------CONTENEDOR-------------------------------- */
 .FilterContainer{
   border-top: 5px solid rgb(241, 241, 241);
   padding-left: 10px;
@@ -9,6 +10,7 @@
   text-align: left;
 }
 
+/* --------------------------------ICONO CHANGO-------------------------------- */
 .Icon1{
   display: flex;
   font-size: 20px;
@@ -18,31 +20,46 @@
   color: white
 }
 
+/* --------------------------------TITULO-------------------------------- */
 .FiltrarTexto{
   position: absolute;
   cursor:pointer;
   left: 23%;
   top: 15%;
   letter-spacing: 5px;
+  font-size: 15px;
   text-transform: uppercase;
   color: silver;
   margin-bottom: 50%;
 }
 
-.LabelFilter{
-  padding-top: 15px;
-  padding-left: 10px;
-  color: silver;
-}
-
-.FilterLI{
+/* --------------------------------FILTROS-------------------------------- */
+.ContenedorBotonesFiltro{
   padding-left: 20px;
   font-size: 14px;;
   padding-top: 5px;
   color: silver;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
 }
-.FilterLI:hover{
-  color: white
-  }
-  
 
+.FilterLI{
+  padding: 7px 0;
+}
+
+.FilterLI:hover{
+  color: white;
+}
+
+.ActiveButtonFilter{
+  background-color: rgb(241, 241, 241);
+  color: black;
+  border-radius: 5px;
+  padding: 5px;
+  padding-right: 100px;
+}
+
+.ActiveButtonNull{
+  background-color: transparent;
+}

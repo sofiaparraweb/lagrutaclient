@@ -1,13 +1,14 @@
 import style from "./Paginacion.module.css";
+import {ArrowLeftIcon, ArrowBackIcon, ArrowForwardIcon, ArrowRightIcon} from '@chakra-ui/icons';
 
 const Pagination = ({
-    pokemonsPerPage,
-    totalPokemons, 
+    productsPerPage,
+    totalProducts, 
     currentPage,
     handlePaginate,
   }) => {
     
-  const pageNumbers = Math.ceil(totalPokemons / pokemonsPerPage);
+  const pageNumbers = Math.ceil(totalProducts / productsPerPage);
 
   //Esta funcion nos va a permitir generar los botones del paginado. start y end nos permiten que el valor max del rango no supere 1 o el
   //num total de paginas. 
@@ -59,29 +60,29 @@ const Pagination = ({
     <div className={style.PaginationContainer}>
       <ul className={style.PaginationList}>
         <li
-          className={`${style.paginationItemFirst} ${currentPage === 1 ? style.disabled : ''}`} 
+          className={`${style.paginationItem} ${currentPage === 1 ? style.disabled : ''}`} 
           onClick={handleFirstPage}
         >
-          First
+          <ArrowLeftIcon className={style.IconPagination} />
         </li>
         <li
           className={`${style.paginationItem} ${currentPage === 1 ? style.disabled : ''}`} 
           onClick={handlePrevious}
         >
-          Prev
-        </li>
+          <ArrowBackIcon className={style.IconPagination}/>
+        </li >
         {renderPageNumbers()}
         <li
           className={`${style.paginationItem} ${currentPage === pageNumbers ? style.disabled : ''}`}
           onClick={handleNext}
         >
-          Next
+          <ArrowForwardIcon className={style.IconPagination}/>
         </li>
         <li
           className={`${style.paginationItem} ${currentPage === pageNumbers ? style.disabled : ''}`}
           onClick={handleLastPage}
         >
-          Last
+          <ArrowRightIcon className={style.IconPagination}/>
         </li>
       </ul>
     </div>

@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
+export const GET_ALL_PRODUCTS_TYPES = "GET_ALL_PRODUCTS_TYPES";
 export const GET_DETAIL_PRODUCTS = "GET_DETAIL_PRODUCTS";
 export const GET_ALL_ACTIVITY = "GET_ALL_ACTIVITY";
 export const GET_DETAIL_ACTIVITY = "GET_DETAIL_ACTIVITY";
@@ -28,7 +29,7 @@ export function getAllActivity() {
       console.log(err);
     }
   }
-};
+}
 
 const LOCAL = "http://localhost:3001"
 
@@ -44,7 +45,7 @@ export function getTypeActi() {
       console.error('hola', err);
     }
   }
-};
+}
 
   
  export function getActiId(id) {
@@ -77,6 +78,13 @@ export const getAllProducts = () =>{
   }
 }
 
+export const getAllProductTypes = () =>{
+  return async (dispatch) =>{
+      const resp = await axios(`${url}/productsTypes/`);
+      return dispatch({type: GET_ALL_PRODUCTS_TYPES, payload: resp.data})
+  }
+}
+
 export const getDetailProducts = (id_products) =>{
   return async (dispatch) =>{
       const {data} = await axios.get(`${url}/products/${id_products}`);
@@ -88,8 +96,7 @@ export const filterByName = (name) =>{
   return async (dispatch) => {
     try {
       const response = await axios.get(`${url}/filter/name?name=${name}`);
-      console.log(response.data)
-      dispatch({ type: FILTER_BY_NAME, payload: response.data })
+      dispatch({ type: FILTER_BY_NAME, payload: response.data.filteredName })
     } catch (error){
       console.log(error);
     }
@@ -100,7 +107,7 @@ export const filterByType = (name) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`${url}/filter/byType?name=${name}`);
-      dispatch({ type: FILTER_BY_TYPE, payload: response.data })
+      dispatch({ type: FILTER_BY_TYPE, payload: response.data.filteredByType })
     } catch (error){
       console.log(error);
     }

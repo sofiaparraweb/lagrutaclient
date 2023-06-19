@@ -1,6 +1,7 @@
 import {
   CLEANDETAIL,
   GET_ALL_PRODUCTS,
+  GET_ALL_PRODUCTS_TYPES,
   GET_DETAIL_PRODUCTS,
   FILTER_BY_NAME,
   FILTER_BY_TYPE,
@@ -19,6 +20,7 @@ const initialstate = {
   activityTypes: [],
   activityDetail: [],
   allProducts: [],
+  allProductTypes: [],
   products: [],
   ProductsDetail: [],
   profile: null,
@@ -29,8 +31,14 @@ function rootReducer(state = initialstate, action) {
     case GET_ALL_PRODUCTS:
       return {
         ...state,
-        allProducts: action.payload,
+        allProducts: action.payload, products: action.payload
       };
+
+    case GET_ALL_PRODUCTS_TYPES:
+      return {
+        ...state,
+        allProductTypes: action.payload
+      }
 
     case GET_DETAIL_PRODUCTS:
       return {
@@ -67,7 +75,7 @@ function rootReducer(state = initialstate, action) {
     case FILTER_BY_TYPE:
       return {...state, products: action.payload};
     case ORDER_BY_PRICE:
-      return {...state, allProducts: action.payload}
+      return {...state, products: action.payload}
     case FETCH_PROFILE_SUCCESS: 
       case CREATE_PROFILE_SUCCESS:
         case UPDATE_PROFILE_SUCCESS:
