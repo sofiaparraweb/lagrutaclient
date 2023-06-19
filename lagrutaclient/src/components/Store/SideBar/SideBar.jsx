@@ -2,7 +2,7 @@ import style from "./SideBar.module.css"
 import Filter from "../Filtros/Filter"
 import {AiOutlineShoppingCart } from "react-icons/ai";
 
-const SideBar = () =>{
+const SideBar = ({ setCurrentPage }) =>{
 
   return (
     <div className={style.sidebarContenedor}>
@@ -10,7 +10,7 @@ const SideBar = () =>{
           <AiOutlineShoppingCart className={style.Icon} />
         </div>
         <div className={style.ContenedorFiltroOrden}>
-          <Filter />
+          <Filter setCurrentPage={setCurrentPage}/>
         </div>
     </div>
   )
