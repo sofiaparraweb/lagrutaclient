@@ -8,16 +8,16 @@ import DonaHome from "./DonaHome/Dona";
 import SePadrinoHome from "./SePadrino/SePadrino"
 import FotosSlider from "./FotosSlider/FotosSlider"
 import lagruta from '../../assets/lagruta.png';
-//import { getAllActivity } from "../../Redux/actions.jsx"
+import { getAllActivity } from "../../Redux/actions.jsx"
 
 const Home = () => {
 
     const dispatch = useDispatch();
     const allActivity = useSelector(state => state.allActivity);
 
-    // useEffect(() => {
-    // dispatch(getAllActivity());
-    // }, [dispatch]);
+    useEffect(() => {
+    dispatch(getAllActivity());
+    }, [dispatch]);
 
     const handleClick = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
