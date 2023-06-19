@@ -33,9 +33,6 @@ const Filter = () => {
                 <li className={style.FilterLI}>
                     <button onClick={() => handleFilter('Stringtough')}>Stringtough</button>
                 </li>
-                <li className={style.FilterLI}>
-                    <button onClick={() => handleFilter('Categoria 3')}>Otro</button>
-                </li>
             </ul>
             <p className={style.LabelFilter}>Nombre</p>
             <ul >
