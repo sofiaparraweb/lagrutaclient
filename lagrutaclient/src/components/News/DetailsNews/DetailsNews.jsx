@@ -1,104 +1,63 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { getActiId, cleanDetail } from "../../../Redux/actions.jsx";
 
-import { hero } from "../../../dummyData";
 import Side from "../SideBar/side/Side";
 import AutoSlider from "../Homes/NewsCarrousel/AutoSlider.jsx";
 import LikeButton from "./LikeButton";
 
-import style from "./DetailsNews.module.css"
+import style from "./DetailsNews.module.css";
 
-
-const DetailsNews = () => {
-  const { id } = useParams()
-  const [item, setItem] = useState(null)
+export default function DetailsNews() {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const details = useSelector((state) => state.activityDetail);
+console.log(details)
 
   useEffect(() => {
-    const item = hero.find((item) => item.id === parseInt(id))
-    window.scrollTo(0, 0)
-    if (item) {
-      setItem(item)
-    }
-  }, [id])
+    dispatch(getActiId(id));
+    return () => dispatch(cleanDetail)
+  }, []);
 
   return (
-    <>
-      {item ? (
-        <main className={style.main}>
-            <AutoSlider/>
-          <div className='container'>
+    <main className={style.main}>
+          <AutoSlider />
+          <Link to="/home">
+          <button type="submit">
+            BackHome
+          </button>
+          </Link>
+          <div className={style.containerDetail}>
             <section className={style.details}>
-            <img src={item.cover} alt='' />
-            <div className={style.row}>
-             <div className={style.time}>
-             <i class='fas fa-calendar-days'></i>
-                <label>{item.time}</label>
-              </div> 
-              <div className={style.social}>
-                  <i className='fab fa-facebook-f'></i>
+              <img src={details.img} alt="" />
+              <div className={style.row}>
+                <div className={style.time}>
+                  <i class="fas fa-calendar-days"></i>
+                  <label>{details.date}</label>
+                </div>
+                <div className={style.social}>
+                  <i className="fab fa-facebook-f"></i>
                   <span>Compartir</span>
-              </div> 
-              <div className={style.social1}>
-                  <span><LikeButton/></span> 
+                </div>
+                <div className={style.social1}>
+                  <span>
+                    <LikeButton />
+                  </span>
+                </div>
               </div>
-              </div>
-
-              <h1 className={style.title}>{item.title}</h1>
+                    <h1 className={style.title}>{details.name}</h1>
               <div className={style.ddescription}>
-                {item.desc.map((val) => {
-                  return (
-                    <>
-                      <p>{val.para1}</p>
-                      <p>{val.para2}</p>
-                    </>
-                  )
-                })}
-              </div>
-              {item.desc.map((val) => (
-                <p>{val.para3}</p>
-              ))}
-
-              <div className={style.ddescription}>
-                {item.details.map((data) => {
-                  return (
-                    <>
-                      <h1>{data.title}</h1>
-                      <p>{data.para1}</p>
-                    </>
-                  )
-                })}
-              </div>
-
-              <div className={style.quote}>
-                <i className='fa fa-quote-left'></i>
-                {item.details.map((data) => (
-                  <p>{data.quote}</p>
-                ))}
-              </div>
-
-              <div className={style.ddescription}>
-                {item.details.map((data) => {
-                  return (
-                    <>
-                      <p>{data.para2}</p>
-                      <p>{data.para3}</p>
-                    </>
-                  )
-                })}
-              </div>
-            </section>
-            <section className='sideContent'>
+                      <p>{details.description}</p>
+                      <p>{details.description}</p>
+                      </div>
+                      </section> 
+                          <section className={style.sideContent}>
               <Side />
             </section>
-          </div>
-        </main>
-      ) : (
-        <h1>not found</h1>
-      )}
-    </>
-  )
+      </div>
+  
+      </main> 
+  );
 }
-
-
-
-export default DetailsNews;
