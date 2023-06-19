@@ -1,25 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./News.module.css"
 import LastNews from "../../components/News/HeaderNews/LastNews.jsx";
 import Homes from "../../components/News/Homes/Homes.jsx";
+import Footer from "../../components/Footer/Footer";
 
-
-import  { getActivity, getTypeActi, getActiId } from "../../Redux/actions.jsx"
-
-
+import { getAllActivity, getTypeActi } from "../../Redux/actions.jsx"
+import { FaCommentsDollar } from "react-icons/fa";
 
 
 export default function News() {
 
 const dispatch = useDispatch();
-const allActi = useSelector ((state) => state.activity); 
-const typesActi = useSelector ((state) => state.activityTypes)
+const allActivity = useSelector(state => state.allActivity);
+const allTypes = useSelector(state => state.activityTypes);
 
-  return (
+
+useEffect(() => {
+  dispatch(getAllActivity());
+}, [dispatch]);
+
+useEffect(() => {
+  dispatch(getTypeActi());
+}, [dispatch]);
+
+
+  return (<>
     <div className={style.News}>
-      <LastNews />
+      <LastNews allActivity={allActivity} allTypes={allTypes} />
       <Homes />
     </div>
+      <Footer />
+      </>
   );
 }

@@ -5,14 +5,14 @@ import {
   GET_DETAIL_PRODUCTS,
   FILTER_BY_NAME,
   FILTER_BY_TYPE,
-  GET_ACTIVITY,
+  GET_ALL_ACTIVITY,
   GET_DETAIL_ACTIVITY,
   GET_TYPEACTY,
 } from "./actions";
 
 const initialstate = {
   activity: [],
-  allactivity: [],
+  allActivity: [],
   activityTypes: [],
   activityDetail: [],
   allProducts: [],
@@ -34,11 +34,10 @@ function rootReducer(state = initialstate, action) {
         ProductsDetail: action.payload,
       };
 
-    case GET_ACTIVITY:
+    case GET_ALL_ACTIVITY:
       return {
         ...state,
-        activity: action.payload,
-        allactivity: action.payload,
+        allActivity: action.payload,
       };
 
     case GET_DETAIL_ACTIVITY:

@@ -2,21 +2,23 @@ import axios from "axios";
 
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const GET_DETAIL_PRODUCTS = "GET_DETAIL_PRODUCTS";
-export const GET_ACTIVITY = "GET_NEWS";
+export const GET_ALL_ACTIVITY = "GET_ALL_ACTIVITY";
 export const GET_DETAIL_ACTIVITY = "GET_DETAIL_ACTIVITY";
 export const CLEANDETAIL = "CREALDETAIL";
 export const GET_TYPEACTY = "GET_TYPEACTY";
 export const FILTER_BY_NAME = "FILTER_BY_NAME";
 export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
 
-const LOCAL_URL = "http://localhost:3001";
 
-export function getActivity() {
+const url = "http://localhost:3001";
+
+export function getAllActivity() {
   return async function (dispatch) {
     try {
-      const res = await axios.get(`${LOCAL_URL}/activity/offset?offset=0`);
+      const res = await axios.get(`${url}/activity?offset=0`);
+  
       return dispatch({
-        type: GET_ACTIVITY,
+        type: GET_ALL_ACTIVITY,
         payload: res.data,
       });
     } catch (err) {
@@ -25,10 +27,10 @@ export function getActivity() {
   };
 }
 
-export function getTypeActi() {
+export function getTypeActi(activityTypes) {
   return async function (dispatch) {
     try {
-      const res = await axios.get(`${LOCAL_URL}/byType`);
+      const res = await axios.get(`${url}/activityTypes`);
       return dispatch({
         type: GET_TYPEACTY,
         payload: res.data,
@@ -39,13 +41,13 @@ export function getTypeActi() {
   };
 }
 
-export function getActiId(id_activity) {
+export function getActiId(id) {
   return async function (dispatch) {
     try {
-      const res = await axios.get(`${LOCAL_URL}/activity/${id_activity}`);
+      const res = await axios.get(`${url}/activity/${id}`);
       return dispatch({
         type: GET_DETAIL_ACTIVITY,
-        payload: res.data,
+        payload: res,
       });
     } catch (err) {
       console.error("Error", err);
@@ -59,7 +61,7 @@ export const cleanDetail = () => {
 
 /* tienda */
 
-const url = "http://localhost:3001";
+
 
 export const getAllProducts = () => {
   return async (dispatch) => {
