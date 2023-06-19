@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-/* aquí deberian ir las actions */
 import {
   CLEANDETAIL,
   GET_ALL_PRODUCTS,
@@ -9,7 +7,11 @@ import {
   GET_ALL_ACTIVITY,
   GET_DETAIL_ACTIVITY,
   GET_TYPEACTY,
-} from "./actions";
+  FETCH_PROFILE_SUCCESS,
+  CREATE_PROFILE_SUCCESS,
+  UPDATE_PROFILE_SUCCESS,
+  ORDER_BY_PRICE
+} from "./actions"
 
 const initialstate = {
   activity: [],
@@ -19,28 +21,8 @@ const initialstate = {
   allProducts: [],
   products: [],
   ProductsDetail: [],
-};
-=======
-import {
-  GET_ALL_PRODUCTS, 
-  GET_DETAIL_PRODUCTS, 
-  GET_NEWS, 
-  FILTER_BY_NAME, 
-  FILTER_BY_TYPE,
-  FETCH_PROFILE_SUCCESS,
-  CREATE_PROFILE_SUCCESS,
-  UPDATE_PROFILE_SUCCESS,
-  ORDER_BY_PRICE
-} from "./actions"
-
-const initialstate = {
-  noticias: [],
-  allProducts: [],
-  products: [],
-  ProductsDetail: [],
   profile: null,
  };
->>>>>>> main
 
 function rootReducer(state = initialstate, action) {
   switch (action.type) {
@@ -84,13 +66,6 @@ function rootReducer(state = initialstate, action) {
 
     case FILTER_BY_NAME:
       return { ...state, products: action.payload };
-<<<<<<< HEAD
-
-    case FILTER_BY_TYPE:
-      return { ...state, products: action.payload };
-    /* distintos casos */
-
-=======
     case FILTER_BY_TYPE:
       return {...state, products: action.payload};
     case ORDER_BY_PRICE:
@@ -99,7 +74,6 @@ function rootReducer(state = initialstate, action) {
       case CREATE_PROFILE_SUCCESS:
         case UPDATE_PROFILE_SUCCESS:
           return { ...state, profile: action.payload };
->>>>>>> main
     default:
       return state;
   }

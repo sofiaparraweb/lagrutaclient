@@ -43,12 +43,6 @@ export function getTypeActi(activityTypes) {
     }
   };
 
-export const getAllProducts = () => {
-  return async (dispatch) =>{
-      const resp = await axios(`${url}/products/`);
-      return dispatch({type: GET_ALL_PRODUCTS, payload: resp.data})
-  }
-}
 
 export function getActiId(id) {
   return async function (dispatch) {
@@ -83,10 +77,6 @@ export const getDetailProducts = (id_products) => {
     const { data } = await axios.get(`${url}/products/${id_products}`);
     return dispatch({ type: GET_DETAIL_PRODUCTS, payload: data });
   };
-};
-
-export const filterByName = (payload) => {
-  return { type: FILTER_BY_NAME, payload };
 };
 
 export const filterByName = (name) =>{
@@ -146,17 +136,7 @@ export const fetchProfile = (userId) => {
     // }
   };
 };
-    try {
-      const response = await axios.get(`${url}/${userId}`);
-      dispatch({
-        type: FETCH_PROFILE_SUCCESS,
-        payload: response.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
+    
 
 export const createProfile = (userData) => {
   return async (dispatch) => {
