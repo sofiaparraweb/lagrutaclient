@@ -15,9 +15,9 @@ const Home = () => {
     const dispatch = useDispatch();
     const allActivity = useSelector(state => state.allActivity);
 
-    useEffect(() => {
-    dispatch(getAllActivity());
-    }, [dispatch]);
+    // useEffect(() => {
+    // dispatch(getAllActivity());
+    // }, [dispatch]);
 
     const handleClick = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
