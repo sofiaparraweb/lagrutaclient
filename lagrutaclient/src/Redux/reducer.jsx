@@ -26,8 +26,6 @@ const initialstate = {
 
 function rootReducer(state = initialstate, action) {
   switch (action.type) {
-    case GET_NEWS:
-      return {...state, noticias: action.payload};
     case GET_ALL_PRODUCTS:
       return {
         ...state,

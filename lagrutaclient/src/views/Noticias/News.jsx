@@ -30,7 +30,6 @@ useEffect(() => {
       <LastNews allActivity={allActivity} allTypes={allTypes} />
       <Homes />
     </div>
-      <Footer />
       </>
   );
 }
