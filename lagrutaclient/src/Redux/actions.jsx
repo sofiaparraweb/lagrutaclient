@@ -5,6 +5,7 @@ export const GET_DETAIL_PRODUCTS = "GET_DETAIL_PRODUCTS";
 export const GET_NEWS = "GET_NEWS";
 export const FILTER_BY_NAME = "FILTER_BY_NAME";
 export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
+export const ORDER_BY_PRICE = "ORDER_BY_PRICE"
 export const FETCH_PROFILE_SUCCESS = "FETCH_PROFILE_SUCCESS";
 export const CREATE_PROFILE_SUCCESS = "CREATE_PROFILE_SUCCESS";
 export const UPDATE_PROFILE_SUCCESS = "UPDATE_PROFILE_SUCCESS";
@@ -44,13 +45,13 @@ export const filterByName = (payload) =>{
   return { type: FILTER_BY_NAME, payload };
 }
 
-export const filterByType = (productType) => {
+export const filterByType = (name) => {
   return async (dispatch) => {
-    const response = await axios.get(`${url}/filter/byType?productType=${productType}`);
+    const response = await axios.get(`${url}/filter/byType?productType=${name}`);
     dispatch({
-      type: 'FILTER_BY_TYPE',
-      payload: response.data.name
-    });
+      type: FILTER_BY_TYPE,
+      payload: response.data
+    })
     // try {
     //   const response = await axios.get(`${url}/filter/byType?productType=${productType}`);
     //   dispatch({
@@ -65,6 +66,16 @@ export const filterByType = (productType) => {
     // }
   };
 };
+
+export const orderByPrice = (price) =>{
+  return async (dispatch) => {
+    const response = await axios.get(`${url}/order/byPrice?price=${price}`);
+    dispatch({
+      type: 'ORDER_BY_PRICE',
+      payload: response.data
+    })
+  }
+}
 
 export const fetchProfile = (userId) => {
   return async (dispatch) => {

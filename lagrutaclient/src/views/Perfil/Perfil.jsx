@@ -12,14 +12,14 @@ import "./Perfil.css"; // Importa el archivo CSS personalizado
 
 const Perfil = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
-  const [name, setName] = useState(user.name);
-  const [email, setEmail] = useState(user.email);
+  const [name, setName] = useState(user.name || "");
+  const [email, setEmail] = useState(user.email || "");
   const [birthdate, setBirthdate] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [occupation, setOccupation] = useState("");
   const [role, setRole] = useState("");
-  const [profileImage, setProfileImage] = useState(user.image);
+  const [profileImage, setProfileImage] = useState(user.image || "");
 
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.profile);

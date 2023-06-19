@@ -7,6 +7,7 @@ import {
   FETCH_PROFILE_SUCCESS,
   CREATE_PROFILE_SUCCESS,
   UPDATE_PROFILE_SUCCESS,
+  ORDER_BY_PRICE
 } from "./actions"
 
 const initialstate = {
@@ -29,8 +30,10 @@ return {...state, noticias: action.payload};
       return {...state, products: action.payload};
     case FILTER_BY_TYPE:
       return {...state, products: action.payload};
-      case FETCH_PROFILE_SUCCESS:
-        case CREATE_PROFILE_SUCCESS:
+    case ORDER_BY_PRICE:
+      return {...state, allProducts: action.payload}
+    case FETCH_PROFILE_SUCCESS:
+      case CREATE_PROFILE_SUCCESS:
         case UPDATE_PROFILE_SUCCESS:
           return { ...state, profile: action.payload };
     default:
