@@ -7,9 +7,9 @@ const Filter = () => {
 
     const dispatch = useDispatch();
 
-    const handleFilter = (productType) => {
-        console.log(productType)
-        dispatch(filterByType(productType));
+    const handleFilter = (name) => {
+        console.log(name)
+        dispatch(filterByType(name));
     };
     
     return (
