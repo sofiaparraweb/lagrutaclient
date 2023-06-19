@@ -33,13 +33,15 @@ const About = () => {
       <Vision />
       <Valores />
 
-      <section className={style.section}>
+      {/* <section className={style.section}>
         <h2>¿Qué hacemos?</h2>
-        {/* Agrega aquí el contenido de "Qué hacemos" */}
-      </section>
+        
+      </section> */}
 
-      <section className={style.section}>
-      <h1>Historia
+      <header className={style.header}>
+        <h1>Historia</h1>
+      </header>
+      <section className={style.introduction}>
                 <p>A mediados de la década del ´50 comienza la labor de Cáritas en Argentina. El objetivo principal de Cáritas, según sus estatutos es “animar y coordinar la obra social y caritativa de la Iglesia, insertada en la pastoral orgánica a través de formas adaptadas al tiempo y las circunstancias, para lograr el desarrollo integral de todo el hombre y de todos los hombres, con especial preferencia por las personas y comunidades más marginadas”.
 
 Desde su nacimiento, Cáritas Argentina muestra características distintivas que le dieron identidad especial: su base parroquial, su amplio voluntariado y sus esfuerzos por desarrollar procesos sustentables con el aporte de las comunidades.
@@ -55,14 +57,14 @@ Esa actividad se fue transformando en los años 80, cuando se descubre la necesi
 Teniendo ese contexto, en 1986 la Conferencia Episcopal aprueba los actuales Estatutos de Cáritas Argentina como organismo de la Iglesia que coordinará la obra caritativa oficial de la misma.
 
 En la actualidad, Cáritas Argentina se encuentra trabajando activamente en las 66 Diócesis de la Iglesia Argentina. Gracias al compromiso solidario de toda la sociedad y al esfuerzo cotidiano de más de 32.000 voluntarios, Cáritas canaliza su acción a través de más de 3.500 parroquias, capillas y centros misionales.</p>
-            </h1>
+          
         {/* Agrega aquí el contenido de la historia */}
       </section>
-
+{/* 
       <section className={style.section}>
         <h2>¿Quiénes somos? Equipo</h2>
-        {/* Agrega aquí el contenido de "Quiénes somos" y muestra el equipo */}
-      </section>
+      
+      </section> */}
 
       <section className={style.section}>
         <button className={style.donationButton}>Donar</button>
