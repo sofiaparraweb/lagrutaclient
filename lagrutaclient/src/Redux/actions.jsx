@@ -15,8 +15,7 @@ const url = "http://localhost:3001";
 export function getNews() {
   return async function (dispatch) {
     try {
-      const res = await axios.get(`${url}/news`);
-      // const res = await axios.get("http://localhost:3001/activity/offset?offset=0");
+      const res = await axios.get("http://localhost:3001/activity/offset?offset=0");
       return dispatch({
         type: GET_NEWS,
         payload: res.data,
