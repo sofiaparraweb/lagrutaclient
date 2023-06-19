@@ -41,39 +41,37 @@ export const getDetailProducts = (id_products) =>{
   }
 }
 
-export const filterByName = (payload) =>{
-  return { type: FILTER_BY_NAME, payload };
-}
+export const filterByName = (name) =>{
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`${url}/filter/name?name=${name}`);
+      console.log(response.data)
+      dispatch({ type: FILTER_BY_NAME, payload: response.data })
+    } catch (error){
+      console.log(error);
+    }
+  };
+};
 
 export const filterByType = (name) => {
   return async (dispatch) => {
-    const response = await axios.get(`${url}/filter/byType?productType=${name}`);
-    dispatch({
-      type: FILTER_BY_TYPE,
-      payload: response.data
-    })
-    // try {
-    //   const response = await axios.get(`${url}/filter/byType?productType=${productType}`);
-    //   dispatch({
-    //     type: 'FILTER_BY_TYPE',
-    //     payload: response.data.filteredByType
-    //   });
-    // } catch (error) {
-    //   dispatch({
-    //     type: 'FILTER_BY_TYPE_FAILURE',
-    //     payload: error.response.data.error
-    //   });
-    // }
+    try {
+      const response = await axios.get(`${url}/filter/byType?name=${name}`);
+      dispatch({ type: FILTER_BY_TYPE, payload: response.data })
+    } catch (error){
+      console.log(error);
+    }
   };
 };
 
 export const orderByPrice = (price) =>{
   return async (dispatch) => {
-    const response = await axios.get(`${url}/order/byPrice?price=${price}`);
-    dispatch({
-      type: 'ORDER_BY_PRICE',
-      payload: response.data
-    })
+    try {
+      const response = await axios.get(`${url}/order/byPrice?price=${price}`);
+      dispatch({ type: ORDER_BY_PRICE, payload: response.data })
+    } catch (error){
+      console.log(error);
+    }
   }
 }
 

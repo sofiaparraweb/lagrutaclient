@@ -21,18 +21,18 @@ const initialstate = {
 function rootReducer(state = initialstate, action) {
   switch (action.type) {
     case GET_NEWS:
-return {...state, noticias: action.payload};
+      return {...state, noticias: action.payload};
     case GET_ALL_PRODUCTS:
-      return { ...state, allProducts: action.payload};
+      return { ...state, allProducts: action.payload, products: action.payload};
     case GET_DETAIL_PRODUCTS:
       return { ...state, ProductsDetail: action.payload};
     case FILTER_BY_NAME:
-      return {...state, products: action.payload};
+      return { ...state, products: action.payload };
     case FILTER_BY_TYPE:
       return {...state, products: action.payload};
     case ORDER_BY_PRICE:
       return {...state, allProducts: action.payload}
-    case FETCH_PROFILE_SUCCESS:
+    case FETCH_PROFILE_SUCCESS: 
       case CREATE_PROFILE_SUCCESS:
         case UPDATE_PROFILE_SUCCESS:
           return { ...state, profile: action.payload };

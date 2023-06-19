@@ -70,10 +70,10 @@ const NavBar = ({ isAuthenticated }) => {
               <Link to="/dona" className="dropdownOption" id="donaNav" onClick={handleClick}>
                 Dona
               </Link>
-              <Link to="/sePadrino" className="dropdownOption" id="sepadrinoNav" onClick={handleClick}>
+              <Link to="/se-padrino" className="dropdownOption" id="sepadrinoNav" onClick={handleClick}>
                 Sé padrino
               </Link>
-              <Link to="/seVoluntario" className="dropdownOption" id="sevoluntarioNav" onClick={handleClick}>
+              <Link to="/se-voluntario" className="dropdownOption" id="sevoluntarioNav" onClick={handleClick}>
                 Sé voluntario
               </Link>
             </div>
