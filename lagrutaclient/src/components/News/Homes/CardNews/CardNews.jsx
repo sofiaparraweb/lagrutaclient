@@ -11,9 +11,9 @@ const CardNews = () => {
         <HeadingMx title="Más noticias" />
         <div className={style.row}>
           {ppost
-          .map((val) => {
+          .map((val, index) => {
             return (
-              <div className={style.box}>
+              <div key={index} className={style.box}>
                 <div className={style.items}>
                   <div className={style.shadow}>
                     <div className={style.images}>

@@ -1,22 +1,33 @@
 import PropTypes from 'prop-types';
 import style from "./TiendaItems.module.css";
-import { Image, Card, Stack, Text, Heading, CardBody, CardFooter, Divider, Button } from '@chakra-ui/react'
+import { useState } from 'react';
+import { Image, Card, Stack, Text, Heading, CardBody, CardFooter, Divider, Button, Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton } from '@chakra-ui/react'
 
 const TiendaItems = ({ id, name, image, price, description, stock, ProductsTypes }) => {
+  
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
   return (
     <div>
       <Card width='280px' h='400px' margin="20px 0" _hover={{ boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)'}}>
         <CardBody>
-          <Image
-            src={image} 
-            alt='imagen Producto'
-            borderRadius='lg'
-            maxWidth='250px'
-            height='200px'
-            display='block'
-            marginLeft='auto'
-            marginRight='auto'
-          />
+          <div onClick={toggleModal}>
+            <Image
+              src={image} 
+              alt='imagen Producto'
+              borderRadius='lg'
+              maxWidth='250px'
+              height='200px'
+              display='block'
+              marginLeft='auto'
+              marginRight='auto'
+              cursor='pointer'
+            />
+          </div>
           <Heading size='l'>
             <Text fontSize='md' textAlign={'center'}>{name}</Text>
             <Text fontSize='l' textAlign={'center'}> $ {price}</Text>
@@ -34,6 +45,15 @@ const TiendaItems = ({ id, name, image, price, description, stock, ProductsTypes
           </Button>
         </CardFooter>
       </Card>
+      <Modal isOpen={isModalOpen} onClose={toggleModal} size="xl">
+        <ModalOverlay />
+        <ModalContent>
+          <ModalCloseButton />
+          <ModalBody>
+            <Image src={image} alt={name} />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </div>
   );
 };

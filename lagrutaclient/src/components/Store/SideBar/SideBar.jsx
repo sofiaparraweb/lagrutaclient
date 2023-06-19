@@ -3,6 +3,7 @@ import Filter from "../Filtros/Filter"
 import {AiOutlineShoppingCart } from "react-icons/ai";
 
 const SideBar = () =>{
+
   return (
     <div className={style.sidebarContenedor}>
         <div className={style.Changuito}>

@@ -41,6 +41,9 @@ const App = () => {
         <Route path="/noticias" element={<News />} />
         <Route exact path="/noticias/:id" element={<DetailsNews />} />
         <Route path="/tienda" element={<Tienda />} />
+        <Route path="/dona" />
+        <Route path="/se-padrino"  />
+        <Route path="/se-voluntario"  />
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/logout" element={<LogOut />} />
