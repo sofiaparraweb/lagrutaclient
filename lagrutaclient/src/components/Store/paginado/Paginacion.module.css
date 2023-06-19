@@ -15,24 +15,24 @@
 }
 
 .PaginationList li{
-  width: 40px;
+  width: 25px;
+  height: 25px;
   cursor: pointer;
-  color: black;
+  color: grey;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-radius: 2px;
+  text-align: center;
   transition: 0.3s ease;
 }
 .PaginationList li:hover{
   transition: 0.3s ease;
-  font-size: 20px;
   color: rgba(195,64,56,255)
 }
 
 .active {
-  background-color: rgba(223,184,55,255);
-  color: black;
+  background-color: rgba(195,64,56,255);
+  color: white !important;
 }
 
 .disabled {

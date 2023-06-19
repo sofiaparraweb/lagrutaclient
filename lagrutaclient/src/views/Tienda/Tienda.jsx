@@ -33,20 +33,22 @@ const Tienda = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className={style.FondoTienda}>
       <NavBar />
       <div className={style.tienda}>
         <div className={style.SearchOrder}>
           <Search />
+          <Order setCurrentPage={setCurrentPage}/>
+        </div>
+        <TiendaItemsContenedor products={currentProducts} setCurrentPage={setCurrentPage}/>
+        <div className={style.PaginationConteinerTienda}>
           <Pagination
             productsPerPage={productsPerPage}
             totalProducts={prod?.length}
             currentPage={currentPage}
             handlePaginate={handlePaginate}
           />
-          <Order setCurrentPage={setCurrentPage}/>
         </div>
-        <TiendaItemsContenedor products={currentProducts} setCurrentPage={setCurrentPage}/>
       </div>
     </div>
   );

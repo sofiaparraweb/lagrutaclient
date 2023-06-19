@@ -42,6 +42,7 @@ const App = () => {
         <Route path="/noticias" element={<News />} />
         <Route exact path="/noticias/:id" element={<DetailsNews />} />
         <Route path="/tienda" element={<Tienda />} />
+        <Route path="/carrito" />
         <Route path="/dona" element={<DonationForm/>}/>
         <Route path="/se-padrino"  />
         <Route path="/se-voluntario"  />
