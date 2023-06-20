@@ -1,5 +1,5 @@
 import style from "./Paginacion.module.css";
-import {ArrowLeftIcon, ArrowBackIcon, ArrowForwardIcon, ArrowRightIcon} from '@chakra-ui/icons'
+import {ArrowLeftIcon, ArrowBackIcon, ArrowForwardIcon, ArrowRightIcon} from '@chakra-ui/icons';
 
 const Pagination = ({
     productsPerPage,

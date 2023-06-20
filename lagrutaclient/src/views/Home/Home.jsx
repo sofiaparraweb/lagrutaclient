@@ -17,7 +17,7 @@ const Home = () => {
 
     useEffect(() => {
     dispatch(getAllActivity());
-    }, [dispatch]);
+    },[dispatch]);
 
     const handleClick = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -34,7 +34,7 @@ const Home = () => {
                 <DonaHome />
                 <SePadrinoHome />
                 <div className={style.NoticiasContenedor}>
-                    <LastNews className={style.Noticias} allActivity={allActivity}/>
+                    <LastNews className={style.Noticias} allActivity={allActivity} />
                     <Link to="/noticias" className={style.BotonMasNoticias} onClick={handleClick}>Ver más noticias</Link>
                 </div>
                 {/* <h1>Frases</h1>

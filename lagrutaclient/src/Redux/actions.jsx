@@ -13,6 +13,9 @@ export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
 export const FETCH_PROFILE_SUCCESS = "FETCH_PROFILE_SUCCESS";
 export const CREATE_PROFILE_SUCCESS = "CREATE_PROFILE_SUCCESS";
 export const UPDATE_PROFILE_SUCCESS = "UPDATE_PROFILE_SUCCESS";
+export const ADD_PRODUCT = "ADD_PRODUCT";
+export const DELETE_PRODUCT = "DELETE_PRODUCT";
+
 
 const url = "http://localhost:3001";
 
@@ -31,16 +34,18 @@ export function getAllActivity() {
   }
 }
 
-export function getTypeActi(activityTypes) {
+const LOCAL = "http://localhost:3001"
+
+export function getTypeActi() {
   return async function (dispatch) {
     try {
-      const res = await axios.get(`${url}/${activityTypes}`);
+      const res = await axios.get(`${LOCAL}/activityTypes`);
       return dispatch({
         type: GET_TYPEACTY,
         payload: res.data,
       });
     } catch (err) {
-      console.error(err);
+      console.error('hola', err);
     }
   }
 }
@@ -50,6 +55,7 @@ export function getTypeActi(activityTypes) {
     return async function (dispatch) {
       try {
         const res = await axios.get(`${url}/activity/${id}`);
+        console.log(res.data)
       return dispatch({
         type: GET_DETAIL_ACTIVITY,
         payload: res.data,
@@ -58,7 +64,13 @@ export function getTypeActi(activityTypes) {
       console.error(err);
     }
   }
-}
+};
+
+export function cleanDetail () {
+  return { type: CLEANDETAIL }
+  }   
+
+
 
 /* tienda */
 
@@ -155,5 +167,19 @@ export const updateProfile = (userId, updatedUserData) => {
     } catch (error) {
       console.log(error);
     }
+  }
+}
+
+export const addProduct = (product) => {
+  return {
+    type: ADD_PRODUCT,
+    payload: product
+  }
+}
+
+export const deleteProduct = (product) => {
+  return {
+    type: DELETE_PRODUCT,
+    payload: product
   }
 }

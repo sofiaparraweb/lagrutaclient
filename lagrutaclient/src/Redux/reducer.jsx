@@ -11,7 +11,9 @@ import {
   FETCH_PROFILE_SUCCESS,
   CREATE_PROFILE_SUCCESS,
   UPDATE_PROFILE_SUCCESS,
-  ORDER_BY_PRICE
+  ORDER_BY_PRICE,
+  // ADD_PRODUCT,
+  // DELETE_PRODUCT
 } from "./actions"
 
 const initialstate = {
@@ -23,6 +25,7 @@ const initialstate = {
   allProductTypes: [],
   products: [],
   ProductsDetail: [],
+  Carrito: [],
   profile: null,
  };
 

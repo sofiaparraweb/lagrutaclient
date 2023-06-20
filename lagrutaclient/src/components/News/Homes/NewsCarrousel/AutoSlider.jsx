@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import Slider from 'react-slick';
+import { Link } from "react-router-dom";
 import { lifestyle } from "../../../../dummyData";
 
 import style from "./NewsCarrousel.module.css";
@@ -48,7 +49,9 @@ const AutoSlider = () => {
                       </div>
                     </div>
                     <div className={style.text}>
+                    <Link to={`/Noticias/${val.id}`}>
                       <h1 className={style.title}>{val.title.slice(0, 40)}...</h1>
+                      </Link>
                       <div className={style.date}>
                         <i class='fas fa-calendar-days'></i>
                         <label>{val.date}</label>

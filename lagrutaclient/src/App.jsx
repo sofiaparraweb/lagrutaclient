@@ -16,6 +16,7 @@ import LogOut from "./views/LogIn/LogOut";
 import NavBar from "./components/NavBar/NavBar";
 import BackToTop from "./components/BackToTop/BackToTop";
 import Footer from "./components/Footer/Footer";
+import DonationForm from "./views/Donacion/Donacion";
 
 const App = () => {
   const { isAuthenticated, isLoading } = useAuth0();
@@ -41,7 +42,9 @@ const App = () => {
         <Route path="/noticias" element={<News />} />
         <Route exact path="/noticias/:id" element={<DetailsNews />} />
         <Route path="/tienda" element={<Tienda />} />
-        <Route path="/dona" />
+        <Route path="/carrito" />
+        <Route path="/checkout" />
+        <Route path="/dona" element={<DonationForm/>}/>
         <Route path="/se-padrino"  />
         <Route path="/se-voluntario"  />
         <Route path="/perfil" element={<Perfil />} />
