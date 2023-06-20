@@ -15,7 +15,7 @@ export const CREATE_PROFILE_SUCCESS = "CREATE_PROFILE_SUCCESS";
 export const UPDATE_PROFILE_SUCCESS = "UPDATE_PROFILE_SUCCESS";
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
-
+export const POST_NEWS_DASHBOARD = "POST_NEWS_DASHBOARD";
 
 const url = "http://localhost:3001";
 
@@ -128,6 +128,8 @@ export const orderByPrice = (price) =>{
   }
 }
 
+/* profile */
+
 export const fetchProfile = (userId) => {
   return async (dispatch) => {
     try {
@@ -170,6 +172,8 @@ export const updateProfile = (userId, updatedUserData) => {
   }
 }
 
+/* dashboard */
+
 export const addProduct = (product) => {
   return {
     type: ADD_PRODUCT,
@@ -182,4 +186,19 @@ export const deleteProduct = (product) => {
     type: DELETE_PRODUCT,
     payload: product
   }
+}
+
+export function create_news (payload) {
+  return async function (payload) {
+    try {
+      var res = await axios.post(`${LOCAL}/`, payload);
+      return {
+        type: POST_NEWS_DASHBOARD,
+        res
+      }
+    } catch (err) {
+      console.log("Falta información", err)
+    }
+   
+ }
 }

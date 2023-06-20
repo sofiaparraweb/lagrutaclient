@@ -17,6 +17,8 @@ import NavBar from "./components/NavBar/NavBar";
 import BackToTop from "./components/BackToTop/BackToTop";
 import Footer from "./components/Footer/Footer";
 import DonationForm from "./views/Donacion/Donacion";
+import WP_Button from "./components/MensajeFloat/WP_Button.jsx";
+import Dashboard from "./views/DashBoard/DashBoard";
 
 const App = () => {
   const { isAuthenticated, isLoading } = useAuth0();
@@ -50,8 +52,11 @@ const App = () => {
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/logout" element={<LogOut />} />
-      </Routes>
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes> 
+      <WP_Button />
       <Footer />
+     
       <BackToTop />
     </div>
   );
