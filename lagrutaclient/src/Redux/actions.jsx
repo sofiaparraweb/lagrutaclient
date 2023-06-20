@@ -13,6 +13,9 @@ export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
 export const FETCH_PROFILE_SUCCESS = "FETCH_PROFILE_SUCCESS";
 export const CREATE_PROFILE_SUCCESS = "CREATE_PROFILE_SUCCESS";
 export const UPDATE_PROFILE_SUCCESS = "UPDATE_PROFILE_SUCCESS";
+export const ADD_PRODUCT = "ADD_PRODUCT";
+export const DELETE_PRODUCT = "DELETE_PRODUCT";
+
 
 const url = "http://localhost:3001";
 
@@ -164,5 +167,19 @@ export const updateProfile = (userId, updatedUserData) => {
     } catch (error) {
       console.log(error);
     }
+  }
+}
+
+export const addProduct = (product) => {
+  return {
+    type: ADD_PRODUCT,
+    payload: product
+  }
+}
+
+export const deleteProduct = (product) => {
+  return {
+    type: DELETE_PRODUCT,
+    payload: product
   }
 }
