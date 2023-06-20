@@ -11,7 +11,9 @@ import {
   FETCH_PROFILE_SUCCESS,
   CREATE_PROFILE_SUCCESS,
   UPDATE_PROFILE_SUCCESS,
-  ORDER_BY_PRICE
+  ORDER_BY_PRICE,
+  // ADD_PRODUCT,
+  // DELETE_PRODUCT
 } from "./actions"
 
 const initialstate = {
@@ -23,6 +25,7 @@ const initialstate = {
   allProductTypes: [],
   products: [],
   ProductsDetail: [],
+  Carrito: [],
   profile: null,
  };
 
@@ -75,7 +78,7 @@ function rootReducer(state = initialstate, action) {
     case FILTER_BY_TYPE:
       return {...state, products: action.payload};
     case ORDER_BY_PRICE:
-      return {...state, products: action.payload}
+      return {...state, orderProducts: action.payload}
     case FETCH_PROFILE_SUCCESS: 
       case CREATE_PROFILE_SUCCESS:
         case UPDATE_PROFILE_SUCCESS:

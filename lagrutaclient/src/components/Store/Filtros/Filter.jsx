@@ -11,7 +11,6 @@ const Filter = ({ setCurrentPage }) => {
   const allProductTypes = useSelector(state => state.allProductTypes);
 
   const handleFilter = name => {  //Ejecutamos la action segun el filtro que seleccionemos abajo
-    console.log(name);
     dispatch(filterByType(name));
     setCurrentPage(1);
     setActiveFilter(name);
@@ -21,6 +20,7 @@ const Filter = ({ setCurrentPage }) => {
     event.preventDefault()
     dispatch(getAllProducts())
     setActiveFilter(null);
+    setCurrentPage(1);
   }
 
   useEffect(() => {
