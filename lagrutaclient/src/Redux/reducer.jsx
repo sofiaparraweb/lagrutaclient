@@ -78,7 +78,7 @@ function rootReducer(state = initialstate, action) {
     case FILTER_BY_TYPE:
       return {...state, products: action.payload};
     case ORDER_BY_PRICE:
-      return {...state, orderProducts: action.payload}
+      return {...state, products: action.payload}
     case FETCH_PROFILE_SUCCESS: 
       case CREATE_PROFILE_SUCCESS:
         case UPDATE_PROFILE_SUCCESS:
