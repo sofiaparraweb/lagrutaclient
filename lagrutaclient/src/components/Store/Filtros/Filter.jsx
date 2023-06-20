@@ -8,7 +8,7 @@ const Filter = ({ setCurrentPage }) => {
 
   const [activeFilter, setActiveFilter] = useState(null);  //Para modificar el estado del filtro activo
   const dispatch = useDispatch();
-  const allProductTypes = useSelector(state => state.allProductTypes.allProductTypes);
+  const allProductTypes = useSelector(state => state.allProductTypes);
 
   const handleFilter = name => {  //Ejecutamos la action segun el filtro que seleccionemos abajo
     console.log(name);
@@ -32,22 +32,16 @@ const Filter = ({ setCurrentPage }) => {
         <AiOutlineFilter className={style.Icon1} />
         <h1 className={style.FiltrarTexto}>CATEGORIA</h1>
         <ul className={style.ContenedorBotonesFiltro}>
-            <li className={style.FilterLI}>
-                <button onClick={handleReset} className={activeFilter === null ? style.ActiveButtonNull : ''}>Todos los productos</button>
-            </li>
-            <li className={style.FilterLI}>
-                <button onClick={() => handleFilter('Otcom')} className={activeFilter === 'Otcom' ? style.ActiveButtonFilter : ''}>Otcom</button>
-            </li>
-            <li className={style.FilterLI}>
-                <button onClick={() => handleFilter('Cardguard')} className={activeFilter === 'Cardguard' ? style.ActiveButtonFilter : ''}>Cardguard</button>
-            </li>
-            <li className={style.FilterLI}>
-                <button onClick={() => handleFilter('Tresom')} className={activeFilter === 'Tresom' ? style.ActiveButtonFilter : ''}>Tresom</button>
-            </li>
-            <li className={style.FilterLI}>
-                <button onClick={() => handleFilter('Bitwolf')} className={activeFilter === 'Bitwolf' ? style.ActiveButtonFilter : ''}>Bitwolf</button>
-            </li>
-        
+          <li className={style.FilterLI}>
+            <button onClick={handleReset} className={activeFilter === null ? style.ActiveButtonNull : ''}>Todos los productos</button>
+          </li>
+          {allProductTypes && allProductTypes?.map((p)=>{
+            return (
+              <li className={style.FilterLI} key={p.id}>
+                <button onClick={() => handleFilter(p.name)} className={activeFilter === p.name ? style.ActiveButtonFilter : ''}> {p.name}</button>
+              </li>
+            )
+          })}        
         </ul>
     </div>
     );
