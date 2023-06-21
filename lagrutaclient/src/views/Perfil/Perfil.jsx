@@ -1,34 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import {
-  Button,
-  ChakraProvider,
-  Input,
-  Select,
-} from "@chakra-ui/react";
+import { Button, ChakraProvider, Input, Select } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProfile, updateProfile } from "../../Redux/actions";
+import { fetchProfile, updateProfile, createProfile } from "../../Redux/actions";
 import "./Perfil.css"; // Importa el archivo CSS personalizado
 
 const Perfil = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
-  const [name, setName] = useState(user.name || "");
-  const [email, setEmail] = useState(user.email || "");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [birthdate, setBirthdate] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [occupation, setOccupation] = useState("");
   const [role, setRole] = useState("");
-  const [profileImage, setProfileImage] = useState(user.image || "");
+  const [profileImage, setProfileImage] = useState("");
 
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.profile);
 
   useEffect(() => {
-    if (isAuthenticated && !isLoading) {
-      dispatch(fetchProfile(user.sub));
+    if (isAuthenticated && user) {
+      setName(user.name || "");
+      setEmail(user.email || "");
     }
-  }, [isAuthenticated, isLoading, dispatch, user.sub]);
+
+    if (!profile) {
+      dispatch(createProfile({ email: user.email, name: user.name }));
+    }
+  }, [dispatch, isAuthenticated, user]);
 
   useEffect(() => {
     if (profile) {
@@ -39,10 +39,10 @@ const Perfil = () => {
       setAddress(profile.address || "");
       setOccupation(profile.occupation || "");
       setRole(profile.role || "");
-      setImage(profile.image || "");
+      setProfileImage(profile.image || "");
     }
   }, [profile]);
-
+  
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
@@ -105,20 +105,20 @@ const Perfil = () => {
             </div>
             <div className="col-md-3 border-right">
               <div className="d-flex flex-column align-items-center text-center p-3 py-5">
-              <div className="profile-picture-container">
-  <img
-    className="rounded-circle profile-picture"
-    src={profileImage || "https://www.pngmart.com/files/21/Account-Avatar-Profile-PNG-Clipart.png"}
-    alt="Profile"
-  />
-  <div className="profile-picture-label"> 
-    <input
-      id="profile-picture"
-      type="file"
-      accept="image/*"
-      onChange={handleProfileImageChange}
-    />
-  </div>
+                <div className="profile-picture-container">
+                  <img
+                    className="rounded-circle profile-picture"
+                    src={profileImage || "https://www.pngmart.com/files/21/Account-Avatar-Profile-PNG-Clipart.png"}
+                    alt="Profile"
+                  />
+                  <div className="profile-picture-label">
+                    <input
+                      id="profile-picture"
+                      type="file"
+                      accept="image/*"
+                      onChange={handleProfileImageChange}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -175,6 +175,7 @@ const Perfil = () => {
                       onChange={handleAddressChange}
                     />
                   </div>
+                  <div className="col-md-6">
                     <label className="labels">Ocupación</label>
                     <Input
                       type="text"
@@ -183,6 +184,8 @@ const Perfil = () => {
                       value={occupation}
                       onChange={handleOccupationChange}
                     />
+                  </div>
+                  <div className="col-md-6">
                     <label className="labels">Rol</label>
                     <Select
                       className="form-control custom-select"
@@ -194,6 +197,7 @@ const Perfil = () => {
                       <option value="padrino">Padrino</option>
                       <option value="miembro">Miembro</option>
                     </Select>
+                  </div>
                 </div>
                 <div>
                   <Button
@@ -214,3 +218,14 @@ const Perfil = () => {
 };
 
 export default Perfil;
+
+
+// estoy usando auth0 para el LogIn y la autenticacion de terceros en mi pagina web.
+// Ya esta configurado el auth0 en mi archivo app e index. El LogIn tambien esta hecho y cuando el usuario se loguea se lo redirecciona al componente "perfil"
+
+// este componente perfil deberia tener distintas funcionalidades:
+// 1. Cuando un usuario se crea x primera vez deberia mandarse el email y nombre al back, y crearse un id unico
+// 2. cuando un usuario inicia sesion, deberia relacionarse ese id con el email para que el suaurio pueda tener sus datos en su formulario perfil (usar funcion fetchProfile que usa una ruta tipo get)
+// 3. Cuando un usuario inciia sesion, puede editar los datos de su perfil (para eso deberia usar la action updatePrfoile, que es una ruta de tipo put)
+
+// ahora... este es mi codigo, y no esta correcto... como lo cambiarias para lograr las funcionlidades que te pedi?
