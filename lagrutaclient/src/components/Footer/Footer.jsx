@@ -62,7 +62,7 @@ const isValidEmail = (email) => {
         </div>
 
         <form className={style.footerSection} onSubmit={handleSubmit}>
-          <h3 className={style.title}>Para conocer más novedades dejanos tu email</h3>
+          <h3 className={style.title}>¡Suscríbete para más información!</h3>
           <input className={style.input} 
           type="email" 
           name="email"
