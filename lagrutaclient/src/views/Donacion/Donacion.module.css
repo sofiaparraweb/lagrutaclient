@@ -1,12 +1,105 @@
 .container {
-    background-color: red;
+    background-color: #072fd0;
     width: 100%;
-    height: 100vh;
+    height: 180vh;
     margin-top: 65px;
 }
 
 .contenForm{
-    background-color: orangered;
-    width: 50%;
-    height: 200px;
+    background-color: #ccc;
+    width: 40%;
+    height: 600px;
+    padding: 20px;
+    margin: 30px;
+    margin-top: -200px;
+    border-radius: 5px;
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+
 }
+
+.title1{
+    color: #2159a8;
+    text-align: center;
+    font-size: 40px;
+}
+
+.parrafoDona{
+    color: #ea5d0b;
+    text-align: center;
+}
+
+.title2{
+    color: #ea5d0b;
+    text-align: center;
+    border-top: 1px solid #000;
+    font-family: Bold;
+    font-size: 25px;
+}
+
+.labels{
+   color: blue;
+    margin: 3px;
+    padding: 5px;
+    border-radius: 30px;
+    font-size: 20px;
+    width: 35%;
+    height: 10vh;
+    text-align: center;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+}
+.labels:hover,
+.labels:focus {
+  background-color: blue;
+  color: white;
+  cursor: pointer;
+}
+
+.labels:active {
+  background-color: darkblue;
+}
+
+.inputs{
+    background-color: transparent;
+    margin: 5px;
+    font-size: 30px;
+   
+}
+
+.labelOtro{
+    padding: 3px;
+}
+
+.inputOtro{
+    border-radius: 3px;
+   padding: 2px;
+   margin: 5px;
+   display: flex;
+    
+}
+
+
+.btnDona{
+    background-color: #ea5d0b;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 20px;
+    width: 150px;
+    height: 40px;
+    color: #fff;
+    align-items: center;
+}
+.btnDona:hover {
+    background-color: #ff8000;
+    cursor: pointer;
+  }
