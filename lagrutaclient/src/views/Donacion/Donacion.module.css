@@ -1,16 +1,37 @@
-.container {
-    background-color: #072fd0;
+.containerPrincipal {
+    background-color: #dede;
     width: 100%;
-    height: 180vh;
-    margin-top: 65px;
+    height: 200vh;
+    margin-top: 0;
+    display: flex;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+    overflow: hidden
 }
 
-.contenForm{
-    background-color: #ccc;
+.containerSecundario{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+}
+
+.container1{
+    width: 100%;
+}
+
+.contenForm {
+    background-color: #104476;
     width: 40%;
     height: 600px;
     padding: 20px;
     margin: 30px;
+    margin-right: 500px;
     margin-top: -200px;
     border-radius: 5px;
     position: relative;
@@ -23,27 +44,28 @@
 
 }
 
-.title1{
-    color: #2159a8;
+.title1 {
+    color: #fff;
     text-align: center;
     font-size: 40px;
 }
 
-.parrafoDona{
-    color: #ea5d0b;
+.parrafoDona {
+    color: #fff;
+    border-bottom: 1px solid #fff;
     text-align: center;
+    font-size: 20px;
 }
 
-.title2{
+.title2 {
     color: #ea5d0b;
     text-align: center;
-    border-top: 1px solid #000;
     font-family: Bold;
     font-size: 25px;
 }
 
-.labels{
-   color: blue;
+.labels {
+    color: #fff;
     margin: 3px;
     padding: 5px;
     border-radius: 30px;
@@ -58,38 +80,53 @@
     align-content: center;
     flex-direction: column;
 }
+
 .labels:hover,
 .labels:focus {
-  background-color: blue;
-  color: white;
-  cursor: pointer;
+    background-color: #dfb837;
+    color: white;
+    cursor: pointer;
 }
 
 .labels:active {
-  background-color: darkblue;
+    background-color: #ea5d0b;
 }
 
-.inputs{
+.inputs {
     background-color: transparent;
     margin: 5px;
     font-size: 30px;
-   
+
 }
 
-.labelOtro{
+.labelOtro {
     padding: 3px;
 }
 
-.inputOtro{
+
+.inputOtro {
+    position: relative;
     border-radius: 3px;
-   padding: 2px;
-   margin: 5px;
-   display: flex;
-    
+    padding: 2px;
+    margin: 5px;
+    display: flex;
+    color: blue;
+    font-weight: bold;
+    font-size: 16px;
 }
 
+/*=======>>><<<========*/
+.inputContainer {
+    display: flex;
+    align-items: center;
+  }
+  .currency {
+    color: #c34038;
+    font-weight: bold;
+    margin-right: 5px;
+  }
 
-.btnDona{
+.btnDona {
     background-color: #ea5d0b;
     border-radius: 5px;
     padding: 5px;
@@ -99,7 +136,94 @@
     color: #fff;
     align-items: center;
 }
+
 .btnDona:hover {
     background-color: #ff8000;
     cursor: pointer;
+}
+
+/*=========>>><<<==========*/
+.container2{
+    background-color: transparent;
+}
+
+.container3{
+    padding: 20px;
+    margin: 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+}
+
+img{
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.parrafo2{
+    background-color: #104476;
+    padding: 20px;
+    margin: 10px;
+    width: 50%;
+    height: 300px;
+    color: #fff;
+    border-radius: 5px;
+}
+
+/*=====>>>Responsivo<<<=====*/
+@media (max-width: 800px) {
+    .containerPrincipal {
+      flex-wrap: wrap;
+    }
+  
+    .contenForm {
+      width: 80%;
+      margin-right: 0;
+      margin-top: 0;
+    }
+  
+    .containerSecundario {
+      flex-direction: column;
+    }
+
+    .container3 {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .parrafo2{
+        width: 100%;
+        height: auto;
+      }
   }
+  
+  @media (max-width: 600px) {
+    .containerPrincipal {
+      height: auto;
+    }
+  
+    .contenForm {
+      width: 90%;
+    }
+  
+    .containerSecundario {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .container3 {
+        align-items: center;
+      }
+  }
+  
+  @media (max-width: 460px) {
+    .contenForm {
+      width: 100%;
+      margin: 10px;
+      margin-top: 0;
+    }
+  }
+  
