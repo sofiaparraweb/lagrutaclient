@@ -73,7 +73,9 @@
   height: 35px;
   font-size: 35px;
   color: #fff;
+  transition: color .3s;
 }
+
 .itemsRedes:hover {
   color: #ff8000;
   cursor: pointer;
