@@ -89,6 +89,7 @@
   border-top: 1px solid;
 }
 
+/*=====>>>Responsivo<<<=====*/
 @media (max-width: 800px) {
   .container {
     flex-wrap: wrap;
