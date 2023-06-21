@@ -1,53 +1,68 @@
 import { React, useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
 import { create_news, getTypeActi } from "../../../Redux/actions.jsx";
 
 import style from "./FormCreacion.module.css";
 
-const FormNews = () => {
-  const dispatch = useDispatch();
-  const typesActivity = useSelector((state) => state.activityTypes);
-  const selectedTypesRef = useRef([]);
-  const [errors, setErrors] = useState({});
+const FormCreacion = () => {
+  const [name, setName] = useState('');
+  const [date, setDate] = useState('');
+  const [description, setDescription] = useState('');
+  const [img, setImg] = useState(null);
 
-  const [activity, setActivity] = useState({
-    name: "",
-    ActivityTypes: "",
-    img: "",
-    description: "",
-    date: "",
-  });
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // Validar los campos antes de enviar el formulario al backend
+
+    if (name === '' || date === '' || description === '' || img === null) {
+      alert('Por favor, complete todos los campos');
+      return;
+    }
+
+    // Crear un objeto FormData para enviar los datos al backend
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('date', date);
+    formData.append('description', description);
+    formData.append('img', img);
+
+   
+    fetch('/uploadfile', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => {
+      // Manejargit la respuesta del backend
+      console.log(response);
+    })
+    .catch(error => {
+      // Manejar errores
+      console.error(error);
+    });
+  }
 
   return (
     <section className={style.section}>
-      <div className="title">
-        <h2> Publicar nuevo Posteo</h2>
-      </div>
-      <div className="container-form">
-        <form>
-          <label htmlFor="name">Título: </label>
-          <input id="name" name="name" type="text"></input>
-          {/* aca colocar el codigo de img cloudinary*/}
-          <label htmlFor="description"></label>
-          <input id="description" name="description" type="??"></input>
-          <label htmlFor="">Categoría: </label>
-          <p class="typesactivi">
-            <select htmlFor="ActivityTypes">
-              <option key="" value="">
-                Seleccionar categoria
-              </option>
-              {typesActivity?.map((e) => {
-                <option key={e.id} value={e.name}>
-                  {e.name}
-                </option>;
-              })}{" "}
-            </select>
-          </p>
-          <button type="submit"> Publicar</button>
-        </form>
-      </div>
+    <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <label htmlFor="name">Nombre:</label>
+      <input type="text" id="name" name="name" value={name} onChange={(e) => setName(e.target.value)} required />
+
+      <label htmlFor="date">Fecha:</label>
+      <input type="date" id="date" name="date" value={date} onChange={(e) => setDate(e.target.value)} required />
+
+      <label htmlFor="description">Descripción:</label>
+      <textarea id="description" name="description" value={description} onChange={(e) => setDescription(e.target.value)} required />
+
+      <label htmlFor="img">Imagen:</label>
+      <input type="file" id="img" name="img" accept="image/*" onChange={(e) => setImg(e.target.files[0])} required />
+
+      <button type="submit">Enviar</button>
+    </form>
     </section>
   );
-};
+}
 
-export default FormNews;
+
+export default FormCreacion;
