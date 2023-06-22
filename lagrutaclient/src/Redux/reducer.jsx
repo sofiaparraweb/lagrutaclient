@@ -12,9 +12,10 @@ import {
   CREATE_PROFILE_SUCCESS,
   UPDATE_PROFILE_SUCCESS,
   ORDER_BY_PRICE,
+  POST_NEWS_DASHBOARD,
   // ADD_PRODUCT,
   // DELETE_PRODUCT
-} from "./actions"
+} from "./actions";
 
 const initialstate = {
   activity: [],
@@ -27,21 +28,22 @@ const initialstate = {
   ProductsDetail: [],
   Carrito: [],
   profile: null,
- };
+};
 
 function rootReducer(state = initialstate, action) {
   switch (action.type) {
     case GET_ALL_PRODUCTS:
       return {
         ...state,
-        allProducts: action.payload, products: action.payload
+        allProducts: action.payload,
+        products: action.payload,
       };
 
     case GET_ALL_PRODUCTS_TYPES:
       return {
         ...state,
-        allProductTypes: action.payload
-      }
+        allProductTypes: action.payload,
+      };
 
     case GET_DETAIL_PRODUCTS:
       return {
@@ -74,20 +76,36 @@ function rootReducer(state = initialstate, action) {
       };
 
     case FILTER_BY_NAME:
-      return { ...state, products: action.payload };
+      return {
+        ...state,
+        products: action.payload,
+      };
     case FILTER_BY_TYPE:
-      return {...state, products: action.payload};
+      return {
+        ...state,
+        products: action.payload,
+      };
     case ORDER_BY_PRICE:
-      return {...state, products: action.payload}
-    
-      case FETCH_PROFILE_SUCCESS: 
-      case CREATE_PROFILE_SUCCESS:
-        case UPDATE_PROFILE_SUCCESS:
-          return { ...state, profile: action.payload };
+      return {
+        ...state,
+        products: action.payload,
+      };
+    case FETCH_PROFILE_SUCCESS:
+    case CREATE_PROFILE_SUCCESS:
+    case UPDATE_PROFILE_SUCCESS:
+      return {
+        ...state,
+        profile: action.payload,
+      };
+
+    case POST_NEWS_DASHBOARD:
+      return {
+        ...state,
+      };
+
     default:
       return state;
   }
 }
 
 export default rootReducer;
-

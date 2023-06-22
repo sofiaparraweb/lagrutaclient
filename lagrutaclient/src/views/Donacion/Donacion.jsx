@@ -1,88 +1,156 @@
-import React from 'react';
+import React, { useState } from "react";
 import style from "./Donacion.module.css";
-import dona1 from "../../assets/Donaciones/dona2.jpg"
-
-
+import dona1 from "../../assets/Donaciones/dona2.jpg";
+import dona3 from "../../assets/Donaciones/dona3.jpg"
 
 const DonationForm = () => {
-  const handleAnonymousDonation = () => {
-    // Lógica para procesar una donación anónima
+  const [selectedOption, setSelectedOption] = useState("");
+  const [customValue, setCustomValue] = useState("");
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+    setShowInput(event.target.value === "otraOpcion");
+    setCustomValue("");
+    setError(false);
   };
 
-  const handleLoginDonation = () => {
-    // Lógica para procesar una donación con inicio de sesión
+  const handleCustomValueChange = (event) => {
+    setCustomValue(event.target.value);
   };
 
-  const handleConfirmationEmail = () => {
-    // Lógica para enviar un correo de confirmación
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (!selectedOption || (selectedOption === "otraOpcion" && !customValue)) {
+      setError(true);
+      return;
+    }
+
+    alert("Opción seleccionada:", selectedOption);
+    if (selectedOption === "otraOpcion") {
+      alert("Valor personalizado:", customValue);
+    }
+    setError(false);
+    setCustomValue("");
+    setSuccess(true);
   };
 
-  const handlePaymentRedirect = () => {
-    // Lógica para redireccionar al enlace de pago
-  };
-
- 
+  const showInput = selectedOption === "otraOpcion";
 
   return (
     <>
-    <div className={style.container} >
-      <div>
-        <img src={dona1} alt="" />
-        <form className={style.contenForm} >
-      <h3>¡DONÁ AHORA!</h3>
+      <div className={style.containerPrincipal}>
+        <div className={style.containerSecundario}>
+        <div className={style.container1}>
+          <img src={dona1} alt="img" />
+        </div>
 
-      <p>LA GRUTA está presente para ayudar a las niñas y niños que nos necesitan HOY.</p>
+        <form className={style.contenForm} onSubmit={handleSubmit}>
+          <h3 className={style.title1}>¡DONÁ AHORA!</h3>
 
-      <label>
-        <input
-          type="radio"
-          value="opcion1"
-         
-        />
-       ARS 5.000
-      </label>
+          <p className={style.parrafoDona}>
+            LA GRUTA está presente para ayudar a las niñas y niños que nos
+            necesitan HOY.
+          </p>
 
-      <label>
-        <input
-          type="radio"
-          value="opcion2"
-          
-        />
-        ARS 10.000
-      </label>
+          <h3 className={style.title2}>Mensual</h3>
 
-      <label>
-        <input
-          type="radio"
-          value="opcion3"
-          
-        />
-       ARS 15.000
-      </label>
+          <label className={style.labels}>
+            <input
+              className={style.inputs}
+              type="radio"
+              value="opcion1"
+              checked={selectedOption === "opcion1"}
+              onChange={handleOptionChange}
+            />
+            ARS 5.000
+          </label>
 
-      <label>
-        <input
-          type="radio"
-          value="otraOpcion"
-          
-        />
-        Ingresar otro valor:
-        <input
-          type="text"
-          value= ''
-         
-        />
-      </label>
+          <label className={style.labels}>
+            <input
+              className={style.inputs}
+              type="radio"
+              value="opcion2"
+              checked={selectedOption === "opcion2"}
+              onChange={handleOptionChange}
+            />
+            ARS 10.000
+          </label>
 
-      <button type="submit">Siguiente</button>
-    </form>
+          <label className={style.labels}>
+            <input
+              className={style.inputs}
+              type="radio"
+              value="opcion3"
+              checked={selectedOption === "opcion3"}
+              onChange={handleOptionChange}
+            />
+            ARS 15.000
+          </label>
 
-       
+          <label className={style.labels}>
+            <input
+              className={style.inputs}
+              type="radio"
+              value="otraOpcion"
+              checked={selectedOption === "otraOpcion"}
+              onChange={handleOptionChange}
+            />
+            Otro
+          </label>
+
+          {showInput && (
+            <label className={style.labelOtro}>
+              <div className={style.inputContainer}>
+                <span className={style.currency}>ARS</span>
+                <input
+                  className={style.inputOtro}
+                  type="number"
+                  value={customValue}
+                  onChange={handleCustomValueChange}
+                  placeholder="Ingrese otro valor"
+                />
+              </div>
+            </label>
+          )}
+
+          {error && (
+            <p className={style.errorMessage} style={{ color: "red" }}>
+              Por favor, ingresar un monto.
+            </p>
+          )}
+
+          <button
+            className={style.btnDona}
+            type="submit"
+            
+          >
+            Siguiente
+          </button>
+        </form>
+       <div className={style.container2} >
+        <div className={style.container3}>
+        <img src={dona3} alt="img" style={{ width: '600px', height: "300px" }}/>
+        <p className={style.parrafo2}>
+          <h1>DESNUTRICIÓN ​</h1>
+         La desnutrición aguda, la forma más letal de la malnutrición, afecta a 47 millones de niñas y niños 
+         menores de 5 años en todo el mundo.
+         En 2021, 5,4 millones de chicas y chicos recibieron tratamiento que salvó sus vidas.
+         </p>
+         <p className={style.parrafo2}>
+         <h1>EDUCACIÓN</h1>
+         En nuestro país, cerca de 93.000 adolescentes que residen en ámbitos rurales no tienen acceso a la 
+         educación secundaria, de los cuales más de 65.000 pertenecen a contextos rurales dispersos. 
+         La falta de secundarias en las comunidades hace que las chicas y chicos deban trasladarse a otras 
+         localidades o recorrer muchos kilómetros por día.
+         </p>
+        </div>
+       </div>
+       </div>
       </div>
-    </div>
-   
-     
-   </>
+    </>
   );
 };
 
