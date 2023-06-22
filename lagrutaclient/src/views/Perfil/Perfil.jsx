@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button, ChakraProvider, Input, Select } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProfile, updateProfile, createProfile } from "../../Redux/actions";
+import { getProfile, updateProfile, createProfile } from "../../Redux/actions";
 import "./Perfil.css"; // Importa el archivo CSS personalizado
+import { Link } from 'react-router-dom';
 
 const Perfil = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [birthdate, setBirthdate] = useState("");
@@ -20,16 +21,15 @@ const Perfil = () => {
   const profile = useSelector((state) => state.profile);
 
   console.log(user);
-
+ 
   useEffect(() => {
     if (user) {
-      setName(user.name || "");
-      setEmail(user.email || "");
-      setProfileImage(user.picture || "");
-    }
-    if (!profile) {
-      dispatch(createProfile({ mail: user.email, fullName: user.name }));
-    } else {
+      const newUser = {
+        userName: user.name,
+        mail: user.email,
+      };
+    dispatch(createProfile(newUser));
+    } else if (profile) {
       setName(profile.name || "");
       setEmail(profile.email || "");
       setBirthdate(profile.birthdate || "");
@@ -39,8 +39,11 @@ const Perfil = () => {
       setRole(profile.role || "");
       setProfileImage(profile.image || "");
     }
+    if (isAuthenticated && user) {
+      dispatch(getProfile());
+    }
   }, [dispatch, isAuthenticated, user, profile]);
-
+  
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -76,8 +79,8 @@ const Perfil = () => {
     setProfileImage(imageUrl);
   };
 
-  const handleUpdateProfile = () => {
-    const updatedUserData = {
+  const handleCreateProfile = () => {
+    const createUserData = {
       name,
       email,
       birthdate,
@@ -87,12 +90,8 @@ const Perfil = () => {
       role,
       profileImage,
     };
-    dispatch(updateProfile(user.sub, updatedUserData));
+    dispatch(createProfile(user.sub, createUserData));
   };
-
-  if (isLoading) {
-    return <div>Cargando...</div>;
-  }
 
   return (
     isAuthenticated && (
@@ -202,21 +201,18 @@ const Perfil = () => {
                   <Button
                     className="profile-button"
                     type="button"
-                    onClick={handleUpdateProfile}
+                    onClick={handleCreateProfile}
                   >
                     Crear usuario
                   </Button>
                 </div>
                 <div>
-                  <Button
-                    className="profile-button"
-                    type="button"
-                    onClick={handleUpdateProfile}
-                  >
-                    Guardar cambios
-                  </Button>
+<Link to="/editarPerfil" className="editar">
+  Editar Perfil
+  </Link>
+
                 </div>
-              </div>
+                </div>
             </div>
           </div>
         </div>
