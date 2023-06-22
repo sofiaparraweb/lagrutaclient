@@ -8,16 +8,28 @@ import DonaHome from "./DonaHome/Dona";
 import SePadrinoHome from "./SePadrino/SePadrino"
 import FotosSlider from "./FotosSlider/FotosSlider"
 import lagruta from '../../assets/lagruta.png';
-import { getAllActivity } from "../../Redux/actions.jsx"
+import { getAllActivity, createProfile } from "../../Redux/actions.jsx"
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Home = () => {
 
+    const { user } = useAuth0();
     const dispatch = useDispatch();
     const allActivity = useSelector(state => state.allActivity);
 
     useEffect(() => {
+        console.log('henry henry');
+        if (user) {
+          const newUser = {
+            fullName: user.name,
+            mail: user.email,
+          };
+        dispatch(createProfile(newUser));
+        }}, [user]);
+
+    useEffect(() => {
     dispatch(getAllActivity());
-    },[dispatch]);
+    },[]);
 
     const handleClick = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -25,7 +37,6 @@ const Home = () => {
     
     return (
         <div>
-            <NavBar/>
             <div className={style.Home}>
                 <FotosSlider />
                 <div className="imageHomeContainer">
