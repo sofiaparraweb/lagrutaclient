@@ -6,16 +6,18 @@ import logo from '../src/assets/logo.png'
 
 
 import Home from "./views/Home/Home";
+import NavBar from "./components/NavBar/NavBar";
+import Footer from "./components/Footer/Footer";
 import About from "./views/About/About";
 import News from "./views/Noticias/News";
 import DetailsNews from "./components/News/DetailsNews/DetailsNews";
 import Tienda from "./views/Tienda/Tienda";
+import Carrito from "./views/Tienda/Carrito/Carrito";
+import Checkout from "./views/Tienda/Checkout/Checkout";
 import Perfil from "./views/Perfil/Perfil";
 import LogIn from "./views/LogIn/LogIn";
 import LogOut from "./views/LogIn/LogOut";
-import NavBar from "./components/NavBar/NavBar";
 import BackToTop from "./components/BackToTop/BackToTop";
-import Footer from "./components/Footer/Footer";
 import DonationForm from "./views/Donacion/Donacion";
 import WP_Button from "./components/MensajeFloat/WP_Button.jsx";
 import Dashboard from "./views/DashBoard/DashBoard";
@@ -44,8 +46,8 @@ const App = () => {
         <Route path="/noticias" element={<News />} />
         <Route exact path="/noticias/:id" element={<DetailsNews />} />
         <Route path="/tienda" element={<Tienda />} />
-        <Route path="/carrito" />
-        <Route path="/checkout" />
+        <Route path="/cart" element={<Carrito />} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="/dona" element={<DonationForm/>}/>
         <Route path="/se-padrino"  />
         <Route path="/se-voluntario"  />

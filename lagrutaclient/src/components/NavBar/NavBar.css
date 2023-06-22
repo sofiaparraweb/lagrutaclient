@@ -48,6 +48,10 @@
 .link[id="conocenosNav"]:hover{
   background-color: rgba(223,184,55,255);
 }
+.active[id="conocenosNav"]{
+  background-color: rgba(223,184,55,255);
+  color: white;
+}
 
 /* -------------------------------------Noticias */
 .link[id="noticiasNav"]{
@@ -56,6 +60,10 @@
 .link[id="noticiasNav"]:hover{
   background-color: rgba(234,93,11,255);
 }
+.active[id="noticiasNav"]{
+  background-color: rgba(234,93,11,255);
+  color: white;
+}
 
 /* -------------------------------------Tienda */
 .link[id="tiendaNav"]{
@@ -63,6 +71,10 @@
 }
 .link[id="tiendaNav"]:hover{
   background-color: rgba(195,64,56,255);
+}
+.active[id="tiendaNav"]{
+  background-color: rgba(195,64,56,255);
+  color: white;
 }
 
 /* -------------------------------------Ayudar */
@@ -83,6 +95,10 @@
 .link[id="perfilNav"]:hover{
   background-color: rgba(53,99,70,255);
 }
+.active[id="perfilNav"]{
+  background-color: rgba(53,99,70,255);
+  color: white;
+}
 
 /* -------------------------------------Dona */
 .dropdownOption[id="donaNav"]{
@@ -90,6 +106,10 @@
 }
 .dropdownOption[id="donaNav"]:hover{
   background-color: rgba(223,184,55,255);
+}
+.active[id="donaNav"]{
+  background-color: rgba(223,184,55,255);
+  color: white;
 }
 
 /* -------------------------------------SePadrino */
@@ -99,6 +119,10 @@
 .dropdownOption[id="sepadrinoNav"]:hover{
   background-color: rgba(234,93,11,255);
 }
+.active[id="sepadrinoNav"]{
+  background-color: rgba(234,93,11,255);
+  color: white;
+}
 
 /* -------------------------------------SeVoluntario */
 .dropdownOption[id="sevoluntarioNav"]{
@@ -106,6 +130,10 @@
 }
 .dropdownOption[id="sevoluntarioNav"]:hover{
   background-color: rgba(195,64,56,255);
+}
+.active[id="sevoluntarioNav"]{
+  background-color: rgba(195,64,56,255);
+  color: white;
 }
 
 
@@ -157,4 +185,8 @@ button[id="cerrariniciarNav"]{
 }
 button[id="cerrariniciarNav"]:hover{
   background-color: rgba(16, 68, 118, 255);
+}
+.loggingIn{
+  background-color: rgba(16, 68, 118, 255);
+  color: white;
 }

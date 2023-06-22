@@ -11,9 +11,14 @@
     justify-content: space-between;
   }
   
+  .DivInputSearch{
+    display: flex;
+    flex-direction: row;
+  }
+
   .SearchBar input.SearchInput {
     margin-right: 7px;
-    margin-left: 15px;
+    margin-left: 4px;
     font-size: 14px;
     background-color: transparent;
     flex: 1; /* Ocupa el espacio restante */
