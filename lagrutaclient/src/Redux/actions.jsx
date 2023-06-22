@@ -131,7 +131,7 @@ export const orderByPrice = (price) =>{
 export const fetchProfile = (userId) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${url}/user/:${userId}`);
+      const response = await axios.get(`${url}/user/${userId}`);
       dispatch({
         type: FETCH_PROFILE_SUCCESS,
         payload: response.data,

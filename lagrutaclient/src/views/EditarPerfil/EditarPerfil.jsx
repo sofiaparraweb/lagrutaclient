@@ -20,16 +20,15 @@ const Perfil = () => {
   const profile = useSelector((state) => state.profile);
 
   console.log(user);
-
+  
   useEffect(() => {
-    if (user) {
-      setName(user.name || "");
-      setEmail(user.email || "");
-      setProfileImage(user.picture || "");
-    }
-    if (!profile) {
-      dispatch(createProfile({ mail: user.email, fullName: user.name }));
-    } else {
+    if (isAuthenticated && user) {
+      if (!profile) {
+        dispatch(createProfile({ mail: user.email, fullName: user.name }));
+      } else {
+        dispatch(fetchProfile(user.sub));
+      }
+    } else if (profile) {
       setName(profile.name || "");
       setEmail(profile.email || "");
       setBirthdate(profile.birthdate || "");
@@ -40,8 +39,7 @@ const Perfil = () => {
       setProfileImage(profile.image || "");
     }
   }, [dispatch, isAuthenticated, user, profile]);
-
-
+  
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
@@ -76,8 +74,8 @@ const Perfil = () => {
     setProfileImage(imageUrl);
   };
 
-  const handleUpdateProfile = () => {
-    const updatedUserData = {
+  const handleCreateProfile = () => {
+    const createUserData = {
       name,
       email,
       birthdate,
@@ -87,13 +85,9 @@ const Perfil = () => {
       role,
       profileImage,
     };
-    dispatch(updateProfile(user.sub, updatedUserData));
+    dispatch(createProfile(user.sub, createUserData));
   };
-
-  if (isLoading) {
-    return <div>Cargando...</div>;
-  }
-
+ 
   return (
     isAuthenticated && (
       <ChakraProvider>
@@ -202,16 +196,7 @@ const Perfil = () => {
                   <Button
                     className="profile-button"
                     type="button"
-                    onClick={handleUpdateProfile}
-                  >
-                    Crear usuario
-                  </Button>
-                </div>
-                <div>
-                  <Button
-                    className="profile-button"
-                    type="button"
-                    onClick={handleUpdateProfile}
+                    onClick={handleCreateProfile}
                   >
                     Guardar cambios
                   </Button>
