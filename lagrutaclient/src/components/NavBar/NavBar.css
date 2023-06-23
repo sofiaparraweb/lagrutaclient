@@ -42,48 +42,48 @@
 
 /* -------------------------------------Conocenos */
 .link[id="conocenosNav"]{
-  border-bottom:6px solid rgba(223,184,55,255);
+  border-bottom:6px solid #D7B63E;
   border-bottom-left-radius: 5px;
 }
 .link[id="conocenosNav"]:hover{
-  background-color: rgba(223,184,55,255);
+  background-color: #D7B63E;
 }
 .active[id="conocenosNav"]{
-  background-color: rgba(223,184,55,255);
+  background-color: #D7B63E;
   color: white;
 }
 
 /* -------------------------------------Noticias */
 .link[id="noticiasNav"]{
-  border-bottom:6px solid rgba(234,93,11,255);
+  border-bottom:6px solid #EB5D0B;
 }
 .link[id="noticiasNav"]:hover{
-  background-color: rgba(234,93,11,255);
+  background-color: #EB5D0B;
 }
 .active[id="noticiasNav"]{
-  background-color: rgba(234,93,11,255);
+  background-color: #EB5D0B;
   color: white;
 }
 
 /* -------------------------------------Tienda */
 .link[id="tiendaNav"]{
-  border-bottom:6px solid rgba(195,64,56,255);
+  border-bottom:6px solid #B9362C;
 }
 .link[id="tiendaNav"]:hover{
-  background-color: rgba(195,64,56,255);
+  background-color: #B9362C;
 }
 .active[id="tiendaNav"]{
-  background-color: rgba(195,64,56,255);
+  background-color: #B9362C;
   color: white;
 }
 
 /* -------------------------------------Ayudar */
 .link[id="ayudarNav"]{
-  border-bottom:6px solid rgba(16,68,118,255);
+  border-bottom:6px solid #124476;
   border-bottom-right-radius: 5px;
 }
 .link[id="ayudarNav"]:hover{
-  background-color: rgba(16,68,118,255);
+  background-color: #124476;
 }
 
 /* -------------------------------------Perfil */
@@ -102,37 +102,37 @@
 
 /* -------------------------------------Dona */
 .dropdownOption[id="donaNav"]{
-  border-bottom:3px solid rgba(223,184,55,255);
+  border-bottom:3px solid #D7B63E;
 }
 .dropdownOption[id="donaNav"]:hover{
-  background-color: rgba(223,184,55,255);
+  background-color: #D7B63E;
 }
 .active[id="donaNav"]{
-  background-color: rgba(223,184,55,255);
+  background-color: #D7B63E;
   color: white;
 }
 
 /* -------------------------------------SePadrino */
 .dropdownOption[id="sepadrinoNav"]{
-  border-bottom:3px solid rgba(234,93,11,255);
+  border-bottom:3px solid #EB5D0B;
 }
 .dropdownOption[id="sepadrinoNav"]:hover{
-  background-color: rgba(234,93,11,255);
+  background-color: #EB5D0B;
 }
 .active[id="sepadrinoNav"]{
-  background-color: rgba(234,93,11,255);
+  background-color: #EB5D0B;
   color: white;
 }
 
 /* -------------------------------------SeVoluntario */
 .dropdownOption[id="sevoluntarioNav"]{
-  border-bottom:3px solid rgba(195,64,56,255);
+  border-bottom:3px solid #B9362C;
 }
 .dropdownOption[id="sevoluntarioNav"]:hover{
-  background-color: rgba(195,64,56,255);
+  background-color: #B9362C;
 }
 .active[id="sevoluntarioNav"]{
-  background-color: rgba(195,64,56,255);
+  background-color: #B9362C;
   color: white;
 }
 
@@ -180,13 +180,13 @@
 }
 
 button[id="cerrariniciarNav"]{
-  border-bottom: 6px solid rgba(16, 68, 118, 255);
+  border-bottom: 6px solid #124476;
   border-radius: 5px;
 }
 button[id="cerrariniciarNav"]:hover{
-  background-color: rgba(16, 68, 118, 255);
+  background-color: #124476;
 }
 .loggingIn{
-  background-color: rgba(16, 68, 118, 255);
+  background-color: #124476;
   color: white;
 }

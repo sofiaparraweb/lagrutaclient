@@ -27,7 +27,6 @@ const TiendaItems = ({ id, name, image, price, description, stock, ProductsTypes
             <Image
               src={image} 
               alt='imagen Producto'
-              borderRadius='sm'
               maxWidth='270px'
               height='220px'
               display='block'
@@ -47,7 +46,7 @@ const TiendaItems = ({ id, name, image, price, description, stock, ProductsTypes
         </CardBody>
         {/* <Divider /> */}
         <CardFooter h='49px'> 
-          <Button color='white' w='100%' h='35px' fontWeight='normal' onClick={handleClick} backgroundColor='rgba(195,64,56,255)' _hover={{ backgroundColor:'rgba(161,56,50,255)'}} marginTop='-19px'>
+          <Button className={style.BotonAddToCart} onClick={handleClick} backgroundColor='#B9362C' _hover={{ backgroundColor:'rgba(161,56,50,255)'}} color='white' fontWeight='normal' fontSize='25px' marginTop='-19px'>
             Add to cart
           </Button>
         </CardFooter>
