@@ -3,6 +3,8 @@ import style from "./Donacion.module.css";
 import dona1 from "../../assets/Donaciones/dona2.jpg";
 import dona3 from "../../assets/Donaciones/dona3.jpg"
 import FormDona from "./FormDona";
+import Swal from "sweetalert2";
+
 
 const DonationForm = () => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -30,9 +32,23 @@ const DonationForm = () => {
       return;
     }
 
-    alert("Opción seleccionada:", selectedOption);
+    //alert("Opción seleccionada:", selectedOption);
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: "Opción seleccionada:",
+      showConfirmButton: false,
+      timer: 3000
+  })
     if (selectedOption === "otraOpcion") {
-      alert("Valor personalizado:", customValue);
+      //alert("Valor personalizado:", customValue);
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: "Valor personalizado:",
+        showConfirmButton: false,
+        timer: 3000
+    })
     }
     setError(false);
     setCustomValue("");

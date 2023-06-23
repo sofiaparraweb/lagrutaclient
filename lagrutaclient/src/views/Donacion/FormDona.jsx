@@ -8,13 +8,10 @@ const FormDona = () => {
     const { register, handleSubmit, reset, formState: { errors }, watch } = useForm() 
     const customSubmit = (data) => {
         //console.log(data)
-        Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: "¡Validación exitosa!",
-            showConfirmButton: false,
-            timer: 5000
-        })
+        Swal.fire(
+            "¡Validación exitosa!",
+            "Continua!"
+          )
         reset();
     }
   
