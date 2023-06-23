@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import style from "./Donacion.module.css";
 import dona1 from "../../assets/Donaciones/dona2.jpg";
 import dona3 from "../../assets/Donaciones/dona3.jpg"
-
+import FormDona from "./FormDona";
 
 const DonationForm = () => {
   const [selectedOption, setSelectedOption] = useState("");
