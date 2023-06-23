@@ -53,37 +53,37 @@ const Carrito = ({ id, name, image, price, stock }) => {
               alt='product-image'
               width='120px'
               height='120px'
-              marginRight='80px'
+              marginRight='50px'
             />
-            <HStack>
-              <CardBody width='300px'>
-                <Heading size='sm' >Nombre</Heading>
-                <Text py='1' marginRight='20px' >
+            <HStack >
+              <CardBody p={1}>
+                <Heading width='200px' className={style.ProductosCarritoTitulos}>Nombre</Heading>
+                <Text py='3' >
                   {name}
                 </Text>
               </CardBody>
-              <CardBody>
-                <Heading size='sm' textAlign='center'>Precio</Heading>
+              <CardBody p={4}>
+                <Heading width='100px' size='xs' textAlign='center' >Precio</Heading>
                 <Text py='3' textAlign='center'>
                   ${price}
                 </Text>
               </CardBody>
-              <CardBody>
-                <Heading size='sm' textAlign='center'>Cantidad</Heading>
+              <CardBody p={4}>
+                <Heading width='100px' size='xs' textAlign='center'>Cantidad</Heading>
                 <Text py='3' className={style.ContenedorBotonesCart}>
                   <button className={style.ButtonsSumaResta} onClick={handleDeleteFromCart} value="less" >-</button>
                     5
                   <button className={style.ButtonsSumaResta} onClick={handleAddToCart} value="add" >+</button>
                 </Text>
               </CardBody>
-              <CardBody>
-                <Heading size='sm' textAlign='center'>Precio Total</Heading>
+              <CardBody p={4}>
+                <Heading width='100px' size='xs' textAlign='center' >Precio Total</Heading>
                 <Text py='3' textAlign='center'>
                   ${price}
                 </Text>
               </CardBody>
-              <CardBody>
-                <Heading size='sm' textAlign='center' >Pagar</Heading>
+              <CardBody p={4}>
+                <Heading width='100px' size='xs' textAlign='center' >Pagar</Heading>
                 <Text py='3'>
                   <Link to="/checkout" className={style.ButtonPagarCart} value="pagar" >Checkout</Link>
                 </Text>

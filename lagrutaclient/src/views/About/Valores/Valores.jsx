@@ -5,9 +5,9 @@ const Valores = () =>{
         <>
             <section className={style.parallaxContent}>
                 <div className={style.parallax} />
-                <h1 className={style.Tittle} style={{ backgroundColor:'rgba(195,64,56,0.8)' }}> VALORES </h1>
+                <h1 className={style.TittleValores}> VALORES </h1>
             </section>
-            <div className={style.Parrafos} style={{ backgroundColor:'rgba(195,64,56,255)' }}>
+            <div className={style.Parrafos} style={{ backgroundColor:'#B9362C' }}>
                 <ul>EN TERRITORIO
                     <li style={{ marginTop: '10px' }}>- ALEGRÍA EN EL TRABAJO</li>
                     <li>- RESGUARDO ABSOLUTO DE LA DIGNIDAD DE LA PERSONA</li>

@@ -1,3 +1,6 @@
+@import url('https://fonts.cdnfonts.com/css/wicked-grit');
+@import url('https://fonts.cdnfonts.com/css/dk-lemon-yellow-sun');
+
 .SePadrinoHome{
     position: relative;
     margin: 10px 0;
@@ -35,13 +38,14 @@ p[id="SePadrino"]{
     position: absolute;
     width: 27%;
     height: 60%;
-    font-size: 22px;
-    top: 63%;
-    left: 85%;
+    top: 64%;
+    left: 87%;
     transform: translate(-110%, -50%);
     color: white;
     text-align: center;
     z-index: 1;
+    font-family: 'DK Lemon Yellow Sun', sans-serif;
+    font-size: 25px;
 }
 
 .BotonSePadrino{

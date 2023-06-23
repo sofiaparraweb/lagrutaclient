@@ -5,9 +5,9 @@ const Vision = () =>{
         <>
             <section className={style.parallaxContent}>
                 <div className={style.parallax} />
-                <h1 className={style.Tittle} style={{ backgroundColor:'rgba(234,93,11,0.8)' }}> VISION </h1>
+                <h1 className={style.TittleVision}> VISION </h1>
             </section>
-            <div className={style.Parrafos} style={{ backgroundColor:'rgba(234,93,11,255)' }}>
+            <div className={style.Parrafos} style={{ backgroundColor:'rgb(235,93,11)' }}>
                 <p>Favorecer a la Comunidad de Ampliación Los Vallistos, protegiendo el pleno crecimiento de sus niños a partir de la originalidad de quienes eligen ser parte.</p>
                 {/* <p>La visión de La Gruta es un mundo que es reflejo del Reino de Dios:
                     <li>Donde prevalecen la justicia, la paz, la libertad y la solidaridad</li>

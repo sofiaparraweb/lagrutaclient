@@ -39,7 +39,7 @@ function rootReducer(state = initialstate, action) {
     case GET_ALL_PRODUCTS:
       return {
         ...state,
-        allProducts: action.payload,
+        allProducts: action.payload, 
         products: action.payload,
       };
 
