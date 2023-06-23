@@ -190,7 +190,7 @@ export const deleteProduct = (product) => {
 export function create_news(payload) {
   return async function (dispatch) {
     try {
-      var res = await axios.post(`${LOCAL}/activity`, payload);
+      var res = await axios.post(`${LOCAL}/activity/`, payload);
       return {
         type: POST_NEWS_DASHBOARD,
         res,

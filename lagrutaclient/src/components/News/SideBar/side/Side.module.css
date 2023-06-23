@@ -1,27 +1,77 @@
 
   /*------subscribe--------*/
   .subscribe {
-    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    min-height: 10vh;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
     padding: 20px;
     text-align: center;
   }
+
+  
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+    }
+  50% {
+    background-position: 100% 50%;
+    }
+  100% {
+    background-position: 0% 50%;
+    }
+}
+
   .subscribe h1 {
-    text-align: left;
-    font-size: 20px;
+    color: #fff;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
   }
+  .subscribe h1:hover {
+    color: #fff;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+  }
+  
+
   .subscribe input {
     width: 100%;
     padding: 10px;
+    outline: none;
+    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 10px;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 16px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   }
+
+  input::placeholder {
+    color: #fff;
+  }
+  
+
+
   .subscribe button {
     width: 100%;
     padding: 10px;
     margin-top: 20px;
-    background-color: #d7b63e;
+    background-color: #ea5d0b;;
     color: #fff;
     font-weight: 600;
     border: none;
+    transition: background-color .3s;
   }
+
+  .subscribe button:hover {
+  background-color: #ff8000;
+  cursor: pointer;
+  }
+  
 
   .title {
   font-weight: 600;
