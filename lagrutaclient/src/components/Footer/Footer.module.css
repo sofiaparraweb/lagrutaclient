@@ -1,7 +1,9 @@
 .mainFooter {
   background-color: #1d2636;
   color: #fff;
+  width: 100%;
   position: relative;
+  bottom: 0;
 }
 
 .container {

@@ -58,7 +58,6 @@ const App = () => {
       </Routes> 
       <WP_Button />
       <Footer />
-     
       <BackToTop />
     </div>
   );
