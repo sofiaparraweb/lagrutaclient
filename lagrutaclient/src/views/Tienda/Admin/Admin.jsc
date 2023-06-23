@@ -1,0 +1,7 @@
+const AdminTienda = () => {
+    return(
+        <div>Aca el admin va a modificar la tienda</div>
+    )
+}
+
+export default AdminTienda
