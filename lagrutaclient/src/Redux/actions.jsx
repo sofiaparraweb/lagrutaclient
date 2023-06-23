@@ -1,15 +1,22 @@
 import axios from "axios";
 
-export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
-export const GET_ALL_PRODUCTS_TYPES = "GET_ALL_PRODUCTS_TYPES";
-export const GET_DETAIL_PRODUCTS = "GET_DETAIL_PRODUCTS";
 export const GET_ALL_ACTIVITY = "GET_ALL_ACTIVITY";
 export const GET_DETAIL_ACTIVITY = "GET_DETAIL_ACTIVITY";
 export const CLEANDETAIL = "CREALDETAIL";
 export const GET_TYPEACTY = "GET_TYPEACTY";
+
+export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
+export const GET_ALL_PRODUCTS_TYPES = "GET_ALL_PRODUCTS_TYPES";
+export const GET_DETAIL_PRODUCTS = "GET_DETAIL_PRODUCTS";
 export const FILTER_BY_NAME = "FILTER_BY_NAME";
 export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
 export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
+export const GET_CART = "GET_CART";
+export const ADD_TO_CART = "ADD_TO_CART";
+export const DELETE_ALL_CART = "DELETE_ALL_CART";
+export const DELETE_CARRITO = "DELETE_CARRITO";
+export const PUT_AMOUNT_CART = "PUT_AMOUNT_CART";
+
 export const FETCH_PROFILE_SUCCESS = "FETCH_PROFILE_SUCCESS";
 export const CREATE_PROFILE_SUCCESS = "CREATE_PROFILE_SUCCESS";
 export const UPDATE_PROFILE_SUCCESS = "UPDATE_PROFILE_SUCCESS";
@@ -50,12 +57,11 @@ export function getTypeActi() {
   }
 }
 
-  
- export function getActiId(id) {
-    return async function (dispatch) {
-      try {
-        const res = await axios.get(`${url}/activity/${id}`);
-        console.log(res.data)
+export function getActiId(id) {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`${url}/activity/${id}`);
+      console.log(res.data)
       return dispatch({
         type: GET_DETAIL_ACTIVITY,
         payload: res.data,
@@ -68,30 +74,29 @@ export function getTypeActi() {
 
 export function cleanDetail () {
   return { type: CLEANDETAIL }
-  }   
+}   
 
 
-
-/* tienda */
+/* -----------------------------tienda----------------------------- */
 
 export const getAllProducts = () =>{
   return async (dispatch) =>{
-      const resp = await axios(`${url}/products/`);
-      return dispatch({type: GET_ALL_PRODUCTS, payload: resp.data})
+    const resp = await axios(`${url}/products/`);
+    return dispatch({type: GET_ALL_PRODUCTS, payload: resp.data})
   }
 }
 
 export const getAllProductTypes = () =>{
   return async (dispatch) =>{
-      const resp = await axios(`${url}/productsTypes/`);
-      return dispatch({type: GET_ALL_PRODUCTS_TYPES, payload: resp.data})
+    const resp = await axios(`${url}/productsTypes/`);
+    return dispatch({type: GET_ALL_PRODUCTS_TYPES, payload: resp.data})
   }
 }
 
 export const getDetailProducts = (id_products) =>{
   return async (dispatch) =>{
-      const {data} = await axios.get(`${url}/products/${id_products}`);
-      return dispatch({type: GET_DETAIL_PRODUCTS, payload: data})
+    const {data} = await axios.get(`${url}/products/${id_products}`);
+    return dispatch({type: GET_DETAIL_PRODUCTS, payload: data})
   }
 }
 
@@ -128,7 +133,76 @@ export const orderByPrice = (price) =>{
   }
 }
 
-/* profile */
+/* -----------------------------carrito */
+// ----------Traer el carrito
+export const getCarrito = (userId, checkIn, checkOut) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(
+        `${url}/cart/${userId}?checkIn=${checkIn}&checkOut=${checkOut}`
+      );
+      dispatch({ type: GET_CART, payload: response.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+// ----------Agregar a carrito
+export const addToCart = () => {
+  return async (dispatch) =>{
+    try {
+      const response = await axios.post(`${url}/cart`)
+      dispatch({ type: ADD_TO_CART, payload: response.data})
+    }catch (error){
+      console.log(error);
+    }
+  }
+}
+
+// ----------Borrar todo el carrito
+export const deleteAllCarrito = (userId) => {
+  return async (dispatch) => {
+    try {
+      await axios.delete(`${url}/cart/${userId}`);
+
+      dispatch({ type: DELETE_ALL_CART, payload: [] });
+    } catch (error) {
+      console.log(error);      
+    }
+  };
+};
+
+// ----------Borrar un elemento
+export const deleteCarrito = (userId, ProductId) => {
+  return async (dispatch) => {
+    try {
+      await axios.delete(`${url}/cart/${userId}/${ProductId}`);
+      dispatch({ type: DELETE_CARRITO, payload: ProductId });
+    } catch (error) {
+      console.log(error);  
+    }
+  };
+};
+
+export const amountCarrito = (value, userId, ProductId) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.put(
+        `${url}/cart/${userId}/${ProductId}?putAmount=${value}`
+      );
+      dispatch({
+        type: PUT_AMOUNT_CART,
+        payload: { id: ProductId, amount: response.data },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+
+/* -----------------------------profile----------------------------- */
 
 export const fetchProfile = (userId) => {
   return async (dispatch) => {
@@ -172,7 +246,7 @@ export const updateProfile = (userId, updatedUserData) => {
   }
 }
 
-/* dashboard */
+/* -----------------------------dashboard----------------------------- */
 
 export const addProduct = (product) => {
   return {
