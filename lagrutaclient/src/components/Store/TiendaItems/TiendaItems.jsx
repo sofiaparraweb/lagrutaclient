@@ -1,9 +1,10 @@
 //import PropTypes from 'prop-types';
 import style from "./TiendaItems.module.css";
 import { useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {addToCart} from "../../../Redux/actions"
 import { Image, Card, Stack, Text, Heading, CardBody, CardFooter, Divider, Button, Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton } from '@chakra-ui/react'
+import { Toaster, toast } from "react-hot-toast";
 
 const TiendaItems = ({ id, name, image, price, description, stock, ProductsTypes }) => {
   
@@ -16,11 +17,15 @@ const TiendaItems = ({ id, name, image, price, description, stock, ProductsTypes
 
   const handleClick = () =>{
     dispatch(addToCart());
+    toast.success("Producto agregado al carrito", {
+      duration: 3000
+    })
   }
 
 
   return (
     <div>
+      <Toaster />
       <Card width='280px' h='400px' margin="20px 0" _hover={{ boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)'}} >
         <CardBody>
           <div onClick={toggleModal}>

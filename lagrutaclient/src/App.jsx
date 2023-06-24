@@ -13,7 +13,6 @@ import News from "./views/Noticias/News";
 import DetailsNews from "./components/News/DetailsNews/DetailsNews";
 import Tienda from "./views/Tienda/Tienda";
 import CarritoContainer from "./components/Store/CarritoContainer/CarritoContainer";
-import Checkout from "./views/Tienda/Checkout/Checkout";
 import Perfil from "./views/Perfil/Perfil";
 import LogIn from "./views/LogIn/LogIn";
 import LogOut from "./views/LogIn/LogOut";
@@ -47,7 +46,6 @@ const App = () => {
         <Route exact path="/noticias/:id" element={<DetailsNews />} />
         <Route path="/tienda" element={<Tienda />} />
         <Route path="/cart" element={<CarritoContainer />} />
-        <Route path="/checkout" element={<Checkout />} />
         <Route path="/dona" element={<DonationForm/>}/>
         <Route path="/se-padrino"  />
         <Route path="/se-voluntario"  />

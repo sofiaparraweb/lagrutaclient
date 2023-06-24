@@ -183,21 +183,21 @@ export const deleteCarrito = (user_id, product_id) => {
   };
 };
 
-// export const amountCarrito = (value, user_id, product_id) => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.put(
-//         `${url}/cart/${user_id}/${product_id}?putAmount=${value}`
-//       );
-//       dispatch({
-//         type: PUT_AMOUNT_CART,
-//         payload: { id: product_id, amount: response.data },
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
+export const amountCarrito = (value, user_id, product_id) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.put(
+        `${url}/cart/${user_id}/${product_id}?putAmount=${value}`
+      );
+      dispatch({
+        type: PUT_AMOUNT_CART,
+        payload: { id: product_id, amount: response.data },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
 
 /* -----------------------------profile----------------------------- */

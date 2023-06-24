@@ -25,6 +25,7 @@ const CarritoContainer = () => {
                         name={prod.name}
                         price={prod.price}
                         stock={prod.stock}
+                        quantity={prod.quantity}
                     />
                 ); 
             })}
