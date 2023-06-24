@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from 'react';
 import { filterByName, getAllProducts } from "../../../Redux/actions";
-import style from "./Search.module.css"
+import {Search2Icon} from "@chakra-ui/icons";
+import style from "./Search.module.css";
 
 const Search = () => {
   const dispatch = useDispatch()
@@ -29,7 +30,8 @@ const Search = () => {
   return (
     <div className={style.SearchBar}>
         <form onSubmit={handleSubmit}>
-          <div className={style.DivInput}>
+          <div className={style.DivInputSearch}>
+            <Search2Icon width="15px" color="grey"></Search2Icon>
             <input
               className={style.SearchInput}
               type="search"

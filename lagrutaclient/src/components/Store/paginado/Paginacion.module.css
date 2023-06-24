@@ -27,11 +27,11 @@
 }
 .PaginationList li:hover{
   transition: 0.3s ease;
-  color: rgba(195,64,56,255)
+  color: #B9362C
 }
 
 .active {
-  background-color: rgba(195,64,56,255);
+  background-color: #B9362C;
   color: white !important;
 }
 
@@ -43,6 +43,6 @@
 /* ------------------------------------IconosPaginacion------------------------------------ */
 .IconPagination:hover{
   transition: 0.3s ease;
-  color: rgba(195,64,56,255);
+  color: #B9362C;
   font-size: 20px;
 }

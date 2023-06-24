@@ -1,0 +1,20 @@
+@import url('https://fonts.cdnfonts.com/css/wicked-grit');
+@import url('https://fonts.cdnfonts.com/css/dk-lemon-yellow-sun');
+
+.TiendaItemsContainerCART{
+    display: flex;
+    margin-top: 50px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    /* background-color: rgb(241, 241, 241); */
+}
+
+.ContenedorCartProductosTitulo{
+    margin-top: 70px;
+    margin-bottom: 20px;
+    font-size: 35px;
+    font-family: 'Wicked Grit', sans-serif;
+    color: #124476;
+}

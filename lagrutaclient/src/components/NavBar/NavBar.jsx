@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import logo from '../../assets/logo.png'
 import './NavBar.css'; 
@@ -8,6 +8,7 @@ const NavBar = ({ isAuthenticated }) => {
   const { loginWithRedirect, logout, user } = useAuth0();
   const [isHovered, setIsHovered] = useState(false);
   const [isOptionHovered, setIsOptionHovered] = useState(false);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
   
   const handleLogout = () => {
     logout({ returnTo: window.location.origin }); 
@@ -15,6 +16,7 @@ const NavBar = ({ isAuthenticated }) => {
 
   const handleLogin = () => {
     loginWithRedirect({ appState: { targetUrl: "/perfil" } });
+    setIsLoggingIn(true);
   };
 
   const handleMouseEnter = () => {
@@ -43,15 +45,15 @@ const NavBar = ({ isAuthenticated }) => {
         <Link to="/">
           <img src={logo} alt="logo" width="60px" className="logo" onClick={handleClick}/>
         </Link>
-        <Link to="/about" className="link" id="conocenosNav" onClick={handleClick}> 
+        <NavLink to="/about" className="link" activeClassName="active" id="conocenosNav" onClick={handleClick}> 
           Conocenos
-        </Link>
-        <Link to="/noticias" className="link" id="noticiasNav" onClick={handleClick}>
+        </NavLink>
+        <NavLink to="/noticias" className="link" activeClassName="active" id="noticiasNav" onClick={handleClick}>
           Noticias
-        </Link>
-        <Link to="/tienda" className="link" id="tiendaNav" onClick={handleClick}>
+        </NavLink>
+        <NavLink to="/tienda" className="link" activeClassName="active" id="tiendaNav" onClick={handleClick}>
           Tienda
-          </Link>
+        </NavLink>
         <div className="dropdownContainer">
         <div
             className={`link ${isHovered ? "active" : ""}`}
@@ -67,22 +69,22 @@ const NavBar = ({ isAuthenticated }) => {
               onMouseEnter={handleOptionMouseEnter}
               onMouseLeave={handleOptionMouseLeave}
             >
-              <Link to="/dona" className="dropdownOption" id="donaNav" onClick={handleClick}>
+              <NavLink to="/dona" className="dropdownOption" activeClassName="active" id="donaNav" onClick={handleClick}>
                 Dona
-              </Link>
-              <Link to="/se-padrino" className="dropdownOption" id="sepadrinoNav" onClick={handleClick}>
+              </NavLink>
+              <NavLink to="/se-padrino" className="dropdownOption" activeClassName="active" id="sepadrinoNav" onClick={handleClick}>
                 Sé padrino
-              </Link>
-              <Link to="/se-voluntario" className="dropdownOption" id="sevoluntarioNav" onClick={handleClick}>
+              </NavLink>
+              <NavLink to="/se-voluntario" className="dropdownOption" activeClassName="active" id="sevoluntarioNav" onClick={handleClick}>
                 Sé voluntario
-              </Link>
+              </NavLink>
             </div>
           )}
         </div>
         {isAuthenticated ? (
-          <Link to="/perfil" className="link" id="perfilNav" onClick={handleClick}>
+          <NavLink to="/perfil" className="link" activeClassName="active" id="perfilNav" onClick={handleClick}>
             Perfil
-          </Link>
+          </NavLink>
         ) : null}
       </div>
       <div className="rightSection">
@@ -91,7 +93,7 @@ const NavBar = ({ isAuthenticated }) => {
             Cerrar Sesión
           </button>
         ) : (
-          <button onClick={handleLogin} id="cerrariniciarNav" className="link loginButton">
+          <button onClick={handleLogin} id="cerrariniciarNav" className={`link loginButton ${isLoggingIn ? "loggingIn" : ""}`}>
             Iniciar sesión
           </button>
         )}

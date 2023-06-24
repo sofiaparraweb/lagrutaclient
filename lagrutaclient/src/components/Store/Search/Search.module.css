@@ -11,9 +11,14 @@
     justify-content: space-between;
   }
   
+  .DivInputSearch{
+    display: flex;
+    flex-direction: row;
+  }
+
   .SearchBar input.SearchInput {
     margin-right: 7px;
-    margin-left: 15px;
+    margin-left: 4px;
     font-size: 14px;
     background-color: transparent;
     flex: 1; /* Ocupa el espacio restante */
@@ -32,7 +37,7 @@
     flex: 1
   }
   .SearchBarButton:hover {
-    background-color:rgba(223,184,55,255);
+    background-color:#D7B63E;
     color: white;
     transition: 0.5s ease;
     cursor: pointer;
@@ -48,7 +53,7 @@
     flex: 1
   }
   .ResetButton:hover {
-    background-color:rgba(195,64,56,255);
+    background-color:#B9362C;
     color: white;
     transition: 0.5s ease;
     cursor: pointer;

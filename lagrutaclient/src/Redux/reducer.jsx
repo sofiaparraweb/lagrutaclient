@@ -5,6 +5,11 @@ import {
   GET_DETAIL_PRODUCTS,
   FILTER_BY_NAME,
   FILTER_BY_TYPE,
+  GET_CART,
+  ADD_TO_CART,
+  DELETE_ALL_CART,
+  DELETE_CARRITO,
+  PUT_AMOUNT_CART,
   GET_ALL_ACTIVITY,
   GET_DETAIL_ACTIVITY,
   GET_TYPEACTY,
@@ -13,8 +18,6 @@ import {
   UPDATE_PROFILE,
   ORDER_BY_PRICE,
   POST_NEWS_DASHBOARD,
-  // ADD_PRODUCT,
-  // DELETE_PRODUCT
 } from "./actions";
 
 const initialstate = {
@@ -27,6 +30,7 @@ const initialstate = {
   products: [],
   ProductsDetail: [],
   Carrito: [],
+  CarritoProductos: [],
   profile: null,
 };
 
@@ -35,7 +39,7 @@ function rootReducer(state = initialstate, action) {
     case GET_ALL_PRODUCTS:
       return {
         ...state,
-        allProducts: action.payload,
+        allProducts: action.payload, 
         products: action.payload,
       };
 
@@ -50,7 +54,69 @@ function rootReducer(state = initialstate, action) {
         ...state,
         ProductsDetail: action.payload,
       };
+    
+    case FILTER_BY_NAME:
+      return {
+        ...state,
+        products: action.payload,
+      };
 
+    case FILTER_BY_TYPE:
+      return {
+        ...state,
+        products: action.payload,
+      };
+
+    case ORDER_BY_PRICE:
+      return {
+        ...state,
+        products: action.payload,
+      };
+
+    case GET_CART:
+      return {
+        ...state,
+        Carrito: action.payload,
+      };
+    
+    case ADD_TO_CART:
+      const newProduct = action.payload;
+      const existingProduct = state.Carrito.find((product) => product.id === newProduct.id);
+  
+      if (existingProduct) {
+        const updatedCart = state.Carrito.map((product) => {
+          if (product.id === existingProduct.id) {
+            return { ...product, cantidad: product.cantidad + 1 };
+          }
+          return product;
+        });
+        return { ...state, Carrito: updatedCart };
+      } else {
+        const updatedCart = [...state.Carrito, newProduct];
+        return {
+          ...state,
+          Carrito: updatedCart,
+        };
+      }
+
+    case DELETE_ALL_CART:
+      return {
+        ...state,
+        Carrito: action.payload,
+      };
+
+    case DELETE_CARRITO:
+      return {
+        ...state,
+        Carrito: state.Carrito.filter((cart) => cart.id !== action.payload),
+      };
+
+    case PUT_AMOUNT_CART:
+      return {
+        ...state,
+        CarritoProductos: action.payload,
+      };
+      
     case GET_ALL_ACTIVITY:
       return {
         ...state,

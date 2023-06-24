@@ -1,3 +1,6 @@
+@import url('https://fonts.cdnfonts.com/css/wicked-grit');
+@import url('https://fonts.cdnfonts.com/css/dk-lemon-yellow-sun');
+
 .DonaHome{
     position: relative;
     margin: 10px 0;
@@ -18,22 +21,24 @@ img[alt="flechaazul"]{
 
 p[id="PrimerAmarillo"]{
     position: absolute;
-    top: 48%;
-    left: 47%;
+    top: 54%;
+    left: 46%;
     transform: translate(-70%, -100%);
     width: 45%;
-    font-size: 18px;
+    font-size: 21px;
     color: rgba(16, 68, 118, 255);
     text-align: center;
+    font-family: 'DK Lemon Yellow Sun', sans-serif;
 }
 p[id="SegundoAmarillo"]{
     position: absolute;
-    top: 50%;
+    top: 52%;
     left: 50%;
-    font-size: 18px;
+    font-size: 21px;
     transform: translate(-60%, -1%);
     color: rgba(16, 68, 118, 255);
     text-align: center;
+    font-family: 'DK Lemon Yellow Sun', sans-serif;
 }
 
 .BotonMasNoticias[id="Dona"]{
@@ -50,4 +55,5 @@ p[id="SegundoAmarillo"]{
     display: flex;
     align-items: center;
     justify-content: center;
+    
 }
