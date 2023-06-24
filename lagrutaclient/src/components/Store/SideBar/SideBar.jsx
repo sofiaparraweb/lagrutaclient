@@ -13,7 +13,7 @@ const SideBar = ({ setCurrentPage }) =>{
         <span className={style.Changuito}>
           <Link to="/cart">
             <AiOutlineShoppingCart size={30} /> 
-            <sup className={style.NumeroChango}>Carrito.length</sup>
+            <sup className={style.NumeroChango}>{Carrito.length}</sup>
           </Link>
         </span>
         <div className={style.ContenedorFiltroOrden}>

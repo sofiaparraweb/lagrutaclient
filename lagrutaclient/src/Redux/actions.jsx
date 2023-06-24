@@ -135,12 +135,10 @@ export const orderByPrice = (price) =>{
 
 /* -----------------------------carrito */
 // ----------Traer el carrito
-export const getCarrito = (userId, checkIn, checkOut) => {
+export const getCarrito = (user_id) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(
-        `${url}/cart/${userId}?checkIn=${checkIn}&checkOut=${checkOut}`
-      );
+      const response = await axios.get(`${url}/cart/${user_id}`);
       dispatch({ type: GET_CART, payload: response.data });
     } catch (error) {
       console.log(error);
@@ -149,10 +147,10 @@ export const getCarrito = (userId, checkIn, checkOut) => {
 };
 
 // ----------Agregar a carrito
-export const addToCart = () => {
+export const addToCart = (user_id, product_id, quantity) => {
   return async (dispatch) =>{
     try {
-      const response = await axios.post(`${url}/cart`)
+      const response = await axios.post(`${url}/cart/add?user_id=${user_id}&product_id=${product_id}&quantity=${quantity}`)
       dispatch({ type: ADD_TO_CART, payload: response.data})
     }catch (error){
       console.log(error);
@@ -161,39 +159,39 @@ export const addToCart = () => {
 }
 
 // ----------Borrar todo el carrito
-export const deleteAllCarrito = (userId) => {
+export const deleteAllCarrito = (user_id) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`${url}/cart/${userId}`);
+      await axios.delete(`${url}/cart?user_id=${user_id}`);
 
       dispatch({ type: DELETE_ALL_CART, payload: [] });
     } catch (error) {
-      console.log(error);      
+      console.log(error);       
     }
   };
 };
 
 // ----------Borrar un elemento
-export const deleteCarrito = (userId, ProductId) => {
+export const deleteCarrito = (user_id, product_id) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`${url}/cart/${userId}/${ProductId}`);
-      dispatch({ type: DELETE_CARRITO, payload: ProductId });
+      await axios.delete(`${url}/cart?user_id=${user_id}&product_id=${product_id}`);
+      dispatch({ type: DELETE_CARRITO, payload: product_id });
     } catch (error) {
       console.log(error);  
     }
   };
 };
 
-export const amountCarrito = (value, userId, ProductId) => {
+export const amountCarrito = (value, user_id, product_id) => {
   return async (dispatch) => {
     try {
       const response = await axios.put(
-        `${url}/cart/${userId}/${ProductId}?putAmount=${value}`
+        `${url}/cart/${user_id}/${product_id}?putAmount=${value}`
       );
       dispatch({
         type: PUT_AMOUNT_CART,
-        payload: { id: ProductId, amount: response.data },
+        payload: { id: product_id, amount: response.data },
       });
     } catch (error) {
       console.log(error);

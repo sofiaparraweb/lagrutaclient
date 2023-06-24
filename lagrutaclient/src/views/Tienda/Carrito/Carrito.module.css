@@ -37,13 +37,9 @@
     flex-direction: row;
     text-align: center;
     justify-content: center;
-    margin: 40px 0;
+    margin: 25px 0;
     color: silver;
     position: relative;
-}
-
-.ChanguitoCART:hover {
-    color: white;
 }
 
 .NumeroChangoCART {
@@ -53,16 +49,17 @@
     font-weight: 4px;
 }
 
-/* ----------------------------------VACIAR CARRITO */
+/* ----------------------------------VACIAR CARRITO y PAGAR */
 .ContenedorVaciarCarro{
     display: flex;
     flex-direction: column;
     width: 102%;
-    /* background-color: rgb(241, 241, 241); */
-    background-color: white;
+    background-color: rgb(241, 241, 241);
     border-radius: 5px;  
-    margin: 30px 0; 
-    padding: 25px 0;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    height: fit-content;
+    padding: 20px 0;
 }
 
 .VaciarCarrito{
@@ -71,14 +68,14 @@
     justify-content: center;
     letter-spacing: 2px;
     text-transform: uppercase;
-    font-family: 'DK Lemon Yellow Sun', sans-serif;
-    font-size: 25px;
+    font-size: 16px;
 }
 .ButtonVaciarCarro{
-    color: silver;
+    color: white;
     display: flex;
     justify-content: center;
-    width: 35px;
+    width: fit-content;
+    padding: 0 10px;
     height: 35px;
     margin: auto;
     font-size: 25px;
@@ -93,13 +90,21 @@
     border-radius: 50px;
 }
 
+.ContenedorDetallePago{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 13px;
+    padding-bottom: 20px;
+}
+
 /* ----------------------------------PRODUCTOS---------------------------------- */
 .ContenedorCartProductos{
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: space-around;
-    width: 90%;
+    width: 80%;
     margin-bottom: 10px;
     height: fit-content;
     background-color: transparent;
@@ -126,22 +131,4 @@
 .ButtonsSumaResta:hover{
     scale: 1.1;
     border-radius: 50px;
-}
-
-.ButtonPagarCart{
-    display: flex;
-    justify-content: center;
-    margin: auto;
-    width: 75px;
-    /* border: 1px solid rgba(195,64,56,255);
-    color: rgba(195,64,56,255); */
-    background-color: #B9362C;
-    font-family: 'DK Lemon Yellow Sun', sans-serif;
-    font-size: 25px;
-    color: white;
-    transition: 0.4s ease;
-}
-.ButtonPagarCart:hover{
-    transition: 0.4s ease;
-    scale: 1.1;
 }
