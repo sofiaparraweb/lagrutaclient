@@ -10,23 +10,30 @@ import FotosSlider from "./FotosSlider/FotosSlider"
 import lagruta from '../../assets/lagruta.png';
 import { getAllActivity, createProfile } from "../../Redux/actions.jsx"
 import { useAuth0 } from "@auth0/auth0-react";
+import { useRef } from 'react';
 
 const Home = () => {
 
     const { user } = useAuth0();
     const dispatch = useDispatch();
     const allActivity = useSelector(state => state.allActivity);
+    const isProfileCreatedRef = useRef(false);
+
 
     useEffect(() => {
-        console.log('henry henry');
-        if (user) {
+        if (user && !isProfileCreatedRef.current) {
+          console.log('CREATE')
           const newUser = {
             fullName: user.name,
             mail: user.email,
           };
-        dispatch(createProfile(newUser));
-        }}, [user]);
+          dispatch(createProfile(newUser));
+          isProfileCreatedRef.current = true;
+        }
+      }, [user, dispatch]);
 
+      console.log(user);
+      
     useEffect(() => {
     dispatch(getAllActivity());
     },[]);

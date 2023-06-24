@@ -1,0 +1,35 @@
+.voluntario-container {
+    max-width: 100%;
+    margin: 40px auto;
+    padding: 30px;
+  }
+  
+  .voluntario-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .voluntario-description {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .voluntario-section {
+    margin-bottom: 30px;
+  }
+  
+  .voluntario-section-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .voluntario-section-description {
+    font-size: 14px;
+  }
+  
+  .voluntario-form {
+    margin-top: 30px;
+  }
+  

@@ -1,0 +1,35 @@
+.padrino-container {
+    max-width: 100%;
+    margin: 40px auto;
+    padding: 30px;
+  }
+  
+  .padrino-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .padrino-description {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .padrino-section {
+    margin-bottom: 30px;
+  }
+  
+  .padrino-section-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .padrino-section-description {
+    font-size: 14px;
+  }
+  
+  .padrino-form {
+    margin-top: 30px;
+  }
+  
