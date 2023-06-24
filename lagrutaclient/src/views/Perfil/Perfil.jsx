@@ -2,95 +2,92 @@ import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button, ChakraProvider, Input, Select } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProfile, updateProfile, createProfile } from "../../Redux/actions";
-import "./Perfil.css"; // Importa el archivo CSS personalizado
-import { Link } from 'react-router-dom';
+import { getProfile, updateProfile } from "../../Redux/actions";
+import "./Perfil.css";
 
 const Perfil = () => {
   const { user, isAuthenticated } = useAuth0();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [birthdate, setBirthdate] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
-  const [occupation, setOccupation] = useState("");
-  const [role, setRole] = useState("");
-  const [profileImage, setProfileImage] = useState("");
+  const [newProfile, setNewProfile] = useState({
+    name: '',
+    email: '',
+    birthdate: '',
+    phone: '',
+    address: '',
+    occupation: '',
+    role: '',
+    profileImage: '',
+  });
+
+  const { name, email, birthdate, phone, address, occupation, role, profileImage } = newProfile;
 
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.profile);
-
-  console.log(user);
  
-  useEffect(() => {
-    if (user) {
-      const newUser = {
-        userName: user.name,
-        mail: user.email,
-      };
-    dispatch(createProfile(newUser));
-    } else if (profile) {
-      setName(profile.name || "");
-      setEmail(profile.email || "");
-      setBirthdate(profile.birthdate || "");
-      setPhone(profile.phone || "");
-      setAddress(profile.address || "");
-      setOccupation(profile.occupation || "");
-      setRole(profile.role || "");
-      setProfileImage(profile.image || "");
-    }
+ useEffect(() => {
     if (isAuthenticated && user) {
       dispatch(getProfile());
     }
-  }, [dispatch, isAuthenticated, user, profile]);
-  
+  }, [dispatch, isAuthenticated, user]);
+
+  useEffect(() => {
+    if (profile) {
+      setNewProfile({
+        name: profile.name || "",
+        email: profile.email || "",
+        birthdate: profile.birthdate || "",
+        phone: profile.phone || "",
+        address: profile.address || "",
+        occupation: profile.occupation || "",
+        role: profile.role || "",
+        profileImage: profile.image || "",
+      });
+    }
+  }, [profile]);
 
   const handleNameChange = (e) => {
-    setName(e.target.value);
+    const updatedProfile = { ...newProfile, name: e.target.value };
+    setNewProfile(updatedProfile);
   };
 
   const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+    const updatedProfile = { ...newProfile, email: e.target.value };
+    setNewProfile(updatedProfile);
   };
 
   const handleBirthdateChange = (e) => {
-    setBirthdate(e.target.value);
+    const updatedProfile = { ...newProfile, birthdate: e.target.value };
+    setNewProfile(updatedProfile);
   };
 
   const handlePhoneChange = (e) => {
-    setPhone(e.target.value);
+    const updatedProfile = { ...newProfile, phone: e.target.value };
+    setNewProfile(updatedProfile);
   };
 
   const handleAddressChange = (e) => {
-    setAddress(e.target.value);
+    const updatedProfile = { ...newProfile, address: e.target.value };
+    setNewProfile(updatedProfile);
   };
 
   const handleOccupationChange = (e) => {
-    setOccupation(e.target.value);
+    const updatedProfile = { ...newProfile, occupation: e.target.value };
+    setNewProfile(updatedProfile);
   };
 
   const handleRoleChange = (e) => {
-    setRole(e.target.value);
+    const updatedProfile = { ...newProfile, role: e.target.value };
+    setNewProfile(updatedProfile);
   };
 
   const handleProfileImageChange = (e) => {
     const file = e.target.files[0];
     const imageUrl = URL.createObjectURL(file);
-    setProfileImage(imageUrl);
+    const updatedProfile = { ...newProfile, profileImage: imageUrl };
+    setNewProfile(updatedProfile);
   };
 
-  const handleCreateProfile = () => {
-    const createUserData = {
-      name,
-      email,
-      birthdate,
-      phone,
-      address,
-      occupation,
-      role,
-      profileImage,
-    };
-    dispatch(createProfile(user.sub, createUserData));
+  const handleUpdateProfile = () => {
+    dispatch(updateProfile(newProfile));
   };
 
   return (
@@ -201,17 +198,12 @@ const Perfil = () => {
                   <Button
                     className="profile-button"
                     type="button"
-                    onClick={handleCreateProfile}
+                    onClick={handleUpdateProfile}
                   >
-                    Crear usuario
+                    Modificar usuario
                   </Button>
                 </div>
-                <div>
-<Link to="/editarPerfil" className="editar">
-  Editar Perfil
-  </Link>
-
-                </div>
+                
                 </div>
             </div>
           </div>

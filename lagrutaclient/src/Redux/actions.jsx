@@ -10,15 +10,14 @@ export const GET_TYPEACTY = "GET_TYPEACTY";
 export const FILTER_BY_NAME = "FILTER_BY_NAME";
 export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
 export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
-export const FETCH_PROFILE_SUCCESS = "FETCH_PROFILE_SUCCESS";
-export const CREATE_PROFILE_SUCCESS = "CREATE_PROFILE_SUCCESS";
-export const UPDATE_PROFILE_SUCCESS = "UPDATE_PROFILE_SUCCESS";
+export const FETCH_PROFILE = "FETCH_PROFILE";
+export const CREATE_PROFILE = "CREATE_PROFILE";
+export const UPDATE_PROFILE = "UPDATE_PROFILE";
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const POST_NEWS_DASHBOARD = "POST_NEWS_DASHBOARD";
 
-const url = "http://localhost:3001";
-
+export const url = "http://localhost:3001";
 
 export function getAllActivity() {
   return async function (dispatch) {
@@ -130,12 +129,27 @@ export const orderByPrice = (price) =>{
 
 /* profile */
 
-export const fetchProfile = (userId) => {
+export const createProfile = (newUser) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${url}/user/${userId}`);
+      const response = await axios.post(`${url}/user`, newUser);
       dispatch({
-        type: FETCH_PROFILE_SUCCESS,
+        type: CREATE_PROFILE,
+        payload: response.data,
+      });
+      console.log(response.data)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getProfile = (idUser) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`${url}/user/${idUser}`);
+      dispatch({
+        type: FETCH_PROFILE,
         payload: response.data,
       });
     } catch (error) {
@@ -144,27 +158,13 @@ export const fetchProfile = (userId) => {
   };
 };
 
-export const createProfile = (user) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.post(`${url}/user`, user);
-      console.log(response.data);
-      dispatch({
-        type: CREATE_PROFILE_SUCCESS,
-        payload: response.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
 
 export const updateProfile = (userId, updatedUserData) => {
   return async (dispatch) => {
     try {
       const response = await axios.put(`${url}/user/${userId}`, updatedUserData);
       dispatch({
-        type: UPDATE_PROFILE_SUCCESS,
+        type: UPDATE_PROFILE,
         payload: response.data,
       });
     } catch (error) {
