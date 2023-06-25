@@ -33,7 +33,22 @@
   border: none;
 }
 
-.btn {
+.footerSection .btnSuscripcion{
+  background-color: #ea5d0b;
+  padding: 6px;
+  width: 50%;
+  border-radius: 5px;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  transition: background-color .3s;
+}
+.footerSection .btnSuscripcion:hover {
+  background-color: #ff8000;
+  cursor: pointer;
+}
+
+.btnFooter {
   background-color: #ea5d0b;
   padding: 6px;
   width: 50%;
@@ -44,7 +59,7 @@
   transition: background-color .3s;
 }
 
-.btn:hover {
+.btnFooter:hover {
   background-color: #ff8000;
   cursor: pointer;
 }

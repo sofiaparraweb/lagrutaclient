@@ -20,22 +20,24 @@ const FormDona = () => {
   return (
     <>
     <div className={style.contentPrincipal}>
-        <form onSubmit={ handleSubmit(customSubmit) } className={style.formReact}>
+        <form onSubmit={ handleSubmit(customSubmit)} className={style.formReact}>
             <div className={style.formControl}>
-                <label>Nombre</label>
-                <input 
+                <label className={style.labels} >Nombre</label>
+                <input
+                    className={style.inputs} 
                     placeholder="Nombre"
                     type="text" {...register('name',{ 
                     required:true,
-                    maxLength:50
+                    maxLength:30
                 })} />
                 {errors.name?.type === 'required' && <p className={style.fail}>El campo no puede estar vacío</p>}
-                {errors.name?.type === 'maxLength' && <p className={style.fail}>El máximo de caracteres es 50</p>}
+                {errors.name?.type === 'maxLength' && <p className={style.fail}>El máximo de caracteres es 30</p>}
             </div>
 
             <div className={style.formControl}>
-                <label>Apellido</label>
+                <label className={style.labels}>Apellido</label>
                 <input 
+                    className={style.inputs}
                     placeholder="Apellido"
                     type="text" {...register('lastName',{ 
                     required:true,
@@ -46,22 +48,24 @@ const FormDona = () => {
             </div>
 
             <div className={style.formControl}>
-                <label>Email</label>
-                <input 
+                <label className={style.labels}>Email</label>
+                <input
+                    className={style.inputs}
                     placeholder="Ingrese correo"
                     type="text" {...register("email", {
                     pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/i,
                     required:true
                       })} 
                       />
-                {errors.email?.type === "pattern" && <p className={style.fail}>El campo no puede estar vacío</p>}
+                {errors.email?.type === "pattern" && <p className={style.fail}>Tiene que ser un email correcto</p>}
                 {errors.email?.type === "required" && <p className={style.fail}>El correo  es requerido</p>}
                 
             </div>
 
             <div className={style.formControl}>
-                <label>Teléfono (Cód. Área + número)</label>
+                <label className={style.labels}>Teléfono (Cód. Área + número)</label>
                 <input 
+                    className={style.inputs}
                     placeholder="11 12345678"
                     type="number" {...register('telefono', {
                     required: {
@@ -81,7 +85,7 @@ const FormDona = () => {
                 })}/>
                  {errors.prueba?.type === "required" && <p className={style.fail}>El campo es requerido</p>}
             </div>*/}   
-            <button type='submit'>Enviar</button>
+            <button className={style.boton} type='submit'>Enviar</button>
         </form>
         </div>
     </>

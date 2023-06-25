@@ -10,10 +10,10 @@
 }
 
   .formReact {
+    background-color: #104476;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    background-color: #104476;
     border-radius: 10px;
     width: 50%;
     margin: 5px;
@@ -24,14 +24,14 @@
     padding-bottom: 20px;
     width: 40%;
   }
-  .formControl label {
+  .formControl .labels {
     display: inline-block;
     margin-bottom: 7px;
     font:weight 200px;
     color: #f6f6e9;
   }
 
-  .formControl input {
+  .formControl .inputs {
     border: none;
     border-radius: 5px;
     background-color: #f0f0f0;
@@ -41,10 +41,10 @@
     padding: 12px;
     width: 100%;    
   }
-  .formControl, input:focus {
+  .formControl .inputs:focus {
     outline: none;
   }
-  .formReact button {
+  .formReact .boton {
     background: #ea5d0b;
     border:1px solid #ea5d0b;
     border-radius: 5px;
@@ -54,7 +54,7 @@
     padding: 10px;
     font-size: 18px;
   }
-  .formReact button:hover {
+  .formReact .boton:hover {
     background-color: #ff8000;
   }
   .fail {
