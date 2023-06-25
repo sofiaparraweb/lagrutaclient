@@ -1,4 +1,4 @@
-.form {
+.form-padrino {
   width: 1000px;
   height: auto;
   display: flex;
@@ -10,7 +10,7 @@
   border-radius: 10px;
 }
 
-.form h1 {
+.form-padrino h1 {
   margin-bottom: 40px;
   color: rgb(0, 0, 0);
   font-size: 24px;
@@ -18,7 +18,7 @@
   border-radius: 10px 10px 10px 10px;
 }
 
-.form div {
+.form-padrino div {
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
@@ -26,7 +26,7 @@
   width: 90%;
 }
 
-label {
+.form-padrino-label {
   font-size: 15px;
   color: black;
   text-transform: uppercase;
@@ -35,8 +35,9 @@ label {
   font-weight: bold;
 }
 
-input[type="text"],
-input[type="range"],
+.form-padrino-input[type="text"],
+.form-padrino-input[type="range"],
+.form-padrino-input[type="tel"],
 select {
   padding: 20px;
   margin: 10px 0;
@@ -48,7 +49,7 @@ select {
   font-family: monospace;
 }
 
-button[type="submit"] {
+.form-padrino-submit-button {
   margin: 20px 0;
   padding: 10px 20px;
   background-color: #b84b3f;
@@ -61,42 +62,25 @@ button[type="submit"] {
   transition: background-color 0.3s ease;
 }
 
-button[type="submit"]:hover {
+.form-padrino-submit-button:hover {
   background-color: #a1a1a1;
 }
 
-.range-container {
-  display: flex;
-  align-items: center;
-}
-
-.range-value {
-  margin-left: 10px;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.type-select-container select {
-  height: 100px;
-  font-size: 16px;
-  width: 100%;
-}
-
-span.error-message {
+.form-padrino-error-message {
   color: #b84b3f;
   font-size: 14px;
   margin-top: 5px;
   text-align: center;
 }
 
-input[type="range"] {
+.form-padrino-input[type="range"] {
   -webkit-appearance: none;
   -moz-apperance: none;
   appearance: none;
   background-color: transparent;
 }
 
-input[type="range"]::-webkit-slider-thumb {
+.form-padrino-input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 15px;
@@ -106,7 +90,7 @@ input[type="range"]::-webkit-slider-thumb {
   cursor: pointer;
 }
 
-input[type="range"]::-webkit-slider-runnable-track {
+.form-padrino-input[type="range"]::-webkit-slider-runnable-track {
   -webkit-appearance: none;
   appearance: none;
   height: 4px;
@@ -114,7 +98,7 @@ input[type="range"]::-webkit-slider-runnable-track {
   cursor: pointer;
 }
 
-input[type="range"]::-moz-range-thumb {
+.form-padrino-input[type="range"]::-moz-range-thumb {
   -moz-appearance: none;
   appearance: none;
   width: 15px;
@@ -124,7 +108,7 @@ input[type="range"]::-moz-range-thumb {
   cursor: pointer;
 }
 
-input[type="range"]::-moz-range-track {
+.form-padrino-input[type="range"]::-moz-range-track {
   -moz-appearance: none;
   appearance: none;
   height: 4px;
@@ -132,7 +116,7 @@ input[type="range"]::-moz-range-track {
   cursor: pointer;
 }
 
-input[type="range"]::-ms-thumb {
+.form-padrino-input[type="range"]::-ms-thumb {
   -ms-appearance: none;
   appearance: none;
   width: 15px;
@@ -142,14 +126,13 @@ input[type="range"]::-ms-thumb {
   cursor: pointer;
 }
 
-input[type="range"]::-ms-track {
+.form-padrino-input[type="range"]::-ms-track {
   -ms-appearance: none;
   appearance: none;
   height: 4px;
   background-color: #b84b3f;
   cursor: pointer;
 }
-
 
 @media (max-width: 768px) {
   .image-container img {

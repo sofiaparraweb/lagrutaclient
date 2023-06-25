@@ -108,6 +108,7 @@ const FormVoluntario = () => {
     ));
   };
 
+  
   const renderRoleOptions = () => {
     return roles.map((role) => (
       <option key={role.value} value={role.value}>
@@ -120,34 +121,34 @@ const FormVoluntario = () => {
 
   return (
     <div>
-      <form onSubmit={submitHandler} className="form">
+      <form onSubmit={submitHandler} className="form-voluntario">
         <h1>ANIMATE A SER PARTE!</h1>
         <div>
-          <label>Nombre y Apellido *</label>
-          <input type="text" name="name" value={newUser.name} onChange={changeHandler} />
-          {errors.name && <span>{errors.name}</span>}
+          <label className="form-voluntario-label">Nombre y Apellido *</label>
+          <input type="text" name="name" value={newUser.name} onChange={changeHandler} className="form-voluntario-input" />
+          {errors.name && <span className="form-voluntario-error-message">{errors.name}</span>}
         </div>
         <div>
-          <label>Número celular *</label>
-          <input type="text" name="phone" value={newUser.phone} onChange={changeHandler} />
-          {errors.phone && <span>{errors.phone}</span>}
+          <label className="form-voluntario-label">Número celular *</label>
+          <input type="text" name="phone" value={newUser.phone} onChange={changeHandler} className="form-voluntario-input" />
+          {errors.phone && <span className="form-voluntario-error-message">{errors.phone}</span>}
         </div>
         <div>
-          <label>Actividad en la que estás interesado *</label>
-          <select name="role" value={newUser.role} onChange={changeHandler}>
+          <label className="form-voluntario-label">Actividad en la que estás interesado *</label>
+          <select name="role" value={newUser.role} onChange={changeHandler} className="form-voluntario-select">
             {renderRoleOptions()}
           </select>
-          {errors.role && <span>{errors.role}</span>}
+          {errors.role && <span className="form-voluntario-error-message">{errors.role}</span>}
         </div>
         <div>
-          <label>Tienes alguna duda en particular?</label>
-          <input type="text" name="description" value={newUser.description} onChange={changeHandler} />
-          {errors.description && <span>{errors.description}</span>}
+          <label className="form-voluntario-label">Tienes alguna duda en particular?</label>
+          <input type="text" name="description" value={newUser.description} onChange={changeHandler} className="form-voluntario-input" />
+          {errors.description && <span className="form-voluntario-error-message">{errors.description}</span>}
         </div>
-        <button type="submit" disabled={!isValidForm}>
+        <button type="submit" disabled={!isValidForm} className="form-voluntario-submit-button">
           ENVIAR FORMULARIO
         </button>
-        {!isValidForm && <span>Complete todos los campos</span>}
+        {!isValidForm && <span className="form-voluntario-error-message">Complete todos los campos</span>}
       </form>
     </div>
   );

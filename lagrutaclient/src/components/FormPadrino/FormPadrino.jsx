@@ -93,34 +93,34 @@ const FormPadrino = () => {
 
   return (
     <div>
-      <form onSubmit={submitHandler} className="form">
+      <form onSubmit={submitHandler} className="form-padrino">
         <h1>ANIMATE A SER PADRINO!</h1>
         <div>
-          <label>Nombre y Apellido *</label>
-          <input type="text" name="name" value={newUser.name} onChange={changeHandler} />
-          {errors.name && <span>{errors.name}</span>}
+          <label className="form-padrino-label">Nombre y Apellido *</label>
+          <input type="text" name="name" value={newUser.name} onChange={changeHandler} className="form-padrino-input" />
+          {errors.name && <span className="form-padrino-error-message">{errors.name}</span>}
         </div>
         <div>
-          <label>Número celular *</label>
-          <input type="text" name="phone" value={newUser.phone} onChange={changeHandler} />
-          {errors.phone && <span>{errors.phone}</span>}
+          <label className="form-padrino-label">Número celular *</label>
+          <input type="text" name="phone" value={newUser.phone} onChange={changeHandler} className="form-padrino-input" />
+          {errors.phone && <span className="form-padrino-error-message">{errors.phone}</span>}
         </div>
         <div>
-          <label>Como te gustaria ayudar? *</label>
-          <select name="role" value={newUser.role} onChange={changeHandler}>
+          <label className="form-padrino-label">Como te gustaría ayudar? *</label>
+          <select name="role" value={newUser.role} onChange={changeHandler} className="form-padrino-input">
             {renderRoleOptions()}
           </select>
-          {errors.role && <span>{errors.role}</span>}
+          {errors.role && <span className="form-padrino-error-message">{errors.role}</span>}
         </div>
         <div>
-          <label>Tienes alguna duda en particular?</label>
-          <input type="text" name="description" value={newUser.description} onChange={changeHandler} />
-          {errors.description && <span>{errors.description}</span>}
+          <label className="form-padrino-label">Tienes alguna duda en particular?</label>
+          <input type="text" name="description" value={newUser.description} onChange={changeHandler} className="form-padrino-input" />
+          {errors.description && <span className="form-padrino-error-message">{errors.description}</span>}
         </div>
-        <button type="submit" disabled={!isValidForm}>
+        <button type="submit" disabled={!isValidForm} className="form-padrino-submit-button">
           ENVIAR FORMULARIO
         </button>
-        {!isValidForm && <span>Complete todos los campos</span>}
+        {!isValidForm && <span className="form-padrino-error-message">Complete todos los campos</span>}
       </form>
     </div>
   );
