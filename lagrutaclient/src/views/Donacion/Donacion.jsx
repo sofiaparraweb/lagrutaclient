@@ -63,7 +63,7 @@ const DonationForm = () => {
       <div className={style.containerPrincipal}>
         <div className={style.containerSecundario}>
           <div className={style.container1}>
-            <img src={dona1} alt="img" />
+            <img src={dona1} alt="img" id="img-Donacion"/>
           </div>
           {showForm ? <FormDona /> : (
           <form className={style.contenForm} onSubmit={handleSubmit}>
@@ -141,7 +141,7 @@ const DonationForm = () => {
               </p>
             )}
              
-                 <button className={style.btnDona} type="submit">
+                 <button className={style.btnDona} type="submit" id="btn-Donacion">
                  Siguiente
                </button>
                 

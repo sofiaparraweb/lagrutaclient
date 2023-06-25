@@ -106,7 +106,7 @@ const FormPadrino = () => {
         </div>
         <div>
           <label className="form-padrino-label">Como te gustaría ayudar? *</label>
-          <select name="role" value={newUser.role} onChange={changeHandler} className="form-padrino-input">
+          <select name="role" value={newUser.role} onChange={changeHandler} className="form-padrino-input" id="hola"> 
             {renderRoleOptions()}
           </select>
           {errors.role && <span className="form-padrino-error-message">{errors.role}</span>}

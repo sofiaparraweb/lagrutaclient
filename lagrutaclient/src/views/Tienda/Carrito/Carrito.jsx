@@ -11,7 +11,6 @@ import { Toaster, toast } from "react-hot-toast";
 const Carrito = ({ id, name, image, price, stock, quantity }) => {
 
   const dispatch = useDispatch();
-  const CarritoProductos = useSelector((state) => state.allProductos);
   const Cart = useSelector((state) => state.Carrito);
 
   let subTotalProd = Cart.map((el) => el.price);
@@ -58,11 +57,10 @@ const Carrito = ({ id, name, image, price, stock, quantity }) => {
 
   const handlePay = async (user_id) => {
     try {
-      const { data } = await axios.post(`http://localhost:3001/paymentcreate-order?user_id=${user_id}`, Cart);
+      const { data } = await axios.post(`http://localhost:3001/payment/create-order?user_id=${user_id}`, Cart);
       window.location.href = data.init_point;
       window.localStorage.removeItem("Cart");
     } catch (error) {
-      console.error(error);
       toast.error("Debes seleccionar un producto", {
         duration: 3000
       })
@@ -113,9 +111,7 @@ const Carrito = ({ id, name, image, price, stock, quantity }) => {
         </div>
       </div>
       <div className={style.ContenedorCartProductos}>
-        {quantity === 0 ? (
-          <p className={style.MensajeCartVacio}>Tu carrito está vacío, con el siguiente botón podrá volver a la tienda y seguir comprando</p>
-        ) : (
+        
           <Card
             direction={{ base: 'column', sm: 'row' }}
             overflow='hidden'
@@ -161,7 +157,7 @@ const Carrito = ({ id, name, image, price, stock, quantity }) => {
               </CardBody>
             </HStack>
           </Card>
-        )}
+
       </div>
     </div>
   )
