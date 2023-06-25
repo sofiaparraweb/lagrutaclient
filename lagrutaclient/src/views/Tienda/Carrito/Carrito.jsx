@@ -19,9 +19,9 @@ const Carrito = ({ id, name, image, price, stock, quantity }) => {
   let servicio = subtotal * 0.10;
   let total = subtotal + servicio;
 
-  const handleAddToCart = (name) => {
+  const handleAddToCart = (user_id, product_id, quantity) => {
     if(quantity<stock) {
-      dispatch(addToCart(name));
+      dispatch(addToCart(user_id, product_id, quantity));
       toast.success("Producto agregado al carrito", {
         duration: 3000
       })
@@ -49,16 +49,16 @@ const Carrito = ({ id, name, image, price, stock, quantity }) => {
     })
   };
 
-  const handleDeleteCart = () =>{
-    dispatch(deleteAllCarrito());
+  const handleDeleteCart = (user_id) =>{
+    dispatch(deleteAllCarrito(user_id));
     toast.success("Carrito vaciado correctamente", {
       duration: 3000
     })
   }
 
-  const handlePay = async () => {
+  const handlePay = async (user_id) => {
     try {
-      const { data } = await axios.post("/payment", Cart);
+      const { data } = await axios.post(`http://localhost:3001/paymentcreate-order?user_id=${user_id}`, Cart);
       window.location.href = data.init_point;
       window.localStorage.removeItem("Cart");
     } catch (error) {
@@ -113,51 +113,55 @@ const Carrito = ({ id, name, image, price, stock, quantity }) => {
         </div>
       </div>
       <div className={style.ContenedorCartProductos}>
-        <Card
-          direction={{ base: 'column', sm: 'row' }}
-          overflow='hidden'
-          variant='outline'
-          backgroundColor='white'
-        >
-          <Image 
-            objectFit='cover'
-            maxW={{ base: '100%', sm: '200px' }}
-            src={image}
-            alt='product-image'
-            width='120px'
-            height='120px'
-            marginRight='80px'
-          />
-          <HStack >
-            <CardBody p={1}>
-              <Heading width='230px' size='xs' >Nombre</Heading>
-              <Text py='3' >
-                {name}
-              </Text>
-            </CardBody>
-            <CardBody p={4}>
-              <Heading width='100px' size='xs' textAlign='center' >Precio</Heading>
-              <Text py='3' textAlign='center'>
-                ${price}
-              </Text>
-            </CardBody>
-            <CardBody p={4}>
-              <Heading width='100px' size='xs' textAlign='center'>Cantidad</Heading>
-              <Text py='3' className={style.ContenedorBotonesCart}>
-                <button className={style.ButtonsSumaResta} onClick={handleDeleteFromCart} value="less" >-</button>
-                5
-                {/* {quantity} */}
-                <button className={style.ButtonsSumaResta} onClick={handleAddToCart} value="add" >+</button>
-              </Text>
-            </CardBody>
-            <CardBody p={4}>
-              <Heading width='100px' size='xs' textAlign='center' >Sub Total</Heading>
-              <Text py='3' textAlign='center'>
-              ${subTotalProd}
-              </Text>
-            </CardBody>
-          </HStack>
-        </Card>
+        {quantity === 0 ? (
+          <p className={style.MensajeCartVacio}>Tu carrito está vacío, con el siguiente botón podrá volver a la tienda y seguir comprando</p>
+        ) : (
+          <Card
+            direction={{ base: 'column', sm: 'row' }}
+            overflow='hidden'
+            variant='outline'
+            backgroundColor='white'
+          >
+            <Image 
+              objectFit='cover'
+              maxW={{ base: '100%', sm: '200px' }}
+              src={image}
+              alt='product-image'
+              width='120px'
+              height='120px'
+              marginRight='80px'
+            />
+            <HStack >
+              <CardBody p={1}>
+                <Heading width='230px' size='xs' >Nombre</Heading>
+                <Text py='3' >
+                  {name}
+                </Text>
+              </CardBody>
+              <CardBody p={4}>
+                <Heading width='100px' size='xs' textAlign='center' >Precio</Heading>
+                <Text py='3' textAlign='center'>
+                  ${price}
+                </Text>
+              </CardBody>
+              <CardBody p={4}>
+                <Heading width='100px' size='xs' textAlign='center'>Cantidad</Heading>
+                <Text py='3' className={style.ContenedorBotonesCart}>
+                  <button className={style.ButtonsSumaResta} onClick={handleDeleteFromCart} value="less" >-</button>
+                  5
+                  {/* {quantity} */}
+                  <button className={style.ButtonsSumaResta} onClick={handleAddToCart} value="add" >+</button>
+                </Text>
+              </CardBody>
+              <CardBody p={4}>
+                <Heading width='100px' size='xs' textAlign='center' >Sub Total</Heading>
+                <Text py='3' textAlign='center'>
+                ${subTotalProd}
+                </Text>
+              </CardBody>
+            </HStack>
+          </Card>
+        )}
       </div>
     </div>
   )

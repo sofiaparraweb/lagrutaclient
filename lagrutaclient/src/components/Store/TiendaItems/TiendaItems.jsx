@@ -51,7 +51,7 @@ const TiendaItems = ({ id, name, image, price, description, stock, ProductsTypes
         </CardBody>
         {/* <Divider /> */}
         <CardFooter h='49px'> 
-          <Button className={style.BotonAddToCart} onClick={handleClick} backgroundColor='#B9362C' _hover={{ backgroundColor:'rgba(161,56,50,255)'}} color='white' fontWeight='normal' fontSize='25px' marginTop='-19px'>
+          <Button className={style.BotonAddToCart} onClick={handleClick} backgroundColor='#B9362C' _hover={{ color:'#124476'}} color='white' fontWeight='normal' fontSize='25px' marginTop='-19px'>
             Add to cart
           </Button>
         </CardFooter>

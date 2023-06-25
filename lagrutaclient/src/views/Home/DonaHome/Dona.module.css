@@ -46,6 +46,7 @@ p[id="SegundoAmarillo"]{
     background-image: url(../../../assets/corazon.png);
     background-size: 120px;
     background-repeat: no-repeat;
+    animation: resize 1s infinite alternate;
     height: 120px;
     width: 120px;
     top:57%;
@@ -55,5 +56,12 @@ p[id="SegundoAmarillo"]{
     display: flex;
     align-items: center;
     justify-content: center;
-    
 }
+@keyframes resize {
+    0% {
+      transform: scale(1); 
+    }
+    100% {
+      transform: scale(1.1); 
+    }
+  }
