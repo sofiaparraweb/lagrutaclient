@@ -158,7 +158,7 @@
     flex-direction: row;
 }
 
-img{
+img[id="img-Donacion"]{
     border-radius: 5px;
     margin: 10px;
 }
@@ -265,7 +265,7 @@ img{
     margin: 20px;
   }
 
-  .boton{
+  .boton[id="btn-Donacion"]{
     background-color: #ea5d0b;
     color: #fff;
     padding: 5px;
