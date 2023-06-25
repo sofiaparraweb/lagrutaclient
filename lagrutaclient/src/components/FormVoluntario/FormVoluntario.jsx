@@ -7,7 +7,6 @@ import './FormVoluntario.css'
 const FormVoluntario = () => {
   const [newUser, setNewUser] = useState({
     name: '',
-    lastName: '',
     phone: '',
     role: '',
     description: '',
@@ -15,7 +14,6 @@ const FormVoluntario = () => {
 
   const [errors, setErrors] = useState({
     name: '',
-    lastName: '',
     phone: '',
     role: '',
     description: '',
@@ -27,27 +25,27 @@ const FormVoluntario = () => {
   const changeHandler = (event) => {
     const property = event.target.name;
     const value = event.target.value;
-
+  
     setNewUser((prevUser) => ({
       ...prevUser,
       [property]: value,
     }));
-
+  
     setErrors((prevErrors) => ({
       ...prevErrors,
       [property]: validateUsuario({ ...newUser, [property]: value }, prevErrors)[property],
     }));
   };
-
+  
   const submitHandler = async (event) => {
     event.preventDefault();
     setIsSubmitClicked(true);
-
+  
     setErrors(validateUsuario(newUser, errors));
-
+  
     if (Object.values(errors).some((val) => val !== '')) {
       return;
-    }
+    }  
 
     axios
       .post('http://localhost:3001/user', newUser)
@@ -56,14 +54,12 @@ const FormVoluntario = () => {
         alert(res.data);
         setNewUser({
           name: '',
-          lastName: '',
           phone: '',
           role: '',
           description: '',
         });
         setErrors({
           name: '',
-          lastName: '',
           phone: '',
           role: '',
           description: '',
@@ -121,34 +117,29 @@ const FormVoluntario = () => {
       <form onSubmit={submitHandler} className="form">
         <h1>ANIMATE A SER PARTE!</h1>
         <div>
-          <label>Name *</label>
+          <label>Nombre y Apellido *</label>
           <input type="text" value={newUser.name} onChange={changeHandler} name="name" />
           {errors.name && <span>{errors.name}</span>}
         </div>
         <div>
-          <label>Last Name *</label>
-          <input type="text" value={newUser.lastName} onChange={changeHandler} name="lastName" />
-          {errors.lastName && <span>{errors.lastName}</span>}
-        </div>
-        <div>
-          <label>Phone *</label>
+          <label>Número celular *</label>
           <input type="text" value={newUser.phone} onChange={changeHandler} name="phone" />
           {errors.phone && <span>{errors.phone}</span>}
         </div>
         <div>
-          <label>Role *</label>
+          <label>Actividad en la que estas interesado *</label>
           <select value={newUser.role} onChange={changeHandler} name="role">
             {renderRoleOptions()}
           </select>
           {errors.role && <span>{errors.role}</span>}
         </div>
         <div>
-          <label>Description</label>
-          <textarea value={newUser.description} onChange={changeHandler} name="description" />
+          <label>Tienes alguna duda en particular?</label>
+          <input type="text" value={newUser.description} onChange={changeHandler} name="description" />
           {errors.description && <span>{errors.description}</span>}
         </div>
         <button type="submit" disabled={!isValidForm}>
-          REGISTER USER
+          ENVIAR FORMULARIO
         </button>
       </form>
     </div>
