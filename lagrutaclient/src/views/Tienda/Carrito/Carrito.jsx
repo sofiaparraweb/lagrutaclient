@@ -58,7 +58,7 @@ const Carrito = ({ id, name, image, price, stock, quantity }) => {
 
   const handlePay = async (user_id) => {
     try {
-      const { data } = await axios.post(`http://localhost:3001/paymentcreate-order?user_id=${user_id}`, Cart);
+      const { data } = await axios.post(`http://:3001/paymentcreate-order?user_id=${user_id}`, Cart);
       window.location.href = data.init_point;
       window.localStorage.removeItem("Cart");
     } catch (error) {

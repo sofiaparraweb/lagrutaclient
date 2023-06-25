@@ -4,7 +4,6 @@ export const GET_ALL_ACTIVITY = "GET_ALL_ACTIVITY";
 export const GET_DETAIL_ACTIVITY = "GET_DETAIL_ACTIVITY";
 export const CLEANDETAIL = "CREALDETAIL";
 export const GET_TYPEACTY = "GET_TYPEACTY";
-
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const GET_ALL_PRODUCTS_TYPES = "GET_ALL_PRODUCTS_TYPES";
 export const GET_DETAIL_PRODUCTS = "GET_DETAIL_PRODUCTS";
@@ -24,7 +23,7 @@ export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const POST_NEWS_DASHBOARD = "POST_NEWS_DASHBOARD";
 export const SET_USER_ID = 'SET_USER_ID';
 
-export const url = "http://localhost:3001";
+export const url = "https://lagruta.onrender.com";
 
 export function getAllActivity() {
   return async function (dispatch) {
@@ -272,7 +271,7 @@ export const deleteProduct = (product) => {
 export function create_news (payload) {
   return async function (payload) {
     try {
-      var res = await axios.post(`${LOCAL}/`, payload);
+      var res = await axios.post(`${url}/`, payload);
       return {
         type: POST_NEWS_DASHBOARD,
         res

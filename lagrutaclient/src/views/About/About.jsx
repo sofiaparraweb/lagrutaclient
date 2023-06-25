@@ -3,6 +3,7 @@ import style from "./About.module.css";
 import Mision from "./Mision/Mision";
 import Vision from "./Vision/Vision";
 import Valores from "./Valores/Valores";
+import Timeline from "./Historia/Historia";
 
 const About = () => {
   return (
@@ -37,12 +38,7 @@ const About = () => {
       <header className={style.headerAboutLaGruta}>
         <h1>Historia</h1>
       </header>
-      <section className={style.TextoAbout}>
-                <p>A mediados de la década del 50 comienza la labor de Cáritas en Argentina. El objetivo principal de Cáritas, según sus estatutos es “animar y coordinar la obra social y caritativa de la Iglesia, insertada en la pastoral orgánica a través de formas adaptadas al tiempo y las circunstancias, para lograr el desarrollo integral de todo el hombre y de todos los hombres, con especial preferencia por las personas y comunidades más marginadas”.
-Desde su nacimiento, Cáritas Argentina muestra características distintivas que le dieron identidad especial: su base parroquial, su amplio voluntariado y sus esfuerzos por desarrollar procesos sustentables con el aporte de las comunidades.
-Con el correr del tiempo fue creciendo en estructura y organización. Las diócesis se van sumando a la iniciativa, constituyendo sus sedes, congregando voluntarios y procurando fondos para la tarea.
-En 1962 comienzan a reunirse los secretariados diocesanos que se constituían y en 1969 se realiza el Primer Encuentro Nacional de Cáritas, en Villa Carlos Paz (Córdoba). </p>
-      </section>
+      {/* <Timeline /> */}
 {/* 
       <section className={style.section}>
         <h2>¿Quiénes somos? Equipo</h2>

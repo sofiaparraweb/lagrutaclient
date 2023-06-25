@@ -6,9 +6,11 @@ const LogOut = () => {
 
   return (
     <div>
-      <button onClick={()=> logout({ redirectUri: `http://localhost:5173/`  })}>Cerrar Sesión</button>
-      </div>
-      );
+      <button onClick={() => logout({ returnTo: window.location.origin })}>
+        Cerrar Sesión
+      </button>
+    </div>
+  );
 };
 
 export default LogOut;
