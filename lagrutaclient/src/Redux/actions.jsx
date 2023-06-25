@@ -130,7 +130,7 @@ export const orderByPrice = (price) =>{
   }
 }
 
-/* -----------------------------carrito */
+/* -----------------------------carrito----------------------------- */
 // ----------Traer el carrito
 export const getCarrito = (user_id) => {
   return async (dispatch) => {
@@ -147,9 +147,14 @@ export const getCarrito = (user_id) => {
 export const addToCart = (user_id, product_id, quantity) => {
   return async (dispatch) =>{
     try {
-      const response = await axios.post(`${url}/cart/add?user_id=${user_id}&product_id=${product_id}&quantity=${quantity}`)
-      dispatch({ type: ADD_TO_CART, payload: response.data})
-    }catch (error){
+      if (quantity === 0) {
+        await axios.delete(`${url}/cart?user_id=${user_id}&product_id=${product_id}`);
+        dispatch({ type: DELETE_CARRITO, payload: product_id });
+      } else{
+        const response = await axios.post(`${url}/cart/add?user_id=${user_id}&product_id=${product_id}&quantity=${quantity}`)
+        dispatch({ type: ADD_TO_CART, payload: response.data})
+      }
+    } catch (error){
       console.log(error);
     }
   }
@@ -164,7 +169,7 @@ export const deleteAllCarrito = (user_id) => {
       dispatch({ type: DELETE_ALL_CART, payload: [] });
     } catch (error) {
       console.log(error);       
-    }
+    } 
   };
 };
 

@@ -88,7 +88,7 @@ function rootReducer(state = initialstate, action) {
       if (existingProduct) {
         const updatedCart = state.Carrito.map((product) => {
           if (product.id === existingProduct.id) {
-            return { ...product, cantidad: product.cantidad + 1 };
+            return { ...product, quantity: product.quantity + 1 };
           }
           return product;
         });
@@ -110,7 +110,7 @@ function rootReducer(state = initialstate, action) {
     case DELETE_CARRITO:
       return {
         ...state,
-        Carrito: state.Carrito.filter((cart) => cart.id !== action.payload),
+        Carrito: state.Carrito.filter((cart) => cart.product_id !== action.payload),
       };
 
     case PUT_AMOUNT_CART:

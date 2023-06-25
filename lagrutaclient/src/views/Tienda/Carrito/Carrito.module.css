@@ -132,3 +132,10 @@
     scale: 1.1;
     border-radius: 50px;
 }
+
+/* ----------------------------------CARRITO VACIO---------------------------------- */
+.MensajeCartVacio{
+    font-family: 'DK Lemon Yellow Sun', sans-serif;
+    background-color: #B9362C;
+    font-size: 20px;
+}
