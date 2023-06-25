@@ -6,7 +6,7 @@ import './Padrino.css';
 const Padrino = () => {
   return (
     <div className="padrino-container">
-      <h1 className="padrino-title">Se Padrino</h1>
+      <h1 className="padrino-title">Sé Padrino</h1>
       
       <div className="padrino-section">
         <h2 className="padrino-section-title">¿Qué es ser padrino?</h2>

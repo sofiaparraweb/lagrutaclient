@@ -22,6 +22,7 @@ export const UPDATE_PROFILE = "UPDATE_PROFILE";
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const POST_NEWS_DASHBOARD = "POST_NEWS_DASHBOARD";
+export const SET_USER_ID = 'SET_USER_ID';
 
 export const url = "http://localhost:3001";
 
@@ -39,12 +40,10 @@ export function getAllActivity() {
   }
 }
 
-const LOCAL = "http://localhost:3001"
-
 export function getTypeActi() {
   return async function (dispatch) {
     try {
-      const res = await axios.get(`${LOCAL}/activityTypes`);
+      const res = await axios.get(`${url}/activityTypes`);
       return dispatch({
         type: GET_TYPEACTY,
         payload: res.data,
@@ -206,16 +205,21 @@ export const createProfile = (newUser) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(`${url}/user`, newUser);
+      const userId = response.data.newUser.id;
+      dispatch({
+        type: SET_USER_ID,
+        payload: userId,
+      });
       dispatch({
         type: CREATE_PROFILE,
         payload: response.data,
       });
-      console.log(response.data)
     } catch (error) {
       console.log(error);
     }
   };
 };
+
 
 export const getProfile = (idUser) => {
   return async (dispatch) => {

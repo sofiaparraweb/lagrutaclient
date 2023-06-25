@@ -1,49 +1,32 @@
-export const validateUsuario = (newPokemon, errors) => {
-    const newErrors = { ...errors };
-  
-  // Validar el nombre del pokemon
-  if (!newPokemon.name) {
-    newErrors.name = 'Please fill in this field';
-  } else if (!/^[a-zA-Z]+$/.test(newPokemon.name)) {
-    newErrors.name = 'Name can only contain letters';
+export const validateUsuario = (newUser, errors) => {
+  const newErrors = { ...errors };
+
+if (!newUser.name) {
+  newErrors.name = 'Por favor ingresa un nombre';
+} else if (!/^[\w\s]{1,30}$/.test(newUser.name)) {
+  newErrors.name = 'El nombre solo puede contener letras, espacios y máximo 30 caracteres';
+} else {
+  newErrors.name = '';
+}
+
+  // Validar el campo número celular
+  if (!newUser.phone) {
+    newErrors.phone = 'Por favor ingresa un número de celular';
+  } else if (!/^[0-9+]{1,14}$/.test(newUser.phone)) {
+    newErrors.phone = 'El número de celular solo puede contener números y el símbolo + y máximo 14 dígitos';
   } else {
-    newErrors.name = '';
+    newErrors.phone = '';
   }
-  
-    // Validar la vida del pokemon
-    if (!newPokemon.life) {
-      newErrors.life = 'Please choose a value';
-    } else if (newPokemon.life < 1 || newPokemon.life > 150) {
-      newErrors.life = 'HP must be between 1 and 150';
-    } else {
-      newErrors.life = '';
-    }
-  
-    // Validar el ataque del pokemon
-    if (!newPokemon.attack) {
-      newErrors.attack = 'Please choose a value';
-    } else if (newPokemon.attack < 1 || newPokemon.attack > 250) {
-      newErrors.attack = 'Attack must be between 1 and 250';
-    } else {
-      newErrors.attack = '';
-    }
-  
-    // Validar la defensa del pokemon
-    if (!newPokemon.defense) {
-      newErrors.defense = 'Please choose a value';
-    } else if (newPokemon.defense < 1 || newPokemon.defense > 250) {
-      newErrors.defense = 'Defense must be between 1 and 250';
-    } else {
-      newErrors.defense = '';
-    }
-  
-    // Validar el tipo del pokemon
-    if (!newPokemon.type || newPokemon.type.length === 0) {
-      newErrors.type = 'Please select at least one type';
-    } else {
-      newErrors.type = '';
-    }
-  
-    return newErrors;
-  };
-  
+
+// Validar el campo descripción
+if (!newUser.description) {
+  newErrors.description = 'Por favor ingresa una descripción';
+} else if (!/^[\w\s!@#$%^&*,.?:\-\n]{1,120}$/.test(newUser.description)) {
+  newErrors.description = 'La descripción solo puede contener letras, símbolos y máximo 120 caracteres';
+} else {
+  newErrors.description = '';
+}
+
+
+  return newErrors;
+};

@@ -19,7 +19,13 @@ const Voluntario = () => {
       
      <div className="voluntario-section">
         <h2 className="voluntario-section-title">Proyectos para ser voluntario</h2>
-        <p className="voluntario-section-description">Aquí van los títulos y descripciones de los proyectos en los que puedes ser voluntario.</p>
+        <p className="voluntario-section-description">
+<p className="voluntario-section-description">Comedor infanto juvenil</p>
+<p>Taller de niños</p>
+<p>Taller de jóvenes</p>
+<p>Taller de mujeres</p>
+<p>Salud y Comunidad </p>
+<p></p>Catequesis y pastoral</p>
       </div>
       
       <FormVoluntario />

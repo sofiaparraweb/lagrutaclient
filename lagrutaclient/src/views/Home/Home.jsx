@@ -14,15 +14,13 @@ import { useRef } from 'react';
 
 const Home = () => {
 
-    const { user } = useAuth0();
+    const { user, isAuthenticated } = useAuth0();
     const dispatch = useDispatch();
     const allActivity = useSelector(state => state.allActivity);
     const isProfileCreatedRef = useRef(false);
 
-
     useEffect(() => {
-        if (user && !isProfileCreatedRef.current) {
-          console.log('CREATE')
+        if (isAuthenticated && user && !isProfileCreatedRef.current) {
           const newUser = {
             fullName: user.name,
             mail: user.email,
@@ -30,10 +28,9 @@ const Home = () => {
           dispatch(createProfile(newUser));
           isProfileCreatedRef.current = true;
         }
-      }, [user, dispatch]);
-
-      console.log(user);
-      
+      }, [dispatch, isAuthenticated, user]);
+    
+ 
     useEffect(() => {
     dispatch(getAllActivity());
     },[]);
@@ -49,6 +46,8 @@ const Home = () => {
                 <div className="imageHomeContainer">
                     <img src={lagruta} alt="lagruta"></img>
                 </div>
+                <p className={style.frase}>“Los científicos dicen que estamos hechos de átomos, pero un pajarito me contó que estamos hechos de historias”</p>
+                <p className={style.frase}>Eduardo Galeano</p>
                 <DonaHome />
                 <SePadrinoHome />
                 <div className={style.NoticiasContenedor}>

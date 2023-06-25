@@ -1,8 +1,8 @@
-import axios from 'axios';
 import React, { useState } from 'react';
-import { validateUsuario } from './Validation';
+// import { sendConfirmationEmail } from './EmailService'; // Importa la función que envía el correo electrónico
 import { useDispatch } from 'react-redux';
-import './FormVoluntario.css'
+import { validateUsuario } from './Validation';
+import './FormVoluntario.css';
 
 const FormVoluntario = () => {
   const [newUser, setNewUser] = useState({
@@ -20,33 +20,39 @@ const FormVoluntario = () => {
   });
 
   const [isSubmitClicked, setIsSubmitClicked] = useState(false);
-  const [formValid, setFormValid] = useState(false);
 
   const changeHandler = (event) => {
     const property = event.target.name;
     const value = event.target.value;
-  
+
     setNewUser((prevUser) => ({
       ...prevUser,
       [property]: value,
     }));
-  
+
     setErrors((prevErrors) => ({
       ...prevErrors,
       [property]: validateUsuario({ ...newUser, [property]: value }, prevErrors)[property],
     }));
   };
-  
+
   const submitHandler = async (event) => {
     event.preventDefault();
     setIsSubmitClicked(true);
-  
+
     setErrors(validateUsuario(newUser, errors));
-  
+
     if (Object.values(errors).some((val) => val !== '')) {
       return;
-    }  
+    }
 
+    // Mostrar alerta al usuario
+    window.alert('Formulario enviado, nos comunicaremos en breve.');
+
+    // Enviar correo electrónico de confirmación
+    // sendConfirmationEmail(newUser);
+
+    // Realizar la solicitud al servidor
     axios
       .post('http://localhost:3001/user', newUser)
       .then((res) => {
@@ -118,29 +124,30 @@ const FormVoluntario = () => {
         <h1>ANIMATE A SER PARTE!</h1>
         <div>
           <label>Nombre y Apellido *</label>
-          <input type="text" value={newUser.name} onChange={changeHandler} name="name" />
+          <input type="text" name="name" value={newUser.name} onChange={changeHandler} />
           {errors.name && <span>{errors.name}</span>}
         </div>
         <div>
           <label>Número celular *</label>
-          <input type="text" value={newUser.phone} onChange={changeHandler} name="phone" />
+          <input type="text" name="phone" value={newUser.phone} onChange={changeHandler} />
           {errors.phone && <span>{errors.phone}</span>}
         </div>
         <div>
-          <label>Actividad en la que estas interesado *</label>
-          <select value={newUser.role} onChange={changeHandler} name="role">
+          <label>Actividad en la que estás interesado *</label>
+          <select name="role" value={newUser.role} onChange={changeHandler}>
             {renderRoleOptions()}
           </select>
           {errors.role && <span>{errors.role}</span>}
         </div>
         <div>
           <label>Tienes alguna duda en particular?</label>
-          <input type="text" value={newUser.description} onChange={changeHandler} name="description" />
+          <input type="text" name="description" value={newUser.description} onChange={changeHandler} />
           {errors.description && <span>{errors.description}</span>}
         </div>
         <button type="submit" disabled={!isValidForm}>
           ENVIAR FORMULARIO
         </button>
+        {!isValidForm && <span>Complete todos los campos</span>}
       </form>
     </div>
   );

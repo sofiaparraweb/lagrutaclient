@@ -1,13 +1,12 @@
-import axios from 'axios';
 import React, { useState } from 'react';
-import { validateUsuario } from './Validation';
+// import { sendConfirmationEmail } from './EmailService'; // Importa la función que envía el correo electrónico
 import { useDispatch } from 'react-redux';
-import './FormPadrino.css'
+import { validateUsuario } from './Validation';
+import './FormPadrino.css';
 
 const FormPadrino = () => {
   const [newUser, setNewUser] = useState({
     name: '',
-    lastName: '',
     phone: '',
     role: '',
     description: '',
@@ -15,14 +14,10 @@ const FormPadrino = () => {
 
   const [errors, setErrors] = useState({
     name: '',
-    lastName: '',
     phone: '',
     role: '',
     description: '',
   });
-
-  const [isSubmitClicked, setIsSubmitClicked] = useState(false);
-  const [formValid, setFormValid] = useState(false);
 
   const changeHandler = (event) => {
     const property = event.target.name;
@@ -41,7 +36,6 @@ const FormPadrino = () => {
 
   const submitHandler = async (event) => {
     event.preventDefault();
-    setIsSubmitClicked(true);
 
     setErrors(validateUsuario(newUser, errors));
 
@@ -49,56 +43,37 @@ const FormPadrino = () => {
       return;
     }
 
-    axios
-      .post('http://localhost:3001/user', newUser)
-      .then((res) => {
-        console.log(res);
-        alert(res.data);
-        setNewUser({
-          name: '',
-          lastName: '',
-          phone: '',
-          role: '',
-          description: '',
-        });
-        setErrors({
-          name: '',
-          lastName: '',
-          phone: '',
-          role: '',
-          description: '',
-        });
-      })
-      .catch((err) => {
-        if (err.response) {
-          const errorMessage = err.response.data.message;
-          setErrors((prevErrors) => ({
-            ...prevErrors,
-            server: errorMessage,
-          }));
-        } else {
-          setErrors((prevErrors) => ({
-            ...prevErrors,
-            server: 'Failed to create user',
-          }));
-        }
-      });
+    // Mostrar alerta al usuario
+    window.alert('Formulario enviado, nos comunicaremos en breve.');
+
+    // Enviar correo electrónico de confirmación
+    // sendConfirmationEmail(newUser);
+
+    // Restablecer el formulario
+    setNewUser({
+      name: '',
+      phone: '',
+      role: '',
+      description: '',
+    });
+    setErrors({
+      name: '',
+      phone: '',
+      role: '',
+      description: '',
+    });
   };
 
   const dispatch = useDispatch();
 
   const roles = [
-    { value: '', label: 'Elegi un proyecto' },
-    { value: 'act1', label: 'act1' },
-    { value: 'act2', label: 'act2' },
-    { value: 'act3', label: 'act3' },
+    { value: '', label: 'Elegi un método de pago' },
+    { value: 'DEBITO AUTOMATICO', label: 'DEBITO AUTOMATICO' },
+    { value: 'TRANSFERENCIA BANCARIA', label: 'TRANSFERENCIA BANCARIA' },
+    { value: 'EFECTIVO', label: 'EFECTIVO' },
   ];
 
   const renderErrors = () => {
-    if (!isSubmitClicked) {
-      return null;
-    }
-
     return Object.values(errors).map((error, index) => (
       <span key={index} className="error-message">
         {error}
@@ -119,37 +94,33 @@ const FormPadrino = () => {
   return (
     <div>
       <form onSubmit={submitHandler} className="form">
-        <h1>ANIMATE A SER PARTE!</h1>
+        <h1>ANIMATE A SER PADRINO!</h1>
         <div>
-          <label>Name *</label>
-          <input type="text" value={newUser.name} onChange={changeHandler} name="name" />
+          <label>Nombre y Apellido *</label>
+          <input type="text" name="name" value={newUser.name} onChange={changeHandler} />
           {errors.name && <span>{errors.name}</span>}
         </div>
         <div>
-          <label>Last Name *</label>
-          <input type="text" value={newUser.lastName} onChange={changeHandler} name="lastName" />
-          {errors.lastName && <span>{errors.lastName}</span>}
-        </div>
-        <div>
-          <label>Phone *</label>
-          <input type="text" value={newUser.phone} onChange={changeHandler} name="phone" />
+          <label>Número celular *</label>
+          <input type="text" name="phone" value={newUser.phone} onChange={changeHandler} />
           {errors.phone && <span>{errors.phone}</span>}
         </div>
         <div>
-          <label>Role *</label>
-          <select value={newUser.role} onChange={changeHandler} name="role">
+          <label>Como te gustaria ayudar? *</label>
+          <select name="role" value={newUser.role} onChange={changeHandler}>
             {renderRoleOptions()}
           </select>
           {errors.role && <span>{errors.role}</span>}
         </div>
         <div>
-          <label>Description</label>
-          <textarea value={newUser.description} onChange={changeHandler} name="description" />
+          <label>Tienes alguna duda en particular?</label>
+          <input type="text" name="description" value={newUser.description} onChange={changeHandler} />
           {errors.description && <span>{errors.description}</span>}
         </div>
         <button type="submit" disabled={!isValidForm}>
-          REGISTER USER
+          ENVIAR FORMULARIO
         </button>
+        {!isValidForm && <span>Complete todos los campos</span>}
       </form>
     </div>
   );

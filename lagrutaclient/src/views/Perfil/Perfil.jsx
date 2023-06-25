@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button, ChakraProvider, Input, Select } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,39 +8,40 @@ import "./Perfil.css";
 const Perfil = () => {
   const { user, isAuthenticated } = useAuth0();
   const [newProfile, setNewProfile] = useState({
-    name: '',
-    email: '',
-    birthdate: '',
-    phone: '',
-    address: '',
-    occupation: '',
-    role: '',
-    profileImage: '',
+    name: user.name,
+    email: user.email,
+    birthdate: "",
+    phone: "",
+    address: "",
+    occupation: "",
+    role: "",
+    profileImage: user.picture || "",
   });
 
   const { name, email, birthdate, phone, address, occupation, role, profileImage } = newProfile;
-
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.profile);
- 
- useEffect(() => {
-    if (isAuthenticated && user) {
-      dispatch(getProfile());
+  const isProfileFetchedRef = useRef(false);
+  const userId = useSelector((state) => state.userId); // Obtener el userId del estado
+
+  useEffect(() => {
+    if (isAuthenticated && user && !isProfileFetchedRef.current && userId) {
+      dispatch(getProfile(userId));
+      isProfileFetchedRef.current = true;
     }
-  }, [dispatch, isAuthenticated, user]);
+  }, [dispatch, isAuthenticated, user, userId]);
+  
 
   useEffect(() => {
     if (profile) {
-      setNewProfile({
-        name: profile.name || "",
-        email: profile.email || "",
+      setNewProfile((prevProfile) => ({
+        ...prevProfile,
         birthdate: profile.birthdate || "",
         phone: profile.phone || "",
         address: profile.address || "",
         occupation: profile.occupation || "",
         role: profile.role || "",
-        profileImage: profile.image || "",
-      });
+      }));
     }
   }, [profile]);
 
@@ -87,7 +88,8 @@ const Perfil = () => {
   };
 
   const handleUpdateProfile = () => {
-    dispatch(updateProfile(newProfile));
+    dispatch(updateProfile(userId, newProfile));
+    console.log('se ejecuta el update')
   };
 
   return (
@@ -203,8 +205,7 @@ const Perfil = () => {
                     Modificar usuario
                   </Button>
                 </div>
-                
-                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -214,4 +215,3 @@ const Perfil = () => {
 };
 
 export default Perfil;
-

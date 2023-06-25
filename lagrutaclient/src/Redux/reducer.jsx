@@ -18,6 +18,7 @@ import {
   UPDATE_PROFILE,
   ORDER_BY_PRICE,
   POST_NEWS_DASHBOARD,
+  SET_USER_ID
 } from "./actions";
 
 const initialstate = {
@@ -32,6 +33,7 @@ const initialstate = {
   Carrito: [],
   CarritoProductos: [],
   profile: null,
+  userId: null,
 };
 
 function rootReducer(state = initialstate, action) {
@@ -174,7 +176,11 @@ function rootReducer(state = initialstate, action) {
         ...state,
         profile: action.payload,
       };
-
+      case SET_USER_ID:
+        return {
+          ...state,
+          userId: action.payload,
+        };
     case POST_NEWS_DASHBOARD:
       return {
         ...state,

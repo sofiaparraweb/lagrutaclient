@@ -9,15 +9,6 @@ if (!newUser.name) {
   newErrors.name = '';
 }
 
-  // Validar el campo apellido
-  if (!newUser.lastName) {
-    newErrors.lastName = 'Por favor ingresa un apellido';
-  } else if (!/^[a-zA-Z]{1,30}$/.test(newUser.lastName)) {
-    newErrors.lastName = 'El apellido solo puede contener letras y máximo 30 caracteres';
-  } else {
-    newErrors.lastName = '';
-  }
-
   // Validar el campo número celular
   if (!newUser.phone) {
     newErrors.phone = 'Por favor ingresa un número de celular';
@@ -27,14 +18,15 @@ if (!newUser.name) {
     newErrors.phone = '';
   }
 
-  // Validar el campo descripción
-  if (!newUser.description) {
-    newErrors.description = 'Por favor ingresa una descripción';
-  } else if (!/^[\w\s]{1,120}$/.test(newUser.description)) {
-    newErrors.description = 'La descripción solo puede contener letras, símbolos y máximo 120 caracteres';
-  } else {
-    newErrors.description = '';
-  }
+// Validar el campo descripción
+if (!newUser.description) {
+  newErrors.description = 'Por favor ingresa una descripción';
+} else if (!/^[\w\s!@#$%^&*,.?:\-\n]{1,120}$/.test(newUser.description)) {
+  newErrors.description = 'La descripción solo puede contener letras, símbolos y máximo 120 caracteres';
+} else {
+  newErrors.description = '';
+}
+
 
   return newErrors;
 };
