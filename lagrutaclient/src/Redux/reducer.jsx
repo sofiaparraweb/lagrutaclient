@@ -5,16 +5,20 @@ import {
   GET_DETAIL_PRODUCTS,
   FILTER_BY_NAME,
   FILTER_BY_TYPE,
+  GET_CART,
+  ADD_TO_CART,
+  DELETE_ALL_CART,
+  DELETE_CARRITO,
+  PUT_AMOUNT_CART,
   GET_ALL_ACTIVITY,
   GET_DETAIL_ACTIVITY,
   GET_TYPEACTY,
-  FETCH_PROFILE_SUCCESS,
-  CREATE_PROFILE_SUCCESS,
-  UPDATE_PROFILE_SUCCESS,
+  FETCH_PROFILE,
+  CREATE_PROFILE,
+  UPDATE_PROFILE,
   ORDER_BY_PRICE,
   POST_NEWS_DASHBOARD,
-  // ADD_PRODUCT,
-  // DELETE_PRODUCT
+  SET_USER_ID
 } from "./actions";
 
 const initialstate = {
@@ -27,7 +31,9 @@ const initialstate = {
   products: [],
   ProductsDetail: [],
   Carrito: [],
+  CarritoProductos: [],
   profile: null,
+  userId: null,
 };
 
 function rootReducer(state = initialstate, action) {
@@ -35,7 +41,7 @@ function rootReducer(state = initialstate, action) {
     case GET_ALL_PRODUCTS:
       return {
         ...state,
-        allProducts: action.payload,
+        allProducts: action.payload, 
         products: action.payload,
       };
 
@@ -50,7 +56,69 @@ function rootReducer(state = initialstate, action) {
         ...state,
         ProductsDetail: action.payload,
       };
+    
+    case FILTER_BY_NAME:
+      return {
+        ...state,
+        products: action.payload,
+      };
 
+    case FILTER_BY_TYPE:
+      return {
+        ...state,
+        products: action.payload,
+      };
+
+    case ORDER_BY_PRICE:
+      return {
+        ...state,
+        products: action.payload,
+      };
+
+    case GET_CART:
+      return {
+        ...state,
+        Carrito: action.payload,
+      };
+    
+    case ADD_TO_CART:
+      const newProduct = action.payload;
+      const existingProduct = state.Carrito.find((product) => product.id === newProduct.id);
+  
+      if (existingProduct) {
+        const updatedCart = state.Carrito.map((product) => {
+          if (product.id === existingProduct.id) {
+            return { ...product, quantity: product.quantity + 1 };
+          }
+          return product;
+        });
+        return { ...state, Carrito: updatedCart };
+      } else {
+        const updatedCart = [...state.Carrito, newProduct];
+        return {
+          ...state,
+          Carrito: updatedCart,
+        };
+      }
+
+    case DELETE_ALL_CART:
+      return {
+        ...state,
+        Carrito: action.payload,
+      };
+
+    case DELETE_CARRITO:
+      return {
+        ...state,
+        Carrito: state.Carrito.filter((cart) => cart.product_id !== action.payload),
+      };
+
+    case PUT_AMOUNT_CART:
+      return {
+        ...state,
+        CarritoProductos: action.payload,
+      };
+      
     case GET_ALL_ACTIVITY:
       return {
         ...state,
@@ -90,14 +158,29 @@ function rootReducer(state = initialstate, action) {
         ...state,
         products: action.payload,
       };
-    case FETCH_PROFILE_SUCCESS:
-    case CREATE_PROFILE_SUCCESS:
-    case UPDATE_PROFILE_SUCCESS:
+    
+    case FETCH_PROFILE:
       return {
         ...state,
         profile: action.payload,
       };
 
+    case CREATE_PROFILE:
+      return {
+        ...state,
+        profile: action.payload,
+      };
+
+    case UPDATE_PROFILE:
+      return {
+        ...state,
+        profile: action.payload,
+      };
+      case SET_USER_ID:
+        return {
+          ...state,
+          userId: action.payload,
+        };
     case POST_NEWS_DASHBOARD:
       return {
         ...state,

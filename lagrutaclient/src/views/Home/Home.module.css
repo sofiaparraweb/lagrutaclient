@@ -45,3 +45,12 @@ img[alt="lagruta"] {
     max-height: 300px;
     margin: auto;
 }
+
+.frase {
+    font-family: 'Wicked Grit', sans-serif;
+    font-size: 24px;
+    color: #B9362C;
+    text-align: center;
+    margin-top: 20px;
+  }
+  

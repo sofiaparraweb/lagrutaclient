@@ -1,6 +1,6 @@
 .sidebarContenedor{
   position: relative;
-  padding-top: 100px;
+  padding-top: 70px;
 }
 
 .ContenedorFiltroOrden{
@@ -9,18 +9,18 @@
   height: 220px;
 }
 
-.Changuito {
-  /* Estilos para el contenedor del ícono */
-}
-  
-.Icon {
-  /* Estilos para el ícono en sí */
+.Changuito a {
   display: flex;
-  margin-left: 35%;
-  margin-bottom: 20%;
-  font-size: 30px;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
+  margin: 40px 0;
   color: silver;
-}
-.Icon:hover{
-  color: white
+  position: relative;
+  :hover {
+    color: white;
+  }
+  &.active {
+    color: var(--color-danger);
+  }
 }

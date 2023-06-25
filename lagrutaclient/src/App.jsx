@@ -6,19 +6,22 @@ import logo from '../src/assets/logo.png'
 
 
 import Home from "./views/Home/Home";
+import NavBar from "./components/NavBar/NavBar";
+import Footer from "./components/Footer/Footer";
 import About from "./views/About/About";
 import News from "./views/Noticias/News";
 import DetailsNews from "./components/News/DetailsNews/DetailsNews";
 import Tienda from "./views/Tienda/Tienda";
+import CarritoContainer from "./components/Store/CarritoContainer/CarritoContainer";
 import Perfil from "./views/Perfil/Perfil";
 import LogIn from "./views/LogIn/LogIn";
 import LogOut from "./views/LogIn/LogOut";
-import NavBar from "./components/NavBar/NavBar";
 import BackToTop from "./components/BackToTop/BackToTop";
-import Footer from "./components/Footer/Footer";
 import DonationForm from "./views/Donacion/Donacion";
 import WP_Button from "./components/MensajeFloat/WP_Button.jsx";
 import Dashboard from "./views/DashBoard/DashBoard";
+import Padrino from "./views/Padrino/Padrino";
+import Voluntario from "./views/Voluntario/Voluntario";
 
 const App = () => {
   const { isAuthenticated, isLoading } = useAuth0();
@@ -44,11 +47,10 @@ const App = () => {
         <Route path="/noticias" element={<News />} />
         <Route exact path="/noticias/:id" element={<DetailsNews />} />
         <Route path="/tienda" element={<Tienda />} />
-        <Route path="/carrito" />
-        <Route path="/checkout" />
+        <Route path="/cart" element={<CarritoContainer />} />
         <Route path="/dona" element={<DonationForm/>}/>
-        <Route path="/se-padrino"  />
-        <Route path="/se-voluntario"  />
+        <Route path="/se-padrino" element={<Padrino />} />
+        <Route path="/se-voluntario" element={<Voluntario />} />
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/logout" element={<LogOut />} />
