@@ -28,4 +28,4 @@ const Homes = () => {
   )
 }
 
-export default Homes
+export default Homes;

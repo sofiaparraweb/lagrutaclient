@@ -8,16 +8,32 @@ import DonaHome from "./DonaHome/Dona";
 import SePadrinoHome from "./SePadrino/SePadrino"
 import FotosSlider from "./FotosSlider/FotosSlider"
 import lagruta from '../../assets/lagruta.png';
-import { getAllActivity } from "../../Redux/actions.jsx"
+import { getAllActivity, createProfile } from "../../Redux/actions.jsx"
+import { useAuth0 } from "@auth0/auth0-react";
+import { useRef } from 'react';
 
 const Home = () => {
 
+    const { user, isAuthenticated } = useAuth0();
     const dispatch = useDispatch();
     const allActivity = useSelector(state => state.allActivity);
+    const isProfileCreatedRef = useRef(false);
 
     useEffect(() => {
+        if (isAuthenticated && user && !isProfileCreatedRef.current) {
+          const newUser = {
+            fullName: user.name,
+            mail: user.email,
+          };
+          dispatch(createProfile(newUser));
+          isProfileCreatedRef.current = true;
+        }
+      }, [dispatch, isAuthenticated, user]);
+    
+ 
+    useEffect(() => {
     dispatch(getAllActivity());
-    },[dispatch]);
+    },[]);
 
     const handleClick = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -25,12 +41,13 @@ const Home = () => {
     
     return (
         <div>
-            <NavBar/>
             <div className={style.Home}>
                 <FotosSlider />
                 <div className="imageHomeContainer">
                     <img src={lagruta} alt="lagruta"></img>
                 </div>
+                <p className={style.frase}>“Los científicos dicen que estamos hechos de átomos, pero un pajarito me contó que estamos hechos de historias”</p>
+                <p className={style.frase}>Eduardo Galeano</p>
                 <DonaHome />
                 <SePadrinoHome />
                 <div className={style.NoticiasContenedor}>

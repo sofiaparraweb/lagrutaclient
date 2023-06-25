@@ -16,16 +16,15 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const DELETE_ALL_CART = "DELETE_ALL_CART";
 export const DELETE_CARRITO = "DELETE_CARRITO";
 export const PUT_AMOUNT_CART = "PUT_AMOUNT_CART";
-
-export const FETCH_PROFILE_SUCCESS = "FETCH_PROFILE_SUCCESS";
-export const CREATE_PROFILE_SUCCESS = "CREATE_PROFILE_SUCCESS";
-export const UPDATE_PROFILE_SUCCESS = "UPDATE_PROFILE_SUCCESS";
+export const FETCH_PROFILE = "FETCH_PROFILE";
+export const CREATE_PROFILE = "CREATE_PROFILE";
+export const UPDATE_PROFILE = "UPDATE_PROFILE";
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const POST_NEWS_DASHBOARD = "POST_NEWS_DASHBOARD";
+export const SET_USER_ID = 'SET_USER_ID';
 
-const url = "http://localhost:3001";
-
+export const url = "http://localhost:3001";
 
 export function getAllActivity() {
   return async function (dispatch) {
@@ -41,12 +40,10 @@ export function getAllActivity() {
   }
 }
 
-const LOCAL = "http://localhost:3001"
-
 export function getTypeActi() {
   return async function (dispatch) {
     try {
-      const res = await axios.get(`${LOCAL}/activityTypes`);
+      const res = await axios.get(`${url}/activityTypes`);
       return dispatch({
         type: GET_TYPEACTY,
         payload: res.data,
@@ -202,12 +199,17 @@ export const amountCarrito = (value, user_id, product_id) => {
 
 /* -----------------------------profile----------------------------- */
 
-export const fetchProfile = (userId) => {
+export const createProfile = (newUser) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${url}/${userId}`);
+      const response = await axios.post(`${url}/user`, newUser);
+      const userId = response.data.newUser.id;
       dispatch({
-        type: FETCH_PROFILE_SUCCESS,
+        type: SET_USER_ID,
+        payload: userId,
+      });
+      dispatch({
+        type: CREATE_PROFILE,
         payload: response.data,
       });
     } catch (error) {
@@ -216,12 +218,13 @@ export const fetchProfile = (userId) => {
   };
 };
 
-export const createProfile = (userData) => {
+
+export const getProfile = (idUser) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post(`${url}`, userData);
+      const response = await axios.get(`${url}/user/${idUser}`);
       dispatch({
-        type: CREATE_PROFILE_SUCCESS,
+        type: FETCH_PROFILE,
         payload: response.data,
       });
     } catch (error) {
@@ -229,13 +232,14 @@ export const createProfile = (userData) => {
     }
   };
 };
+
 
 export const updateProfile = (userId, updatedUserData) => {
   return async (dispatch) => {
     try {
-      const response = await axios.put(`${url}/status/${userId}`, updatedUserData);
+      const response = await axios.put(`${url}/user/${userId}`, updatedUserData);
       dispatch({
-        type: UPDATE_PROFILE_SUCCESS,
+        type: UPDATE_PROFILE,
         payload: response.data,
       });
     } catch (error) {

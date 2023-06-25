@@ -20,6 +20,8 @@ import BackToTop from "./components/BackToTop/BackToTop";
 import DonationForm from "./views/Donacion/Donacion";
 import WP_Button from "./components/MensajeFloat/WP_Button.jsx";
 import Dashboard from "./views/DashBoard/DashBoard";
+import Padrino from "./views/Padrino/Padrino";
+import Voluntario from "./views/Voluntario/Voluntario";
 
 const App = () => {
   const { isAuthenticated, isLoading } = useAuth0();
@@ -47,8 +49,8 @@ const App = () => {
         <Route path="/tienda" element={<Tienda />} />
         <Route path="/cart" element={<CarritoContainer />} />
         <Route path="/dona" element={<DonationForm/>}/>
-        <Route path="/se-padrino"  />
-        <Route path="/se-voluntario"  />
+        <Route path="/se-padrino" element={<Padrino />} />
+        <Route path="/se-voluntario" element={<Voluntario />} />
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/logout" element={<LogOut />} />

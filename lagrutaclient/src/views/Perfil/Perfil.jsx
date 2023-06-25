@@ -1,99 +1,96 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import {
-  Button,
-  ChakraProvider,
-  Input,
-  Select,
-} from "@chakra-ui/react";
+import { Button, ChakraProvider, Input, Select } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProfile, updateProfile } from "../../Redux/actions";
-import "./Perfil.css"; // Importa el archivo CSS personalizado
+import { getProfile, updateProfile } from "../../Redux/actions";
+import "./Perfil.css";
 
 const Perfil = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
-  const [name, setName] = useState(user.name || "");
-  const [email, setEmail] = useState(user.email || "");
-  const [birthdate, setBirthdate] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
-  const [occupation, setOccupation] = useState("");
-  const [role, setRole] = useState("");
-  const [profileImage, setProfileImage] = useState(user.image || "");
+  const { user, isAuthenticated } = useAuth0();
+  const [newProfile, setNewProfile] = useState({
+    name: user.name,
+    email: user.email,
+    birthdate: "",
+    phone: "",
+    address: "",
+    occupation: "",
+    role: "",
+    profileImage: user.picture || "",
+  });
 
+  const { name, email, birthdate, phone, address, occupation, role, profileImage } = newProfile;
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.profile);
+  const isProfileFetchedRef = useRef(false);
+  const userId = useSelector((state) => state.userId); // Obtener el userId del estado
 
   useEffect(() => {
-    if (isAuthenticated && !isLoading) {
-      dispatch(fetchProfile(user.sub));
+    if (isAuthenticated && user && !isProfileFetchedRef.current && userId) {
+      dispatch(getProfile(userId));
+      isProfileFetchedRef.current = true;
     }
-  }, [isAuthenticated, isLoading, dispatch, user.sub]);
+  }, [dispatch, isAuthenticated, user, userId]);
+  
 
   useEffect(() => {
     if (profile) {
-      setName(profile.name || "");
-      setEmail(profile.email || "");
-      setBirthdate(profile.birthdate || "");
-      setPhone(profile.phone || "");
-      setAddress(profile.address || "");
-      setOccupation(profile.occupation || "");
-      setRole(profile.role || "");
-      setImage(profile.image || "");
+      setNewProfile((prevProfile) => ({
+        ...prevProfile,
+        birthdate: profile.birthdate || "",
+        phone: profile.phone || "",
+        address: profile.address || "",
+        occupation: profile.occupation || "",
+        role: profile.role || "",
+      }));
     }
   }, [profile]);
 
   const handleNameChange = (e) => {
-    setName(e.target.value);
+    const updatedProfile = { ...newProfile, name: e.target.value };
+    setNewProfile(updatedProfile);
   };
 
   const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+    const updatedProfile = { ...newProfile, email: e.target.value };
+    setNewProfile(updatedProfile);
   };
 
   const handleBirthdateChange = (e) => {
-    setBirthdate(e.target.value);
+    const updatedProfile = { ...newProfile, birthdate: e.target.value };
+    setNewProfile(updatedProfile);
   };
 
   const handlePhoneChange = (e) => {
-    setPhone(e.target.value);
+    const updatedProfile = { ...newProfile, phone: e.target.value };
+    setNewProfile(updatedProfile);
   };
 
   const handleAddressChange = (e) => {
-    setAddress(e.target.value);
+    const updatedProfile = { ...newProfile, address: e.target.value };
+    setNewProfile(updatedProfile);
   };
 
   const handleOccupationChange = (e) => {
-    setOccupation(e.target.value);
+    const updatedProfile = { ...newProfile, occupation: e.target.value };
+    setNewProfile(updatedProfile);
   };
 
   const handleRoleChange = (e) => {
-    setRole(e.target.value);
+    const updatedProfile = { ...newProfile, role: e.target.value };
+    setNewProfile(updatedProfile);
   };
 
   const handleProfileImageChange = (e) => {
     const file = e.target.files[0];
     const imageUrl = URL.createObjectURL(file);
-    setProfileImage(imageUrl);
+    const updatedProfile = { ...newProfile, profileImage: imageUrl };
+    setNewProfile(updatedProfile);
   };
 
   const handleUpdateProfile = () => {
-    const updatedUserData = {
-      name,
-      email,
-      birthdate,
-      phone,
-      address,
-      occupation,
-      role,
-      profileImage,
-    };
-    dispatch(updateProfile(user.sub, updatedUserData));
+    dispatch(updateProfile(userId, newProfile));
+    console.log('se ejecuta el update')
   };
-
-  if (isLoading) {
-    return <div>Cargando...</div>;
-  }
 
   return (
     isAuthenticated && (
@@ -105,20 +102,20 @@ const Perfil = () => {
             </div>
             <div className="col-md-3 border-right">
               <div className="d-flex flex-column align-items-center text-center p-3 py-5">
-              <div className="profile-picture-container">
-  <img
-    className="rounded-circle profile-picture"
-    src={profileImage || "https://www.pngmart.com/files/21/Account-Avatar-Profile-PNG-Clipart.png"}
-    alt="Profile"
-  />
-  <div className="profile-picture-label"> 
-    <input
-      id="profile-picture"
-      type="file"
-      accept="image/*"
-      onChange={handleProfileImageChange}
-    />
-  </div>
+                <div className="profile-picture-container">
+                  <img
+                    className="rounded-circle profile-picture"
+                    src={profileImage || "https://www.pngmart.com/files/21/Account-Avatar-Profile-PNG-Clipart.png"}
+                    alt="Profile"
+                  />
+                  <div className="profile-picture-label">
+                    <input
+                      id="profile-picture"
+                      type="file"
+                      accept="image/*"
+                      onChange={handleProfileImageChange}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -175,6 +172,7 @@ const Perfil = () => {
                       onChange={handleAddressChange}
                     />
                   </div>
+                  <div className="col-md-6">
                     <label className="labels">Ocupación</label>
                     <Input
                       type="text"
@@ -183,6 +181,8 @@ const Perfil = () => {
                       value={occupation}
                       onChange={handleOccupationChange}
                     />
+                  </div>
+                  <div className="col-md-6">
                     <label className="labels">Rol</label>
                     <Select
                       className="form-control custom-select"
@@ -194,6 +194,7 @@ const Perfil = () => {
                       <option value="padrino">Padrino</option>
                       <option value="miembro">Miembro</option>
                     </Select>
+                  </div>
                 </div>
                 <div>
                   <Button
@@ -201,7 +202,7 @@ const Perfil = () => {
                     type="button"
                     onClick={handleUpdateProfile}
                   >
-                    Guardar cambios
+                    Modificar usuario
                   </Button>
                 </div>
               </div>

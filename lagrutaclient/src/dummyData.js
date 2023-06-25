@@ -415,19 +415,19 @@ export const tpost = [
 ]
 export const gallery = [
   {
-    cover: "../images/gallery/g1.jpg",
+    cover: "https://media.urgente24.com/p/0ae47081aec9a87bd46839cccad49f80/adjuntos/319/imagenes/002/744/0002744459/1200x0/smart/pobrezajpg.jpg",
   },
   {
-    cover: "../images/gallery/g2.jpg",
+    cover: "https://statics.eleconomista.com.ar/2021/12/61aff88d883d7.jpeg",
   },
   {
-    cover: "../images/gallery/g3.jpg",
+    cover: "https://c8.alamy.com/compes/m4xacp/cuatro-ninos-riendo-un-perro-durmiendo-y-una-alerta-de-cachorros-jugando-en-el-patio-delantero-de-un-hogar-guatemalteco-extremadamente-pobres-m4xacp.jpg",
   },
   {
-    cover: "../images/gallery/g4.jpg",
+    cover: "https://es.mercopress.com/data/cache/noticias/77362/0x0/argentina-pobreza-unicef.jpg",
   },
   {
-    cover: "../images/gallery/g5.jpg",
+    cover: "https://www.tucumanalas7.com.ar/u/fotografias/m/2019/11/21/f1280x720-94216_225891_5050.jpg",
   },
 ]
 export const discover = [
