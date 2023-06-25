@@ -18,31 +18,30 @@ const FormPadrino = () => {
     role: '',
     description: '',
   });
-
   const changeHandler = (event) => {
-    const property = event.target.name;
-    const value = event.target.value;
-
+    const { name, value } = event.target;
+  
     setNewUser((prevUser) => ({
       ...prevUser,
-      [property]: value,
+      [name]: value,
     }));
-
+  
     setErrors((prevErrors) => ({
       ...prevErrors,
-      [property]: validateUsuario({ ...newUser, [property]: value }, prevErrors)[property],
+      [name]: validateUsuario({ ...newUser, [name]: value })[name],
     }));
   };
-
+  
   const submitHandler = async (event) => {
     event.preventDefault();
-
-    setErrors(validateUsuario(newUser, errors));
-
-    if (Object.values(errors).some((val) => val !== '')) {
+  
+    const formErrors = validateUsuario(newUser);
+    setErrors(formErrors);
+  
+    if (Object.values(formErrors).some((val) => val !== '')) {
       return;
     }
-
+  
     // Mostrar alerta al usuario
     window.alert('Formulario enviado, nos comunicaremos en breve.');
 
