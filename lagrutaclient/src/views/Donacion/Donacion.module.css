@@ -126,7 +126,7 @@
     margin-right: 5px;
   }
 
-.btnDona {
+  .contenForm .btnDona {
     background-color: #ea5d0b;
     border-radius: 5px;
     padding: 5px;
@@ -137,7 +137,7 @@
     align-items: center;
 }
 
-.btnDona:hover {
+.contenForm .btnDona:hover {
     background-color: #ff8000;
     cursor: pointer;
 }
@@ -158,7 +158,7 @@
     flex-direction: row;
 }
 
-img{
+img[id="img-Donacion"]{
     border-radius: 5px;
     margin: 10px;
 }
@@ -228,48 +228,4 @@ img{
   }
 
   /*========>>><<<========*/
- .container4{
-    background-color: red;
-    width: 100%;
-    height: 80vh;
-  }
-
-  .contenForm2{
-    background-color: #104476;
-    width: 40%;
-    height: 400px;
-    padding: 20px;
-    margin: 30px;
-    margin-right: 500px;
-    border-radius: 5px;
-    position: relative;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    flex-direction: column;
-  }
-
-  .inputRow {
-    background-color: #ea5d0b;
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    text-align: left;
-  }
-  
-  .inputRow label {
-    background-color: rgb(23, 170, 16);
-    color: #fff;
-    margin: 20px;
-  }
-
-  .boton{
-    background-color: #ea5d0b;
-    color: #fff;
-    padding: 5px;
-    width: 30%;
-    border-radius: 5px;
-  }
-  
+ 

@@ -70,11 +70,11 @@ const isValidEmail = (email) => {
           value={email}
           onChange={handleEmailChange}
           />
-          <button className={style.btn} type="submit">SUSCRIBIRSE</button>
+          <button className={style.btnSuscripcion} type="submit">SUSCRIBIRSE</button>
         </form>
 
         <div className={style.footerSection}>
-          <button className={style.btn} >DONÁ AHORA</button>
+          <button className={style.btnFooter} >DONÁ AHORA</button>
           <ul className={style.redes} >
              <li className={style.itemsRedes} >
                  <a href="https://www.facebook.com/lagrutacomedor" target="_blank" rel="noreferrer">

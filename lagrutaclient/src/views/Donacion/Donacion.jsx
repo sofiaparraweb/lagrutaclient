@@ -3,6 +3,8 @@ import style from "./Donacion.module.css";
 import dona1 from "../../assets/Donaciones/dona2.jpg";
 import dona3 from "../../assets/Donaciones/dona3.jpg"
 import FormDona from "./FormDona";
+import Swal from "sweetalert2";
+
 
 const DonationForm = () => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -30,9 +32,23 @@ const DonationForm = () => {
       return;
     }
 
-    alert("Opción seleccionada:", selectedOption);
+    //alert("Opción seleccionada:", selectedOption);
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: "Opción seleccionada:",
+      showConfirmButton: false,
+      timer: 3000
+  })
     if (selectedOption === "otraOpcion") {
-      alert("Valor personalizado:", customValue);
+      //alert("Valor personalizado:", customValue);
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: "Valor personalizado:",
+        showConfirmButton: false,
+        timer: 3000
+    })
     }
     setError(false);
     setCustomValue("");
@@ -47,7 +63,7 @@ const DonationForm = () => {
       <div className={style.containerPrincipal}>
         <div className={style.containerSecundario}>
           <div className={style.container1}>
-            <img src={dona1} alt="img" />
+            <img src={dona1} alt="img" id="img-Donacion"/>
           </div>
           {showForm ? <FormDona /> : (
           <form className={style.contenForm} onSubmit={handleSubmit}>
@@ -125,7 +141,7 @@ const DonationForm = () => {
               </p>
             )}
              
-                 <button className={style.btnDona} type="submit">
+                 <button className={style.btnDona} type="submit" id="btn-Donacion">
                  Siguiente
                </button>
                 
