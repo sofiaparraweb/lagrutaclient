@@ -23,6 +23,7 @@ export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const POST_NEWS_DASHBOARD = "POST_NEWS_DASHBOARD";
 export const SET_USER_ID = 'SET_USER_ID';
 
+
 export const url = "https://lagruta.onrender.com";
 
 export function getAllActivity() {
@@ -36,8 +37,10 @@ export function getAllActivity() {
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 }
+
+const LOCAL = "http://localhost:3001";
 
 export function getTypeActi() {
   return async function (dispatch) {
@@ -48,9 +51,9 @@ export function getTypeActi() {
         payload: res.data,
       });
     } catch (err) {
-      console.error('hola', err);
+      console.error("hola", err);
     }
-  }
+  };
 }
 
 export function getActiId(id) {
@@ -96,12 +99,12 @@ export const getDetailProducts = (id_products) =>{
   }
 }
 
-export const filterByName = (name) =>{
+export const filterByName = (name) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`${url}/filter/name?name=${name}`);
-      dispatch({ type: FILTER_BY_NAME, payload: response.data.filteredName })
-    } catch (error){
+      dispatch({ type: FILTER_BY_NAME, payload: response.data.filteredName });
+    } catch (error) {
       console.log(error);
     }
   };
@@ -111,23 +114,23 @@ export const filterByType = (name) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`${url}/filter/byType?name=${name}`);
-      dispatch({ type: FILTER_BY_TYPE, payload: response.data.filteredByType })
-    } catch (error){
+      dispatch({ type: FILTER_BY_TYPE, payload: response.data.filteredByType });
+    } catch (error) {
       console.log(error);
     }
   };
 };
 
-export const orderByPrice = (price) =>{
+export const orderByPrice = (price) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`${url}/order/byPrice?price=${price}`);
-      dispatch({ type: ORDER_BY_PRICE, payload: response.data })
-    } catch (error){
+      dispatch({ type: ORDER_BY_PRICE, payload: response.data });
+    } catch (error) {
       console.log(error);
     }
-  }
-}
+  };
+};
 
 /* -----------------------------carrito----------------------------- */
 // ----------Traer el carrito
@@ -245,36 +248,35 @@ export const updateProfile = (userId, updatedUserData) => {
     } catch (error) {
       console.log(error);
     }
-  }
-}
+  };
+};
 
 /* -----------------------------dashboard----------------------------- */
 
 export const addProduct = (product) => {
   return {
     type: ADD_PRODUCT,
-    payload: product
-  }
-}
+    payload: product,
+  };
+};
 
 export const deleteProduct = (product) => {
   return {
     type: DELETE_PRODUCT,
-    payload: product
-  }
-}
+    payload: product,
+  };
+};
 
-export function create_news (payload) {
-  return async function (payload) {
+export function create_news(payload) {
+  return async function (dispatch) {
     try {
-      var res = await axios.post(`${url}/`, payload);
+      var res = await axios.post(`${LOCAL}/activity/`, payload);
       return {
         type: POST_NEWS_DASHBOARD,
-        res
-      }
+        res,
+      };
     } catch (err) {
-      console.log("Falta información", err)
+      console.log("Falta información", err);
     }
-   
- }
+  };
 }

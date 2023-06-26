@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mainContent {
+  width: 75%;
+}
+
+.sideContent {
+  width: 23%;
+}
+
+.mainNews {
+  padding: 50px;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  .mainContent,
+  .sideContent {
+    width: 100%;
+  }
+}

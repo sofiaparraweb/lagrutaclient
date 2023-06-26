@@ -31,8 +31,11 @@ const Side = () => {
 
   return (
     <>
-      <Heading title="Redes sociales" />
-      <SocialMedia />
+{/*       <Heading title="Redes sociales" />
+      <SocialMedia /> */}
+      <section className={style.banner}>
+        <img src="./images/sidebar-banner-new.jpg" alt="" /> 
+      </section>
       <Heading title="Suscríbete" />
       <section className={style.subscribe}>
         <h1 className={style.title}>Suscribete a nuestras Nuevas Historias</h1>
@@ -49,10 +52,6 @@ const Side = () => {
           </button>
         </form>
       </section>
-      <section className={style.banner}>
-        {/*  <img src="./images/sidebar-banner-new.jpg" alt="" /> */}
-      </section>
-
       <Tpost />
       <section className={style.gallery}>
         <Heading title="Galería" />

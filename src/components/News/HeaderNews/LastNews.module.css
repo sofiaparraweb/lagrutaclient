@@ -2,13 +2,14 @@
   margin: 30px 0;
   color: #fff;
 }
+
 .hero a {
-  color: rgb(255, 255, 255);
-  text-decoration: none; 
+  color: #fff;
+  text-decoration: none;
 }
 
 .hero a:hover {
-  color: rgb(255, 255, 255);
+  color: #fff;
 }
 
 .hero .box {
@@ -25,14 +26,13 @@
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1-1;
-  transition: transform .8s; 
+  z-index: -1;
+  transition: transform .8s;
 }
 
 .hero img:hover {
   transform: scale(1.1);
 }
-
 
 .hero .container {
   display: grid;
@@ -42,39 +42,42 @@
   padding: 46px;
 }
 
-
 .box:nth-child(1) {
   grid-column-start: 1;
   grid-column-end: 5;
   grid-row-start: 1;
   grid-row-end: 9;
 }
+
 .box:nth-child(2) {
   grid-column-start: 5;
   grid-column-end: 9;
   grid-row-start: 1;
   grid-row-end: 5;
 }
+
 .box:nth-child(3) {
   grid-column-start: 5;
   grid-column-end: 7;
   grid-row-start: 5;
   grid-row-end: 9;
 }
+
 .box:nth-child(4) {
   grid-column-start: 7;
   grid-column-end: 9;
   grid-row-start: 5;
   grid-row-end: 9;
 }
+
 .text h1 {
   font-weight: 600;
   margin: 10px 0;
   letter-spacing: normal;
   font-size: 17px;
-  color: aliceblue;
-  font-family: 'Futura PT', sans-serif;   
-  text-transform: none;                                           
+  color: #fff;
+  font-family: 'Futura PT', sans-serif;
+  text-transform: none;
 }
 
 .text {
@@ -88,13 +91,13 @@
 
 .category {
   background: rgba(255, 255, 255, 0.894);
-    border-radius: 5px;
-    color: #ef6d1f;
-    display: inline-block;
-    font-size: 20px;
-    font-weight: 500;
-    padding: 3px 15px;
-    text-align: center;
+  border-radius: 5px;
+  color: #ef6d1f;
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 3px 15px;
+  text-align: center;
 }
 
 .date i {
@@ -103,14 +106,14 @@
   font-size: 13px;
 }
 
+/* Modificaciones para que sea responsive */
 @media screen and (max-width: 768px) {
-.hero .container {
+  .hero .container {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(18, 6vh);
     grid-gap: 10px;
     padding: 46px;
- 
   }
 
   .box:nth-child(1) {
@@ -119,18 +122,21 @@
     grid-row-start: 1;
     grid-row-end: 5;
   }
+
   .box:nth-child(2) {
     grid-column-start: 1;
     grid-column-end: 9;
     grid-row-start: 5;
     grid-row-end: 10;
   }
+
   .box:nth-child(3) {
     grid-column-start: 1;
     grid-column-end: 9;
     grid-row-start: 10;
     grid-row-end: 15;
   }
+
   .box:nth-child(4) {
     grid-column-start: 1;
     grid-column-end: 9;
@@ -138,4 +144,3 @@
     grid-row-end: 20;
   }
 }
-
