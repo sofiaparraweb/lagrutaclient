@@ -7,9 +7,9 @@ const Paginado = () => {
     return (
         <nav>
             <ul class="paginado">
-                <button class="prev"></button>
+                <button class="prev">Prev.</button>
                 {/*en este lugar viene la logica del map que renderiza las noticias*/}
-                <button class="next"></button>
+                <button class="next">Next.</button>
             </ul>
         </nav>
 
