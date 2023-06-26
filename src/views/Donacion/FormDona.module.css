@@ -15,7 +15,7 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     border-radius: 10px;
-    width: 50%;
+    width: 60%;
     margin: 5px;
     padding: 10px;
   }
@@ -23,12 +23,12 @@
     margin-bottom: 7px;
     padding-bottom: 20px;
     width: 40%;
+    height: 150px;
   }
-  .formControl .labels {
-    display: inline-block;
-    margin-bottom: 7px;
-    font:weight 200px;
-    color: #f6f6e9;
+  .formControl .labeles {
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
   }
 
   .formControl .inputs {
@@ -39,6 +39,7 @@
     font-family: inherit;
     font-size: 16px;
     padding: 12px;
+    margin-top: 10px;
     width: 100%;    
   }
   .formControl .inputs:focus {
@@ -51,8 +52,8 @@
     color: #f6f6e9;
     display: block;
     width: 100%;
-    padding: 10px;
-    font-size: 18px;
+    padding: 5px;
+    font-size: 20px;
   }
   .formReact .boton:hover {
     background-color: #ff8000;
@@ -64,7 +65,11 @@
   /*========>>>responsivos<<<========*/
 @media screen and (max-width: 800px) {
   .formReact {
-    width: 70%;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;  
   }
 }
 
@@ -74,7 +79,7 @@
   }
 
   .formControl {
-    width: 50%;
+    width: 80%;
   }
 }
 
