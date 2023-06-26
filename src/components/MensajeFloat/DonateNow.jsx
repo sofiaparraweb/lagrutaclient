@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import style from "./donateNow.module.css";
 
 const PopupModal = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -12,7 +13,7 @@ const PopupModal = () => {
   }, []);
 
   const handleScroll = () => {
-    if (window.scrollY < 400) {
+    if (window.scrollY < 1900) {
       setIsOpen(true);
     } else {
       setIsOpen(false);
@@ -22,13 +23,9 @@ const PopupModal = () => {
   return (
     <div>
       {isOpen && (
-        <div className={style.modal}>
+        <div className={style.modal} >
           <div className={style.modalcontent}>
-            <h2>Contenido del Modal</h2>
-            <p>
-              Este es un ejemplo de un componente de ventana emergente (popup
-              modal) en React JS.
-            </p>
+            <span><h2>Los niños de La gruta necesitan tu ayuda para su desarrollo </h2> <button className={style.buttonModal}>Hazte Socio</button> </span>
           </div>
         </div>
       )}

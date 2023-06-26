@@ -42,6 +42,7 @@ const App = () => {
   return (
     <div className="App">
       <NavBar isAuthenticated={isAuthenticated} />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -58,8 +59,8 @@ const App = () => {
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes> 
       <WP_Button />
-      <Footer />
       <PopUpDonateNow />
+      <Footer />
       <BackToTop />
     </div>
   );
