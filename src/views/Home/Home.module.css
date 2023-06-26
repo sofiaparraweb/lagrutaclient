@@ -1,0 +1,56 @@
+.Home{
+    margin-top: 66px;
+}
+
+/* -----------------------------------NOTICIAS----------------------------------- */
+
+.NoticiasContenedor {
+    position: relative;
+    align-items: center;
+    border: none;
+    box-shadow: 0px 0px 20px -5px rgba(0,0,0,0.61);
+}
+
+.BotonMasNoticias {
+    position: absolute;
+    top: 96%;
+    left: 43%;
+    box-shadow: 0px 10px 10px -10px rgba(0,0,0,0.61);
+    background-color: white;
+    color: #ef6d1f;
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 3px 15px;
+    text-align: center;
+    transition: 1s ease;
+}
+
+.BotonMasNoticias:hover {
+    transition: 1s ease;
+    transform: scale(1.05);
+    background: #ef6d1f;
+    color: white;
+}
+
+/* -----------------------------------IMAGEN LA GRUTA----------------------------------- */
+.imageHomeContainer {
+    display: flex;
+    justify-content: center;
+}
+
+img[alt="lagruta"] {
+    max-width: 100%;
+    max-height: 300px;
+    margin: auto;
+}
+
+.frase {
+    font-family: 'Wicked Grit', sans-serif;
+    font-size: 24px;
+    color: #B9362C;
+    text-align: center;
+    margin-top: 20px;
+  }
+  

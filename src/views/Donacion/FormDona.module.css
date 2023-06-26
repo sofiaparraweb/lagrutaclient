@@ -1,0 +1,89 @@
+.contentPrincipal{
+    background-color: #dede;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    align-content: center;
+    width: 100%;
+    flex-direction: column;
+}
+
+  .formReact {
+    background-color: #104476;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    width: 50%;
+    margin: 5px;
+    padding: 10px;
+  }
+  .formControl {  
+    margin-bottom: 7px;
+    padding-bottom: 20px;
+    width: 40%;
+  }
+  .formControl .labels {
+    display: inline-block;
+    margin-bottom: 7px;
+    font:weight 200px;
+    color: #f6f6e9;
+  }
+
+  .formControl .inputs {
+    border: none;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    display: block;
+    font-family: inherit;
+    font-size: 16px;
+    padding: 12px;
+    width: 100%;    
+  }
+  .formControl .inputs:focus {
+    outline: none;
+  }
+  .formReact .boton {
+    background: #ea5d0b;
+    border:1px solid #ea5d0b;
+    border-radius: 5px;
+    color: #f6f6e9;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+  }
+  .formReact .boton:hover {
+    background-color: #ff8000;
+  }
+  .fail {
+    color: red;
+  }
+
+  /*========>>>responsivos<<<========*/
+@media screen and (max-width: 800px) {
+  .formReact {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .formReact {
+    width: 80%;
+  }
+
+  .formControl {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .formReact {
+    width: 90%;
+  }
+
+  .formControl {
+    width: 100%;
+  }
+}

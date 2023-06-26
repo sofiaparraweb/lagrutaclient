@@ -1,0 +1,155 @@
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { validateUsuario } from './Validation';
+import './FormPadrino.css';
+// import { sendConfirmationEmail } from './EmailService';
+
+const FormPadrino = () => {
+  const [newUser, setNewUser] = useState({
+    name: '',
+    phone: '',
+    role: '',
+    description: '',
+  });
+
+  const [errors, setErrors] = useState({
+    name: '',
+    phone: '',
+    role: '',
+    description: '',
+  });
+
+  const dispatch = useDispatch();
+
+  const roles = [
+    { value: '', label: 'Elegi un método de pago' },
+    { value: 'DEBITO AUTOMATICO', label: 'DEBITO AUTOMATICO' },
+    { value: 'TRANSFERENCIA BANCARIA', label: 'TRANSFERENCIA BANCARIA' },
+    { value: 'EFECTIVO', label: 'EFECTIVO' },
+  ];
+
+  const changeHandler = (event) => {
+    const { name, value } = event.target;
+
+    setNewUser((prevUser) => ({
+      ...prevUser,
+      [name]: value,
+    }));
+
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: validateUsuario({ ...newUser, [name]: value })[name],
+    }));
+  };
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    const formErrors = validateUsuario(newUser);
+    setErrors(formErrors);
+
+    if (Object.values(formErrors).some((val) => val !== '')) {
+      window.alert('Por favor, complete todos los campos correctamente');
+    } else {
+      window.alert('Formulario enviado, nos comunicaremos en breve');
+      // sendConfirmationEmail(newUser);
+      resetForm();
+    }
+  };
+
+  const resetForm = () => {
+    setNewUser({
+      name: '',
+      phone: '',
+      role: '',
+      description: '',
+    });
+    setErrors({
+      name: '',
+      phone: '',
+      role: '',
+      description: '',
+    });
+  };
+
+  const renderErrors = () => {
+    return Object.values(errors).map((error, index) => (
+      <span key={index} className="form-padrino-error-message">
+        {error}
+      </span>
+    ));
+  };
+
+  const renderRoleOptions = () => {
+    return roles.map((role) => (
+      <option key={role.value} value={role.value}>
+        {role.label}
+      </option>
+    ));
+  };
+
+  const isValidForm = Object.values(errors).every((val) => val === '');
+
+  return (
+    <div>
+      <form onSubmit={submitHandler} className="form-padrino">
+        <h1>ANIMATE A SER PADRINO!</h1>
+        <div>
+          <label className="form-padrino-label">Nombre y Apellido *</label>
+          <input
+            type="text"
+            name="name"
+            value={newUser.name}
+            onChange={changeHandler}
+            className="form-padrino-input"
+          />
+          {errors.name && <span className="form-padrino-error-message">{errors.name}</span>}
+        </div>
+        <div>
+          <label className="form-padrino-label">Número celular *</label>
+          <input
+            type="text"
+            name="phone"
+            value={newUser.phone}
+            onChange={changeHandler}
+            className="form-padrino-input"
+          />
+          {errors.phone && <span className="form-padrino-error-message">{errors.phone}</span>}
+        </div>
+        <div>
+          <label className="form-padrino-label">Como te gustaría ayudar? *</label>
+          <select
+            name="role"
+            value={newUser.role}
+            onChange={changeHandler}
+            className="form-padrino-input"
+          >
+            {renderRoleOptions()}
+          </select>
+          {errors.role && <span className="form-padrino-error-message">{errors.role}</span>}
+        </div>
+        <div>
+          <label className="form-padrino-label">Tienes alguna duda en particular?</label>
+          <input
+            type="text"
+            name="description"
+            value={newUser.description}
+            onChange={changeHandler}
+            className="form-padrino-input"
+          />
+          {errors.description && (
+            <span className="form-padrino-error-message">{errors.description}</span>
+          )}
+        </div>
+        <button type="submit" disabled={!isValidForm} className="form-padrino-submit-button">
+          ENVIAR FORMULARIO
+        </button>
+        {!isValidForm && (
+          <span className="form-padrino-error-message">Complete todos los campos</span>
+        )}
+      </form>
+    </div>
+  );
+};
+
+export default FormPadrino;

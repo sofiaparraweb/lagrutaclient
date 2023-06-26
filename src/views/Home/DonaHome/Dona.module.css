@@ -1,0 +1,67 @@
+@import url('https://fonts.cdnfonts.com/css/wicked-grit');
+@import url('https://fonts.cdnfonts.com/css/dk-lemon-yellow-sun');
+
+.DonaHome{
+    position: relative;
+    margin: 10px 0;
+    height: 320px;
+}
+
+img[alt="yellow"]{
+    margin-left: 12%;
+    z-index: -1;
+    position: absolute;
+    width: 900px;
+}
+img[alt="flechaazul"]{
+    position: absolute;
+    left: 60%;
+    top: 65%;
+}
+
+p[id="PrimerAmarillo"]{
+    position: absolute;
+    top: 54%;
+    left: 46%;
+    transform: translate(-70%, -100%);
+    width: 45%;
+    font-size: 21px;
+    color: rgba(16, 68, 118, 255);
+    text-align: center;
+    font-family: 'DK Lemon Yellow Sun', sans-serif;
+}
+p[id="SegundoAmarillo"]{
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    font-size: 21px;
+    transform: translate(-60%, -1%);
+    color: rgba(16, 68, 118, 255);
+    text-align: center;
+    font-family: 'DK Lemon Yellow Sun', sans-serif;
+}
+
+.BotonMasNoticias[id="Dona"]{
+    position: absolute;
+    background-image: url(../../../assets/corazon.png);
+    background-size: 120px;
+    background-repeat: no-repeat;
+    animation: resize 1s infinite alternate;
+    height: 120px;
+    width: 120px;
+    top:57%;
+    left: 72%;
+    font-size: 25px;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@keyframes resize {
+    0% {
+      transform: scale(1); 
+    }
+    100% {
+      transform: scale(1.1); 
+    }
+  }
