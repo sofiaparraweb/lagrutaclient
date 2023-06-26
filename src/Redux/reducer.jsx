@@ -5,6 +5,7 @@ import {
   GET_DETAIL_PRODUCTS,
   FILTER_BY_NAME,
   FILTER_BY_TYPE,
+  ORDER_BY_PRICE,
   GET_CART,
   ADD_TO_CART,
   DELETE_ALL_CART,
@@ -16,7 +17,6 @@ import {
   FETCH_PROFILE,
   CREATE_PROFILE,
   UPDATE_PROFILE,
-  ORDER_BY_PRICE,
   POST_NEWS_DASHBOARD,
   SET_USER_ID
 } from "./actions";
@@ -83,11 +83,11 @@ function rootReducer(state = initialstate, action) {
     
     case ADD_TO_CART:
       const newProduct = action.payload;
-      const existingProduct = state.Carrito.find((product) => product.id === newProduct.id);
+      const existingProduct = state.Carrito.find((prod) => prod.product_id === newProduct.id);
   
       if (existingProduct) {
         const updatedCart = state.Carrito.map((product) => {
-          if (product.id === existingProduct.id) {
+          if (product.product_id === existingProduct.id) {
             return { ...product, quantity: product.quantity + 1 };
           }
           return product;
@@ -142,22 +142,6 @@ function rootReducer(state = initialstate, action) {
         ...state,
         activityDetail: {},
       };
-
-    case FILTER_BY_NAME:
-      return {
-        ...state,
-        products: action.payload,
-      };
-    case FILTER_BY_TYPE:
-      return {
-        ...state,
-        products: action.payload,
-      };
-    case ORDER_BY_PRICE:
-      return {
-        ...state,
-        products: action.payload,
-      };
     
     case FETCH_PROFILE:
       return {
@@ -176,11 +160,13 @@ function rootReducer(state = initialstate, action) {
         ...state,
         profile: action.payload,
       };
-      case SET_USER_ID:
-        return {
-          ...state,
-          userId: action.payload,
-        };
+  
+    case SET_USER_ID:
+      return {
+        ...state,
+        userId: action.payload,
+      };
+  
     case POST_NEWS_DASHBOARD:
       return {
         ...state,

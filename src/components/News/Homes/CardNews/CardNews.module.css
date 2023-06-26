@@ -15,15 +15,13 @@
 .img {
   width: 100%;
   height: 100%;
-  transition: transform .8s, filter .8s;; 
+  transition: transform .8s, filter .8s;
 }
 
 .img:hover {
-
   transform: scale(1.1);
   filter: grayscale(100%);
 }
-
 
 .text {
   padding: 10px;
@@ -37,19 +35,18 @@
 
 .images {
   position: relative;
-  border-radius: 10px;
+  border-radius: 20px;
   overflow: hidden;
 }
 
-
- .title {
-    font-weight: 700;
-    font-size: 20px;
-    margin-bottom: 15px;
-    letter-spacing: normal;
-    color: #444;
-    font-family: 'Futura PT', sans-serif;   
-    text-transform: none;                    
+.title {
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 15px;
+  letter-spacing: normal;
+  color: #444;
+  font-family: 'Futura PT', sans-serif;
+  text-transform: none;
 }
 
 .title:hover {
@@ -67,26 +64,33 @@
   left: 0;
   width: auto;
   cursor: pointer;
-    background: rgba(255, 255, 255, 0.894);
-    border-radius: 5px;
-    color: #ef6d1f;
-    display: inline-block;
-    font-size: 17px;
-    font-weight: 500;
-    padding: 5px 15px;
-    text-align: center;
-    margin: 12px;
+  background: rgba(255, 255, 255, 0.894);
+  border-radius: 5px;
+  color: #ef6d1f;
+  display: inline-block;
+  font-size: 17px;
+  font-weight: 500;
+  padding: 5px 15px;
+  text-align: center;
+  margin: 12px;
 }
 
 .category span {
   text-transform: capitalize;
   letter-spacing: 1px;
 }
-.category1:hover {
+
+.category:hover {
   background-position: left bottom;
 }
-.category1 span:hover {
+
+.category span:hover {
   color: #fff;
 }
 
-
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .box {
+    width: 100%;
+  }
+}

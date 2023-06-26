@@ -38,8 +38,8 @@ export default function DetailsNews() {
                   <label>{details.date}</label>
                 </div>
                 <div className={style.social}>
-                  <i className="fab fa-facebook-f"></i>
-                  <span>Compartir</span>
+                  <i className="fab fa-facebook-f"><span>  Compartir</span></i>
+                  
                 </div>
                 <div className={style.social1}>
                   <span>

@@ -1,6 +1,6 @@
 import { getCarrito, addToCart, deleteAllCarrito, deleteCarrito } from "../../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Image , Card, HStack, Text, Heading, CardBody } from '@chakra-ui/react';
 import {AiOutlineShoppingCart } from "react-icons/ai";
 //import { Link } from 'react-router-dom';
@@ -8,19 +8,24 @@ import axios from "axios";
 import style from "./Carrito.module.css";
 import { Toaster, toast } from "react-hot-toast";
 
-const Carrito = ({ id, name, image, price, stock, quantity }) => {
+const Carrito = ({ id, name, image, price, stock }) => {
 
   const dispatch = useDispatch();
   const Cart = useSelector((state) => state.Carrito);
+  const user_id = useSelector((state)=>state.profile);
+  const [productCount, setProductCount] = useState(0);
 
   let subTotalProd = Cart.map((el) => el.price);
   let subtotal = Cart.reduce((acc, el) => acc + el.price, 0);
   let servicio = subtotal * 0.10;
   let total = subtotal + servicio;
 
-  const handleAddToCart = (user_id, product_id, quantity) => {
-    if(quantity<stock) {
-      dispatch(addToCart(user_id, product_id, quantity));
+  const handleAddToCart = (id) => {
+    if(productCount<stock) {
+      dispatch(addToCart(user_id, id));
+      setProductCount(productCount + 1);
+      console.log(id);
+      console.log(user_id);
       toast.success("Producto agregado al carrito", {
         duration: 3000
       })
@@ -43,6 +48,7 @@ const Carrito = ({ id, name, image, price, stock, quantity }) => {
     
   const handleDeleteFromCart = (user_id, product_id) => {
     dispatch(deleteCarrito(user_id, product_id));
+    setProductCount(productCount - 1);
     toast.success("Producto eliminado del carrito", {
       duration: 3000
     })
@@ -50,6 +56,7 @@ const Carrito = ({ id, name, image, price, stock, quantity }) => {
 
   const handleDeleteCart = (user_id) =>{
     dispatch(deleteAllCarrito(user_id));
+    setProductCount(0);
     toast.success("Carrito vaciado correctamente", {
       duration: 3000
     })
@@ -57,7 +64,7 @@ const Carrito = ({ id, name, image, price, stock, quantity }) => {
 
   const handlePay = async (user_id) => {
     try {
-      const { data } = await axios.post(`http://localhost:3001/payment/create-order?user_id=${user_id}`, Cart);
+      const { data } = await axios.post(`https://lagruta.onrender.com/payment/create-order?user_id=${user_id}`, Cart);
       window.location.href = data.init_point;
       window.localStorage.removeItem("Cart");
     } catch (error) {
@@ -68,10 +75,11 @@ const Carrito = ({ id, name, image, price, stock, quantity }) => {
   }
 
   useEffect(() => {
+    dispatch(getCarrito());
     if(Cart.length) {
       window.localStorage.setItem("Cart", JSON.stringify(Cart));
     }
-  }, [Cart]);
+  }, [dispatch,Cart]);
 
   return (
     <div className={style.ContenedorTiendaCART}>
@@ -144,9 +152,8 @@ const Carrito = ({ id, name, image, price, stock, quantity }) => {
                 <Heading width='100px' size='xs' textAlign='center'>Cantidad</Heading>
                 <Text py='3' className={style.ContenedorBotonesCart}>
                   <button className={style.ButtonsSumaResta} onClick={handleDeleteFromCart} value="less" >-</button>
-                  5
-                  {/* {quantity} */}
-                  <button className={style.ButtonsSumaResta} onClick={handleAddToCart} value="add" >+</button>
+                    {productCount}
+                  <button className={style.ButtonsSumaResta} onClick={()=>{handleAddToCart(id)}} value="add" >+</button>
                 </Text>
               </CardBody>
               <CardBody p={4}>

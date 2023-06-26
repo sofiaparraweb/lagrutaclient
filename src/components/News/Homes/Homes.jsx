@@ -6,24 +6,24 @@ import NewsCarrousel from "./NewsCarrousel/NewsCarrousel.jsx";
 
 import CardNews from "./CardNews/CardNews.jsx";
 
-import "./style.css"
+import style from "./style.module.css"
 
 
 const Homes = () => {
   return (
     <>
-      <main>
-        <div className="container">
-          <section className="mainContent">
+      <div className={style.mainNews}>
+        <div className={style.container}>
+          <section className={style.mainContent}>
            <NewsCarrousel />
            <CardNews />
          {/* aqui van componentes de relleno, actualmente desactivados*/}
           </section>
-          <section className="sideContent">
+          <section className={style.sideContent}>
             <Side />
           </section>
         </div>
-      </main>
+      </div>
     </>
   )
 }

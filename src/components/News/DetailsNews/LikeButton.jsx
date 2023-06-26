@@ -17,7 +17,7 @@ const LikeButton = ({ initialLikes }) => {
         <button
         onClick={handleLike}>
         {isLiked ? <FcLikePlaceholder/> : <FcLike/>}
-        <span className={style.like}> {likes} Likes</span>
+        <span className={style.like}> {likes} Me gusta</span>
       </button>
       </div>
     );
