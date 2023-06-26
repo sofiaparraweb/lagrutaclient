@@ -24,7 +24,7 @@ export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const POST_NEWS_DASHBOARD = "POST_NEWS_DASHBOARD";
 export const SET_USER_ID = 'SET_USER_ID';
 
-export const url = "http://localhost:3001";
+export const url = "https://lagruta.onrender.com";
 
 export function getAllActivity() {
   return async function (dispatch) {
@@ -147,13 +147,9 @@ export const getCarrito = (user_id) => {
 export const addToCart = (user_id, product_id, quantity) => {
   return async (dispatch) =>{
     try {
-      if (quantity === 0) {
-        await axios.delete(`${url}/cart?user_id=${user_id}&product_id=${product_id}`);
-        dispatch({ type: DELETE_CARRITO, payload: product_id });
-      } else{
         const response = await axios.post(`${url}/cart/add?user_id=${user_id}&product_id=${product_id}&quantity=${quantity}`)
+        console.log(response.data);
         dispatch({ type: ADD_TO_CART, payload: response.data})
-      }
     } catch (error){
       console.log(error);
     }
