@@ -57,6 +57,13 @@ const App = () => {
         <Route path="/login" element={<LogIn />} />
         <Route path="/logout" element={<LogOut />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard/home" />
+        <Route path="/dashboard/about" />
+        <Route path="/dashboard/noticias" />
+        <Route path="/dashboard/tienda" />
+        <Route path="/dashboard/dona" />
+        <Route path="/dashboard/se-padrino" />
+        <Route path="/dashboard/se-voluntario" />
       </Routes> 
       <WP_Button />
       <PopUpDonateNow />
