@@ -21,6 +21,7 @@ import BackToTop from "./components/BackToTop/BackToTop";
 import DonationForm from "./views/Donacion/Donacion";
 import WP_Button from "./components/MensajeFloat/WP_Button.jsx";
 import Dashboard from "./views/DashBoard/DashBoard";
+import PopUpDonateNow from "./components/MensajeFloat/DonateNow";
 
 const App = () => {
   const { isAuthenticated, isLoading } = useAuth0();
@@ -58,7 +59,7 @@ const App = () => {
       </Routes> 
       <WP_Button />
       <Footer />
-     
+      <PopUpDonateNow />
       <BackToTop />
     </div>
   );
