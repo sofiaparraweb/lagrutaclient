@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import style from "./donateNow.module.css";
 
 const PopupModal = () => {
@@ -25,10 +25,7 @@ const PopupModal = () => {
         <div className={style.modal}>
           <div className={style.modalcontent}>
             <h2>Contenido del Modal</h2>
-            <p>
-              Este es un ejemplo de un componente de ventana emergente (popup
-              modal) en React JS.
-            </p>
+            <p>Este es un ejemplo de un componente de ventana emergente (popup modal) en React JS.</p>
           </div>
         </div>
       )}

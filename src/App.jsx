@@ -20,6 +20,7 @@ import BackToTop from "./components/BackToTop/BackToTop";
 import DonationForm from "./views/Donacion/Donacion";
 import WP_Button from "./components/MensajeFloat/WP_Button.jsx";
 import Dashboard from "./views/DashBoard/DashBoard";
+import PopUpDonateNow from "./components/MensajeFloat/DonateNow";
 import Padrino from "./views/Padrino/Padrino";
 import Voluntario from "./views/Voluntario/Voluntario";
 
@@ -58,6 +59,7 @@ const App = () => {
       </Routes> 
       <WP_Button />
       <Footer />
+      <PopUpDonateNow />
       <BackToTop />
     </div>
   );

@@ -59,6 +59,7 @@ const Home = () => {
                     <h1>Ubicacion</h1>
                 </div> */}
             </div>
+            
         </div>
     );
 }
