@@ -19,8 +19,19 @@ const FormVoluntario = () => {
     description: '',
   });
 
-  const [isSubmitClicked, setIsSubmitClicked] = useState(false);
+  const dispatch = useDispatch();
 
+  const roles = [
+    { value: '', label: 'Elegi un proyecto' },
+    { value: 'Taller de niños', label: 'Taller de niños' },
+    { value: 'Taller de jóvenes', label: 'Taller de jóvenes' },
+    { value: 'Taller de mujeres', label: 'Taller de mujeres' },
+    { value: 'Taller de niños', label: 'Taller de niños' },
+    { value: 'Salud y Comunidad', label: 'Salud y Comunidad' },
+    { value: 'Catequesis y pastoral', label: 'Catequesis y pastoral' },
+    { value: 'Quiero informarme de todos', label: 'Quiero ifnromarme de todos' },
+    
+  ];
   const changeHandler = (event) => {
     const property = event.target.name;
     const value = event.target.value;
@@ -38,77 +49,42 @@ const FormVoluntario = () => {
 
   const submitHandler = async (event) => {
     event.preventDefault();
-    setIsSubmitClicked(true);
 
-    setErrors(validateUsuario(newUser, errors));
+    const formErrors = validateUsuario(newUser);
+    setErrors(formErrors);
 
-    if (Object.values(errors).some((val) => val !== '')) {
-      return;
+    if (Object.values(formErrors).some((val) => val !== '')) {
+      window.alert('Por favor, complete todos los campos correctamente');
+    } else {
+      window.alert('Formulario enviado, nos comunicaremos en breve');
+      // sendConfirmationEmail(newUser);
+      resetForm();
     }
-
-    // Mostrar alerta al usuario
-    window.alert('Formulario enviado, nos comunicaremos en breve.');
-
-    // Enviar correo electrónico de confirmación
-    // sendConfirmationEmail(newUser);
-
-    // Realizar la solicitud al servidor
-    axios
-      .post('http://localhost:3001/user', newUser)
-      .then((res) => {
-        console.log(res);
-        alert(res.data);
-        setNewUser({
-          name: '',
-          phone: '',
-          role: '',
-          description: '',
-        });
-        setErrors({
-          name: '',
-          phone: '',
-          role: '',
-          description: '',
-        });
-      })
-      .catch((err) => {
-        if (err.response) {
-          const errorMessage = err.response.data.message;
-          setErrors((prevErrors) => ({
-            ...prevErrors,
-            server: errorMessage,
-          }));
-        } else {
-          setErrors((prevErrors) => ({
-            ...prevErrors,
-            server: 'Failed to create user',
-          }));
-        }
-      });
   };
 
-  const dispatch = useDispatch();
-
-  const roles = [
-    { value: '', label: 'Elegi un proyecto' },
-    { value: 'act1', label: 'act1' },
-    { value: 'act2', label: 'act2' },
-    { value: 'act3', label: 'act3' },
-  ];
+  const resetForm = () => {
+    setNewUser({
+      name: '',
+      phone: '',
+      role: '',
+      description: '',
+    });
+    setErrors({
+      name: '',
+      phone: '',
+      role: '',
+      description: '',
+    });
+  };
 
   const renderErrors = () => {
-    if (!isSubmitClicked) {
-      return null;
-    }
-
     return Object.values(errors).map((error, index) => (
-      <span key={index} className="error-message">
+      <span key={index} className="form-padrino-error-message">
         {error}
       </span>
     ));
   };
 
-  
   const renderRoleOptions = () => {
     return roles.map((role) => (
       <option key={role.value} value={role.value}>
@@ -148,7 +124,9 @@ const FormVoluntario = () => {
         <button type="submit" disabled={!isValidForm} className="form-voluntario-submit-button">
           ENVIAR FORMULARIO
         </button>
-        {!isValidForm && <span className="form-voluntario-error-message">Complete todos los campos</span>}
+        {!isValidForm && (
+          <span className="form-voluntario-error-message">Complete todos los campos</span>
+        )}
       </form>
     </div>
   );
