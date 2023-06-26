@@ -123,8 +123,9 @@ const FormPadrino = () => {
             value={newUser.role}
             onChange={changeHandler}
             className="form-padrino-input"
+            id="SelectSePadrino"
           >
-            {renderRoleOptions()}
+            {renderRoleOptions()} 
           </select>
           {errors.role && <span className="form-padrino-error-message">{errors.role}</span>}
         </div>
