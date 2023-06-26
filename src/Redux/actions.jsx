@@ -57,7 +57,7 @@ export function getActiId(id) {
   return async function (dispatch) {
     try {
       const res = await axios.get(`${url}/activity/${id}`);
-      console.log(res.data)
+      // console.log(res.data)
       return dispatch({
         type: GET_DETAIL_ACTIVITY,
         payload: res.data,

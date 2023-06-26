@@ -38,7 +38,7 @@ const About = () => {
       <header className={style.headerAboutLaGruta}>
         <h1>Historia</h1>
       </header>
-      {/* <Timeline /> */}
+      <Timeline />
 {/* 
       <section className={style.section}>
         <h2>¿Quiénes somos? Equipo</h2>
