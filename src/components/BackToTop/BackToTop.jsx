@@ -13,7 +13,7 @@ const BackTop = () => {
   }, []);
 
   const handleScroll = () => {
-    if (window.scrollY > 300) {
+    if (window.scrollY > 1500) {
       setShowButton(true);
     } else {
       setShowButton(false);

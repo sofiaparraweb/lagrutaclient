@@ -1,9 +1,106 @@
 
 
 .modal {
-    background-color: brown;
+    position: fixed;
+    top: 96%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  
 }
 
 .modalcontent {
-    background-color: blueviolet;
+    width: 100%;
+    background-color: #D7B63E;
+     padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.3s ease;
+  opacity: 1;
 }
+
+
+
+
+.modalcontent span {
+    display: flex;
+    align-items: center;
+    margin-left: 70px;
+  }
+  
+  .modalcontent h2 {
+    color: #35332a;
+    margin-right: 60px; /* Espacio entre el título y el botón */
+  }
+  
+  .buttonModal {
+    border: solid 2px;
+    background-color: #D7B63E;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-left: 100px;
+  }
+  
+  .buttonModal:hover {
+    background-color: #35332a;
+    cursor: pointer;
+    color: #D7B63E;
+  }
+
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+    .modal {
+      top: 95%;
+      transform: translate(-50%, -50%);
+    }
+  
+    .modalcontent {
+      top: 50px;
+      max-width: 100%;
+    }
+  
+    .modalcontent span {
+        display: flex;
+        align-items: center;
+        margin-left: 10px;
+      }
+
+    .modalcontent h2{
+      display: none;
+    }
+  
+    .buttonModal {
+      margin-left: 0;
+      margin: 20px auto; /* Centrar horizontalmente */
+      display: block; /* Ocupar todo el ancho disponible */
+      text-align: center; /* Centrar el texto dentro del botón */
+    }
+  }
+
+  @media (min-width: 1300px) {
+
+    .modal {
+        top: 96%;
+    }
+    
+
+    .modalcontent span {
+      margin-left: 450px; /* Ajusta el margen izquierdo para monitores grandes */
+    }
+  
+    .modalcontent h2 {
+      font-size: 24px; /* Ajusta el tamaño del título para monitores grandes */
+    }
+  
+    .buttonModal {
+      font-size: 24px; /* Ajusta el tamaño del botón para monitores grandes */
+      padding: 12px; /* Ajusta el padding del botón para monitores grandes */
+     margin-left: 130px;
+    }
+  }
