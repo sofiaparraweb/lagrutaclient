@@ -51,10 +51,13 @@
 }
 
 input::placeholder {
+  font-family: 'Roboto Condensed', sans-serif;
   color: #fff;
 }
 
 .subscribe button {
+  letter-spacing: 2px;
+  font-family: 'Roboto Condensed', sans-serif;
   width: 100%;
   padding: 10px;
   margin-top: 20px;

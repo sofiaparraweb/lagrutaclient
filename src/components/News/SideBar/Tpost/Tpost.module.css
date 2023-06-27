@@ -30,6 +30,10 @@
   margin-bottom: 20px;
 }
 
+.date {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
 .tpost .img {
   width: 100px;
   height: 80px;

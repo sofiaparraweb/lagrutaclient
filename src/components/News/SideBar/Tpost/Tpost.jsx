@@ -17,7 +17,7 @@ const Tpost = () => {
               </div>
               <div className={style.text}>
                 <h1 className={style.title}>{val.title.slice(0, 35)}...</h1>
-                <span>a year ago</span>
+                <span className={style.date}>a year ago</span>
               </div>
             </div>
             </div>

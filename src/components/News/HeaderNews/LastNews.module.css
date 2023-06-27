@@ -90,12 +90,13 @@
 }
 
 .category {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 600;
   background: rgba(255, 255, 255, 0.894);
   border-radius: 5px;
   color: #ef6d1f;
   display: inline-block;
   font-size: 20px;
-  font-weight: 500;
   padding: 3px 15px;
   text-align: center;
 }
@@ -104,6 +105,10 @@
   width: 30px;
   color: #ea5d0b;
   font-size: 13px;
+}
+
+.date label {
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 /* Modificaciones para que sea responsive */
