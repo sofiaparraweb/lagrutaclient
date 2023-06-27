@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import './Voluntario.css';
 import FormVoluntario from '../../components/FormVoluntario/FormVoluntario';
-import FotosSlider from '../Home/FotosSlider/FotosSlider';
+// import FotosSlider from '../Home/FotosSlider/FotosSlider';
 
 const Voluntario = () => {
 
@@ -15,18 +15,20 @@ const Voluntario = () => {
         <p className="voluntario-section-description">Aquí va la descripción de qué significa ser voluntario.</p>
       </div>
 
-      <FotosSlider />
+      {/* <FotosSlider /> */}
       
-     <div className="voluntario-section">
-        <h2 className="voluntario-section-title">Proyectos para ser voluntario</h2>
-        <p className="voluntario-section-description">
-<p className="voluntario-section-description">Comedor infanto juvenil</p>
-<p>Taller de niños</p>
-<p>Taller de jóvenes</p>
-<p>Taller de mujeres</p>
-<p>Salud y Comunidad </p>
-<p></p>Catequesis y pastoral</p>
-      </div>
+      <div className="voluntario-section">
+  <h2 className="voluntario-section-title">Proyectos para ser voluntario</h2>
+  <ul className="voluntario-section-description">
+    <li>Comedor infanto juvenil</li>
+    <li>Taller de niños</li>
+    <li>Taller de jóvenes</li>
+    <li>Taller de mujeres</li>
+    <li>Salud y Comunidad</li>
+    <li>Catequesis y pastoral</li>
+  </ul>
+</div>
+
       
       <FormVoluntario />
     </div>

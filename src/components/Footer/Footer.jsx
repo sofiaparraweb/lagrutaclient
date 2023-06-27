@@ -1,11 +1,25 @@
 import style from "./Footer.module.css";
 import React from "react";
+<<<<<<< HEAD
 import { useState } from "react";
+=======
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { formFooter } from "../../Redux/actions";
+>>>>>>> LogIn
 import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
-  const [email, setEmail] = useState("");
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    const dispatch = useDispatch();
+  
+    const onSubmit = (data) => {
+      dispatch(formFooter(data.email));
+      reset();
+      alert("¡Formulario enviado!");
+    };
 
+<<<<<<< HEAD
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
@@ -25,13 +39,19 @@ const Footer = () => {
     return emailRegex.test(email.trim());
   };
 
+=======
+>>>>>>> LogIn
   return (
     <footer className={style.mainFooter}>
       <div className={style.container}>
         <div className={style.footerSection}>
           <h3 className={style.title}>Conocé LA GRUTA</h3>
           <ul>
+<<<<<<< HEAD
             <li className={style.itemsTex}>
+=======
+            <li className={style.itemsTex} >
+>>>>>>> LogIn
               <a href="/about">Qué hace La Gruta</a>
             </li>
             <li className={style.itemsTex}>
@@ -58,22 +78,38 @@ const Footer = () => {
           </ul>
         </div>
 
+<<<<<<< HEAD
         <form className={style.footerSection} onSubmit={handleSubmit}>
           <h3 className={style.title}>¡Suscríbete para más información!</h3>
           <input
+=======
+        <form className={style.footerSection} onSubmit={handleSubmit(onSubmit)}>
+ <h3 className={style.title}>¡Suscríbete para más información!</h3>
+   <input
+>>>>>>> LogIn
             className={style.input}
             type="email"
             name="email"
             placeholder="Ingresar Email"
+<<<<<<< HEAD
             value={email}
             onChange={handleEmailChange}
           />
+=======
+            {...register("email", {
+              required: true,
+              pattern: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/i,
+            })}
+          />
+          {errors.email && <p className={style.fail}>Correo electrónico no válido</p>}
+>>>>>>> LogIn
           <button className={style.btnSuscripcion} type="submit">
             SUSCRIBIRSE
           </button>
         </form>
 
         <div className={style.footerSection}>
+<<<<<<< HEAD
           <button className={style.btnFooter}>DONÁ AHORA</button>
           <ul className={style.redes}>
             <li className={style.itemsRedes}>
@@ -81,6 +117,12 @@ const Footer = () => {
                 href="https://www.facebook.com/lagrutacomedor"
                 target="_blank"
                 rel="noreferrer">
+=======
+          <button className={style.btnFooter} >DONÁ AHORA</button>
+          <ul className={style.redes} >
+            <li className={style.itemsRedes} >
+              <a href="https://www.facebook.com/lagrutacomedor" target="_blank" rel="noreferrer">
+>>>>>>> LogIn
                 <FaFacebook />
               </a>
             </li>
@@ -90,18 +132,26 @@ const Footer = () => {
               </a>
             </li>
             <li className={style.itemsRedes}>
+<<<<<<< HEAD
               <a
                 href="https://www.instagram.com/lagrutacdi/"
                 target="_blank"
                 rel="noreferrer">
+=======
+              <a href="https://www.instagram.com/lagrutacdi/" target="_blank" rel="noreferrer">
+>>>>>>> LogIn
                 <FaInstagram />
               </a>
             </li>
             <li className={style.itemsRedes}>
+<<<<<<< HEAD
               <a
                 href="https://www.youtube.com/"
                 target="_blank"
                 rel="noreferrer">
+=======
+              <a href="https://www.youtube.com/" target="_blank" rel="noreferrer">
+>>>>>>> LogIn
                 <FaYoutube />
               </a>
             </li>
@@ -110,10 +160,18 @@ const Footer = () => {
       </div>
 
       <div className={style.copy}>
+<<<<<<< HEAD
         <p>© 2023 La Gruta. Developed by Alumnos Henry</p>
       </div>
     </footer>
   );
 };
+=======
+        <p>© 2023 La Gruta.</p>
+      </div>
+    </footer>
+  );
+}
+>>>>>>> LogIn
 
 export default Footer;

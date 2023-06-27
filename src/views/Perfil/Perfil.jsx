@@ -32,18 +32,20 @@ const Perfil = () => {
   }, [dispatch, isAuthenticated, user, userId]);
   
 
-  useEffect(() => {
-    if (profile) {
-      setNewProfile((prevProfile) => ({
-        ...prevProfile,
-        birthdate: profile.birthdate || "",
-        phone: profile.phone || "",
-        address: profile.address || "",
-        occupation: profile.occupation || "",
-        role: profile.role || "",
-      }));
-    }
-  }, [profile]);
+  //  useEffect(() => {
+  //    if (profile) {
+  //      setNewProfile((prevProfile) => ({
+  //       ...prevProfile,
+  //       fullName: profile.fullName || "",
+  //       image: profile.image || "",
+  //       birthdate: profile.birthdate || "",
+  //       phone: profile.phone || "",
+  //       address: profile.address || "",
+  //       occupation: profile.occupation || "",
+  //       role: profile.role || "",
+  //     }));
+  //   }
+  // }, [profile]);
 
   const handleNameChange = (e) => {
     const updatedProfile = { ...newProfile, name: e.target.value };
