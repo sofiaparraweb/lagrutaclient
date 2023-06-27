@@ -82,6 +82,8 @@ function rootReducer(state = initialstate, action) {
       };
     
     case ADD_TO_CART:
+      // let producto = Carrito.find((producto) => producto.id === id);
+      // producto.stock--;
       const newProduct = action.payload;
       const existingProduct = state.Carrito.find((prod) => prod.product_id === newProduct.id);
   

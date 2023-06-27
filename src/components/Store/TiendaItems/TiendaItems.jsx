@@ -11,31 +11,7 @@ const TiendaItems = ({ id, name, image, price, description, stock, ProductsTypes
   const [isModalOpen, setIsModalOpen] = useState(false);
   const allProducts = useSelector((state) => state.Carrito);
   const dispatch = useDispatch();
-  // const profile = useSelector((state) => state.profile);
-  const profile = {
-    "id": "22d99872-1a68-40e9-9f7e-a5339a183e22",
-    "fullName": "Cherrita Crysell",
-    "username": "ccrysell9",
-    "birthDate": "24/4/1994",
-    "image": "http://dummyimage.com/175x100.png/5fa2dd/ffffff",
-    "phone": "113-506-8959",
-    "mail": "ccrysell9@youtube.com",
-    "occupation": "Manistee Co Blacker Airport",
-    "password": "196650",
-    "createdAt": "2023-06-25T05:37:05.052Z",
-    "updatedAt": "2023-06-25T05:37:05.052Z",
-    "deletedAt": null,
-    "Rols": [],
-    "Activities": [],
-    "Cart": {
-        "id": "733b0dc6-9804-4c59-ab96-9a22d7fdd2d0",
-        "quantity": null,
-        "createdAt": "2023-06-25T20:16:43.907Z",
-        "updatedAt": "2023-06-25T20:16:43.907Z",
-        "UserId": "22d99872-1a68-40e9-9f7e-a5339a183e22"
-    }
-};
-  const userId = profile.id;
+  const userId = useSelector((state) => state.userId);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
