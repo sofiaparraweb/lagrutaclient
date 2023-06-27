@@ -74,7 +74,7 @@ const DonationForm = () => {
               necesitan HOY.
             </p>
 
-            <h3 className={style.title2}>Mensual</h3>
+            <h3 className={style.title2}>Selecciona y doná</h3>
 
             <label className={style.labels}>
               <input
