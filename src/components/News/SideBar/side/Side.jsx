@@ -34,7 +34,7 @@ const Side = () => {
 {/*       <Heading title="Redes sociales" />
       <SocialMedia /> */}
       <section className={style.banner}>
-        <img src="./images/sidebar-banner-new.jpg" alt="" /> 
+{/*         <img src="./images/sidebar-banner-new.jpg" alt="" />  */}
       </section>
       <Heading title="Suscríbete" />
       <section className={style.subscribe}>

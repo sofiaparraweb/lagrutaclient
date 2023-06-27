@@ -9,14 +9,14 @@ import CardNews from "./CardNews/CardNews.jsx";
 import style from "./style.module.css"
 
 
-const Homes = () => {
+const Homes = ({ allActivity }) => {
   return (
     <>
       <div className={style.mainNews}>
         <div className={style.container}>
           <section className={style.mainContent}>
            <NewsCarrousel />
-           <CardNews />
+           <CardNews allActivity={allActivity} />
          {/* aqui van componentes de relleno, actualmente desactivados*/}
           </section>
           <section className={style.sideContent}>

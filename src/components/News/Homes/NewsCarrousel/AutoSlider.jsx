@@ -1,18 +1,21 @@
-import React, { useEffect, useRef } from 'react';
-import Slider from 'react-slick';
+import React, { useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Slider from "react-slick";
 import { Link } from "react-router-dom";
-import { lifestyle } from "../../../../dummyData";
 
 import style from "./NewsCarrousel.module.css";
 
 const AutoSlider = () => {
   const sliderRef = useRef(null);
 
+  const allActivity = useSelector(state => state.allActivity);
+
+
   useEffect(() => {
     const slider = sliderRef.current;
 
     const interval = setInterval(() => {
-      slider.slickNext(); 
+      slider.slickNext();
     }, 3000);
 
     return () => {
@@ -40,26 +43,24 @@ const AutoSlider = () => {
 
   return (
     <Slider ref={sliderRef} {...settings}>
-      {lifestyle.map((val, index) => {
-              return (
-                <div key={index} className={style.items}>
-                    <div className={style.images}>
-                      <div className={style.img}>
-                        <img src={val.cover} alt='' />
-                      </div>
-                    </div>
-                    <div className={style.text}>
-                    <Link to={`/Noticias/${val.id}`}>
-                      <h1 className={style.title}>{val.title.slice(0, 40)}...</h1>
-                      </Link>
-                      <div className={style.date}>
-                        <i class='fas fa-calendar-days'></i>
-                        <label>{val.date}</label>
-                      </div>
-                    </div>
-                </div>
-              )
-            })}
+      {allActivity.map((news) => (
+        <div key={news.id} className={style.items}>
+          <div className={style.images}>
+            <div className={style.img}>
+              <img src={news.img} alt="" />
+            </div>
+          </div>
+          <div className={style.text}>
+            <Link to={`/Noticias/${news.id}`}>
+              <h1 className={style.title}>{news.name.slice(0, 40)}...</h1>
+            </Link>
+            <div className={style.date}>
+              <i class="fas fa-calendar-days"></i>
+              <label>{news.date}</label>
+            </div>
+          </div>
+        </div>
+      ))}
     </Slider>
   );
 };

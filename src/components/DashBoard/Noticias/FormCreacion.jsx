@@ -40,9 +40,34 @@ const FormCreacion = () => {
     dispatch(getTypeActi());
   }, []);
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    // Restablecer el error asociado al campo actual
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: undefined,
+    }));
+
+    // Actualizar el valor del campo
+    if (name === "name") {
+      setName(value);
+    } else if (name === "description") {
+      setDescription(value);
+    } else if (name === "date") {
+      setDate(value);
+    } else if (name === "types_activity") {
+      setTypesActivity(value);
+    }
+  };
+
+
   const handleImageChange = (e) => {
     setSelectedImage(e.target.files[0]);
     setPreviewImage(URL.createObjectURL(e.target.files[0]));
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      img: undefined,
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -69,15 +94,19 @@ const FormCreacion = () => {
       console.log(res);
       const imgUrl = res.data;
       console.log("url de la img", imgUrl);
-    } catch (err) {
-      console.log("error al subir imagen", err);
-    }
 
     setName("");
+    setSelectedImage(null);
     setPreviewImage(null);
     setDescription("");
     setDate("");
     setTypesActivity("");
+    setErrors({});
+
+    } catch (err) {
+      console.log("error al subir imagen", err);
+    }
+
   };
 
   return (
@@ -110,8 +139,9 @@ const FormCreacion = () => {
               <input
                 className={style.inputbox}
                 type="text"
+                name="name"
                 value={name}
-                onChange={(e) => setName(e.target.value)}
+                onChange={handleInputChange}
               />
               {errors?.name && <p className={style.error}> {errors.name}</p>}
               <label className={style.LabelForm} htmlFor="date">
@@ -121,7 +151,8 @@ const FormCreacion = () => {
                 className={style.inputbox}
                 type="date"
                 value={date}
-                onChange={(e) => setDate(e.target.value)}
+                name="date"
+                onChange={handleInputChange}
               />
               {errors?.date && <p className={style.error}> {errors.date}</p>}
               <label className={style.LabelForm} htmlFor="description">
@@ -130,7 +161,9 @@ const FormCreacion = () => {
               <textarea
                 className={style.inputbox}
                 value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                name="description"
+                placeholder="descripción de la noticia"
+                onChange={handleInputChange}
               />
               {errors?.description && (
                 <p className={style.error}> {errors.description}</p>
