@@ -23,6 +23,9 @@ export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const POST_NEWS_DASHBOARD = "POST_NEWS_DASHBOARD";
 export const SET_USER_ID = 'SET_USER_ID';
 export const FORM_VOLUNTARIO = 'FORM_VOLUNTARIO';
+export const FORM_FOOTER = 'FORM_FOOTER';
+export const FORM_PADRINO = 'FORM_PADRINO';
+export const FORM_DONACION = 'FORM_DONACION';
 
 export const url = "http://localhost:3001";
 // export const url = "https://lagruta.onrender.com";
@@ -284,7 +287,6 @@ export function create_news(payload) {
 
 /* -----------------------------formulario----------------------------- */
 
-// actions.js
 export const formVoluntario = (formData) => {
   return async (dispatch) => {
     try {
@@ -294,6 +296,51 @@ export const formVoluntario = (formData) => {
         payload: response.data,
       });
       console.log('funcion mail voluntario')
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const formPadrino = (formData) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`${url}/form/formPadrino`, formData)
+      dispatch ({
+        type: 'FORM_PADRINO',
+        payload: response.data,
+      });
+      console.log('funcion mail padrino')
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const formFooter = (formData) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`${url}/form/formFooter`, formData)
+      dispatch ({
+        type: 'FORM_FOOTER',
+        payload: response.data,
+      });
+      console.log('funcion mail footer')
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const formDonacion = (formData) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`${url}/form/formDonacion`, formData)
+      dispatch ({
+        type: 'FORM_DONACION',
+        payload: response.data,
+      });
+      console.log('funcion mail Donacion')
     } catch (error) {
       console.log(error);
     }
