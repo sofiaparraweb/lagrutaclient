@@ -14,15 +14,13 @@ const FormDona = () => {
           )
         reset();
     }
-  
     
-   
   return (
     <>
     <div className={style.contentPrincipal}>
         <form onSubmit={ handleSubmit(customSubmit)} className={style.formReact}>
             <div className={style.formControl}>
-                <label className={style.labels} >Nombre</label>
+                <label className={style.labeles} >Nombre</label>
                 <input
                     className={style.inputs} 
                     placeholder="Nombre"
@@ -35,7 +33,7 @@ const FormDona = () => {
             </div>
 
             <div className={style.formControl}>
-                <label className={style.labels}>Apellido</label>
+                <label className={style.labeles}>Apellido</label>
                 <input 
                     className={style.inputs}
                     placeholder="Apellido"
@@ -48,7 +46,7 @@ const FormDona = () => {
             </div>
 
             <div className={style.formControl}>
-                <label className={style.labels}>Email</label>
+                <label className={style.labeles}>Email</label>
                 <input
                     className={style.inputs}
                     placeholder="Ingrese correo"
@@ -63,7 +61,7 @@ const FormDona = () => {
             </div>
 
             <div className={style.formControl}>
-                <label className={style.labels}>Teléfono (Cód. Área + número)</label>
+                <label className={style.labeles}>Teléfono (Cód. Área + número)</label>
                 <input 
                     className={style.inputs}
                     placeholder="11 12345678"
@@ -75,16 +73,7 @@ const FormDona = () => {
                 })}
                 />
                 {errors.telefono && <p className={style.fail}>{errors.telefono.message}</p>}
-            </div>
-
-             {/*<div className={style.formControl}>
-                 <input 
-                 type="select"
-                 {...register('prueba',{
-                    required:true
-                })}/>
-                 {errors.prueba?.type === "required" && <p className={style.fail}>El campo es requerido</p>}
-            </div>*/}   
+            </div>  
             <button className={style.boton} type='submit'>Enviar</button>
         </form>
         </div>

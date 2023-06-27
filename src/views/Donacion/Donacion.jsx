@@ -137,7 +137,7 @@ const DonationForm = () => {
 
             {error && (
               <p className={style.errorMessage} style={{ color: "red" }}>
-                Por favor, ingresar un monto.
+                Por favor, seleccione un monto.
               </p>
             )}
              
@@ -156,14 +156,14 @@ const DonationForm = () => {
                 style={{ width: "600px", height: "300px" }}
               />
               <p className={style.parrafo2}>
-                <h1>DESNUTRICIÓN </h1>
+                <p>DESNUTRICIÓN </p>
                 La desnutrición aguda, la forma más letal de la malnutrición,
                 afecta a 47 millones de niñas y niños menores de 5 años en todo
                 el mundo. En 2021, 5,4 millones de chicas y chicos recibieron
                 tratamiento que salvó sus vidas.
               </p>
               <p className={style.parrafo2}>
-                <h1>EDUCACIÓN</h1>
+                <p>EDUCACIÓN</p>
                 En nuestro país, cerca de 93.000 adolescentes que residen en
                 ámbitos rurales no tienen acceso a la educación secundaria, de
                 los cuales más de 65.000 pertenecen a contextos rurales
