@@ -22,9 +22,11 @@ export const ADD_PRODUCT = "ADD_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const POST_NEWS_DASHBOARD = "POST_NEWS_DASHBOARD";
 export const SET_USER_ID = 'SET_USER_ID';
+export const FORM_VOLUNTARIO = 'FORM_VOLUNTARIO';
 
-
-export const url = "https://lagruta.onrender.com";
+export const url = "http://localhost:3001";
+// export const url = "https://lagruta.onrender.com";
+// const LOCAL = "http://localhost:3001";
 
 export function getAllActivity() {
   return async function (dispatch) {
@@ -39,8 +41,6 @@ export function getAllActivity() {
     }
   };
 }
-
-const LOCAL = "http://localhost:3001";
 
 export function getTypeActi() {
   return async function (dispatch) {
@@ -270,7 +270,7 @@ export const deleteProduct = (product) => {
 export function create_news(payload) {
   return async function (dispatch) {
     try {
-      var res = await axios.post(`${LOCAL}/activity/`, payload);
+      var res = await axios.post(`${url}/activity/`, payload);
       return {
         type: POST_NEWS_DASHBOARD,
         res,
@@ -280,3 +280,22 @@ export function create_news(payload) {
     }
   };
 }
+
+
+/* -----------------------------formulario----------------------------- */
+
+// actions.js
+export const formVoluntario = (formData) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`${url}/form/formVoluntario`, formData)
+      dispatch ({
+        type: 'FORM_VOLUNTARIO',
+        payload: response.data,
+      });
+      console.log('funcion mail voluntario')
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};

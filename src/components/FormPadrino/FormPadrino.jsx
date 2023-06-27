@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { validateUsuario } from './Validation';
 import './FormPadrino.css';
-// import { sendConfirmationEmail } from './EmailService';
+import { formVoluntario } from '../../Redux/actions';
 
 const FormPadrino = () => {
+  
+  const formData = useSelector((state) => state.formData);
+
   const [newUser, setNewUser] = useState({
     name: '',
     phone: '',
@@ -46,13 +49,13 @@ const FormPadrino = () => {
     event.preventDefault();
 
     const formErrors = validateUsuario(newUser);
-    setErrors(formErrors);
+    dispatch(setFormErrors(formErrors));
 
     if (Object.values(formErrors).some((val) => val !== '')) {
       window.alert('Por favor, complete todos los campos correctamente');
     } else {
       window.alert('Formulario enviado, nos comunicaremos en breve');
-      // sendConfirmationEmail(newUser);
+      dispatch(formVoluntario(newUser));
       resetForm();
     }
   };

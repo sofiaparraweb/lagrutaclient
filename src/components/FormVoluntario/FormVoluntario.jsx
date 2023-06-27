@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-// import { sendConfirmationEmail } from './EmailService'; // Importa la función que envía el correo electrónico
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { formVoluntario } from '../../Redux/actions';
 import { validateUsuario } from './Validation';
 import './FormVoluntario.css';
 
 const FormVoluntario = () => {
   const [newUser, setNewUser] = useState({
     name: '',
+    mail: '',
     phone: '',
     role: '',
     description: '',
@@ -14,24 +15,25 @@ const FormVoluntario = () => {
 
   const [errors, setErrors] = useState({
     name: '',
+    mail: '',
     phone: '',
     role: '',
     description: '',
   });
 
   const dispatch = useDispatch();
+  const formData = useSelector((state) => state.formData);
 
   const roles = [
     { value: '', label: 'Elegi un proyecto' },
-    { value: 'Taller de niños', label: 'Taller de niños' },
     { value: 'Taller de jóvenes', label: 'Taller de jóvenes' },
     { value: 'Taller de mujeres', label: 'Taller de mujeres' },
     { value: 'Taller de niños', label: 'Taller de niños' },
     { value: 'Salud y Comunidad', label: 'Salud y Comunidad' },
     { value: 'Catequesis y pastoral', label: 'Catequesis y pastoral' },
     { value: 'Quiero informarme de todos', label: 'Quiero ifnromarme de todos' },
-    
   ];
+
   const changeHandler = (event) => {
     const property = event.target.name;
     const value = event.target.value;
@@ -49,6 +51,9 @@ const FormVoluntario = () => {
 
   const submitHandler = async (event) => {
     event.preventDefault();
+  
+    console.log('Botón del formulario apretado');
+  
 
     const formErrors = validateUsuario(newUser);
     setErrors(formErrors);
@@ -57,7 +62,9 @@ const FormVoluntario = () => {
       window.alert('Por favor, complete todos los campos correctamente');
     } else {
       window.alert('Formulario enviado, nos comunicaremos en breve');
-      // sendConfirmationEmail(newUser);
+      dispatch(formVoluntario({
+        ...newUser,
+        mail: newUser.mail}));
       resetForm();
     }
   };
@@ -65,12 +72,14 @@ const FormVoluntario = () => {
   const resetForm = () => {
     setNewUser({
       name: '',
+      mail: '',
       phone: '',
       role: '',
       description: '',
     });
     setErrors({
       name: '',
+      mail: '',
       phone: '',
       role: '',
       description: '',
@@ -79,7 +88,7 @@ const FormVoluntario = () => {
 
   const renderErrors = () => {
     return Object.values(errors).map((error, index) => (
-      <span key={index} className="form-padrino-error-message">
+      <span key={index} className="form-voluntario-error-message">
         {error}
       </span>
     ));
@@ -103,6 +112,11 @@ const FormVoluntario = () => {
           <label className="form-voluntario-label">Nombre y Apellido *</label>
           <input type="text" name="name" value={newUser.name} onChange={changeHandler} className="form-voluntario-input" />
           {errors.name && <span className="form-voluntario-error-message">{errors.name}</span>}
+        </div>
+        <div>
+          <label className="form-voluntario-label">Correo electrónico *</label>
+          <input type="text" name="mail" value={newUser.mail} onChange={changeHandler} className="form-voluntario-input" />
+          {errors.mail && <span className="form-voluntario-error-message">{errors.mail}</span>}
         </div>
         <div>
           <label className="form-voluntario-label">Número celular *</label>

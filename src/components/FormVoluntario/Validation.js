@@ -9,6 +9,14 @@ if (!newUser.name) {
   newErrors.name = '';
 }
 
+if (!newUser.mail) {
+  newErrors.mail = 'Por favor ingresa un correo electrónico';
+} else if (!/\S+@\S+\.\S+/.test(newUser.mail)) {
+  newErrors.mail = 'Por favor ingresa un correo electrónico válido';
+} else {
+  newErrors.mail = '';
+}
+
   // Validar el campo número celular
   if (!newUser.phone) {
     newErrors.phone = 'Por favor ingresa un número de celular';
