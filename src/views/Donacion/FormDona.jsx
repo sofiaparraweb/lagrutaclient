@@ -2,12 +2,18 @@ import React from "react";
 import style from "./FormDona.module.css";
 import { useForm } from "react-hook-form"
 import Swal from "sweetalert2";
+import { useDispatch } from "react-redux";
+import { enviarInformacion } from "../../Redux/actions";
 
 
 const FormDona = () => {
-    const { register, handleSubmit, reset, formState: { errors }, watch } = useForm() 
+    const { register, handleSubmit, reset, formState: { errors }} = useForm() 
+    const dispatch = useDispatch();
+
     const customSubmit = (data) => {
         //console.log(data)
+        dispatch(enviarInformacion(data));
+
         Swal.fire(
             "¡Validación exitosa!",
             "Continua!"
