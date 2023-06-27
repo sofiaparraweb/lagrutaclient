@@ -1,0 +1,127 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .infoCon {
+    background: #D7B63E;
+    background-size: cover;
+    padding: 60px 0;
+  }
+
+  .infoCon span {
+    font-weight: bold;
+    font-family: 'Roboto Condensed', sans-serif;
+  }
+  
+  .innerContainer {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+    overflow: hidden;
+  }
+  
+  .sectionTitle {
+    text-align: center;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #191b1d;
+    font-size: 40px;
+  }
+  
+  .border {
+    width: 160px;
+    height: 2px;
+    margin: 40px auto;
+  }
+  
+  .serviceContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .infobox {
+    max-width: 33.33%;
+    padding: 10px;
+    text-align: center;
+    color: #191b1d;
+    cursor: pointer;
+  }
+  
+  .infoicon {
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    border: 3px solid #24272b;
+    transform: rotate(45deg);
+    margin-bottom: 30px;
+    margin-top: 16px;
+  }
+  
+  .infoicon i {
+    line-height: 70px;
+    transform: rotate(-45deg);
+    font-size: 26px;
+  }
+  
+  
+  .infoTitle {
+    font-size: 25px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .description {
+    font-size: 25px;
+    font-family: 'Roboto Condensed', sans-serif;
+  }
+
+  .buttoninfo {
+    background: #D7B63E;
+    margin-top: 40px;
+    color: #24272b;
+    padding: 10px;
+    border: solid 2px ;
+    border-radius: 20px;
+    font-size: 25px;
+    font-weight: 600;
+    font-family: 'Roboto Condensed', sans-serif;
+    transition: background-color .3s;
+  }
+
+  .buttoninfo:hover {
+       background-color: #191b1d;
+       color:#fff;
+       border-color: #191b1d;
+  }
+  
+  @media screen and (max-width:960px) {
+    .infobox {
+      max-width: 45%;
+    }
+    .buttoninfo {
+        max-width: 45%;
+      }
+  }
+  
+  @media screen and (max-width:768px) {
+    .infobox {
+      max-width: 50%;
+    }
+    .buttoninfo {
+        max-width: 50%;
+      }
+  }
+  
+  @media screen and (max-width:480px) {
+    .infobox {
+      max-width: 100%;
+    }
+
+    .buttoninfo {
+        max-width: 100%;
+      }
+  }

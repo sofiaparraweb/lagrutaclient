@@ -31,9 +31,15 @@
   width: 100%;
   border-radius: 5px;
   border: none;
+  color: #000;
 }
 
-.footerSection .btnSuscripcion{
+input::placeholder {
+  color: #000;
+}
+
+.footerSection .btnSuscripcion {
+  font-family: 'Roboto Condensed', sans-serif;
   background-color: #ea5d0b;
   padding: 6px;
   width: 50%;
@@ -49,6 +55,7 @@
 }
 
 .btnFooter {
+  font-family: 'Roboto Condensed', sans-serif;
   background-color: #ea5d0b;
   padding: 6px;
   width: 50%;
@@ -64,18 +71,18 @@
   cursor: pointer;
 }
 
-.itemsTex {
+.itemsTex a {
+  font-family: 'Roboto Condensed', sans-serif;
   color: gray;
 }
 
 .title {
+  font-family: 'Roboto Condensed', sans-serif;
   color: #ea5d0b;
   font-size: 18px;
 }
 
-.input {
-  color: #000;
-}
+
 
 .redes {
   display: flex;
@@ -109,6 +116,10 @@
   flex-direction: row;
   padding: 5px 0px 10px 0px;
   border-top: 1px solid;
+}
+
+.copy p {
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 /*=====>>>Responsivo<<<=====*/

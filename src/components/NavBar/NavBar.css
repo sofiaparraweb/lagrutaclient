@@ -25,6 +25,7 @@
 }
 
 .link {
+  font-family: 'Roboto Condensed', sans-serif;
   text-decoration: none;
   color: grey;
   padding: 22.5px;
@@ -104,38 +105,50 @@
 /* -------------------------------------Dona */
 .dropdownOption[id="donaNav"]{
   border-bottom:3px solid #D7B63E;
+  font-weight: 600;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 .dropdownOption[id="donaNav"]:hover{
+  font-family: 'Roboto Condensed', sans-serif;
   background-color: #D7B63E;
   text-decoration: none;
 }
 .active[id="donaNav"]{
+  font-family: 'Roboto Condensed', sans-serif;
   background-color: #D7B63E;
   color: white;
 }
 
 /* -------------------------------------SePadrino */
 .dropdownOption[id="sepadrinoNav"]{
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 600;
   border-bottom:3px solid #EB5D0B;
 }
 .dropdownOption[id="sepadrinoNav"]:hover{
+  font-family: 'Roboto Condensed', sans-serif;
   background-color: #EB5D0B;
   text-decoration: none;
 }
 .active[id="sepadrinoNav"]{
+  font-family: 'Roboto Condensed', sans-serif;
   background-color: #EB5D0B;
   color: white;
 }
 
 /* -------------------------------------SeVoluntario */
 .dropdownOption[id="sevoluntarioNav"]{
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 600;
   border-bottom:3px solid #B9362C;
 }
 .dropdownOption[id="sevoluntarioNav"]:hover{
+  font-family: 'Roboto Condensed', sans-serif;
   background-color: #B9362C;
   text-decoration: none;
 }
 .active[id="sevoluntarioNav"]{
+  font-family: 'Roboto Condensed', sans-serif;
   background-color: #B9362C;
   color: white;
 }
