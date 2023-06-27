@@ -14,9 +14,7 @@ const FormDona = () => {
           )
         reset();
     }
-  
     
-   
   return (
     <>
     <div className={style.contentPrincipal}>
@@ -75,16 +73,7 @@ const FormDona = () => {
                 })}
                 />
                 {errors.telefono && <p className={style.fail}>{errors.telefono.message}</p>}
-            </div>
-
-             {/*<div className={style.formControl}>
-                 <input 
-                 type="select"
-                 {...register('prueba',{
-                    required:true
-                })}/>
-                 {errors.prueba?.type === "required" && <p className={style.fail}>El campo es requerido</p>}
-            </div>*/}   
+            </div>  
             <button className={style.boton} type='submit'>Enviar</button>
         </form>
         </div>
