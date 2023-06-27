@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { formPadrino } from '../../Redux/actions';
 import './FormPadrino.css';
+import Swal from 'sweetalert2';
 
 const FormPadrino = () => {
   const dispatch = useDispatch();
@@ -11,9 +12,20 @@ const FormPadrino = () => {
   const onSubmit = (data) => {
     dispatch(formPadrino(data));
     reset();
-    window.alert('Formulario enviado, nos comunicaremos en breve');
+    Swal.fire({
+      icon: 'success',
+      title: 'Formulario enviado!',
+      text: 'Muchas gracias! Nos comunicaremos en breve',
+      background: '#f3f3f3',
+      confirmButtonColor: '#B9362C',
+      customClass: {
+        title: 'my-custom-title',
+        content: 'my-custom-content',
+        confirmButton: 'my-custom-button',
+      }
+    });
   };
-
+  
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)} className="form-padrino">
@@ -28,19 +40,18 @@ const FormPadrino = () => {
           {errors.name && <span className="form-padrino-error-message">{errors.name.message}</span>}
         </div>
         <div>
-                <label className="form-padrino-label">Email</label>
-                <input
-                    type="text" 
-                    {...register("email", {
-                    pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/i,
-                    required:true
-                      })} 
-                      className="form-padrino-input"
-                      />
-                {errors.email?.type === "pattern" && <p>Tiene que ser un email correcto</p>}
-                {errors.email?.type === "required" && <p>El correo  es requerido</p>}
-                
-            </div>
+          <label className="form-padrino-label">Email</label>
+          <input
+            type="text" 
+            {...register("email", {
+              pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/i,
+              required: true
+            })} 
+            className="form-padrino-input"
+          />
+          {errors.email?.type === "pattern" && <p>Tiene que ser un email correcto</p>}
+          {errors.email?.type === "required" && <p>El correo es requerido</p>}
+        </div>
         <div>
           <label className="form-padrino-label">Número celular *</label>
           <input

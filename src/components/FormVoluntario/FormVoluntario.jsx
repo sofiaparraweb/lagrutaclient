@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { formVoluntario } from '../../Redux/actions';
 import './FormVoluntario.css';
+import Swal from 'sweetalert2';
 
 const FormVoluntario = () => {
   const dispatch = useDispatch();
@@ -11,7 +12,18 @@ const FormVoluntario = () => {
   const onSubmit = (data) => {
     dispatch(formVoluntario(data));
     reset();
-    window.alert('Formulario enviado, nos comunicaremos en breve');
+    Swal.fire({
+      icon: 'success',
+      title: 'Formulario enviado',
+      text: 'Muchas gracias! Nos comunicaremos en breve',
+      background: '#f3f3f3',
+      confirmButtonColor: '#B9362C',
+      customClass: {
+        title: 'my-custom-title',
+        content: 'my-custom-content',
+        confirmButton: 'my-custom-button',
+      },
+    });    
   };
  
   return (
