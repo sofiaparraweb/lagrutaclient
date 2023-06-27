@@ -45,13 +45,13 @@ const NavBar = ({ isAuthenticated }) => {
         <Link to="/">
           <img src={logo} alt="logo" width="60px" className="logo" onClick={handleClick}/>
         </Link>
-        <NavLink to="/about" className="link" activeClassName="active" id="conocenosNav" onClick={handleClick}> 
+        <NavLink to="/about" className="link" activeclassname="active" id="conocenosNav" onClick={handleClick}> 
           Conocenos
         </NavLink>
-        <NavLink to="/noticias" className="link" activeClassName="active" id="noticiasNav" onClick={handleClick}>
+        <NavLink to="/noticias" className="link" activeclassname="active" id="noticiasNav" onClick={handleClick}>
           Noticias
         </NavLink>
-        <NavLink to="/tienda" className="link" activeClassName="active" id="tiendaNav" onClick={handleClick}>
+        <NavLink to="/tienda" className="link" activeclassname="active" id="tiendaNav" onClick={handleClick}>
           Tienda
         </NavLink>
         <div className="dropdownContainer">
@@ -69,20 +69,20 @@ const NavBar = ({ isAuthenticated }) => {
               onMouseEnter={handleOptionMouseEnter}
               onMouseLeave={handleOptionMouseLeave}
             >
-              <NavLink to="/dona" className="dropdownOption" activeClassName="active" id="donaNav" onClick={handleClick}>
+              <NavLink to="/dona" className="dropdownOption" activeclassname="active" id="donaNav" onClick={handleClick}>
                 Dona
               </NavLink>
-              <NavLink to="/se-padrino" className="dropdownOption" activeClassName="active" id="sepadrinoNav" onClick={handleClick}>
+              <NavLink to="/se-padrino" className="dropdownOption" activeclassname="active" id="sepadrinoNav" onClick={handleClick}>
                 Sé padrino
               </NavLink>
-              <NavLink to="/se-voluntario" className="dropdownOption" activeClassName="active" id="sevoluntarioNav" onClick={handleClick}>
+              <NavLink to="/se-voluntario" className="dropdownOption" activeclassname="active" id="sevoluntarioNav" onClick={handleClick}>
                 Sé voluntario
               </NavLink>
             </div>
           )}
         </div>
         {isAuthenticated ? (
-          <NavLink to="/perfil" className="link" activeClassName="active" id="perfilNav" onClick={handleClick}>
+          <NavLink to="/perfil" className="link" activeclassname="active" id="perfilNav" onClick={handleClick}>
             Perfil
           </NavLink>
         ) : null}
