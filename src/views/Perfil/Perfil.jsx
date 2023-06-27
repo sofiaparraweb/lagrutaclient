@@ -30,22 +30,21 @@ const Perfil = () => {
       isProfileFetchedRef.current = true;
     }
   }, [dispatch, isAuthenticated, user, userId]);
-  
 
-  //  useEffect(() => {
-  //    if (profile) {
-  //      setNewProfile((prevProfile) => ({
-  //       ...prevProfile,
-  //       fullName: profile.fullName || "",
-  //       image: profile.image || "",
-  //       birthdate: profile.birthdate || "",
-  //       phone: profile.phone || "",
-  //       address: profile.address || "",
-  //       occupation: profile.occupation || "",
-  //       role: profile.role || "",
-  //     }));
-  //   }
-  // }, [profile]);
+  useEffect(() => {
+    if (profile) {
+      setNewProfile((prevProfile) => ({
+        ...prevProfile,
+        name: profile.name || "",
+        email: profile.email || "",
+        birthdate: profile.birthdate || "",
+        phone: profile.phone || "",
+        address: profile.address || "",
+        occupation: profile.occupation || "",
+        role: profile.role || "",
+      }));
+    }
+  }, [profile]);
 
   const handleNameChange = (e) => {
     const updatedProfile = { ...newProfile, name: e.target.value };
@@ -90,8 +89,8 @@ const Perfil = () => {
   };
 
   const handleUpdateProfile = () => {
-    dispatch(updateProfile(userId, newProfile));
-    console.log('se ejecuta el update')
+    dispatch(updateProfile(userId, newProfile)); // Eliminé userId ya que se obtiene de la autenticación
+    console.log('se ejecuta el update');
   };
 
   return (
@@ -201,10 +200,10 @@ const Perfil = () => {
                 <div>
                   <Button
                     className="profile-button"
-                    type="button"
+                    colorScheme="teal"
                     onClick={handleUpdateProfile}
                   >
-                    Modificar usuario
+                    Guardar Cambios
                   </Button>
                 </div>
               </div>

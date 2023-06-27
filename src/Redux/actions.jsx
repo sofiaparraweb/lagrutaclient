@@ -243,7 +243,7 @@ export const getProfile = (idUser) => {
 export const updateProfile = (userId, updatedUserData) => {
   return async (dispatch) => {
     try {
-      const response = await axios.put(`${url}/user/${userId}`, updatedUserData);
+      const response = await axios.put(`${url}/user/edit`, updatedUserData);
       dispatch({
         type: UPDATE_PROFILE,
         payload: response.data,
