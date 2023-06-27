@@ -82,32 +82,37 @@ function rootReducer(state = initialstate, action) {
       };
     
     case ADD_TO_CART:
-      // let producto = Carrito.find((producto) => producto.id === id);
-      // producto.stock--;
-      const newProduct = action.payload;
-      const existingProduct = state.Carrito.find((prod) => prod.product_id === newProduct.id);
-  
-      if (existingProduct) {
-        const updatedCart = state.Carrito.map((product) => {
-          if (product.product_id === existingProduct.id) {
-            return { ...product, quantity: product.quantity + 1 };
-          }
-          return product;
-        });
-        return { ...state, Carrito: updatedCart };
-      } else {
-        const updatedCart = [...state.Carrito, newProduct];
-        return {
+      let productToAdd = state.Carrito.find((product) => product.product_id === action.payload)
+      if (productToAdd.quantity >= 1) {
+        state = {
           ...state,
-          Carrito: updatedCart,
+          Carrito: state.Carrito.map((c) =>
+            c.product_id === action.payload ? { ...c, quantity: c.quantity + 1 } : c
+          ),
         };
+        localStorage.setItem("Carrito", JSON.stringify(state.Carrito));
+      } else {
+        state = {
+          ...state,
+          Carrito: state.Carrito.filter((c) => c.product_id !== action.payload),
+        };
+        localStorage.setItem("Carrito", JSON.stringify(state.Carrito));
       }
+      return state;
 
     case DELETE_ALL_CART:
       return {
         ...state,
         Carrito: action.payload,
       };
+
+      // case CLEAR_CART:
+      // state = {
+      //   ...state,
+      //   cart: [],
+      // };
+      // localStorage.setItem("cart", JSON.stringify(state.cart));
+      // return state;
 
     case DELETE_CARRITO:
       return {

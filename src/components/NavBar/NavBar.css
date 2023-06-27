@@ -38,6 +38,7 @@
   transition: 0.5s ease;
   color: white;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
 }
 
 /* -------------------------------------Conocenos */
@@ -106,6 +107,7 @@
 }
 .dropdownOption[id="donaNav"]:hover{
   background-color: #D7B63E;
+  text-decoration: none;
 }
 .active[id="donaNav"]{
   background-color: #D7B63E;
@@ -118,6 +120,7 @@
 }
 .dropdownOption[id="sepadrinoNav"]:hover{
   background-color: #EB5D0B;
+  text-decoration: none;
 }
 .active[id="sepadrinoNav"]{
   background-color: #EB5D0B;
@@ -130,6 +133,7 @@
 }
 .dropdownOption[id="sevoluntarioNav"]:hover{
   background-color: #B9362C;
+  text-decoration: none;
 }
 .active[id="sevoluntarioNav"]{
   background-color: #B9362C;
