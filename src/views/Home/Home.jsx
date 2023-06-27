@@ -1,14 +1,16 @@
 import NavBar from "../../components/NavBar/NavBar";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
-import LastNews from "../../components/News/HeaderNews/LastNews"
+import LastNews from "../../components/News/HeaderNews/LastNews";
 import { Link } from "react-router-dom";
 import style from "./Home.module.css";
 import DonaHome from "./DonaHome/Dona";
-import SePadrinoHome from "./SePadrino/SePadrino"
-import FotosSlider from "./FotosSlider/FotosSlider"
+import SePadrinoHome from "./SePadrino/SePadrino";
+import FotosSlider from "./FotosSlider/FotosSlider";
+import Headerslider from "./FotosSlider/HeaderSlider";
 import lagruta from '../../assets/lagruta.png';
-import { getAllActivity, createProfile } from "../../Redux/actions.jsx"
+import PedirInfo from './Informacion/informacion';
+import { getAllActivity, createProfile } from "../../Redux/actions.jsx";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useRef } from 'react';
 
@@ -42,6 +44,7 @@ const Home = () => {
     return (
         <div>
             <div className={style.Home}>
+                <Headerslider />
                 <FotosSlider />
                 <div className="imageHomeContainer">
                     <img src={lagruta} alt="lagruta"></img>
@@ -50,6 +53,7 @@ const Home = () => {
                 <p className={style.frase}>Eduardo Galeano</p>
                 <DonaHome />
                 <SePadrinoHome />
+                <PedirInfo />
                 <div className={style.NoticiasContenedor}>
                     <LastNews className={style.Noticias} allActivity={allActivity} />
                     <Link to="/noticias" className={style.BotonMasNoticias} onClick={handleClick}>Ver más noticias</Link>

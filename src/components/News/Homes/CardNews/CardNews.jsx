@@ -20,9 +20,7 @@ const CardNews = ({ notices }) => {
                       </div>
                     </div>
                     <div className={style.category}>
-                  
-                          <span>{val.catgeory}</span>
-                        
+                          {val.catgeory}
                         </div>
                     <div className={style.text}>
                       <h1 className={style.title}>
@@ -32,7 +30,7 @@ const CardNews = ({ notices }) => {
                         <i class="fas fa-calendar-days"></i>
                         <label>{val.date}</label>
                       </div>
-                      <p className="desc">{val.desc.slice(0, 140)}...</p>
+                      <p className={style.desc}>{val.desc.slice(0, 140)}...</p>
                     </div>
                   </div>
                 </div>

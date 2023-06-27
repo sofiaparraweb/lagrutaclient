@@ -1,3 +1,15 @@
+export const galleryHead = [
+  {
+    image: "../images/Header_1.png",
+    title: "Puedes ayudar según tus posibilidades"
+  },
+  {
+    image: "../images/Header_2.png",
+    title: "Genera sonrisas y ayuda a niños y niñas vulnerables"
+  },
+]
+
+
 export const hero = [
   {
     id: 1,
