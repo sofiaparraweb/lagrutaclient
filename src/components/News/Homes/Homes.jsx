@@ -34,13 +34,13 @@ const Homes = () => {
         <div className={style.container}>
           <section className={style.mainContent}>
            <NewsCarrousel />
+           <CardNews notices = {currentNotices}/>
            <hr />
            <Paginado 
            noticesPerPage = {noticesPerPage}
            allNotices={notices?.length}
            currentPage = {currentPage}
            handlePaginate = {handlePaginate}/>
-           <CardNews notices = {currentNotices}/>
          {/* aqui van componentes de relleno, actualmente desactivados*/}
           </section>
           <section className={style.sideContent}>
