@@ -284,6 +284,27 @@ export function create_news(payload) {
   };
 }
 
+//==========>>>Donaciones<<<==========//
+export const enviarInformacion = (data) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`${LOCAL}/URL_BACK_END`, data);
+
+      if (response.data.success) {
+        alert("La información se envió correctamente");
+      }
+
+    } catch (error) {
+
+      alert("Error al enviar la información al backend");
+
+      dispatch({ type: "ENVIO_INFORMACION_ERROR", payload: error });
+
+    }
+  };
+};
+
+
 
 /* -----------------------------formulario----------------------------- */
 

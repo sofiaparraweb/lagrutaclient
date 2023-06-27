@@ -3,18 +3,25 @@ import style from "./FormDona.module.css";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
-import { formDonacion } from "../../Redux/actions";
+import { enviarInformacion } from "../../Redux/actions";
+// import { formDonacion } from "../../Redux/actions";
 
 const FormDona = () => {
-  const { register, handleSubmit, reset, formState: { errors }, watch } = useForm();
-  const dispatch = useDispatch();
+    const { register, handleSubmit, reset, formState: { errors }} = useForm() 
+    const dispatch = useDispatch();
 
-  const customSubmit = (data) => {
-    dispatch(formDonacion(data));
-    Swal.fire("¡Validación exitosa!", "Continua!");
-    reset();
-  };
+    const customSubmit = (data) => {
+        //console.log(data)
+        // dispatch(formDonacion(data));
+        dispatch(enviarInformacion(data));
 
+        Swal.fire(
+            "¡Validación exitosa!",
+            "Continua!"
+          )
+        reset();
+    }
+    
   return (
     <>
       <div className={style.contentPrincipal}>
