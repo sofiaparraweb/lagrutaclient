@@ -1,5 +1,5 @@
 import React from "react";
-import style from '../../../../Store/paginado/Paginacion.module.css';
+import style from "./Paginado.module.css";
 import {ArrowLeftIcon, ArrowBackIcon, ArrowForwardIcon, ArrowRightIcon} from '@chakra-ui/icons';
 
 

@@ -11,8 +11,8 @@ const NewsCarrousel = () => {
       <section className={style.popularPost}>
         <HeadingMx title='Noticias destacadas' />
         <div className={style.content}>
-          <AutoSlider>
-          </AutoSlider>
+          <AutoSlider  
+          />  
         </div>
       </section>
     </>
