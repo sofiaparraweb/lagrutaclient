@@ -1,16 +1,14 @@
 import React from "react";
-import { ppost } from "../../../../dummyData";
 import HeadingMx from "../../Heading/HeadingMx";
-
 import style from "./CardNews.module.css";
 
-const CardNews = () => {
+const CardNews = ({ notices }) => {
   return (
     <>
       <section className={style.popularPost}>
         <HeadingMx title="Más noticias" />
         <div className={style.row}>
-          {ppost
+          {notices?.length && notices
           .map((val, index) => {
             return (
               <div key={index} className={style.box}>
