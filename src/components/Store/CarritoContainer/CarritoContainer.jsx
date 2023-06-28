@@ -1,20 +1,18 @@
 import Carrito from "../../../views/Tienda/Carrito/Carrito";
 import style from "./CarritoContainer.module.css";
 import { useEffect } from 'react';
-import { getAllProducts } from '../../../Redux/actions';
+import { getCarrito } from '../../../Redux/actions';
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom";
 
 const CarritoContainer = () => {
 
-    //const Cart = useSelector(state=>state.allProducts);
+    const dispatch = useDispatch();
     const Cart = useSelector(state=>state.Carrito);
 
-    const dispatch = useDispatch();
-
     useEffect(() => {
-        dispatch(getAllProducts());
-      },[]);
+        dispatch(getCarrito());
+      },[dispatch]);
       
     return (
         <div className={style.TiendaItemsContainerCART}> 

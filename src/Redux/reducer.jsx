@@ -82,7 +82,7 @@ function rootReducer(state = initialstate, action) {
       };
     
     case ADD_TO_CART:
-      let productToAdd = state.Carrito.find((product) => product.product_id === action.payload)
+      let productToAdd = state.allProducts.find((product) => product.product_id === action.payload)
       if (productToAdd.quantity >= 1) {
         state = {
           ...state,
@@ -105,14 +105,6 @@ function rootReducer(state = initialstate, action) {
         ...state,
         Carrito: action.payload,
       };
-
-      // case CLEAR_CART:
-      // state = {
-      //   ...state,
-      //   cart: [],
-      // };
-      // localStorage.setItem("cart", JSON.stringify(state.cart));
-      // return state;
 
     case DELETE_CARRITO:
       return {

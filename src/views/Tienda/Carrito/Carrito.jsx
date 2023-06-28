@@ -12,8 +12,9 @@ const Carrito = ({ id, name, image, price, stock }) => {
 
   const dispatch = useDispatch();
   const Cart = useSelector((state) => state.Carrito);
-  const user_id = useSelector((state)=>state.profile);
-  const [productCount, setProductCount] = useState(0);
+  const [amount, setAmount] = useState(0);
+
+  const user_id = localStorage.getItem('user_id');
 
   let subTotalProd = Cart.map((el) => el.price);
   let subtotal = Cart.reduce((acc, el) => acc + el.price, 0);
@@ -21,9 +22,9 @@ const Carrito = ({ id, name, image, price, stock }) => {
   let total = subtotal + servicio;
 
   const handleAddToCart = (id) => {
-    if(productCount<stock) {
+    if(amount<stock) {
       dispatch(addToCart(user_id, id));
-      setProductCount(productCount + 1);
+      setAmount(amount + 1);
       console.log(id);
       console.log(user_id);
       toast.success("Producto agregado al carrito", {
@@ -47,16 +48,25 @@ const Carrito = ({ id, name, image, price, stock }) => {
   // };
     
   const handleDeleteFromCart = (user_id, product_id) => {
-    dispatch(deleteCarrito(user_id, product_id));
-    setProductCount(productCount - 1);
-    toast.success("Producto eliminado del carrito", {
-      duration: 3000
-    })
+    if(amount>1) {
+      dispatch(deleteCarrito(user_id, product_id));
+      setAmount(amount - 1);
+      toast.success("Producto eliminado del carrito", {
+        duration: 3000
+      })
+    } else { 
+      dispatch(deleteAllCarrito(user_id));
+      setAmount(0);
+      toast.success("Carrito vaciado correctamente", {
+        duration: 3000
+      })
+    }
   };
+  
 
   const handleDeleteCart = (user_id) =>{
     dispatch(deleteAllCarrito(user_id));
-    setProductCount(0);
+    setAmount(0);
     toast.success("Carrito vaciado correctamente", {
       duration: 3000
     })
@@ -152,7 +162,7 @@ const Carrito = ({ id, name, image, price, stock }) => {
                 <Heading width='100px' size='xs' textAlign='center'>Cantidad</Heading>
                 <Text py='3' className={style.ContenedorBotonesCart}>
                   <button className={style.ButtonsSumaResta} onClick={handleDeleteFromCart} value="less" >-</button>
-                    {productCount}
+                    {amount}
                   <button className={style.ButtonsSumaResta} onClick={()=>{handleAddToCart(id)}} value="add" >+</button>
                 </Text>
               </CardBody>

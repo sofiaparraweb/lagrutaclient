@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import style from "./TiendaItemsContenedor.module.css";
 import SideBar from "../SideBar/SideBar"
 
-const TiendaItemsContenedor = ({ products, setCurrentPage }) => {
+const TiendaItemsContenedor = ({ products, setCurrentPage, handleClick, userId }) => {
 
     return (
         <div className={style.ContenedorTienda}>
@@ -22,6 +22,8 @@ const TiendaItemsContenedor = ({ products, setCurrentPage }) => {
                             ProductsTypes={prod.ProductsTypes?.map((v) => v.name).join(' / ')}
                             description={prod.description}
                             stock={prod.stock}
+                            handleClick={handleClick}
+                            userId={userId}
                         />
                     ); 
                 })}

@@ -24,6 +24,9 @@ const Perfil = () => {
   const isProfileFetchedRef = useRef(false);
   const userId = useSelector((state) => state.userId); // Obtener el userId del estado
 
+  localStorage.setItem("id usuario", JSON.stringify(profile));
+  localStorage.setItem("id usuariouserId", JSON.stringify(userId));
+
   useEffect(() => {
     if (isAuthenticated && user && !isProfileFetchedRef.current && userId) {
       dispatch(getProfile(userId));

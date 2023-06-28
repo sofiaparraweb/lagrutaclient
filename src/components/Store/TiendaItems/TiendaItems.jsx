@@ -2,34 +2,34 @@
 import style from "./TiendaItems.module.css";
 import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import {addToCart} from "../../../Redux/actions"
+//import {addToCart} from "../../../Redux/actions"
 import { Image, Card, Stack, Text, Heading, CardBody, CardFooter, Button, Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton } from '@chakra-ui/react'
-import { Toaster, toast } from "react-hot-toast";
+//import { Toaster, toast } from "react-hot-toast";
 
-const TiendaItems = ({ id, name, image, price, description, stock, ProductsTypes }) => {
+const TiendaItems = ({ id, name, image, price, description, stock, ProductsTypes, handleClick, userId}) => {
   
   const [isModalOpen, setIsModalOpen] = useState(false);
   const allProducts = useSelector((state) => state.Carrito);
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.userId);
+  //const userId = useSelector((state) => state.userId);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  const handleClick = (id, userId) =>{
-    dispatch(addToCart(id, userId));
-    console.log(id);
-    console.log(userId);
-    toast.success("Producto agregado al carrito", {
-      duration: 3000
-    })
-  }
+  // const handleClick = (id, userId) =>{
+  //   dispatch(addToCart(id, userId));
+  //   console.log(id);
+  //   console.log(userId);
+  //   toast.success("Producto agregado al carrito", {
+  //     duration: 3000
+  //   })
+  // }
 
 
   return (
     <div>
-      <Toaster />
+      {/* <Toaster /> */}
       <Card width='280px' h='400px' margin="20px 0" _hover={{ boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)'}} >
         <CardBody>
           <div onClick={toggleModal}>

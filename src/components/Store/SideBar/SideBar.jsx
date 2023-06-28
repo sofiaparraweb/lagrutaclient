@@ -13,12 +13,12 @@ const SideBar = ({ setCurrentPage }) =>{
   return (
     <div className={style.sidebarContenedor}>
         <span className={style.Changuito}>
-        {isAuthenticated ? (
+        {/* {isAuthenticated ? ( */}
           <Link to="/cart">
             <AiOutlineShoppingCart size={30} /> 
-            <sup className={style.NumeroChango}>{Carrito.length}</sup>
+            <sup className={style.NumeroChango}>{Carrito?.length}</sup>
           </Link>
-         ) : null} 
+         {/* ) : null}  */}
         </span>
         <div className={style.ContenedorFiltroOrden}>
           <Filter setCurrentPage={setCurrentPage}/>
