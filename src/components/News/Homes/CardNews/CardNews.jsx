@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import HeadingMx from "../../Heading/HeadingMx";
 import style from "./CardNews.module.css";
 
-const CardNews = ({ notices }) => {
+const CardNews = () => {
+
+  const allActivity = useSelector(state => state.allActivity);
+
   return (
     <>
       <section className={style.popularPost}>
         <HeadingMx title="Más noticias" />
         <div className={style.row}>
-          {notices?.length && notices
+          {allActivity.length && allActivity
           .map((val, index) => {
             return (
               <div key={index} className={style.box}>
@@ -16,7 +19,7 @@ const CardNews = ({ notices }) => {
                   <div className={style.shadow}>
                     <div className={style.images}>
                       <div className={style.img}>
-                        <img src={val.cover} alt="" />
+                        <img src={val.img} alt="" />
                       </div>
                     </div>
                     <div className={style.category}>
@@ -24,7 +27,7 @@ const CardNews = ({ notices }) => {
                         </div>
                     <div className={style.text}>
                       <h1 className={style.title}>
-                        {val.title.slice(0, 40)}...
+                        {val.name.slice(0, 40)}...
                       </h1>
                       <div className={style.date}>
                         <i class="fas fa-calendar-days"></i>
