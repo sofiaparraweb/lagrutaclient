@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import style from "./sideDash.module.css";
 
 const SideDash = () => {
@@ -15,30 +16,19 @@ const SideDash = () => {
             </li>
             {/* Pestañas dashboardmenu*/}
             <li data-target="#tienda">
-              <a href="#">
+            <Link to="/3">
                 <i className="fa fa-gift fa-lg"></i> Tienda{" "}
-              </a>
+                </Link>
             </li>
             <li data-target="#usuarios">
-              <a href="#">
+            <Link to="/4"> 
                 <i className="fa fa-users fa-lg"></i> Usuarios{" "}
-              </a>
+                </Link>
             </li>
             <li data-target="#noticias">
-              <a href="#activity">
+            <Link to="/2"> 
                 <i className="fa fa-rss fa-lg"></i> Noticias y actividades{" "}
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i className="fa fa-user fa-lg"></i> otros
-              </a>
-            </li>
-
-            <li>
-              <a href="#">
-                <i className="fa fa-users fa-lg"></i> otros
-              </a>
+                </Link>
             </li>
           </ul>
         </div>

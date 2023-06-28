@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import "./App.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import logo from '../src/assets/logo.png'
@@ -13,16 +13,29 @@ import News from "./views/Noticias/News";
 import DetailsNews from "./components/News/DetailsNews/DetailsNews";
 import Tienda from "./views/Tienda/Tienda";
 import CarritoContainer from "./components/Store/CarritoContainer/CarritoContainer";
+import PopUpDonateNow from "./components/MensajeFloat/DonateNow";
+import WP_Button from "./components/MensajeFloat/WP_Button.jsx";
+import BackToTop from "./components/BackToTop/BackToTop";
+
+/* componentes usuarios */
 import Perfil from "./views/Perfil/Perfil";
 import LogIn from "./views/LogIn/LogIn";
 import LogOut from "./views/LogIn/LogOut";
-import BackToTop from "./components/BackToTop/BackToTop";
+
+/* donaciones */
 import DonationForm from "./views/Donacion/Donacion";
-import WP_Button from "./components/MensajeFloat/WP_Button.jsx";
-import Dashboard from "./views/DashBoard/DashBoard";
-import PopUpDonateNow from "./components/MensajeFloat/DonateNow";
 import Padrino from "./views/Padrino/Padrino";
 import Voluntario from "./views/Voluntario/Voluntario";
+
+/* componentes del dashboard */
+import Dashboard from "./views/DashBoard/DashBoard";
+import DashboardNoticias from "./views/DashBoard/DashboarNoticias";
+import DashboardShop from "./views/DashBoard/DashboardShop";
+import DashboardUsers from "./views/DashBoard/DashboardUsers";
+
+
+
+
 
 const App = () => {
   const { isAuthenticated, isLoading } = useAuth0();
@@ -38,6 +51,19 @@ const App = () => {
       </div>
     );
   }
+
+
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+    const isDashboardPage = !(
+      currentPath === '/dashboard' ||
+      currentPath === '/dashboard/2' ||
+      currentPath === '/dashboard/3' ||
+      currentPath === '/dashboard/4'
+
+    );
+
 
   return (
     <div className="App">
@@ -57,16 +83,12 @@ const App = () => {
         <Route path="/login" element={<LogIn />} />
         <Route path="/logout" element={<LogOut />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/dashboard/home" />
-        <Route path="/dashboard/about" />
-        <Route path="/dashboard/noticias" />
-        <Route path="/dashboard/tienda" />
-        <Route path="/dashboard/dona" />
-        <Route path="/dashboard/se-padrino" />
-        <Route path="/dashboard/se-voluntario" />
+        <Route path="/dashboard/2" element={<DashboardNoticias />} />
+        <Route path="/dashboard/3" element={<DashboardShop />}  />
+        <Route path="/dashboard/4" element={<DashboardUsers />}  />
       </Routes> 
       <WP_Button />
-      <PopUpDonateNow />
+      {isDashboardPage && <PopUpDonateNow />}
       <Footer />
       <BackToTop />
     </div>
