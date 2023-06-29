@@ -1,5 +1,5 @@
-import { ppost } from "../../../dummyData";
-import React, { useState }from "react"
+import React, { useState } from "react"
+import { useSelector } from "react-redux";
 import Side from "../SideBar/side/Side.jsx";
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
@@ -12,10 +12,12 @@ import style from "./style.module.css"
 
 const Homes = () => {
 
+
   const [currentPage, setCurrentPage] = useState(1); 
   const noticesPerPage = 4;
 
-  const notices = ppost;
+  const notices = useSelector(state => state.allActivity);
+
 
   const handlePaginate = (pageNumber) => {
     setCurrentPage(pageNumber);
