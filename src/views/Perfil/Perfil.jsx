@@ -8,17 +8,17 @@ import "./Perfil.css";
 const Perfil = () => {
   const { user, isAuthenticated } = useAuth0();
   const [newProfile, setNewProfile] = useState({
-    name: user.name,
-    email: user.email,
+    name: "",
+    mail: user.mail,
     birthdate: "",
     phone: "",
     address: "",
     occupation: "",
     role: "",
-    profileImage: user.picture || "",
+    profileImage: "",
   });
 
-  const { name, email, birthdate, phone, address, occupation, role, profileImage } = newProfile;
+  const { name, mail, birthdate, phone, address, occupation, role, profileImage } = newProfile;
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.profile);
   const isProfileFetchedRef = useRef(false);
@@ -36,7 +36,7 @@ const Perfil = () => {
       setNewProfile((prevProfile) => ({
         ...prevProfile,
         name: profile.name || "",
-        email: profile.email || "",
+        mail: profile.mail,
         birthdate: profile.birthdate || "",
         phone: profile.phone || "",
         address: profile.address || "",
@@ -48,11 +48,6 @@ const Perfil = () => {
 
   const handleNameChange = (e) => {
     const updatedProfile = { ...newProfile, name: e.target.value };
-    setNewProfile(updatedProfile);
-  };
-
-  const handleEmailChange = (e) => {
-    const updatedProfile = { ...newProfile, email: e.target.value };
     setNewProfile(updatedProfile);
   };
 
@@ -89,9 +84,10 @@ const Perfil = () => {
   };
 
   const handleUpdateProfile = () => {
-    dispatch(updateProfile(userId, newProfile)); // Eliminé userId ya que se obtiene de la autenticación
+    dispatch(updateProfile(newProfile)); 
     console.log('se ejecuta el update');
   };
+  
 
   return (
     isAuthenticated && (
@@ -131,16 +127,6 @@ const Perfil = () => {
                       placeholder="Nombre completo"
                       value={name}
                       onChange={handleNameChange}
-                    />
-                  </div>
-                  <div className="col-md-6">
-                    <label className="labels">Email</label>
-                    <Input
-                      type="text"
-                      className="form-control custom-input"
-                      placeholder="Ingresa tu correo electrónico"
-                      value={email}
-                      onChange={handleEmailChange}
                     />
                   </div>
                   <div className="col-md-6">

@@ -137,10 +137,10 @@ export const orderByPrice = (price) => {
 
 /* -----------------------------carrito----------------------------- */
 // ----------Traer el carrito
-export const getCarrito = (user_id) => {
+export const getCarrito = (userId) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${url}/cart/${user_id}`);
+      const response = await axios.get(`${url}/cart/${userId}`);
       dispatch({ type: GET_CART, payload: response.data });
     } catch (error) {
       console.log(error);
@@ -149,10 +149,10 @@ export const getCarrito = (user_id) => {
 };
 
 // ----------Agregar a carrito
-export const addToCart = (user_id, product_id, quantity) => {
+export const addToCart = (userId, product_id, quantity) => {
   return async (dispatch) =>{
     try {
-        const response = await axios.post(`${url}/cart/add?user_id=${user_id}&product_id=${product_id}&quantity=${quantity}`)
+        const response = await axios.post(`${url}/cart/add?user_id=${userId}&product_id=${product_id}&quantity=${quantity}`)
         console.log(response.data);
         dispatch({ type: ADD_TO_CART, payload: response.data})
     } catch (error){
@@ -162,10 +162,10 @@ export const addToCart = (user_id, product_id, quantity) => {
 }
 
 // ----------Borrar todo el carrito
-export const deleteAllCarrito = (user_id) => {
+export const deleteAllCarrito = (userId) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`${url}/cart?user_id=${user_id}`);
+      await axios.delete(`${url}/cart?user_id=${userId}`);
 
       dispatch({ type: DELETE_ALL_CART, payload: [] });
     } catch (error) {
@@ -175,10 +175,10 @@ export const deleteAllCarrito = (user_id) => {
 };
 
 // ----------Borrar un elemento
-export const deleteCarrito = (user_id, product_id) => {
+export const deleteCarrito = (userId, product_id) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`${url}/cart?user_id=${user_id}&product_id=${product_id}`);
+      await axios.delete(`${url}/cart?userId=${userId}&product_id=${product_id}`);
       dispatch({ type: DELETE_CARRITO, payload: product_id });
     } catch (error) {
       console.log(error);  
@@ -186,21 +186,21 @@ export const deleteCarrito = (user_id, product_id) => {
   };
 };
 
-export const amountCarrito = (value, user_id, product_id) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.put(
-        `${url}/cart/${user_id}/${product_id}?putAmount=${value}`
-      );
-      dispatch({
-        type: PUT_AMOUNT_CART,
-        payload: { id: product_id, amount: response.data },
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
+// export const amountCarrito = (value, userId, product_id) => {
+//   return async (dispatch) => {
+//     try {
+//       const response = await axios.put(
+//         `${url}/cart/${userId}/${product_id}?putAmount=${value}`
+//       );
+//       dispatch({
+//         type: PUT_AMOUNT_CART,
+//         payload: { id: product_id, amount: response.data },
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// };
 
 
 /* -----------------------------profile----------------------------- */
@@ -240,16 +240,20 @@ export const getProfile = (idUser) => {
 };
 
 
-export const updateProfile = (userId, updatedUserData) => {
+export const updateProfile = (newProfile) => {
   return async (dispatch) => {
     try {
-      const response = await axios.put(`${url}/user/edit`, updatedUserData);
+      const response = await axios.put(`${url}/user/edit`, {
+       mail: 'sofiparra44@gmail.com',
+       fullName: 'sofi'
+      });
+      console.log(response)
       dispatch({
         type: UPDATE_PROFILE,
         payload: response.data,
       });
     } catch (error) {
-      console.log(error);
+      console.log({error: error.message});
     }
   };
 };
