@@ -1,4 +1,4 @@
-import { getCarrito, addToCart, deleteAllCarrito, deleteCarrito } from "../../../Redux/actions";
+import { getCarrito, addToCart, deleteAllCarrito, deleteCarrito, url } from "../../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Image , Card, HStack, Text, Heading, CardBody } from '@chakra-ui/react';
@@ -64,7 +64,7 @@ const Carrito = ({ id, name, image, price, stock }) => {
 
   const handlePay = async (user_id) => {
     try {
-      const { data } = await axios.post(`https://lagruta.onrender.com/payment/create-order?user_id=${user_id}`, Cart);
+      const { data } = await axios.post(`${url}/payment/create-order?user_id=${user_id}`, Cart);
       window.location.href = data.init_point;
       window.localStorage.removeItem("Cart");
     } catch (error) {

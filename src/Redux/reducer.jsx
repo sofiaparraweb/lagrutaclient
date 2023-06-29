@@ -18,7 +18,8 @@ import {
   CREATE_PROFILE,
   UPDATE_PROFILE,
   POST_NEWS_DASHBOARD,
-  SET_USER_ID
+  SET_USER_ID,
+  FORM_VOLUNTARIO
 } from "./actions";
 
 const initialstate = {
@@ -34,6 +35,7 @@ const initialstate = {
   CarritoProductos: [],
   profile: null,
   userId: null,
+  forms: [],
 };
 
 function rootReducer(state = initialstate, action) {
@@ -171,6 +173,11 @@ function rootReducer(state = initialstate, action) {
       return {
         ...state,
       };
+
+    case FORM_VOLUNTARIO:
+      return {
+        ...state,
+      }
 
     default:
       return state;
