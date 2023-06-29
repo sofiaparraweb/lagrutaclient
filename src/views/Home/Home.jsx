@@ -60,10 +60,10 @@ const Home = () => {
         <div>
             <div className={style.Home}>
                 <Headerslider />
-                <FotosSlider />
                 <div className="imageHomeContainer">
                     <img src={lagruta} alt="lagruta"></img>
                 </div>
+                <FotosSlider />
                 <p className={style.frase}>“Los científicos dicen que estamos hechos de átomos, pero un pajarito me contó que estamos hechos de historias”</p>
                 <p className={style.frase}>Eduardo Galeano</p>
                 <DonaHome />

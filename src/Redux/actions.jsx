@@ -136,7 +136,7 @@ export const orderByPrice = (price) => {
 export const getCarrito = (user_id) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${LOCAL}/cart/${user_id}`);
+      const response = await axios.get(`${url}/cart/${user_id}`);
       dispatch({ type: GET_CART, payload: response.data });
     } catch (error) {
       console.log(error);
@@ -149,7 +149,7 @@ export const addToCart = (user_id, product_id, quantity) => {
 
   return async (dispatch) =>{
     try {
-        const response = await axios.post(`${LOCAL}/cart/add?user_id=${user_id}&product_id=${product_id}&quantity=${quantity}`)
+        const response = await axios.post(`${url}/cart/add?user_id=${user_id}&product_id=${product_id}&quantity=${quantity}`)
         console.log(response);
         dispatch({ type: ADD_TO_CART, payload: response.data})
     } catch (error){
@@ -162,7 +162,7 @@ export const addToCart = (user_id, product_id, quantity) => {
 export const deleteAllCarrito = (user_id) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`${LOCAL}/cart?user_id=${user_id}`);
+      await axios.delete(`${url}/cart?user_id=${user_id}`);
       dispatch({ type: DELETE_ALL_CART, payload: [] });
     } catch (error) {
       console.log(error);       
@@ -174,7 +174,7 @@ export const deleteAllCarrito = (user_id) => {
 export const deleteCarrito = (user_id, product_id) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`${LOCAL}/cart?user_id=${user_id}&product_id=${product_id}`);
+      await axios.delete(`${url}/cart?user_id=${user_id}&product_id=${product_id}`);
       dispatch({ type: DELETE_CARRITO, payload: product_id });
     } catch (error) {
       console.log(error);  
@@ -204,7 +204,7 @@ export const deleteCarrito = (user_id, product_id) => {
 export const createProfile = (newUser) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post(`${LOCAL}/user`, newUser);
+      const response = await axios.post(`${url}/user`, newUser);
       const userId = response.data.newUser.id;
       dispatch({
         type: SET_USER_ID,
@@ -224,8 +224,7 @@ export const getProfile = (idUser) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`${url}/user/${idUser}`);
-      window.localStorage.setItem("idUser", JSON.stringify(response.data));
-      console.log(response,"getprofile");
+      // window.localStorage.setItem("idUser", JSON.stringify(response.data));
       dispatch({
         type: FETCH_PROFILE,
         payload: response.data,

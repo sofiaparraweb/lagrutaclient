@@ -24,6 +24,30 @@
     }
 }
 
+/* -----------------------------------IMAGEN LA GRUTA----------------------------------- */
+.imageHomeContainer {
+    display: flex;
+    justify-content: center;
+}
+
+img[alt="lagruta"] {
+    max-width: 100%;
+    max-height: 300px;
+    margin: auto;
+    margin-top: -80px;
+    margin-bottom: 40px;
+}
+
+.frase {
+    font-family: 'Wicked Grit', sans-serif;
+    font-size: 24px;
+    color: #B9362C;
+    text-align: center;
+    margin: 40px 0;
+    padding: 0 40px;
+  }
+  
+
 /* -----------------------------------NOTICIAS----------------------------------- */
 
 .NoticiasContenedor {
@@ -61,27 +85,6 @@
     color: white;
 }
 
-/* -----------------------------------IMAGEN LA GRUTA----------------------------------- */
-.imageHomeContainer {
-    display: flex;
-    justify-content: center;
-}
-
-img[alt="lagruta"] {
-    max-width: 100%;
-    max-height: 300px;
-    margin: auto;
-}
-
-.frase {
-    font-family: 'Wicked Grit', sans-serif;
-    font-size: 24px;
-    color: #B9362C;
-    text-align: center;
-    margin: 40px 0;
-    padding: 0 40px;
-  }
-  
 /* -----------------------------------UBICACION LA GRUTA----------------------------------- */
 .UbicacionContenedor{
     display: flex;
