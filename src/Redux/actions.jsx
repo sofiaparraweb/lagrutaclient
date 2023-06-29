@@ -25,6 +25,7 @@ export const SET_USER_ID = 'SET_USER_ID';
 
 
 export const url = "https://lagruta.onrender.com";
+const LOCAL = "http://localhost:3001";
 
 export function getAllActivity() {
   return async function (dispatch) {
@@ -39,8 +40,6 @@ export function getAllActivity() {
     }
   };
 }
-
-const LOCAL = "http://localhost:3001";
 
 export function getTypeActi() {
   return async function (dispatch) {
@@ -79,21 +78,21 @@ export function cleanDetail () {
 /* -----------------------------tienda----------------------------- */
 export const getAllProducts = () =>{
   return async (dispatch) =>{
-    const resp = await axios(`${url}/products/`);
+    const resp = await axios(`${LOCAL}/products/`);
     return dispatch({type: GET_ALL_PRODUCTS, payload: resp.data})
   }
 }
 
 export const getAllProductTypes = () =>{
   return async (dispatch) =>{
-    const resp = await axios(`${url}/productsTypes/`);
+    const resp = await axios(`${LOCAL}/productsTypes/`);
     return dispatch({type: GET_ALL_PRODUCTS_TYPES, payload: resp.data})
   }
 }
 
 export const getDetailProducts = (id_products) =>{
   return async (dispatch) =>{
-    const {data} = await axios.get(`${url}/products/${id_products}`);
+    const {data} = await axios.get(`${LOCAL}/products/${id_products}`);
     return dispatch({type: GET_DETAIL_PRODUCTS, payload: data})
   }
 }
@@ -101,7 +100,7 @@ export const getDetailProducts = (id_products) =>{
 export const filterByName = (name) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${url}/filter/name?name=${name}`);
+      const response = await axios.get(`${LOCAL}/filter/name?name=${name}`);
       dispatch({ type: FILTER_BY_NAME, payload: response.data.filteredName });
     } catch (error) {
       console.log(error);
@@ -112,7 +111,7 @@ export const filterByName = (name) => {
 export const filterByType = (name) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${url}/filter/byType?name=${name}`);
+      const response = await axios.get(`${LOCAL}/filter/byType?name=${name}`);
       dispatch({ type: FILTER_BY_TYPE, payload: response.data.filteredByType });
     } catch (error) {
       console.log(error);
@@ -123,7 +122,7 @@ export const filterByType = (name) => {
 export const orderByPrice = (price) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${url}/order/byPrice?price=${price}`);
+      const response = await axios.get(`${LOCAL}/order/byPrice?price=${price}`);
       dispatch({ type: ORDER_BY_PRICE, payload: response.data });
     } catch (error) {
       console.log(error);
@@ -136,7 +135,7 @@ export const orderByPrice = (price) => {
 export const getCarrito = (user_id) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${url}/cart/${user_id}`);
+      const response = await axios.get(`${LOCAL}/cart/${user_id}`);
       dispatch({ type: GET_CART, payload: response.data });
     } catch (error) {
       console.log(error);
@@ -149,7 +148,7 @@ export const addToCart = (user_id, product_id, quantity) => {
 
   return async (dispatch) =>{
     try {
-        const response = await axios.post(`${url}/cart/add?user_id=${user_id}&product_id=${product_id}&quantity=${quantity}`)
+        const response = await axios.post(`${LOCAL}/cart/add?user_id=${user_id}&product_id=${product_id}&quantity=${quantity}`)
         console.log(response);
         dispatch({ type: ADD_TO_CART, payload: response.data})
     } catch (error){
@@ -162,7 +161,7 @@ export const addToCart = (user_id, product_id, quantity) => {
 export const deleteAllCarrito = (user_id) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`${url}/cart?user_id=${user_id}`);
+      await axios.delete(`${LOCAL}/cart?user_id=${user_id}`);
       dispatch({ type: DELETE_ALL_CART, payload: [] });
     } catch (error) {
       console.log(error);       
@@ -174,7 +173,7 @@ export const deleteAllCarrito = (user_id) => {
 export const deleteCarrito = (user_id, product_id) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`${url}/cart?user_id=${user_id}&product_id=${product_id}`);
+      await axios.delete(`${LOCAL}/cart?user_id=${user_id}&product_id=${product_id}`);
       dispatch({ type: DELETE_CARRITO, payload: product_id });
     } catch (error) {
       console.log(error);  
@@ -206,6 +205,7 @@ export const createProfile = (newUser) => {
     try {
       const response = await axios.post(`${url}/user`, newUser);
       const userId = response.data.newUser.id;
+      console.log(userId)
       dispatch({
         type: SET_USER_ID,
         payload: userId,
@@ -238,7 +238,7 @@ export const getProfile = (idUser) => {
 export const updateProfile = (userId, updatedUserData) => {
   return async (dispatch) => {
     try {
-      const response = await axios.put(`${url}/user/${userId}`, updatedUserData);
+      const response = await axios.put(`${LOCAL}/user/${userId}`, updatedUserData);
       dispatch({
         type: UPDATE_PROFILE,
         payload: response.data,

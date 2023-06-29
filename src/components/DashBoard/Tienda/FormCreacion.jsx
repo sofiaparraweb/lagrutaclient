@@ -31,7 +31,7 @@ function validate(name, price, selectedImage, description, stock, product_Types)
 
 const FormCreacion = () => {
   const dispatch = useDispatch();
-  const Types = useSelector((state) => state.allProductTypes);
+  const allProductTypes = useSelector((state) => state.allProductTypes);
 
   const [errors, setErrors] = useState({});
   const [selectedImage, setSelectedImage] = useState(null);
@@ -211,12 +211,14 @@ const FormCreacion = () => {
                     {" "}
                     Seleccionar categoría
                   </option>
-                  {Types?.map((e, index) => (
-                    <option key={e.id} value={e.name}>
-                      {" "}
-                      {e.name}
-                    </option>
-                  ))}{" "}
+                  {allProductTypes?.map((e) => {
+                    return (
+                      <option key={e.id} value={e.name}>
+                        {" "}
+                        {e.name}
+                      </option>
+                    )
+                  })}{" "}
                 </select>
               </div>
               <button className={style.submitbtn} type="submit">

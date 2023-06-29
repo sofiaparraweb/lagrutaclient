@@ -15,9 +15,13 @@ const Tienda = () => {
 
   const { isLoading } = useAuth0();
   const dispatch = useDispatch();
-  const allProducts = useSelector(state => state.allProducts);
-  const prod = useSelector(state => state.products);
-  const userId = JSON.parse(window.localStorage.getItem("idUser"))
+  //const allProducts = useSelector(state => state.Carrito.allProducts);
+  const prod = useSelector(state => state.Cart?.products);
+  const userId = useSelector(state => state.Cart?.userId);
+  const profile = useSelector(state => state.Cart?.profile);
+  console.log(userId)
+  console.log(profile)
+  //const userId = JSON.parse(window.localStorage.getItem("idUser"))
 
   useEffect(() => {
     dispatch(getAllProducts());
