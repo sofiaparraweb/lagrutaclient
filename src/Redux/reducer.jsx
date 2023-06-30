@@ -35,7 +35,7 @@ const initialstate = {
   CarritoProductos: [],
   profile: null,
   userId: null,
-  donaciones: [],
+  donaciones: [], 
 };
 
 function rootReducer(state = initialstate, action) {
