@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import style from "./donateNow.module.css";
+import style from "./DonateNow.module.css";
 
 const PopupModal = () => {
   const [isOpen, setIsOpen] = useState(false);

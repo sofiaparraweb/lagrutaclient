@@ -180,6 +180,10 @@ function rootReducer(state = initialstate, action) {
         ...state,
         donaciones: [...state.donaciones, action.payload],
       };
+    case FORM_VOLUNTARIO:
+      return {
+        ...state,
+      }
 
     default:
       return state;

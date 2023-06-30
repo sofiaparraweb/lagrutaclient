@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./FormDona.module.css";
-import { useForm } from "react-hook-form"
+import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 import { enviarInformacion } from "../../Redux/actions";
@@ -35,6 +35,7 @@ const FormDona = ({ selectedOption, customValue }) => {
      
     const customSubmit = (data) => {
         //console.log(data)
+        // dispatch(formDonacion(data));
         dispatch(enviarInformacion(data));
 
         Swal.fire(
@@ -109,10 +110,10 @@ const FormDona = ({ selectedOption, customValue }) => {
             </div>  
             <button className={style.boton} type='submit'>Enviar</button>
         </form>
-        </div>
+      </div>
     </>
-  )
-}
+  );
+};
 
 
 export default FormDona;

@@ -21,6 +21,7 @@ const Home = () => {
     const allActivity = useSelector(state => state.allActivity);
     const isProfileCreatedRef = useRef(false);
 
+    console.log(user, 'PROBANDO');
     useEffect(() => {
         if (isAuthenticated && user && !isProfileCreatedRef.current) {
           const newUser = {
