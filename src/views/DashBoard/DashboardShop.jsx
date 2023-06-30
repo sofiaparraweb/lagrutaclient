@@ -1,6 +1,6 @@
 import React from "react";
 
-import SideDash from "../../components/DashBoard/sideDash/sideDash.jsx";
+import SideDash from "../../components/DashBoard/sideDash/SideDash.jsx";
 
 export default function DashboardShop() {
   return (

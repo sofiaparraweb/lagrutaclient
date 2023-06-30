@@ -7,7 +7,7 @@ const Card = ({ id, img, ActivityTypes, name, date, description }) => {
     <>
       <div className={style.box}>
         <div className="img">
-          <img src={img} alt="" />
+          <img  src={img} alt="" />
         </div>
         <div className={style.text}>
           {console.log(ActivityTypes)}

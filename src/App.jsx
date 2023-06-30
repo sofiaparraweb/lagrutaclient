@@ -28,10 +28,12 @@ import Padrino from "./views/Padrino/Padrino";
 import Voluntario from "./views/Voluntario/Voluntario";
 
 /* componentes del dashboard */
-import Dashboard from "./views/DashBoard/DashBoard";
+import LayoutAdmin from "./views/DashBoard/LayoutAdmin/LayoutAdmin";
+import Dashboard from "./views/DashBoard/Home";
 import DashboardNoticias from "./views/DashBoard/DashboarNoticias";
 import DashboardShop from "./views/DashBoard/DashboardShop";
 import DashboardUsers from "./views/DashBoard/DashboardUsers";
+
 
 
 
@@ -57,10 +59,7 @@ const App = () => {
   const currentPath = location.pathname;
 
     const isDashboardPage = !(
-      currentPath === '/dashboard' ||
-      currentPath === '/dashboard/2' ||
-      currentPath === '/dashboard/3' ||
-      currentPath === '/dashboard/4'
+      currentPath === '/dashboard'
 
     );
 
@@ -70,7 +69,7 @@ const App = () => {
       <NavBar isAuthenticated={isAuthenticated} />
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route index element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/noticias" element={<News />} />
         <Route exact path="/noticias/:id" element={<DetailsNews />} />
@@ -82,14 +81,16 @@ const App = () => {
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/logout" element={<LogOut />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/dashboard/2" element={<DashboardNoticias />} />
-        <Route path="/dashboard/3" element={<DashboardShop />}  />
-        <Route path="/dashboard/4" element={<DashboardUsers />}  />
+        <Route path="/" element={<LayoutAdmin />}>
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="news" element={<DashboardNoticias />} />
+        <Route path="shop" element={<DashboardShop />}  />
+        <Route path="users" element={<DashboardUsers />}  />
+        </Route>
       </Routes> 
       <WP_Button />
       {isDashboardPage && <PopUpDonateNow />}
-      <Footer />
+      {isDashboardPage && <Footer />}
       <BackToTop />
     </div>
   );
