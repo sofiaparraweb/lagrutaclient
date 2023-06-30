@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import Heading from "../../Heading/Heading.jsx";
 import Tpost from "../Tpost/Tpost";
 import SocialMedia from "../social/SocialMedia";
-
+import Swal from "sweetalert2";
 import GalerySlider from "./GalerySlider.jsx";
 import style from "./Side.module.css";
 
@@ -17,12 +17,19 @@ const Side = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!isValidEmail(email)) {
-      alert("Correo electrónico no válido");
+      Swal.fire({
+        icon: 'error',
+        title: 'Correo electrónico no válido',
+      });
       return;
     }
-    alert("¡Formulario enviado!");
+    Swal.fire({
+      icon: 'success',
+      title: '¡Formulario enviado!',
+    });
     setEmail("");
   };
+  
 
   const isValidEmail = (email) => {
     const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;

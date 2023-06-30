@@ -1,4 +1,5 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export const GET_ALL_ACTIVITY = "GET_ALL_ACTIVITY";
 export const GET_DETAIL_ACTIVITY = "GET_DETAIL_ACTIVITY";
@@ -295,15 +296,19 @@ export const enviarInformacion = (data) => {
       const response = await axios.post(`${LOCAL}/URL_BACK_END`, data);
 
       if (response.data.success) {
-        alert("La información se envió correctamente");
+        Swal.fire({
+          icon: 'success',
+          title: 'La información se envió correctamente',
+        });
       }
 
     } catch (error) {
-
-      alert("Error al enviar la información al backend");
+      Swal.fire({
+        icon: 'error',
+        title: 'Error al enviar la información al backend',
+      });
 
       dispatch({ type: "ENVIO_INFORMACION_ERROR", payload: error });
-
     }
   };
 };
