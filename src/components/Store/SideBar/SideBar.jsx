@@ -11,7 +11,7 @@ const SideBar = ({ setCurrentPage }) =>{
 
   const { isAuthenticated } = useAuth0();
   const navigate = useNavigate();
-  const Carrito = useSelector(state=>state.Carrito)
+  const Carrito = useSelector(state=>state.Cart.Carrito)
 
   const handleCartClick = () => {
     if (isAuthenticated) {
@@ -28,7 +28,7 @@ const SideBar = ({ setCurrentPage }) =>{
       <span className={style.Changuito}>
         <button onClick={handleCartClick} >
           <AiOutlineShoppingCart size={30} /> 
-          <sup className={style.NumeroChango}>{Carrito.length}</sup>
+          <sup className={style.NumeroChango}>{Carrito?.length}</sup>
         </button>
       </span>
       <div className={style.ContenedorFiltroOrden}>

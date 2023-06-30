@@ -12,7 +12,7 @@ const Tienda = () => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.userId); // Obtener el userId del estado
   //const products = useSelector(state => state.allProducts);
-  const prod = useSelector(state => state.products);
+  const prod = useSelector(state => state.Cart.products);
 
   console.log(userId)
   
