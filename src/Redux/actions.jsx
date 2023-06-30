@@ -22,6 +22,7 @@ export const ADD_PRODUCT = "ADD_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const POST_NEWS_DASHBOARD = "POST_NEWS_DASHBOARD";
 export const SET_USER_ID = 'SET_USER_ID';
+export const POST_DONACIONES = "POST_DONACIONES"
 export const FORM_VOLUNTARIO = 'FORM_VOLUNTARIO';
 export const FORM_FOOTER = 'FORM_FOOTER';
 export const FORM_PADRINO = 'FORM_PADRINO';
@@ -292,18 +293,18 @@ export function create_news(payload) {
 export const enviarInformacion = (data) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post(`${LOCAL}/URL_BACK_END`, data);
+      const response = await axios.post(`${LOCAL}/payment/donation/create-order/`, data);
 
       if (response.data.success) {
-        alert("La información se envió correctamente");
+        console.log("La información se envió correctamente");
       }
 
-    } catch (error) {
+      dispatch({ type: POST_DONACIONES, payload: response.data });
 
-      alert("Error al enviar la información al backend");
+    } catch (error) {
+      console.log("Error al enviar la información al backend", error);
 
       dispatch({ type: "ENVIO_INFORMACION_ERROR", payload: error });
-
     }
   };
 };

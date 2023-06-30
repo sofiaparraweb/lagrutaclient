@@ -19,7 +19,7 @@ import {
   UPDATE_PROFILE,
   POST_NEWS_DASHBOARD,
   SET_USER_ID,
-  FORM_VOLUNTARIO
+  POST_DONACIONES,
 } from "./actions";
 
 const initialstate = {
@@ -35,7 +35,7 @@ const initialstate = {
   CarritoProductos: [],
   profile: null,
   userId: null,
-  forms: [],
+  donaciones: [], 
 };
 
 function rootReducer(state = initialstate, action) {
@@ -174,6 +174,12 @@ function rootReducer(state = initialstate, action) {
         ...state,
       };
 
+    //=====>>>caso donaciones<<<=====// 
+      case POST_DONACIONES:
+      return {
+        ...state,
+        donaciones: [...state.donaciones, action.payload],
+      };
     case FORM_VOLUNTARIO:
       return {
         ...state,
