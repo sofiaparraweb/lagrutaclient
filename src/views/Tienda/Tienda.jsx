@@ -10,9 +10,9 @@ import Pagination from "../../components/Store/paginado/Paginacion"
 const Tienda = () => {
   
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.userId); // Obtener el userId del estado
+  const userId = useSelector((state) => state.LocalPersist.userId); // Obtener el userId del estado
   //const products = useSelector(state => state.allProducts);
-  const prod = useSelector(state => state.Cart.products);
+  const prod = useSelector(state => state.LocalPersist.products);
 
   console.log(userId)
   

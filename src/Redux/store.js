@@ -24,7 +24,7 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  Cart: Carrito,
+  LocalPersist: Carrito,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

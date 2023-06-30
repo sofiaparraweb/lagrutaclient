@@ -11,7 +11,7 @@ const SideBar = ({ setCurrentPage }) =>{
 
   const { isAuthenticated } = useAuth0();
   const navigate = useNavigate();
-  const Carrito = useSelector(state=>state.Cart.Carrito)
+  const Carrito = useSelector(state=>state.LocalPersist.Carrito)
 
   const handleCartClick = () => {
     if (isAuthenticated) {
