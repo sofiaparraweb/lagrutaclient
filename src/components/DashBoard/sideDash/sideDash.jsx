@@ -15,20 +15,20 @@ const SideDash = () => {
               </a>
             </li>
             {/* Pestañas dashboardmenu*/}
+            <li data-target="#noticias">
+              <Link to="/2"> 
+                <i className="fa fa-rss fa-lg"></i> Noticias y actividades{" "}
+              </Link>
+            </li>
             <li data-target="#tienda">
-            <Link to="/3">
+              <Link to="/3">
                 <i className="fa fa-gift fa-lg"></i> Tienda{" "}
-                </Link>
+              </Link>
             </li>
             <li data-target="#usuarios">
-            <Link to="/4"> 
+              <Link to="/4"> 
                 <i className="fa fa-users fa-lg"></i> Usuarios{" "}
-                </Link>
-            </li>
-            <li data-target="#noticias">
-            <Link to="/2"> 
-                <i className="fa fa-rss fa-lg"></i> Noticias y actividades{" "}
-                </Link>
+              </Link>
             </li>
           </ul>
         </div>
