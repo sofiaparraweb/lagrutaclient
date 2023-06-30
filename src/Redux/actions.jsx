@@ -297,7 +297,10 @@ export const enviarInformacion = (data) => {
       const response = await axios.post(`${LOCAL}/payment/donation/create-order/`, data);
 
       if (response.data.success) {
-        alert("La información se envió correctamente");
+        Swal.fire({
+          icon: 'success',
+          title: 'La información se envió correctamente',
+        });
       }
 
       dispatch({ type: POST_DONACIONES, payload: response.data });

@@ -89,11 +89,16 @@ const FormCreacion = () => {
     formData.append("types_activity", types_activity);
 
     try {
+<<<<<<< HEAD
       const res = await axios.post(`${LOCAL}/activity/`, formData);
       Swal.fire({
         icon: 'success',
         title: 'Actividad creada con éxito',
       });
+=======
+      const res = await axios.post(`${LOCAL}/products/create/`, formData);
+      alert("Actividad creada con éxito");
+>>>>>>> a2d00bfe1637da1f7e8a139523ce7d223f7497f0
       console.log(res);
       const imgUrl = res.data;
       console.log("url de la img", imgUrl);
