@@ -10,7 +10,7 @@ const DonationForm = () => {
   const [selectedOption, setSelectedOption] = useState("");
   const [customValue, setCustomValue] = useState("");
   const [error, setError] = useState(false);
-  const [success, setSuccess] = useState(false);
+  //const [success, setSuccess] = useState(false);
   const [showForm, setShowForm] = useState(false);
 
   const handleOptionChange = (event) => {
@@ -52,7 +52,7 @@ const DonationForm = () => {
   
     setError(false);
     setCustomValue("");
-    setSuccess(true);
+    //setSuccess(true);
     setShowForm(true);
   };
   
@@ -66,7 +66,10 @@ const DonationForm = () => {
           <div className={style.container1}>
             <img src={dona1} alt="img" id="img-Donacion"/>
           </div>
-          {showForm ? <FormDona /> : (
+          
+          {showForm ? 
+          <FormDona />
+           : (
           <form className={style.contenForm} onSubmit={handleSubmit}>
             <h3 className={style.title1}>¡DONÁ AHORA!</h3>
 
@@ -80,6 +83,7 @@ const DonationForm = () => {
             <label className={style.labels}>
               <input
                 className={style.inputs}
+                name="amount"
                 type="radio"
                 value="opcion1"
                 checked={selectedOption === "opcion1"}
@@ -91,6 +95,7 @@ const DonationForm = () => {
             <label className={style.labels}>
               <input
                 className={style.inputs}
+                name="amount"
                 type="radio"
                 value="opcion2"
                 checked={selectedOption === "opcion2"}
@@ -102,6 +107,7 @@ const DonationForm = () => {
             <label className={style.labels}>
               <input
                 className={style.inputs}
+                name="amount"
                 type="radio"
                 value="opcion3"
                 checked={selectedOption === "opcion3"}
@@ -113,6 +119,7 @@ const DonationForm = () => {
             <label className={style.labels}>
               <input
                 className={style.inputs}
+                name="amount"
                 type="radio"
                 value="otraOpcion"
                 checked={selectedOption === "otraOpcion"}
@@ -127,6 +134,7 @@ const DonationForm = () => {
                   <span className={style.currency}>ARS</span>
                   <input
                     className={style.inputOtro}
+                    name="amount"
                     type="number"
                     value={customValue}
                     onChange={handleCustomValueChange}
@@ -142,13 +150,15 @@ const DonationForm = () => {
               </p>
             )}
              
-                 <button className={style.btnDona} type="submit" id="btn-Donacion">
+                 <button className={style.btnDona} type="submit" >
                  Siguiente
                </button>
                 
             
           </form>
            )}
+          
+
           <div className={style.container2}>
             <div className={style.container3}>
               <img

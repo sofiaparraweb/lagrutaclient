@@ -1,5 +1,5 @@
 .Home{
-    margin-top: 66px;
+    margin-top: 65px;
 }
 
 /* ----------------------------------LOADING---------------------------------- */
@@ -77,7 +77,7 @@ img[alt="lagruta"] {
 
 
 .BotonMasNoticias:hover {
-    transition: 1s ease;
+    transition: 1s ease; 
     border: none;
     text-decoration: none;
     transform: scale(1.05);
