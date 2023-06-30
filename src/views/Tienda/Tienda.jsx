@@ -9,6 +9,7 @@ import Search from "../../components/Store/Search/Search"
 import Pagination from "../../components/Store/paginado/Paginacion"
 
 const Tienda = () => {
+  
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.userId); // Obtener el userId del estado
   //const products = useSelector(state => state.allProducts);

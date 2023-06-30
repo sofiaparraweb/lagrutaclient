@@ -89,7 +89,7 @@ const FormCreacion = () => {
     formData.append("types_activity", types_activity);
 
     try {
-      const res = await axios.post(`${LOCAL}/activity/`, formData);
+      const res = await axios.post(`${LOCAL}/products/create/`, formData);
       alert("Actividad creada con éxito");
       console.log(res);
       const imgUrl = res.data;
