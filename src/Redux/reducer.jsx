@@ -84,7 +84,7 @@ function rootReducer(state = initialstate, action) {
         ...state,
         Carrito: action.payload,
       };
-    
+
     case ADD_TO_CART:
       const newProduct = action.payload;
       const existingProduct = state.Carrito.find((prod) => prod.product_id === newProduct.id);

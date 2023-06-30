@@ -11,8 +11,7 @@ import { Toaster, toast } from "react-hot-toast";
 const Carrito = ({ id, name, image, price, stock }) => {
 
   const dispatch = useDispatch();
-  const Cart = useSelector((state) => state.Carrito);
-  const user_id = useSelector((state)=>state.profile);
+  const Cart = useSelector((state) => state.LocalPersist.Carrito);
   const [productCount, setProductCount] = useState(0);
 
   let subTotalProd = Cart.map((el) => el.price);
