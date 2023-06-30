@@ -20,6 +20,7 @@ import {
   POST_NEWS_DASHBOARD,
   SET_USER_ID,
   POST_DONACIONES,
+  FORM_VOLUNTARIO
 } from "./actions";
 
 const initialstate = {
@@ -36,6 +37,7 @@ const initialstate = {
   profile: null,
   userId: null,
   donaciones: [],
+  forms: [],
 };
 
 function rootReducer(state = initialstate, action) {
