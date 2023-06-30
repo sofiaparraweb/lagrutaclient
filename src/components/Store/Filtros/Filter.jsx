@@ -8,7 +8,7 @@ const Filter = ({ setCurrentPage }) => {
 
   const [activeFilter, setActiveFilter] = useState(null);  //Para modificar el estado del filtro activo
   const dispatch = useDispatch();
-  const allProductTypes = useSelector(state => state.allProductTypes);
+  const allProductTypes = useSelector(state => state.LocalPersist.allProductTypes);
 
   const handleFilter = name => {  //Ejecutamos la action segun el filtro que seleccionemos abajo
     dispatch(filterByType(name));

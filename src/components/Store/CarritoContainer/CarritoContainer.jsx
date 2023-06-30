@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const CarritoContainer = () => {
 
     //const Cart = useSelector(state=>state.allProducts);
-    const Cart = useSelector(state=>state.Carrito);
+    const Cart = useSelector(state=>state.LocalPersist.Carrito);
 
     const dispatch = useDispatch();
 

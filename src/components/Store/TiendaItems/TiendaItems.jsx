@@ -2,27 +2,29 @@
 import style from "./TiendaItems.module.css";
 import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-//import { addToCart } from "../../../Redux/actions"
+//import { agregarAlCarrito } from "../../../Redux/actions"
 import { Image, Card, Text, Heading, CardBody, CardFooter, Button, Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton, Box, Grid } from '@chakra-ui/react'
 import { Toaster, toast } from "react-hot-toast";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const TiendaItems = ({ id, name, image, price, description, stock, ProductsTypes }) => {
-  
+
   const [productosSeleccionados, setProductosSeleccionados] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
-  const allProducts = useSelector((state) => state.Carrito);
-  const userId = useSelector((state) => state.userId); // Obtener el userId del estado
+  const allProducts = useSelector((state) => state.LocalPersist.Carrito);
+  const userId = useSelector((state) => state.LocalPersist.userId); // Obtener el userId del estado
+  console.log(id)
+  console.log(userId)
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
-
   
   const handleClickAdd = () => { // agregamos el producto seleccionado al estado local
     setProductosSeleccionados([...productosSeleccionados, id]);
+    //dispatch(agregarAlCarrito(id));
     toast.success("Producto agregado al carrito", {
       duration: 3000
     })
