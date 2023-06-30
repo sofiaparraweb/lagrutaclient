@@ -2,13 +2,14 @@
 import style from "./TiendaItems.module.css";
 import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../../Redux/actions"
-import { Image, Card, Stack, Text, Heading, CardBody, CardFooter, Button, Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton, Box, Grid } from '@chakra-ui/react'
+//import { addToCart } from "../../../Redux/actions"
+import { Image, Card, Text, Heading, CardBody, CardFooter, Button, Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton, Box, Grid } from '@chakra-ui/react'
 import { Toaster, toast } from "react-hot-toast";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const TiendaItems = ({ id, name, image, price, description, stock, ProductsTypes }) => {
   
+  const [productosSeleccionados, setProductosSeleccionados] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
@@ -19,13 +20,21 @@ const TiendaItems = ({ id, name, image, price, description, stock, ProductsTypes
     setIsModalOpen(!isModalOpen);
   };
 
-  const handleClick = (id, userId) =>{
-    dispatch(addToCart(id, userId));
-    console.log(userId);
+  
+  const handleClickAdd = () => { // agregamos el producto seleccionado al estado local
+    setProductosSeleccionados([...productosSeleccionados, id]);
     toast.success("Producto agregado al carrito", {
       duration: 3000
     })
-  }
+  };
+
+  // const handleClick = (id, userId) =>{
+  //   dispatch(addToCart(id, userId));
+  //   console.log(userId);
+  //   toast.success("Producto agregado al carrito", {
+  //     duration: 3000
+  //   })
+  // }
 
   return (
     <div>
@@ -55,7 +64,7 @@ const TiendaItems = ({ id, name, image, price, description, stock, ProductsTypes
         </CardBody>
         <CardFooter h='49px'> 
           {isAuthenticated ? (
-            <Button className={style.BotonAddToCart} onClick={()=>{handleClick(id)}} backgroundColor='#B9362C' _hover={{ color:'#124476'}} color='white' fontWeight='normal' fontSize='25px' marginTop='-19px'>
+            <Button className={style.BotonAddToCart} onClick={handleClickAdd} backgroundColor='#B9362C' _hover={{ color:'#124476'}} color='white' fontWeight='normal' fontSize='25px' marginTop='-19px'>
               Add to cart
             </Button>
           ) : (
@@ -65,7 +74,7 @@ const TiendaItems = ({ id, name, image, price, description, stock, ProductsTypes
           )}
         </CardFooter>
       </Card>
-      <Modal isOpen={isModalOpen} onClose={toggleModal} size="5xl" >
+      <Modal isOpen={isModalOpen} onClose={toggleModal} size="7xl" >
         <ModalOverlay />
         <ModalContent >
         {/* <ModalContent backgroundColor='transparent' border='1px solid white' backdropFilter="blur(5px)"> */}
