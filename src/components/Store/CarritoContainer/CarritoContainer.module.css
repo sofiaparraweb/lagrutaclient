@@ -28,11 +28,13 @@
     padding: 50px;
     font-size: 40px;
     text-align: center;
+    text-decoration: none;
 }
 .BtnVolverTienda{
     color: white;
     display: flex;
     justify-content: center;
+    text-decoration: none;
     width: fit-content;
     padding: 0 10px;
     height: fit-content;

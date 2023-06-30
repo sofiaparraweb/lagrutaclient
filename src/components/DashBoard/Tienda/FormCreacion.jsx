@@ -5,7 +5,7 @@ import { getAllProductTypes } from "../../../Redux/actions";
 
 import style from "./FormCreacion.module.css";
 
-function validate(name, price, selectedImage, description, stock, product_Types) {
+function validate(name, price, image, description, stock, product_Types) {
   let errors = {};
   if (!name) {
     errors.name = "Debe ingresar un nombre para el producto";
@@ -13,7 +13,7 @@ function validate(name, price, selectedImage, description, stock, product_Types)
   if (!price) {
     errors.price = "Debe ingresar un precio del producto";
   }
-  if (!selectedImage) {
+  if (!image) {
     errors.img = "Debe ingresar una imagen del producto";
   }
   if (!description) {
@@ -34,12 +34,12 @@ const FormCreacion = () => {
   const allProductTypes = useSelector((state) => state.allProductTypes);
 
   const [errors, setErrors] = useState({});
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [image, setImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
   const [name, setName] = useState("");
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
-  const [stock, setStock] = useState(0);
+  const [stock, setStock] = useState("");
   const [product_Types, setProduct_Types] = useState("");
 
   useEffect(() => {
@@ -70,7 +70,7 @@ const FormCreacion = () => {
 
 
   const handleImageChange = (e) => {
-    setSelectedImage(e.target.files[0]);
+    setImage(e.target.files[0]);
     setPreviewImage(URL.createObjectURL(e.target.files[0]));
     setErrors((prevErrors) => ({
       ...prevErrors,
@@ -82,7 +82,7 @@ const FormCreacion = () => {
     const LOCAL = "http://localhost:3001";
     e.preventDefault();
 
-    const validationErrors = validate(name, price, selectedImage, description, stock, product_Types); 
+    const validationErrors = validate(name, price, image, description, stock, product_Types); 
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length > 0) {
@@ -90,7 +90,7 @@ const FormCreacion = () => {
     }
 
     const formData = new FormData();
-    formData.append("img", selectedImage);
+    formData.append("image", image);
     formData.append("name", name);
     formData.append("price", price);
     formData.append("description", description);
@@ -98,14 +98,14 @@ const FormCreacion = () => {
     formData.append("product_Types", product_Types);
 
     try {
-      const res = await axios.post(`${LOCAL}/products/`, formData);
+      const res = await axios.post(`${LOCAL}/products/create`, formData);
       alert("Producto agregado con éxito");
       console.log(res);
       const imgUrl = res.data;
       console.log("url de la img", imgUrl);
 
     setName("");
-    setSelectedImage(null);
+    setImage(null);
     setPreviewImage(null);
     setDescription("");
     setPrice("");
@@ -178,7 +178,7 @@ const FormCreacion = () => {
               {errors?.description && (
                 <p className={style.error}> {errors.description}</p>
               )}
-              <label className={style.LabelForm} htmlFor="img">
+              <label className={style.LabelForm} htmlFor="image">
                 Imagen ilustrativa del producto
               </label>
               <input
