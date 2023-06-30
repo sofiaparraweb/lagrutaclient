@@ -25,7 +25,6 @@ const TiendaItems = ({ id, name, image, price, description, stock, ProductsTypes
     })
   }
 
-
   return (
     <div>
       <Toaster />
