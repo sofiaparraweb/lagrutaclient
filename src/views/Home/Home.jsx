@@ -17,11 +17,10 @@ import logo from "../../assets/logo.png";
 
 const Home = () => {
 
-    const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
+    const { user, isAuthenticated, isLoading } = useAuth0();
     console.log(user)
-    console.log(getAccessTokenSilently())
     const dispatch = useDispatch();
-    const allActivity = useSelector(state => state.allActivity);
+    const allActivity = useSelector(state => state.LocalPersist.allActivity);
     const isProfileCreatedRef = useRef(false);
 
     useEffect(() => {
