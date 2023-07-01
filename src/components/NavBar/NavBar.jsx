@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import logo from "../../assets/logo.png";
+//import {HamburgerIcon} from '@chakra-ui/icons'
 import "./NavBar.css";
 
 const NavBar = ({ isAuthenticated }) => {

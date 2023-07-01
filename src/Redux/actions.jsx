@@ -22,9 +22,15 @@ export const ADD_PRODUCT = "ADD_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const POST_NEWS_DASHBOARD = "POST_NEWS_DASHBOARD";
 export const SET_USER_ID = 'SET_USER_ID';
+export const POST_DONACIONES = "POST_DONACIONES"
+export const FORM_VOLUNTARIO = 'FORM_VOLUNTARIO';
+export const FORM_FOOTER = 'FORM_FOOTER';
+export const FORM_PADRINO = 'FORM_PADRINO';
+export const FORM_DONACION = 'FORM_DONACION';
 
-
-export const url = "https://lagruta.onrender.com";
+export const url = "http://localhost:3001";
+// export const url = "https://lagruta.onrender.com";
+// const LOCAL = "http://localhost:3001";
 
 export function getAllActivity() {
   return async function (dispatch) {
@@ -39,8 +45,6 @@ export function getAllActivity() {
     }
   };
 }
-
-const LOCAL = "http://localhost:3001";
 
 export function getTypeActi() {
   return async function (dispatch) {
@@ -60,7 +64,7 @@ export function getActiId(id) {
   return async function (dispatch) {
     try {
       const res = await axios.get(`${url}/activity/${id}`);
-      console.log(res.data)
+      // console.log(res.data)
       return dispatch({
         type: GET_DETAIL_ACTIVITY,
         payload: res.data,
@@ -134,10 +138,10 @@ export const orderByPrice = (price) => {
 
 /* -----------------------------carrito----------------------------- */
 // ----------Traer el carrito
-export const getCarrito = (user_id) => {
+export const getCarrito = (userId) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${url}/cart/${user_id}`);
+      const response = await axios.get(`${url}/cart/${userId}`);
       dispatch({ type: GET_CART, payload: response.data });
     } catch (error) {
       console.log(error);
@@ -146,10 +150,10 @@ export const getCarrito = (user_id) => {
 };
 
 // ----------Agregar a carrito
-export const addToCart = (user_id, product_id, quantity) => {
+export const addToCart = (userId, product_id, quantity) => {
   return async (dispatch) =>{
     try {
-        const response = await axios.post(`${url}/cart/add?user_id=${user_id}&product_id=${product_id}&quantity=${quantity}`)
+        const response = await axios.post(`${url}/cart/add?user_id=${userId}&product_id=${product_id}&quantity=${quantity}`)
         console.log(response.data);
         dispatch({ type: ADD_TO_CART, payload: response.data})
     } catch (error){
@@ -159,10 +163,10 @@ export const addToCart = (user_id, product_id, quantity) => {
 }
 
 // ----------Borrar todo el carrito
-export const deleteAllCarrito = (user_id) => {
+export const deleteAllCarrito = (userId) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`${url}/cart?user_id=${user_id}`);
+      await axios.delete(`${url}/cart?user_id=${userId}`);
 
       dispatch({ type: DELETE_ALL_CART, payload: [] });
     } catch (error) {
@@ -172,10 +176,10 @@ export const deleteAllCarrito = (user_id) => {
 };
 
 // ----------Borrar un elemento
-export const deleteCarrito = (user_id, product_id) => {
+export const deleteCarrito = (userId, product_id) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`${url}/cart?user_id=${user_id}&product_id=${product_id}`);
+      await axios.delete(`${url}/cart?userId=${userId}&product_id=${product_id}`);
       dispatch({ type: DELETE_CARRITO, payload: product_id });
     } catch (error) {
       console.log(error);  
@@ -183,21 +187,21 @@ export const deleteCarrito = (user_id, product_id) => {
   };
 };
 
-export const amountCarrito = (value, user_id, product_id) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.put(
-        `${url}/cart/${user_id}/${product_id}?putAmount=${value}`
-      );
-      dispatch({
-        type: PUT_AMOUNT_CART,
-        payload: { id: product_id, amount: response.data },
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
+// export const amountCarrito = (value, userId, product_id) => {
+//   return async (dispatch) => {
+//     try {
+//       const response = await axios.put(
+//         `${url}/cart/${userId}/${product_id}?putAmount=${value}`
+//       );
+//       dispatch({
+//         type: PUT_AMOUNT_CART,
+//         payload: { id: product_id, amount: response.data },
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// };
 
 
 /* -----------------------------profile----------------------------- */
@@ -237,16 +241,20 @@ export const getProfile = (idUser) => {
 };
 
 
-export const updateProfile = (userId, updatedUserData) => {
+export const updateProfile = (newProfile) => {
   return async (dispatch) => {
     try {
-      const response = await axios.put(`${url}/user/${userId}`, updatedUserData);
+      const response = await axios.put(`${url}/user/edit`, {
+       mail: 'sofiparra44@gmail.com',
+       fullName: 'sofi'
+      });
+      console.log(response)
       dispatch({
         type: UPDATE_PROFILE,
         payload: response.data,
       });
     } catch (error) {
-      console.log(error);
+      console.log({error: error.message});
     }
   };
 };
@@ -270,7 +278,7 @@ export const deleteProduct = (product) => {
 export function create_news(payload) {
   return async function (dispatch) {
     try {
-      var res = await axios.post(`${LOCAL}/activity/`, payload);
+      var res = await axios.post(`${url}/activity/`, payload);
       return {
         type: POST_NEWS_DASHBOARD,
         res,
@@ -285,19 +293,82 @@ export function create_news(payload) {
 export const enviarInformacion = (data) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post(`${LOCAL}/URL_BACK_END`, data);
+      const response = await axios.post(`${LOCAL}/payment/donation/create-order/`, data);
 
       if (response.data.success) {
-        alert("La información se envió correctamente");
+        console.log("La información se envió correctamente");
       }
 
-    } catch (error) {
+      dispatch({ type: POST_DONACIONES, payload: response.data });
 
-      alert("Error al enviar la información al backend");
+    } catch (error) {
+      console.log("Error al enviar la información al backend", error);
 
       dispatch({ type: "ENVIO_INFORMACION_ERROR", payload: error });
-
     }
   };
 };
 
+
+
+/* -----------------------------formulario----------------------------- */
+
+export const formVoluntario = (formData) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`${url}/form/formVoluntario`, formData)
+      dispatch ({
+        type: 'FORM_VOLUNTARIO',
+        payload: response.data,
+      });
+      console.log('funcion mail voluntario')
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const formPadrino = (formData) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`${url}/form/formPadrino`, formData)
+      dispatch ({
+        type: 'FORM_PADRINO',
+        payload: response.data,
+      });
+      console.log('funcion mail padrino')
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const formFooter = (formData) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`${url}/form/formFooter`, formData)
+      dispatch ({
+        type: 'FORM_FOOTER',
+        payload: response.data,
+      });
+      console.log('funcion mail footer')
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const formDonacion = (formData) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`${url}/form/formDonacion`, formData)
+      dispatch ({
+        type: 'FORM_DONACION',
+        payload: response.data,
+      });
+      console.log('funcion mail Donacion')
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};

@@ -1,5 +1,5 @@
 import React from "react";
-
+import FormCreacion from "../../components/DashBoard/Tienda/FormCreacion";
 
 
 export default function DashboardShop() {
@@ -14,6 +14,11 @@ export default function DashboardShop() {
       <div className="bg-gray-800 px-4 py-2 flex flex-col lg:flex-row lg:items-center flex-shrink-0">
         <h1 className="text-2xl text-white my-10">Últimos productos añadidos</h1>
       </div>
+
+      <div className="bg-gray-800 px-4 py-2 flex flex-col lg:flex-row lg:items-center flex-shrink-0">
+        <h1 className="text-2xl text-white my-10">Crear nuevas publicaciones</h1>
+      </div>
+      <FormCreacion /> 
     </>
   );
 }

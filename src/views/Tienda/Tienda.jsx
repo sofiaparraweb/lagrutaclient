@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { getAllProducts } from '../../Redux/actions';
-import NavBar from "../../components/NavBar/NavBar";
 import TiendaItemsContenedor from "../../components/Store/TiendaItemsContenedor/TiendaItemsContenedor";
 import style from "./Tienda.module.css";
 import { useDispatch, useSelector } from 'react-redux'
@@ -9,11 +8,14 @@ import Search from "../../components/Store/Search/Search"
 import Pagination from "../../components/Store/paginado/Paginacion"
 
 const Tienda = () => {
-
+  
   const dispatch = useDispatch();
+  const userId = useSelector((state) => state.LocalPersist.userId); // Obtener el userId del estado
   //const products = useSelector(state => state.allProducts);
-  const prod = useSelector(state => state.products);
+  const prod = useSelector(state => state.LocalPersist.products);
 
+  console.log(userId)
+  
   const [currentPage, setCurrentPage] = useState(1); 
   const productsPerPage = 9;
 

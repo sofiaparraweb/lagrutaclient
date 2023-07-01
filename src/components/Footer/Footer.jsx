@@ -1,29 +1,19 @@
 import style from "./Footer.module.css";
 import React from "react";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { formFooter } from "../../Redux/actions";
 import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
-  const [email, setEmail] = useState("");
-
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (!isValidEmail(email)) {
-      alert("Correo electrónico no válido");
-      return;
-    }
-    alert("¡Formulario enviado!");
-    setEmail("");
-  };
-
-  const isValidEmail = (email) => {
-    const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-    return emailRegex.test(email.trim());
-  };
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    const dispatch = useDispatch();
+  
+    const onSubmit = (data) => {
+      dispatch(formFooter(data.email));
+      reset();
+      alert("¡Formulario enviado!");
+    };
 
   return (
     <footer className={style.mainFooter}>
@@ -31,7 +21,7 @@ const Footer = () => {
         <div className={style.footerSection}>
           <h3 className={style.title}>Conocé LA GRUTA</h3>
           <ul>
-            <li className={style.itemsTex}>
+            <li className={style.itemsTex} >
               <a href="/about">Qué hace La Gruta</a>
             </li>
             <li className={style.itemsTex}>
@@ -58,29 +48,29 @@ const Footer = () => {
           </ul>
         </div>
 
-        <form className={style.footerSection} onSubmit={handleSubmit}>
-          <h3 className={style.title}>¡Suscríbete para más información!</h3>
-          <input
+        <form className={style.footerSection} onSubmit={handleSubmit(onSubmit)}>
+ <h3 className={style.title}>¡Suscríbete para más información!</h3>
+   <input
             className={style.input}
             type="email"
             name="email"
             placeholder="Ingresar Email"
-            value={email}
-            onChange={handleEmailChange}
+            {...register("email", {
+              required: true,
+              pattern: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/i,
+            })}
           />
+          {errors.email && <p className={style.fail}>Correo electrónico no válido</p>}
           <button className={style.btnSuscripcion} type="submit">
             SUSCRIBIRSE
           </button>
         </form>
 
         <div className={style.footerSection}>
-          <button className={style.btnFooter}>DONÁ AHORA</button>
-          <ul className={style.redes}>
-            <li className={style.itemsRedes}>
-              <a
-                href="https://www.facebook.com/lagrutacomedor"
-                target="_blank"
-                rel="noreferrer">
+          <button className={style.btnFooter} >DONÁ AHORA</button>
+          <ul className={style.redes} >
+            <li className={style.itemsRedes} >
+              <a href="https://www.facebook.com/lagrutacomedor" target="_blank" rel="noreferrer">
                 <FaFacebook />
               </a>
             </li>
@@ -90,18 +80,12 @@ const Footer = () => {
               </a>
             </li>
             <li className={style.itemsRedes}>
-              <a
-                href="https://www.instagram.com/lagrutacdi/"
-                target="_blank"
-                rel="noreferrer">
+              <a href="https://www.instagram.com/lagrutacdi/" target="_blank" rel="noreferrer">
                 <FaInstagram />
               </a>
             </li>
             <li className={style.itemsRedes}>
-              <a
-                href="https://www.youtube.com/"
-                target="_blank"
-                rel="noreferrer">
+              <a href="https://www.youtube.com/" target="_blank" rel="noreferrer">
                 <FaYoutube />
               </a>
             </li>
@@ -110,10 +94,10 @@ const Footer = () => {
       </div>
 
       <div className={style.copy}>
-        <p>© 2023 La Gruta. Developed by Alumnos Henry</p>
+        <p>© 2023 La Gruta.</p>
       </div>
     </footer>
   );
-};
+}
 
 export default Footer;

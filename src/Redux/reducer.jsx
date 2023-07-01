@@ -18,7 +18,9 @@ import {
   CREATE_PROFILE,
   UPDATE_PROFILE,
   POST_NEWS_DASHBOARD,
-  SET_USER_ID
+  SET_USER_ID,
+  POST_DONACIONES,
+  FORM_VOLUNTARIO,
 } from "./actions";
 
 const initialstate = {
@@ -34,6 +36,8 @@ const initialstate = {
   CarritoProductos: [],
   profile: null,
   userId: null,
+  donaciones: [],
+  forms: [], 
 };
 
 function rootReducer(state = initialstate, action) {
@@ -80,7 +84,7 @@ function rootReducer(state = initialstate, action) {
         ...state,
         Carrito: action.payload,
       };
-    
+
     case ADD_TO_CART:
       const newProduct = action.payload;
       const existingProduct = state.Carrito.find((prod) => prod.product_id === newProduct.id);
@@ -171,6 +175,17 @@ function rootReducer(state = initialstate, action) {
       return {
         ...state,
       };
+
+    //=====>>>caso donaciones<<<=====// 
+      case POST_DONACIONES:
+      return {
+        ...state,
+        donaciones: [...state.donaciones, action.payload],
+      };
+    case FORM_VOLUNTARIO:
+      return {
+        ...state,
+      }
 
     default:
       return state;

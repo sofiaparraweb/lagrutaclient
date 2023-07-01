@@ -12,12 +12,12 @@ const SePadrinoHome = () =>{
     return(
         <div className={style.SePadrinoHome}>
             <div className={style.ImagenContainer}>
-                <div className={style.SumateContainer}>
-                    <img src={Sumate} alt="sumate" width="550px"></img>
-                </div>
-                <img src={naranja} alt="naranja"></img>
+                <img src={Sumate} alt="sumate" width="550px"></img>
             </div>
-            <p id="SePadrino">Te invitamos a formar parte de esta comunidad tan linda, sumate como padrino o madrina de los niños que están esperando por vos, por tu abrazo y todo el cariño que tenés para brindarles</p>
+            <div className={style.SumateContainerParteDerecha}>
+                <img src={naranja} alt="naranja"></img>
+                <p id="SePadrino">Te invitamos a formar parte de esta comunidad tan linda, sumate como padrino o madrina de los niños que están esperando por vos, por tu abrazo y todo el cariño que tenés para brindarles</p>
+            </div>
             <Link to="/sePadrino" className={style.BotonSePadrino} onClick={handleClick}>Sumate! </Link>
         </div>
     )

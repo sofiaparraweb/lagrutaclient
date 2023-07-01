@@ -1,28 +1,29 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { create_news, getTypeActi } from "../../../Redux/actions";
-
-
-import "@szhsin/react-menu/dist/index.css";
-import "@szhsin/react-menu/dist/transitions/slide.css";
+import { getAllProductTypes } from "../../../Redux/actions";
 
 import style from "./FormCreacion.module.css";
 
-function validate(name, date, description, selectedImage) {
+function validate(name, price, image, description, stock, product_Types) {
   let errors = {};
   if (!name) {
-    errors.name = "La publicación requiere un título";
+    errors.name = "Debe ingresar un nombre para el producto";
+  }
+  if (!price) {
+    errors.price = "Debe ingresar un precio del producto";
+  }
+  if (!image) {
+    errors.img = "Debe ingresar una imagen del producto";
   }
   if (!description) {
-    errors.description = "La publicación requiere una descripción minima";
+    errors.description = "Debe ingresar una descripcion del producto";
   }
-  if (!selectedImage) {
-    errors.img = "Esta publicación debe tener una imagen";
+  if (!stock) {
+    errors.stock = "Debe ingresar el stock de unidades a vender";
   }
-
-  if (!date) {
-    errors.date = "Esta publicación debe tener una fecha";
+  if (!product_Types) {
+    errors.product_Types = "Debe ingresar el tipo de producto a vender";
   }
 
   return errors;
@@ -30,18 +31,19 @@ function validate(name, date, description, selectedImage) {
 
 const FormCreacion = () => {
   const dispatch = useDispatch();
-  const Types = useSelector((state) => state.activityTypes);
+  const allProductTypes = useSelector((state) => state.allProductTypes);
 
   const [errors, setErrors] = useState({});
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [image, setImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
   const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
-  const [date, setDate] = useState("");
-  const [types_activity, setTypesActivity] = useState("");
+  const [stock, setStock] = useState("");
+  const [product_Types, setProduct_Types] = useState("");
 
   useEffect(() => {
-    dispatch(getTypeActi());
+    dispatch(getAllProductTypes());
   }, []);
 
   const handleInputChange = (e) => {
@@ -55,18 +57,20 @@ const FormCreacion = () => {
     // Actualizar el valor del campo
     if (name === "name") {
       setName(value);
+    } else if (name === "price") {
+      setPrice(value);
     } else if (name === "description") {
       setDescription(value);
-    } else if (name === "date") {
-      setDate(value);
-    } else if (name === "types_activity") {
-      setTypesActivity(value);
+    } else if (name === "stock") {
+      setStock(value);
+    } else if (name === "product_Types") {
+      setProduct_Types(value);
     }
   };
 
 
   const handleImageChange = (e) => {
-    setSelectedImage(e.target.files[0]);
+    setImage(e.target.files[0]);
     setPreviewImage(URL.createObjectURL(e.target.files[0]));
     setErrors((prevErrors) => ({
       ...prevErrors,
@@ -78,7 +82,7 @@ const FormCreacion = () => {
     const LOCAL = "http://localhost:3001";
     e.preventDefault();
 
-    const validationErrors = validate(name, date, description, selectedImage);
+    const validationErrors = validate(name, price, image, description, stock, product_Types); 
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length > 0) {
@@ -86,25 +90,27 @@ const FormCreacion = () => {
     }
 
     const formData = new FormData();
-    formData.append("img", selectedImage);
+    formData.append("image", image);
     formData.append("name", name);
+    formData.append("price", price);
     formData.append("description", description);
-    formData.append("date", date);
-    formData.append("types_activity", types_activity);
+    formData.append("stock", stock);
+    formData.append("product_Types", product_Types);
 
     try {
-      const res = await axios.post(`${LOCAL}/products/create/`, formData);
-      alert("Actividad creada con éxito");
+      const res = await axios.post(`${LOCAL}/products/create`, formData);
+      alert("Producto agregado con éxito");
       console.log(res);
       const imgUrl = res.data;
       console.log("url de la img", imgUrl);
 
     setName("");
-    setSelectedImage(null);
+    setImage(null);
     setPreviewImage(null);
     setDescription("");
-    setDate("");
-    setTypesActivity("");
+    setPrice("");
+    setStock("");
+    setProduct_Types("");
     setErrors({});
 
     } catch (err) {
@@ -116,11 +122,15 @@ const FormCreacion = () => {
   return (
     <section className={style.section}>
       <div className={style.formContainer}>
-      <div className="flex items-center justify-between mb-10">
-        <h1 className="text-4xl text-gray-700">Estadísticas Generales</h1>
-      </div>
-
-      
+        <div className={style.headerForm}>
+          <h1 className={style.h1form}>
+            Agregar productos nuevos a la tienda
+          </h1>
+          <p>
+            En este apartado puedes añadir productos nuevos a la tienda,
+            recuerda también, que puedes editarlos una vez este publicados.{" "}
+          </p>
+        </div>
         <div className={style.bottompart}>
           <div className={style.imgpart}>
             {previewImage && (
@@ -134,7 +144,7 @@ const FormCreacion = () => {
           <div className={style.formpart}>
             <form onSubmit={handleSubmit}>
               <label className={style.LabelForm} htmlFor="name">
-                Título de publicación
+                Nombre del producto
               </label>
               <input
                 className={style.inputbox}
@@ -144,32 +154,32 @@ const FormCreacion = () => {
                 onChange={handleInputChange}
               />
               {errors?.name && <p className={style.error}> {errors.name}</p>}
-              <label className={style.LabelForm} htmlFor="date">
-                Fecha de publicación
+              <label className={style.LabelForm} htmlFor="price">
+                Precio del producto
               </label>
               <input
                 className={style.inputbox}
-                type="date"
-                value={date}
-                name="date"
+                type="integer"
+                value={price}
+                name="price"
                 onChange={handleInputChange}
               />
-              {errors?.date && <p className={style.error}> {errors.date}</p>}
+              {errors?.price && <p className={style.error}> {errors.price}</p>}
               <label className={style.LabelForm} htmlFor="description">
-                Descripción de la noticia
+                Descripción del producto
               </label>
               <textarea
                 className={style.inputbox}
                 value={description}
                 name="description"
-                placeholder="descripción de la noticia"
+                placeholder="descripción del producto"
                 onChange={handleInputChange}
               />
               {errors?.description && (
                 <p className={style.error}> {errors.description}</p>
               )}
-              <label className={style.LabelForm} htmlFor="img">
-                Imagen de portada
+              <label className={style.LabelForm} htmlFor="image">
+                Imagen ilustrativa del producto
               </label>
               <input
                 className={style.inputbox}
@@ -178,24 +188,37 @@ const FormCreacion = () => {
                 onChange={handleImageChange}
               />{" "}
               {errors?.img && <p className={style.error}> {errors.img}</p>}
+              <label className={style.LabelForm} htmlFor="stock">
+                Cantidad de unidades a vender
+              </label>
+              <input
+                className={style.inputbox}
+                type="integer"
+                value={stock}
+                name="stock"
+                onChange={handleInputChange}
+              />
+              {errors?.stock && <p className={style.error}> {errors.stock}</p>}  
               <label className={style.LabelForm} htmlFor="">
-                Seleccione categoría de la noticia
+                Seleccione un tipo de producto
               </label>
               <div className="types-s">
                 <select
                   className={style.inputbox}
-                  value={types_activity}
-                  onChange={(e) => setTypesActivity(e.target.value)}>
+                  value={product_Types}
+                  onChange={(e) => setProduct_Types(e.target.value)}>
                   <option className={style.options} key="" value="">
                     {" "}
                     Seleccionar categoría
                   </option>
-                  {Types?.map((e, index) => (
-                    <option key={e.id} value={e.name}>
-                      {" "}
-                      {e.name}
-                    </option>
-                  ))}{" "}
+                  {allProductTypes?.map((e) => {
+                    return (
+                      <option key={e.id} value={e.name}>
+                        {" "}
+                        {e.name}
+                      </option>
+                    )
+                  })}{" "}
                 </select>
               </div>
               <button className={style.submitbtn} type="submit">
