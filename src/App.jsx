@@ -42,6 +42,7 @@ import DashboardUsers from "./views/DashBoard/DashboardUsers";
 const App = () => {
   const { isAuthenticated, isLoading } = useAuth0();
 
+
   if (isLoading) {
     return (
       <div className="loading-container">
@@ -59,14 +60,18 @@ const App = () => {
   const currentPath = location.pathname;
 
     const isDashboardPage = !(
-      currentPath === '/dashboard'
+      currentPath === '/dashboard' ||
+      currentPath === '/news' ||
+      currentPath === '/shop' ||
+      currentPath === '/users'
 
     );
 
 
   return (
     <div className="App">
-      <NavBar isAuthenticated={isAuthenticated} />
+      
+      {isDashboardPage && <NavBar isAuthenticated={isAuthenticated} /> }
 
       <Routes>
         <Route index element={<Home />} />

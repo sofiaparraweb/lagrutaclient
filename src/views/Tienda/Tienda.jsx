@@ -34,7 +34,6 @@ const Tienda = () => {
 
   return (
     <div className={style.FondoTienda}>
-      <NavBar />
       <div className={style.tienda}>
         <div className={style.SearchOrder}>
           <Search />

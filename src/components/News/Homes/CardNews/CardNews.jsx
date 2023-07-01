@@ -9,7 +9,6 @@ const CardNews = () => {
 
   const allActivity = useSelector(state => state.allActivity);
 
-  console.log(allActivity)
 
   return (
     <>

@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import style from "./LastNews.module.css";
 
 const Card = ({ id, img, ActivityTypes, name, date, description }) => {
+
+  console.log(ActivityTypes)
+  
   return (
     <>
       <div className={style.box}>
@@ -10,8 +13,9 @@ const Card = ({ id, img, ActivityTypes, name, date, description }) => {
           <img  src={img} alt="" />
         </div>
         <div className={style.text}>
-          {console.log(ActivityTypes)}
+          
           {ActivityTypes?.map((t, index) => {
+  
             return (
               <span key={index} className={style.category}>
                 {t.name}
