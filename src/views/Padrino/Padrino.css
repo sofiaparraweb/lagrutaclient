@@ -5,29 +5,32 @@
     max-width: 100%;
     margin: 55px auto;
     padding: 30px;
-    font-family: 'Wicked Grit', sans-serif;
-    color: #124476;
+    color: #B9362C;
   }
   
   .padrino-title {
     font-size: 44px;
     font-weight: bold;
     margin-bottom: 10px;
-    Color: #B9362C;
+    Color: #124476;
+    font-family: 'Wicked Grit', sans-serif;
   }
   .padrino-section {
     margin-bottom: 30px;
+    font-family: 'Wicked Grit', sans-serif;
   }
   
   .padrino-section-title {
     font-size: 30px;
     font-weight: bold;
     margin-bottom: 10px;
+    font-family: 'Wicked Grit', sans-serif;
   }
   
   .padrino-section-description {
-    font-size: 14px;
+    font-size: 22px;
     color: black;
+    font-family: 'DK Lemon Yellow Sun', sans-serif;
   }
   
   .padrino-form {

@@ -3,7 +3,8 @@ import style from "./About.module.css";
 import Mision from "./Mision/Mision";
 import Vision from "./Vision/Vision";
 import Valores from "./Valores/Valores";
-import Timeline from "./Historia/Historia";
+import Timeline from "./Timeline/Timeline";
+import Equipo from "./Equipo/Equipo";
 
 const About = () => {
   return (
@@ -30,24 +31,9 @@ const About = () => {
       <Vision />
       <Valores />
 
-      {/* <section className={style.section}>
-        <h2>¿Qué hacemos?</h2>
-        
-      </section> */}
-
-      <header className={style.headerAboutLaGruta}>
-        <h1>Historia</h1>
-      </header>
       <Timeline />
-{/* 
-      <section className={style.section}>
-        <h2>¿Quiénes somos? Equipo</h2>
-      
-      </section> */}
+      <Equipo />
 
-      <section className={style.section}>
-        <button className={style.donationButton}>Donar</button>
-      </section>
     </div>
   );
 };

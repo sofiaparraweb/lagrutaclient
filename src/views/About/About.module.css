@@ -9,36 +9,39 @@
   text-align: center;
   padding-top: 100px;
   padding-bottom: 20px;
-  background-color: rgb(242, 217, 152, 0.77);
+  background-color: white;
 }
 
 .headerAboutLaGruta h1 {
-  font-size: 35px;
+  font-size: 65px;
   margin-bottom: 8px;
   font-family: 'Wicked Grit', sans-serif;
   color: #124476;
 }
 
 .headerAboutLaGruta p {
-  font-size: 20px;
+  font-size: 45px;
   color: #B9362C;
   font-family: 'DK Lemon Yellow Sun', sans-serif;
 }
 
 .TextoAbout {
-  padding-bottom: 40px;
+  padding-bottom: 20px;
   background-color: rgb(242, 217, 152, 0.77);
-  padding: 20px;
+  padding: 5px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: black;
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
 }
 
 .TextoAbout p {
-  font-size: 18px;
+  font-size: 22px;
   line-height: 1.5;
   padding: 20px 50px;
   text-align: justify;
   text-indent: 30px;
+  color: black;
 }
 
 .TextoAbout h2 {

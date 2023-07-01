@@ -15,8 +15,8 @@ const TiendaItems = ({ id, name, image, price, description, stock, ProductsTypes
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.LocalPersist.Carrito);
   const userId = useSelector((state) => state.LocalPersist.userId); // Obtener el userId del estado
-  console.log(id)
-  console.log(userId)
+  // console.log(id)
+  // console.log(userId)
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);

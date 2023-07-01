@@ -94,7 +94,6 @@ const FormCreacion = () => {
         icon: 'success',
         title: 'Actividad creada con éxito',
       });
-      console.log(res);
       const imgUrl = res.data;
       console.log("url de la img", imgUrl);
 

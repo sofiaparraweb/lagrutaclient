@@ -14,7 +14,6 @@ export default function DetailsNews() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const details = useSelector((state) => state.activityDetail);
-// console.log(details)
 
   useEffect(() => {
     dispatch(getActiId(id));
