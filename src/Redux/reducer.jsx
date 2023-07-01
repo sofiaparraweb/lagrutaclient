@@ -35,7 +35,7 @@ const initialstate = {
   Carrito: [],
   CarritoProductos: [],
   profile: null,
-  userId: null,
+  userId: "",
   donaciones: [],
   forms: [], 
 };
