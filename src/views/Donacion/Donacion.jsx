@@ -26,35 +26,36 @@ const DonationForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+  
     if (!selectedOption || (selectedOption === "otraOpcion" && !customValue)) {
       setError(true);
       return;
     }
-
-    //alert("Opción seleccionada:", selectedOption);
+  
     Swal.fire({
       position: 'center',
       icon: 'success',
-      title: "Opción seleccionada:",
+      title: `Opción seleccionada: ${selectedOption}`,
       showConfirmButton: false,
       timer: 3000
-  })
+    });
+  
     if (selectedOption === "otraOpcion") {
-      //alert("Valor personalizado:", customValue);
       Swal.fire({
         position: 'center',
         icon: 'success',
-        title: "Valor personalizado:",
+        title: `Valor personalizado: ${customValue}`,
         showConfirmButton: false,
         timer: 3000
-    })
+      });
     }
+  
     setError(false);
     setCustomValue("");
     //setSuccess(true);
     setShowForm(true);
   };
+  
 
   const showInput = selectedOption === "otraOpcion";
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProductTypes } from "../../../Redux/actions";
-
+import Swal from "sweetalert2";
 import style from "./FormCreacion.module.css";
 
 function validate(name, price, image, description, stock, product_Types) {
@@ -99,10 +99,12 @@ const FormCreacion = () => {
 
     try {
       const res = await axios.post(`${LOCAL}/products/create`, formData);
-      alert("Producto agregado con éxito");
-      console.log(res);
+      Swal.fire({
+        icon: 'success',
+        title: 'Producto agregado con éxito',
+      });
       const imgUrl = res.data;
-      console.log("url de la img", imgUrl);
+      console.log("url de la img", imgUrl);      
 
     setName("");
     setImage(null);

@@ -5,9 +5,8 @@
   position: relative;
   height: 400px;
   overflow: hidden;
-  /* margin: 20px 0; */
 }
-  
+
 .parallax {
   position: absolute;
   background-image: url("https://asepyme.com/wp-content/uploads/2017/07/como-constituir-una-fundacion-1200x630.jpg");
@@ -19,11 +18,11 @@
   width: 100%;
   z-index: -1;
 }
-  
+
 .TittleValores {
   color: white;
   width: fit-content;
-  margin:auto;
+  margin: auto;
   font-size: 35px;
   letter-spacing: 15px;
   text-transform: uppercase;
@@ -31,11 +30,45 @@
   padding: 10px 20px;
   margin-top: 170px;
   font-family: 'Wicked Grit', sans-serif;
-  background-color: rgb(185,54,44,0.77);
+  background-color: rgb(185, 54, 44, 0.77);
 }
-  
+
 .Parrafos {
   color: white;
   font-size: 20px;
   padding: 45px;
+  font-family: 'Wicked Grit', sans-serif;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.ValuesContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.ValuesColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%; /* Agrega esta línea */
+}
+
+.ValuesTitle {
+  color: #fff;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.ValuesList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ValueItem {
+  color: #fff;
+  font-size: 18px;
+  margin-top: 10px;
 }

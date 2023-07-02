@@ -38,6 +38,9 @@
   color: white;
   font-size: 20px;
   padding: 45px;
+  font-family: 'Wicked Grit', sans-serif;
+  text-align: center;
+  justify-content: center;
 }
 
 .Parrafos li{

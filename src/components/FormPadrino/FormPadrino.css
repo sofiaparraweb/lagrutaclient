@@ -52,7 +52,7 @@ select[id="SelectSePadrino"] {
 .form-padrino-submit-button {
   margin: 20px 0;
   padding: 10px 20px;
-  background-color: #b84b3f;
+  background-color: #124476;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -67,7 +67,7 @@ select[id="SelectSePadrino"] {
 }
 
 .form-padrino-error-message {
-  color: #b84b3f;
+  color: #124476;
   font-size: 14px;
   margin-top: 5px;
   text-align: center;
