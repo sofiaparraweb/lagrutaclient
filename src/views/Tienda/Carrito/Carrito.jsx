@@ -1,4 +1,4 @@
-import { getCarrito, addToCart, deleteAllCarrito, deleteCarrito, url } from "../../../Redux/actions";
+import { getCarrito, cargarProductos, addToCart, deleteAllCarrito, deleteCarrito, url } from "../../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Image , Card, HStack, Text, Heading, CardBody } from '@chakra-ui/react';
@@ -12,58 +12,82 @@ const Carrito = ({ id, name, image, price, stock }) => {
 
   const dispatch = useDispatch();
   const Cart = useSelector((state) => state.LocalPersist.Carrito);
+  const userId = useSelector((state) => state.LocalPersist.userId);
   const [productCount, setProductCount] = useState(0);
+  //const [total, setTotal] = useState(price)
+
+//   useEffect(() => {
+//     setTotal(productCount * price);
+//     setArray([
+//       ...array,{
+//         id,
+//         name,
+//         price: total,
+//         amount: cant,
+//       }]
+//     )
+// },[]);
 
   let subTotalProd = Cart.map((el) => el.price);
   let subtotal = Cart.reduce((acc, el) => acc + el.price, 0);
   let servicio = subtotal * 0.10;
   let total = subtotal + servicio;
+  console.log(Cart)
 
-  const handleAddToCart = (id) => {
-    if(productCount<stock) {
-      dispatch(addToCart(user_id, id));
+  const handleClickAdd = (id, userId, name, image, price, stock) => { // agregamos el producto seleccionado al estado local
+    if(productCount<stock){
+      dispatch(cargarProductos(id, userId, name, image, price, stock));
       setProductCount(productCount + 1);
-      console.log(id);
-      console.log(user_id);
       toast.success("Producto agregado al carrito", {
         duration: 3000
       })
     } else {
-      toast.error("La cantidad supera el stock disponible", {
-        duration: 3000
-      })    
+      setProductCount(stock)
+      toast.error("No hay mas productos disponibles")
     }
-  }
-
-  // const delRemoveCart = (name, all = false) => {
-  //   if (all) {
-  //     dispatch(handleDeleteCart(name));
-  //     window.localStorage.removeItem("Cart");
-  //   } else {
-  //     dispatch(handleDeleteFromCart(name));
-  //     window.localStorage.removeItem("Cart");
-  //   }
-  // };
-    
-  const handleDeleteFromCart = (user_id, product_id) => {
-    dispatch(deleteCarrito(user_id, product_id));
-    setProductCount(productCount - 1);
-    toast.success("Producto eliminado del carrito", {
-      duration: 3000
-    })
   };
 
-  const handleDeleteCart = (user_id) =>{
-    dispatch(deleteAllCarrito(user_id));
+  // const handleAddToCart = (id) => {
+  //   if(productCount<stock) {
+  //     dispatch(addToCart(user_id, id));
+  //     setProductCount(productCount + 1);
+  //     toast.success("Producto agregado al carrito", {
+  //       duration: 3000
+  //     })
+  //   } else {
+  //     toast.error("La cantidad supera el stock disponible", {
+  //       duration: 3000
+  //     })    
+  //   }
+  // }
+    
+  const handleDeleteFromCart = (userId, id) => {
+    if(productCount>0){
+      dispatch(deleteCarrito(userId, id));
+      setProductCount(productCount - 1);
+      toast.success("Producto eliminado del carrito", {
+        duration: 3000
+      })
+    } else {
+      dispatch(deleteCarrito(userId, id)); 
+      setProductCount(1);
+      toast.success("Producto eliminado del carrito", {
+        duration: 3000
+      });
+    } 
+  };
+
+  const handleDeleteCart = (userId) =>{
+    dispatch(deleteAllCarrito(userId));
     setProductCount(0);
     toast.success("Carrito vaciado correctamente", {
       duration: 3000
     })
   }
 
-  const handlePay = async (user_id) => {
+  const handlePay = async (userId) => {
     try {
-      const { data } = await axios.post(`${url}/payment/create-order?user_id=${user_id}`, Cart);
+      const { data } = await axios.post(`${url}/payment/create-order?user_id=${userId}`, Cart);
       window.location.href = data.init_point;
       window.localStorage.removeItem("Cart");
     } catch (error) {
@@ -75,10 +99,7 @@ const Carrito = ({ id, name, image, price, stock }) => {
 
   useEffect(() => {
     dispatch(getCarrito());
-    if(Cart.length) {
-      window.localStorage.setItem("Cart", JSON.stringify(Cart));
-    }
-  }, [dispatch,Cart]);
+  }, [dispatch]);
 
   return (
     <div className={style.ContenedorTiendaCART}>
@@ -87,7 +108,7 @@ const Carrito = ({ id, name, image, price, stock }) => {
         <div className={style.sidebarContenedorCART}>
           <span className={style.ChanguitoCART}>
             <AiOutlineShoppingCart size={30} /> 
-            <p className={style.NumeroChangoCART}>0</p>
+            <p className={style.NumeroChangoCART}>{Cart.length}</p>
           </span>
           <div className={style.ContenedorVaciarCarro}>
             <div className={style.VaciarCarrito}>
@@ -97,28 +118,29 @@ const Carrito = ({ id, name, image, price, stock }) => {
           </div>
           <div className={style.ContenedorVaciarCarro}>
             <div className={style.VaciarCarrito}>
-              <p>Pagar</p>
+              <p>Checkout</p>
             </div>
             <div className={style.ContenedorDetallePago}>
               <div>
-                <span>Sub-Total = </span>
-                <span>${subtotal}</span>
+                <span>Subtotal = </span>
+                {/* <span>${subtotal}</span> */}
               </div>
-              <div>
-                <span>Servicio = </span>
+              <div style={{marginBottom: '2%'}}>
+                <span>Cargos = </span>
                 <span>${servicio}</span>
               </div>
-              <div>
+              <hr style={{ width: '80%', margin: '1% auto', border: '1px solid black', paddingRight: '20%'}}></hr>
+              <div style={{marginTop: '2%'}}>
                 <span>Total a pagar = </span>
-                <span>${total}</span>
+                {/* <span>${total}</span> */}
               </div>
             </div>
-            <button className={style.ButtonVaciarCarro} value="pagar" onClick={handlePay}>Checkout</button>
+            <button className={style.ButtonVaciarCarro} value="pagar" onClick={handlePay}>Confirmar</button>
+            <button className={style.ButtonVaciarCarro} value="pagar" onClick={handlePay}>Pagar</button>
           </div>
         </div>
       </div>
       <div className={style.ContenedorCartProductos}>
-        
           <Card
             direction={{ base: 'column', sm: 'row' }}
             overflow='hidden'
@@ -152,13 +174,13 @@ const Carrito = ({ id, name, image, price, stock }) => {
                 <Text py='3' className={style.ContenedorBotonesCart}>
                   <button className={style.ButtonsSumaResta} onClick={handleDeleteFromCart} value="less" >-</button>
                     {productCount}
-                  <button className={style.ButtonsSumaResta} onClick={()=>{handleAddToCart(id)}} value="add" >+</button>
+                  <button className={style.ButtonsSumaResta} onClick={() => handleClickAdd(id, userId, name, image, price, stock)} value="add" >+</button>
                 </Text>
               </CardBody>
               <CardBody p={4}>
                 <Heading width='100px' size='xs' textAlign='center' >Sub Total</Heading>
                 <Text py='3' textAlign='center'>
-                ${subTotalProd}
+                  {price * productCount}
                 </Text>
               </CardBody>
             </HStack>

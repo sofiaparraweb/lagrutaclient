@@ -27,8 +27,8 @@ const SideBar = ({ setCurrentPage }) =>{
       <Toaster />
       <span className={style.Changuito}>
         <button onClick={handleCartClick} >
-          <AiOutlineShoppingCart size={30} /> 
-          <sup className={style.NumeroChango}>{Carrito?.length}</sup>
+          <AiOutlineShoppingCart size={30} />
+          {isAuthenticated ? <sup className={style.NumeroChango}>{Carrito?.length}</sup> : <sup className={style.NumeroChango}>0</sup>}         
         </button>
       </span>
       <div className={style.ContenedorFiltroOrden}>

@@ -36,11 +36,11 @@
   
 .Parrafos {
   color: white;
-  font-size: 20px;
+  font-size: 25px;
   padding: 45px;
-  font-family: 'Wicked Grit', sans-serif;
   text-align: center;
   justify-content: center;
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
 }
 
 .Parrafos li{

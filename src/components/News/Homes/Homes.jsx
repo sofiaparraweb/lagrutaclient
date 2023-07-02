@@ -16,7 +16,7 @@ const Homes = () => {
   const [currentPage, setCurrentPage] = useState(1); 
   const noticesPerPage = 4;
 
-  const notices = useSelector(state => state.allActivity);
+  const notices = useSelector(state => state.LocalPersist.allActivity);
 
 
   const handlePaginate = (pageNumber) => {

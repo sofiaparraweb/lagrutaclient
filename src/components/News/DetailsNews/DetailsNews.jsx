@@ -13,7 +13,8 @@ import style from "./DetailsNews.module.css";
 export default function DetailsNews() {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const details = useSelector((state) => state.activityDetail);
+  const details = useSelector((state) => state.LocalPersist.activityDetail);
+// console.log(details)
 
   useEffect(() => {
     dispatch(getActiId(id));

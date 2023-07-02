@@ -69,7 +69,7 @@ const NavBar = ({ isAuthenticated }) => {
                 to="/about"
                 className="dropdownOption"
                 activeclassname="active"
-                id="donaNav"
+                id="sepadrinoNav"
                 onClick={handleClick}>
                 NOSOTROS
               </NavLink>
@@ -77,7 +77,7 @@ const NavBar = ({ isAuthenticated }) => {
                 to="/historia"
                 className="dropdownOption"
                 activeclassname="active"
-                id="sepadrinoNav"
+                id="sevoluntarioNav"
                 onClick={handleClick}>
                 Nuestra Historia
               </NavLink>
@@ -85,7 +85,7 @@ const NavBar = ({ isAuthenticated }) => {
                 to="/equipo"
                 className="dropdownOption"
                 activeclassname="active"
-                id="sevoluntarioNav"
+                id="nuestroEquipoNav"
                 onClick={handleClick}>
                 Nuestro equipo
               </NavLink>
