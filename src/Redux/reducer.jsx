@@ -8,6 +8,7 @@ import {
   ORDER_BY_PRICE,
   GET_CART,
   ADD_TO_CART,
+  CARGAR_PRODUCTOS,
   DELETE_ALL_CART,
   DELETE_CARRITO,
   PUT_AMOUNT_CART,
@@ -85,6 +86,14 @@ function rootReducer(state = initialstate, action) {
         Carrito: action.payload,
       };
 
+    case CARGAR_PRODUCTOS:
+      const { id, userId, name, price, stock, image } = action.payload;
+      const nuevoProducto = { id, userId, name, price, stock, image };
+      return {
+        ...state,
+        Carrito: [...state.Carrito, nuevoProducto],
+      };
+
     case ADD_TO_CART:
       const newProduct = action.payload;
       const existingProduct = state.Carrito.find((prod) => prod.product_id === newProduct.id);
@@ -108,13 +117,13 @@ function rootReducer(state = initialstate, action) {
     case DELETE_ALL_CART:
       return {
         ...state,
-        Carrito: action.payload,
+        Carrito: [],
       };
 
     case DELETE_CARRITO:
       return {
         ...state,
-        Carrito: state.Carrito.filter((cart) => cart.product_id !== action.payload),
+        Carrito: state.Carrito.filter((cart) => cart.id !== action.payload),
       };
 
     case PUT_AMOUNT_CART:

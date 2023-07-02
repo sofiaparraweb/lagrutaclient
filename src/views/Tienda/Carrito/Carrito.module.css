@@ -3,10 +3,8 @@
 
 .ContenedorTiendaCART{
     display:flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;
     margin-top: 10px;
-    margin-left: 10%;
     width: 100%;
 }
 
@@ -19,7 +17,7 @@
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     height: 100%;
-    width: 170px;
+    width: 15%;
     background-color:#EB5D0B;
     overflow-x: hidden;
 }
@@ -103,9 +101,8 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    justify-content: space-around;
-    width: 80%;
-    margin-bottom: 10px;
+    width: 75%;
+    margin-left: 20%;
     height: fit-content;
     background-color: transparent;
 }

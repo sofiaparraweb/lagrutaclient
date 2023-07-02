@@ -10,11 +10,7 @@ import Pagination from "../../components/Store/paginado/Paginacion"
 const Tienda = () => {
   
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.LocalPersist.userId); // Obtener el userId del estado
-  //const products = useSelector(state => state.allProducts);
   const prod = useSelector(state => state.LocalPersist.products);
-
-  console.log(userId)
   
   const [currentPage, setCurrentPage] = useState(1); 
   const productsPerPage = 9;

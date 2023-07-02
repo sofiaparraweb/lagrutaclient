@@ -10,7 +10,7 @@ const Card = ({ id, img, ActivityTypes, name, date, description }) => {
           <img src={img} alt="" />
         </div>
         <div className={style.text}>
-          {console.log(ActivityTypes)}
+          {/* {console.log(ActivityTypes)} */}
           {ActivityTypes?.map((t, index) => {
             return (
               <span key={index} className={style.category}>

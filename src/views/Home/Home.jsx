@@ -18,7 +18,6 @@ import logo from "../../assets/logo.png";
 const Home = () => {
 
     const { user, isAuthenticated, isLoading } = useAuth0();
-    console.log(user)
     const dispatch = useDispatch();
     const allActivity = useSelector(state => state.LocalPersist.allActivity);
     const isProfileCreatedRef = useRef(false);

@@ -5,7 +5,7 @@ import { getAllProductTypes } from "../../../Redux/actions";
 
 import style from "./FormCreacion.module.css";
 
-function validate(name, price, image, description, stock, product_Types) {
+function validate(name, price, image, description, stock, type) {
   let errors = {};
   if (!name) {
     errors.name = "Debe ingresar un nombre para el producto";
@@ -22,8 +22,8 @@ function validate(name, price, image, description, stock, product_Types) {
   if (!stock) {
     errors.stock = "Debe ingresar el stock de unidades a vender";
   }
-  if (!product_Types) {
-    errors.product_Types = "Debe ingresar el tipo de producto a vender";
+  if (!type) {
+    errors.type = "Debe ingresar el tipo de producto a vender";
   }
 
   return errors;
@@ -31,7 +31,7 @@ function validate(name, price, image, description, stock, product_Types) {
 
 const FormCreacion = () => {
   const dispatch = useDispatch();
-  const allProductTypes = useSelector((state) => state.allProductTypes);
+  const allProductTypes = useSelector((state) => state.LocalPersist.allProductTypes);
 
   const [errors, setErrors] = useState({});
   const [image, setImage] = useState(null);
@@ -40,7 +40,7 @@ const FormCreacion = () => {
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [stock, setStock] = useState("");
-  const [product_Types, setProduct_Types] = useState("");
+  const [type, setType] = useState("");
 
   useEffect(() => {
     dispatch(getAllProductTypes());
@@ -63,8 +63,8 @@ const FormCreacion = () => {
       setDescription(value);
     } else if (name === "stock") {
       setStock(value);
-    } else if (name === "product_Types") {
-      setProduct_Types(value);
+    } else if (name === "type") {
+      setType(value);
     }
   };
 
@@ -82,7 +82,7 @@ const FormCreacion = () => {
     const LOCAL = "http://localhost:3001";
     e.preventDefault();
 
-    const validationErrors = validate(name, price, image, description, stock, product_Types); 
+    const validationErrors = validate(name, price, image, description, stock, type); 
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length > 0) {
@@ -95,10 +95,11 @@ const FormCreacion = () => {
     formData.append("price", price);
     formData.append("description", description);
     formData.append("stock", stock);
-    formData.append("product_Types", product_Types);
+    formData.append("type", type);
 
     try {
       const res = await axios.post(`${LOCAL}/products/create`, formData);
+      console.log(formData)
       alert("Producto agregado con éxito");
       console.log(res);
       const imgUrl = res.data;
@@ -110,10 +111,11 @@ const FormCreacion = () => {
     setDescription("");
     setPrice("");
     setStock("");
-    setProduct_Types("");
+    setType("");
     setErrors({});
 
     } catch (err) {
+      console.log(formData)
       console.log("error al subir imagen", err);
     }
 
@@ -205,8 +207,8 @@ const FormCreacion = () => {
               <div className="types-s">
                 <select
                   className={style.inputbox}
-                  value={product_Types}
-                  onChange={(e) => setProduct_Types(e.target.value)}>
+                  value={type}
+                  onChange={(e) => setType(e.target.value)}>
                   <option className={style.options} key="" value="">
                     {" "}
                     Seleccionar categoría

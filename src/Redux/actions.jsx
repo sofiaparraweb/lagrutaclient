@@ -12,14 +12,15 @@ export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
 export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
 export const GET_CART = "GET_CART";
 export const ADD_TO_CART = "ADD_TO_CART";
+export const CARGAR_PRODUCTOS = 'CARGAR_PRODUCTOS';
+export const ADD_PRODUCT = "ADD_PRODUCT";
+export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const DELETE_ALL_CART = "DELETE_ALL_CART";
 export const DELETE_CARRITO = "DELETE_CARRITO";
 export const PUT_AMOUNT_CART = "PUT_AMOUNT_CART";
 export const FETCH_PROFILE = "FETCH_PROFILE";
 export const CREATE_PROFILE = "CREATE_PROFILE";
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
-export const ADD_PRODUCT = "ADD_PRODUCT";
-export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const POST_NEWS_DASHBOARD = "POST_NEWS_DASHBOARD";
 export const SET_USER_ID = 'SET_USER_ID';
 export const POST_DONACIONES = "POST_DONACIONES"
@@ -149,7 +150,12 @@ export const getCarrito = (userId) => {
   };
 };
 
-// ----------Agregar a carrito
+// ----------Agregar a carrito Localmente
+export const cargarProductos = (id, userId, name, price, stock, image) => {
+  return { type: CARGAR_PRODUCTOS, payload: { id, userId, name, price, stock, image }};
+};
+
+// ----------Agregar a carrito a Base de Datos
 export const addToCart = (userId, product_id, quantity) => {
   return async (dispatch) =>{
     try {
@@ -167,8 +173,7 @@ export const deleteAllCarrito = (userId) => {
   return async (dispatch) => {
     try {
       await axios.delete(`${url}/cart?user_id=${userId}`);
-
-      dispatch({ type: DELETE_ALL_CART, payload: [] });
+      dispatch({ type: DELETE_ALL_CART });
     } catch (error) {
       console.log(error);       
     } 
@@ -176,11 +181,11 @@ export const deleteAllCarrito = (userId) => {
 };
 
 // ----------Borrar un elemento
-export const deleteCarrito = (userId, product_id) => {
+export const deleteCarrito = (id) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`${url}/cart?userId=${userId}&product_id=${product_id}`);
-      dispatch({ type: DELETE_CARRITO, payload: product_id });
+      await axios.delete(`${url}/cart/remove?userId=${userId}&product_id=${id}`);
+      dispatch({ type: DELETE_CARRITO, payload: id });
     } catch (error) {
       console.log(error);  
     }
