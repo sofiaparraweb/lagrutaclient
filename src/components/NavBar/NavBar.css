@@ -31,7 +31,7 @@
   font-family: 'DK Lemon Yellow Sun', sans-serif;
   text-decoration: none;
   color: grey;
-  padding: 24.5px;
+  padding: 22.5px;
   padding-left: 20px;
   padding-right: 20px;
   transition: 0.5s ease;
@@ -56,6 +56,24 @@
 }
 .active[id="conocenosNav"]{
   background-color: #D7B63E;
+  color: white;
+  text-decoration: none;
+}
+
+/* -------------------------------------nuestroEquipoNav */
+.dropdownOption[id="nuestroEquipoNav"]{
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  font-weight: 600;
+  border-bottom:3px solid #124476;
+}
+.dropdownOption[id="nuestroEquipoNav"]:hover{
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  background-color: #124476;
+  text-decoration: none;
+}
+.active[id="nuestroEquipoNav"]{
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  background-color: #124476;
   color: white;
   text-decoration: none;
 }
@@ -165,7 +183,6 @@
   color: white;
   text-decoration: none;
 }
-
 
 .dropdownContainer {
   display: flex;

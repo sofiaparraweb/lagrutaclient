@@ -1,46 +1,55 @@
+import axios from "axios";
 //import PropTypes from 'prop-types';
 import style from "./TiendaItems.module.css";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-//import { agregarAlCarrito } from "../../../Redux/actions"
+import { cargarProductos, getCarrito } from "../../../Redux/actions"
 import { Image, Card, Text, Heading, CardBody, CardFooter, Button, Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton, Box, Grid } from '@chakra-ui/react'
 import { Toaster, toast } from "react-hot-toast";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const TiendaItems = ({ id, name, image, price, description, stock, ProductsTypes, Reviews }) => {
   
-  const [productosSeleccionados, setProductosSeleccionados] = useState([]);
+  const [productCount, setProductCount] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
-  const allProducts = useSelector((state) => state.LocalPersist.Carrito);
+  //const allProducts = useSelector((state) => state.LocalPersist.Carrito);
   const userId = useSelector((state) => state.LocalPersist.userId); // Obtener el userId del estado
-  
-  //const [review, setReview] = useState({
-    //user_id:`${userId}`, /* <----------------------- FALTA ASIGNARLE BIEN EL USERID QUE TIENE EL USUARIO QUE COMENTA */
-    //rating: 0,
-   // content: "",
-   // product_id: `${id}`, 
- // })
 
- // const changeHandler = (event) => {
-  //  const property = event.target.name;
- //   const value = event.target.value;
+  useEffect(()=>{
+    dispatch(getCarrito())
+  },[dispatch])
 
-  //  setReview({ ...review, [property]: value});
- // }
+  const [review, setReview] = useState({
+    user_id:`${userId}`, /* <----------------------- FALTA ASIGNARLE BIEN EL USERID QUE TIENE EL USUARIO QUE COMENTA */
+    rating: 0,
+    content: "",
+    product_id: `${id}`, 
+  })
 
+  const changeHandler = (event) => {
+    const property = event.target.name;
+    const value = event.target.value;
+
+    setReview({ ...review, [property]: value});
+  }
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
   
-  const handleClickAdd = () => { // agregamos el producto seleccionado al estado local
-    setProductosSeleccionados([...productosSeleccionados, id]);
-    //dispatch(agregarAlCarrito(id));
-    toast.success("Producto agregado al carrito", {
-      duration: 3000
-    })
+  const handleClickAdd = (id, userId, name, image, price, stock) => { // agregamos el producto seleccionado al estado local
+    if(productCount<stock){
+      dispatch(cargarProductos(id, userId, name, image, price, stock));
+      setProductCount(productCount + 1);
+      toast.success("Producto agregado al carrito", {
+        duration: 3000
+      })
+    } else {
+      setProductCount(stock)
+      toast.error("No hay mas productos disponibles")
+    }
   };
 
   // const handleClick = (id, userId) =>{
@@ -100,14 +109,14 @@ const TiendaItems = ({ id, name, image, price, description, stock, ProductsTypes
           <ModalOverlay />
           <ModalContent >
           {/* <ModalContent backgroundColor='transparent' border='1px solid white' backdropFilter="blur(5px)"> */}
-            <ModalCloseButton fontSize="2xl"/>
+            <ModalCloseButton fontSize="2xl" color='#124476'/>
             <ModalBody>
-              <Grid templateColumns="repeat(3, 1fr)" gap={1} height="400px" width="800px" margin='10px 0'>
+              <Grid templateColumns="repeat(3, 1fr)" gap={1} margin='2% 0'>
                 <Box>
-                  <Image src={image} alt={name} maxH='400px'/>
+                  <Image src={image} alt={name} maxH='100%' />
                 </Box>
-                <Box margin='80px 0'>
-                  <Grid marginBottom='30px' width='200px' > 
+                <Box margin='10% 0' width='70%' >
+                  <Grid marginBottom='10%'> 
                     <Text fontSize="xl" fontWeight="bold" mb={4} textTransform='uppercase'>
                     Tipo de producto: 
                     </Text>
@@ -115,7 +124,7 @@ const TiendaItems = ({ id, name, image, price, description, stock, ProductsTypes
                       {ProductsTypes}
                     </Text>
                   </Grid>
-                  <Grid width='200px' >
+                  <Grid marginBottom='10%'>
                     <Text fontSize="xl" fontWeight="bold" mb={4} textTransform='uppercase'>
                       Descripción
                     </Text>
@@ -123,51 +132,51 @@ const TiendaItems = ({ id, name, image, price, description, stock, ProductsTypes
                       {description}
                     </Text>
                   </Grid>
-                    <Grid>
-                      <Text fontSize="xl" fontWeight="bold" mb={4} textTransform='uppercase'>
-                        aca irian las valoraciones (estrellitas)
-                        {Reviews && Reviews.map ((review) =>(
-                          <div>
-                            <p>Rating: {review.rating}</p>
-                          </div>
-                        ))
-                        }
-                      </Text>
-                      <label htmlFor="">Puntuá este producto!</label>
-                      <input type="range" min="0" max="5"
-                        name="rating"
-                        onChange={changeHandler}
-                        value={review.rating} />
-                    </Grid>
+                  <Grid>
+                    <Text fontSize="xl" fontWeight="bold" mb={4} textTransform='uppercase'>
+                      aca irian las valoraciones (estrellitas)
+                      {Reviews && Reviews.map ((review) =>(
+                        <div>
+                          <p>Rating: {review.rating}</p>
+                        </div>
+                      ))
+                      }
+                    </Text>
+                    <label htmlFor="">Puntuá este producto!</label>
+                    <input type="range" min="0" max="5"
+                      name="rating"
+                      onChange={changeHandler}
+                      value={review.rating} />
+                  </Grid>
                 </Box>
-                <Box>
-                    <Grid>
-                      <Text fontSize="xl" fontWeight="bold" mb={4} textTransform='uppercase'>
-                        {Reviews && Reviews.map ((review) =>(
-                          <div>
-                            <p>User ID: {review.user_id}</p>
-                            <p>Contenido: {review.content}</p>
-                          </div>
-                        ) )}
-                      </Text>
-                      <div> {/* <-------- ACA IRIAN LAS ESTRELLITAS :V */}
-                    <label htmlFor="">Dejá tu review sobre este producto.</label>
-                    <textarea id="content"
+                <Box border='1px' >
+                  <Grid>
+                    <Text fontSize="xl" fontWeight="bold" mb={4} textTransform='uppercase'>
+                      {Reviews && Reviews?.map ((review) =>(
+                        <div>
+                          <p>User ID: {review.user_id}</p>
+                          <p>Contenido: {review.content}</p>
+                        </div>
+                      ) )}
+                    </Text>
+                    <div> {/* <-------- ACA IRIAN LAS ESTRELLITAS :V */}
+                      <label htmlFor="">Dejá tu review sobre este producto.</label>
+                      <textarea id="content"
                         name="content" rows="4" cols="50"
                         value={review.content}
                         onChange={changeHandler}></textarea>
-                </div>
-                <button type="sumbit">Comentar</button>
-                    </Grid>
-                  </Box>
+                    </div>
+                    <button type="sumbit">Comentar</button>
+                  </Grid>
+                </Box>
               </Grid>
             </ModalBody>
           </ModalContent>
         </Modal>
       </div>
     </form>
-    );
- };
+  );
+};
 
 // TiendaItems.propTypes = {
 //   id: PropTypes.number.isRequired,

@@ -7,7 +7,7 @@ import style from "./CardNews.module.css";
 
 const CardNews = () => {
 
-  const allActivity = useSelector(state => state.allActivity);
+  const allActivity = useSelector(state => state.LocalPersist.allActivity);
 
 
   return (

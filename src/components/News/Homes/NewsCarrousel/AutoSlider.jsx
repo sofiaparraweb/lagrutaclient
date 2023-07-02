@@ -8,7 +8,7 @@ import style from "./NewsCarrousel.module.css";
 const AutoSlider = () => {
   const sliderRef = useRef(null);
 
-  const allActivity = useSelector(state => state.allActivity);
+  const allActivity = useSelector(state => state.LocalPersist.allActivity);
 
 
   useEffect(() => {
