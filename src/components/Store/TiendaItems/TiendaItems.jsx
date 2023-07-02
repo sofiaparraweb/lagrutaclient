@@ -16,19 +16,19 @@ const TiendaItems = ({ id, name, image, price, description, stock, ProductsTypes
   const allProducts = useSelector((state) => state.LocalPersist.Carrito);
   const userId = useSelector((state) => state.LocalPersist.userId); // Obtener el userId del estado
   
-  const [review, setReview] = useState({
-    user_id:`${userId}`, /* <----------------------- FALTA ASIGNARLE BIEN EL USERID QUE TIENE EL USUARIO QUE COMENTA */
-    rating: 0,
-    content: "",
-    product_id: `${id}`, 
-  })
+  //const [review, setReview] = useState({
+    //user_id:`${userId}`, /* <----------------------- FALTA ASIGNARLE BIEN EL USERID QUE TIENE EL USUARIO QUE COMENTA */
+    //rating: 0,
+   // content: "",
+   // product_id: `${id}`, 
+ // })
 
-  const changeHandler = (event) => {
-    const property = event.target.name;
-    const value = event.target.value;
+ // const changeHandler = (event) => {
+  //  const property = event.target.name;
+ //   const value = event.target.value;
 
-    setReview({ ...review, [property]: value});
-  }
+  //  setReview({ ...review, [property]: value});
+ // }
 
 
   const toggleModal = () => {

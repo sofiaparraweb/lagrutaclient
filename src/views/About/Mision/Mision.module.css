@@ -29,6 +29,7 @@
   text-transform: uppercase;
   background-color:rgb(215,182,62, 0.77);
   text-align: center;
+  justify-content: center;
   padding: 10px 20px;
   margin-top: 170px;
   font-family: 'Wicked Grit', sans-serif;
@@ -38,4 +39,7 @@
   color: white;
   font-size: 20px;
   padding: 45px;
+  font-family: 'Wicked Grit', sans-serif;
+  text-align: center;
+  justify-content: center;
 }

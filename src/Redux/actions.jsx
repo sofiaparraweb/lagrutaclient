@@ -1,4 +1,7 @@
+import { useRadio } from "@chakra-ui/react";
 import axios from "axios";
+import { useId } from "react";
+import Swal from "sweetalert2";
 
 export const GET_ALL_ACTIVITY = "GET_ALL_ACTIVITY";
 export const GET_DETAIL_ACTIVITY = "GET_DETAIL_ACTIVITY";
@@ -207,7 +210,7 @@ export const deleteCarrito = (userId, product_id) => {
 /* -----------------------------profile----------------------------- */
 
 export const createProfile = (newUser) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     try {
       const response = await axios.post(`${url}/user`, newUser);
       const userId = response.data.newUser.id;
@@ -219,17 +222,17 @@ export const createProfile = (newUser) => {
         type: CREATE_PROFILE,
         payload: response.data,
       });
+      dispatch(getProfile(userId));
     } catch (error) {
       console.log(error);
     }
   };
 };
 
-
-export const getProfile = (idUser) => {
+export const getProfile = (userId) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${url}/user/${idUser}`);
+      const response = await axios.get(`${url}/user/${userId}`);
       dispatch({
         type: FETCH_PROFILE,
         payload: response.data,
@@ -240,21 +243,16 @@ export const getProfile = (idUser) => {
   };
 };
 
-
-export const updateProfile = (newProfile) => {
+export const updateProfile = (userId, newProfile) => {
   return async (dispatch) => {
     try {
-      const response = await axios.put(`${url}/user/edit`, {
-       mail: 'sofiparra44@gmail.com',
-       fullName: 'sofi'
-      });
-      console.log(response)
+      const response = await axios.put(`${url}/user/edit`, newProfile);
       dispatch({
         type: UPDATE_PROFILE,
         payload: response.data,
       });
     } catch (error) {
-      console.log({error: error.message});
+      console.log({ error: error.message });
     }
   };
 };
@@ -296,13 +294,17 @@ export const enviarInformacion = (data) => {
       const response = await axios.post(`${LOCAL}/payment/donation/create-order/`, data);
 
       if (response.data.success) {
-        console.log("La información se envió correctamente");
+        Swal.fire({
+          icon: 'success',
+          title: 'La información se envió correctamente',
+        });
       }
 
       dispatch({ type: POST_DONACIONES, payload: response.data });
 
     } catch (error) {
-      console.log("Error al enviar la información al backend", error);
+
+      alert("Error al enviar la información al backend");
 
       dispatch({ type: "ENVIO_INFORMACION_ERROR", payload: error });
     }

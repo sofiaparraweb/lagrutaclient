@@ -9,6 +9,7 @@ import "./Perfil.css";
 const Perfil = () => {
   const { user, isAuthenticated } = useAuth0();
   const [editing, setEditing] = useState(false);
+  
   const [newProfile, setNewProfile] = useState({
     name: "",
     mail: user.mail,
@@ -19,19 +20,19 @@ const Perfil = () => {
     role: "",
     profileImage: "",
   });
-
-  const { register, handleSubmit, formState: { errors }, reset } = useForm();
   
+  const userId = useSelector((state) => state.LocalPersist.userId); // Obtener el userId del estado
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const { name, mail, birthdate, phone, address, occupation, role, profileImage } = newProfile;
   const dispatch = useDispatch();
-  const profile = useSelector((state) => state.profile);
+  const profile = useSelector((state) => state.LocalPersist.profile);
   const isProfileFetchedRef = useRef(false);
-  const userId = useSelector((state) => state.userId); // Obtener el userId del estado
 
   useEffect(() => {
-    if (isAuthenticated && user && !isProfileFetchedRef.current && userId) {
+   if( !isProfileFetchedRef.current && userId) {
       dispatch(getProfile(userId));
-      isProfileFetchedRef.current = true;
+      // isProfileFetchedRef.current = true;
+      console.log(userId);
     }
   }, [dispatch, isAuthenticated, user, userId]);
 
