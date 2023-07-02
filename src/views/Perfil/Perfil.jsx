@@ -28,6 +28,7 @@ const Perfil = () => {
   const isProfileFetchedRef = useRef(false);
   const userId = useSelector((state) => state.userId); // Obtener el userId del estado
 
+
   useEffect(() => {
     if (isAuthenticated && user && !isProfileFetchedRef.current && userId) {
       dispatch(getProfile(userId));

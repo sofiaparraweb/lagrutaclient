@@ -23,6 +23,15 @@ const Home = () => {
     const allActivity = useSelector(state => state.LocalPersist.allActivity);
     const isProfileCreatedRef = useRef(false);
 
+/*     const jwt = require('jsonwebtoken');
+
+    const token = '...'; // Token suministrado por Auth0
+    
+    const decodedToken = jwt.decode(token);
+    const userId = decodedToken.sub; // ID de usuario
+    
+    console.log(userId);
+ */
     useEffect(() => {
         if (isAuthenticated && user && !isProfileCreatedRef.current) {
           const newUser = {
