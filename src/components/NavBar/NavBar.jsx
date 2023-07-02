@@ -52,14 +52,46 @@ const NavBar = ({ isAuthenticated }) => {
             onClick={handleClick}
           />
         </Link>
-        <NavLink
-          to="/about"
-          className="link"
-          activeclassname="active"
-          id="conocenosNav"
-          onClick={handleClick}>
-          Conocenos
-        </NavLink>
+        <div className="dropdownContainer">
+          <div
+            className={`link ${isHovered ? "active" : ""}`}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            id="conocenosNav">
+            Conocenos
+          </div>
+          {(isHovered || isOptionHovered) && (
+            <div
+              className="dropdownContent"
+              onMouseEnter={handleOptionMouseEnter}
+              onMouseLeave={handleOptionMouseLeave}>
+              <NavLink
+                to="/about"
+                className="dropdownOption"
+                activeclassname="active"
+                id="sepadrinoNav"
+                onClick={handleClick}>
+                NOSOTROS
+              </NavLink>
+              <NavLink
+                to="/historia"
+                className="dropdownOption"
+                activeclassname="active"
+                id="sevoluntarioNav"
+                onClick={handleClick}>
+                Nuestra Historia
+              </NavLink>
+              <NavLink
+                to="/equipo"
+                className="dropdownOption"
+                activeclassname="active"
+                id="nuestroEquipoNav"
+                onClick={handleClick}>
+                Nuestro equipo
+              </NavLink>
+            </div>
+          )}
+        </div>
         <NavLink
           to="/noticias"
           className="link"

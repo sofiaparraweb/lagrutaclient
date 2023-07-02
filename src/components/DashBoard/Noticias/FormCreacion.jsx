@@ -2,11 +2,9 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { create_news, getTypeActi } from "../../../Redux/actions";
-
-
+import Swal from 'sweetalert2';
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
-
 import style from "./FormCreacion.module.css";
 
 function validate(name, date, description, selectedImage) {
@@ -94,8 +92,10 @@ const FormCreacion = () => {
 
     try {
       const res = await axios.post(`${LOCAL}/products/create/`, formData);
-      alert("Actividad creada con éxito");
-      console.log(res);
+      Swal.fire({
+        icon: 'success',
+        title: 'Actividad creada con éxito',
+      });
       const imgUrl = res.data;
       console.log("url de la img", imgUrl);
 

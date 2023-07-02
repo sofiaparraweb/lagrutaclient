@@ -1,8 +1,8 @@
 .section {
-margin-top: 300px;
-margin-left: 300px;
-padding: 10%;
-background-color:#F5EFEB;
+    margin-top: 300px;
+    margin-left: 300px;
+    padding: 10%;
+    background-color:#F5EFEB;
 }
 
 .formcontainer {
@@ -29,8 +29,7 @@ background-color:#F5EFEB;
     margin: 0.5rem 0;
 }
 
-.inputbox
-{
+.inputbox {
 	width: 26rem;
     padding: 0.5rem;
     border: 2px solid #b9b6b6;
@@ -42,8 +41,7 @@ background-color:#F5EFEB;
     font-weight: 500;
 }
 
-.options
-{
+.options {
 	width: 25rem;
 	padding: 1rem;
     border: 2px solid #b9b6b6;
@@ -51,8 +49,7 @@ background-color:#F5EFEB;
     border-radius: 0.3rem;
 }
 
-.submitbtn
-{
+.submitbtn {
 	width: 13rem;
     padding: 0.7rem;
     font-size: 1.2rem;
@@ -69,8 +66,7 @@ background-color:#F5EFEB;
     background: #d66a1d;
 }
 
-.imgpart
-{
+.imgpart {
 	background: #3a4b6b;
 	width: 25rem;
 	display: inline-flex;
@@ -81,8 +77,7 @@ background-color:#F5EFEB;
 }
 
 
-.bottompart
-{
+.bottompart {
 	width: 60rem;
     margin: 0 auto;
     background: white;
@@ -94,8 +89,7 @@ background-color:#F5EFEB;
     flex-direction: row;
 }
 
-.formpart
-{
+.formpart {
 	width: 35rem;
 	border-bottom-right-radius: 1.5rem;
     border-top-right-radius: 1.5rem;
@@ -105,5 +99,4 @@ background-color:#F5EFEB;
 .error {
     color:#f54f63;
     font-family: Arial, Helvetica, sans-serif;
-
 }

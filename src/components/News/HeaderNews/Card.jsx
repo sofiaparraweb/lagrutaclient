@@ -11,7 +11,6 @@ const Card = ({ id, img, ActivityTypes, name, date, description }) => {
           <img  src={img} alt="" />
         </div>
         <div className={style.text}>
-          
           {ActivityTypes?.map((t, index) => {
   
             return (

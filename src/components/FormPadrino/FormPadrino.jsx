@@ -40,7 +40,7 @@ const FormPadrino = () => {
           {errors.name && <span className="form-padrino-error-message">{errors.name.message}</span>}
         </div>
         <div>
-          <label className="form-padrino-label">Email</label>
+          <label className="form-padrino-label">Email *</label>
           <input
             type="text" 
             {...register("email", {
@@ -64,7 +64,7 @@ const FormPadrino = () => {
           )}
         </div>
         <div>
-          <label className="form-padrino-label">Como te gustaría ayudar? *</label>
+          <label className="form-padrino-label">Si fueses padrino, cómo te gustaría ayudar? *</label>
           <select
             {...register('role', { required: 'Campo obligatorio' })}
             className="form-padrino-input"

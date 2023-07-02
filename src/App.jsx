@@ -16,6 +16,8 @@ import CarritoContainer from "./components/Store/CarritoContainer/CarritoContain
 import PopUpDonateNow from "./components/MensajeFloat/DonateNow";
 import WP_Button from "./components/MensajeFloat/WP_Button.jsx";
 import BackToTop from "./components/BackToTop/BackToTop";
+import Timeline from "./views/About/Timeline/Timeline";
+import Equipo from "./views/About/Equipo/Equipo";
 
 /* componentes usuarios */
 import Perfil from "./views/Perfil/Perfil";
@@ -76,6 +78,8 @@ const App = () => {
       <Routes>
         <Route index element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/historia" element={<Timeline />} />
+        <Route path="/equipo" element={<Equipo />} />
         <Route path="/noticias" element={<News />} />
         <Route exact path="/noticias/:id" element={<DetailsNews />} />
         <Route path="/tienda" element={<Tienda />} />

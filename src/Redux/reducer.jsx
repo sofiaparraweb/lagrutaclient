@@ -87,11 +87,18 @@ function rootReducer(state = initialstate, action) {
       };
 
     case CARGAR_PRODUCTOS:
-      const { id, userId, name, price, stock, image } = action.payload;
-      const nuevoProducto = { id, userId, name, price, stock, image };
+      let { id, userId, name, price, stock, image } = action.payload;
+      let cartProduct;
+      cartProduct = {
+        id,
+        name,
+        price,
+        image,
+        stock,
+      } 
       return {
         ...state,
-        Carrito: [...state.Carrito, nuevoProducto],
+        Carrito: [...state.Carrito, cartProduct],
       };
 
     case ADD_TO_CART:

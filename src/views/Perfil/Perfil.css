@@ -18,15 +18,16 @@
 
 .profile-picture-container {
   position: relative;
-  width: 400px;
-  height: 300px;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
   margin-bottom: 30px;
   overflow: hidden;
 }
 
 .profile-picture {
-  width: 250px;
-  height: 250px;
+  width: 100%;
+  height: auto;
   object-fit: cover;
   border-radius: 30px;
 }
@@ -78,7 +79,9 @@
   margin-bottom: 20px;
 }
 
-.profile-button {
+.profile-edit-button,
+.profile-save-button,
+.profile-cancel-button {
   background-color: #007bff;
   color: #fff;
   padding: 10px 20px;
@@ -89,15 +92,21 @@
   margin-top: 20px;
 }
 
-.profile-button:hover {
+.profile-edit-button:hover,
+.profile-save-button:hover,
+.profile-cancel-button:hover {
   background-color: #0056b3;
 }
 
-.profile-button:focus {
+.profile-edit-button:focus,
+.profile-save-button:focus,
+.profile-cancel-button:focus {
   outline: none;
 }
 
-.profile-button:disabled {
+.profile-edit-button:disabled,
+.profile-save-button:disabled,
+.profile-cancel-button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
@@ -120,7 +129,6 @@
   cursor: pointer;
 }
 
-
 @media (max-width: 576px) {
   .container {
     margin-top: 20px;
@@ -129,7 +137,28 @@
   }
 
   .col-md-3,
-  .col-md-5 {
-    border-right: none;
+  .col-md-9 {
+    padding: 0px;
+  }
+
+  .profile-picture-container {
+    margin-bottom: 15px;
+  }
+
+  .profile-picture-label {
+    font-size: 12px;
+    padding: 3px 6px;
+  }
+
+  .profile-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .editar {
+    top: 5px;
+    right: 5px;
+    padding: 5px 10px;
+    font-size: 12px;
   }
 }

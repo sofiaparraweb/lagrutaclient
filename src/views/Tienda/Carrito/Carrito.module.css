@@ -26,8 +26,8 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    padding-top: 70px;
-    padding-bottom: 70px;
+    padding-top: 40%;
+    padding-bottom: 10%;
 }
 
 .ChanguitoCART {
@@ -54,10 +54,10 @@
     width: 102%;
     background-color: rgb(241, 241, 241);
     border-radius: 5px;  
-    margin-top: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 3%;
     height: fit-content;
-    padding: 20px 0;
+    padding: 1% 0;
+    color: black;
 }
 
 .VaciarCarrito{
@@ -73,10 +73,11 @@
     display: flex;
     justify-content: center;
     width: fit-content;
-    padding: 0 10px;
-    height: 35px;
+    padding: 0 5%;
+    height: 1%;
     margin: auto;
-    font-size: 25px;
+    margin-bottom: 5%;
+    font-size: 20px;
     font-family: 'DK Lemon Yellow Sun', sans-serif;
     background-color: #B9362C;
     transition: 0.5s ease;
@@ -91,7 +92,8 @@
 .ContenedorDetallePago{
     display: flex;
     flex-direction: column;
-    text-align: center;
+    text-align: left;
+    padding-left: 10%;
     font-size: 13px;
     padding-bottom: 20px;
 }

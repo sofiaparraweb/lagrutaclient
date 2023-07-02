@@ -10,7 +10,7 @@ import FotosSlider from "./FotosSlider/FotosSlider";
 import Headerslider from "./FotosSlider/HeaderSlider";
 import lagruta from '../../assets/lagruta.png';
 import PedirInfo from './Informacion/informacion';
-import { getAllActivity, createProfile } from "../../Redux/actions.jsx";
+import { getAllActivity, createProfile, getProfile } from "../../Redux/actions.jsx";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useRef } from 'react';
 import logo from "../../assets/logo.png";
@@ -21,6 +21,7 @@ const Home = () => {
     const dispatch = useDispatch();
     const allActivity = useSelector(state => state.LocalPersist.allActivity);
     const isProfileCreatedRef = useRef(false);
+    const userId = useSelector((state) => state.LocalPersist.userId);
 
     useEffect(() => {
         if (isAuthenticated && user && !isProfileCreatedRef.current) {
@@ -33,10 +34,13 @@ const Home = () => {
         }
       }, [dispatch, isAuthenticated, user]);
     
- 
-    useEffect(() => {
-    dispatch(getAllActivity());
-    },[]);
+      useEffect(() => {
+        if (isAuthenticated && user && isProfileCreatedRef.current) {
+          dispatch(getProfile(user.userId)); // Usar user.userId en lugar de userId
+        }
+        dispatch(getAllActivity());
+      }, [dispatch, isAuthenticated, user]);
+      
 
     const handleClick = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });

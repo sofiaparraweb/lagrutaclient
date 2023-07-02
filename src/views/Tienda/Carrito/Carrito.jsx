@@ -118,23 +118,25 @@ const Carrito = ({ id, name, image, price, stock }) => {
           </div>
           <div className={style.ContenedorVaciarCarro}>
             <div className={style.VaciarCarrito}>
-              <p>Pagar</p>
+              <p>Checkout</p>
             </div>
             <div className={style.ContenedorDetallePago}>
               <div>
-                <span>Sub-Total = </span>
+                <span>Subtotal = </span>
                 {/* <span>${subtotal}</span> */}
               </div>
-              <div>
-                <span>Servicio = </span>
+              <div style={{marginBottom: '2%'}}>
+                <span>Cargos = </span>
                 <span>${servicio}</span>
               </div>
-              <div>
+              <hr style={{ width: '80%', margin: '1% auto', border: '1px solid black', paddingRight: '20%'}}></hr>
+              <div style={{marginTop: '2%'}}>
                 <span>Total a pagar = </span>
                 {/* <span>${total}</span> */}
               </div>
             </div>
-            <button className={style.ButtonVaciarCarro} value="pagar" onClick={handlePay}>Checkout</button>
+            <button className={style.ButtonVaciarCarro} value="pagar" onClick={handlePay}>Confirmar</button>
+            <button className={style.ButtonVaciarCarro} value="pagar" onClick={handlePay}>Pagar</button>
           </div>
         </div>
       </div>
@@ -178,7 +180,7 @@ const Carrito = ({ id, name, image, price, stock }) => {
               <CardBody p={4}>
                 <Heading width='100px' size='xs' textAlign='center' >Sub Total</Heading>
                 <Text py='3' textAlign='center'>
-                {/* ${subTotalProd} */}
+                  {price * productCount}
                 </Text>
               </CardBody>
             </HStack>

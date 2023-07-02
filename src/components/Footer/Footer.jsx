@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { formFooter } from "../../Redux/actions";
 import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
+import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
@@ -12,8 +14,11 @@ const Footer = () => {
     const onSubmit = (data) => {
       dispatch(formFooter(data.email));
       reset();
-      alert("¡Formulario enviado!");
-    };
+      Swal.fire({
+        icon: 'success',
+        title: '¡Formulario enviado!',
+      });
+    };    
 
   return (
     <footer className={style.mainFooter}>
@@ -22,13 +27,13 @@ const Footer = () => {
           <h3 className={style.title}>Conocé LA GRUTA</h3>
           <ul>
             <li className={style.itemsTex} >
-              <a href="/about">Qué hace La Gruta</a>
+              <a href="/about">Qué hace la Gruta</a>
             </li>
             <li className={style.itemsTex}>
-              <a href="/noticias">Publicaciones datos</a>
+              <a href="/noticias">Novedades</a>
             </li>
             <li className={style.itemsTex}>
-              <a href="/novedades">Novedades</a>
+              <a href="/tienda">Tienda Online</a>
             </li>
           </ul>
         </div>
@@ -67,7 +72,11 @@ const Footer = () => {
         </form>
 
         <div className={style.footerSection}>
-          <button className={style.btnFooter} >DONÁ AHORA</button>
+        <div className={style.footerSection}>
+      <Link to="/donacion" className={style.btnFooter}>
+        DONÁ AHORA
+      </Link>
+    </div>
           <ul className={style.redes} >
             <li className={style.itemsRedes} >
               <a href="https://www.facebook.com/lagrutacomedor" target="_blank" rel="noreferrer">
