@@ -3,6 +3,9 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProductTypes } from "../../../Redux/actions";
 
+import "@szhsin/react-menu/dist/index.css";
+import "@szhsin/react-menu/dist/transitions/slide.css";
+
 import style from "./FormCreacion.module.css";
 
 function validate(name, price, image, description, stock, type) {
@@ -67,7 +70,7 @@ const FormCreacion = () => {
       setType(value);
     }
   };
-
+ 
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
@@ -99,7 +102,6 @@ const FormCreacion = () => {
 
     try {
       const res = await axios.post(`${LOCAL}/products/create`, formData);
-      console.log(formData)
       alert("Producto agregado con éxito");
       console.log(res);
       const imgUrl = res.data;
@@ -115,17 +117,15 @@ const FormCreacion = () => {
     setErrors({});
 
     } catch (err) {
-      console.log(formData)
       console.log("error al subir imagen", err);
     }
-
   };
 
   return (
     <section className={style.section}>
       <div className={style.formContainer}>
-        <div className={style.headerForm}>
-          <h1 className={style.h1form}>
+        <div className="flex items-center justify-between mb-10">
+          <h1 className="text-4xl text-gray-700">
             Agregar productos nuevos a la tienda
           </h1>
           <p>

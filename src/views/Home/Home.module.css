@@ -89,7 +89,7 @@ img[alt="lagruta"] {
 .UbicacionContenedor{
     display: flex;
     flex-direction: column;
-    margin-top: 80px;
+    padding-top: 5%;
 }
 
 .UbicacionUbicacion{
@@ -97,6 +97,7 @@ img[alt="lagruta"] {
     text-align: center;
     color:#124476;
     font-size: 30px;
+    padding: 3% 0;
 }
 
 .MapaUbicacion{
@@ -111,6 +112,7 @@ img[alt="lagruta"] {
     color: #191b1d;
     font-size: 25px;
     text-align: center;
-    padding-bottom: 50px;
+    padding-bottom: 10%;
     color:#B9362C;
+
 }

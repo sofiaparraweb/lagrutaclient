@@ -36,7 +36,7 @@ const initialstate = {
   Carrito: [],
   CarritoProductos: [],
   profile: null,
-  userId: null,
+  userId: "",
   donaciones: [],
   forms: [], 
 };
@@ -117,7 +117,7 @@ function rootReducer(state = initialstate, action) {
     case DELETE_ALL_CART:
       return {
         ...state,
-        Carrito: [],
+        Carrito: action.payload,
       };
 
     case DELETE_CARRITO:

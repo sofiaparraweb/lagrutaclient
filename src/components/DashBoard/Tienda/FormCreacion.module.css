@@ -2,23 +2,23 @@
     margin-top: 300px;
     margin-left: 300px;
     padding: 10%;
-    background-color: #F5EFEB;
+    background-color:#F5EFEB;
 }
-
+    
 .formcontainer {
     display: flex;
     flex-direction: column;
     padding: 3rem 10rem 10rem;
     background-color: #f54f63;
 }
-
+   
 .headerForm {
     background: #3a2f2f76;
     border-radius: 1rem;
-    padding: 2rem;
+    padding:2rem;
     margin-top: 1rem;
 }
-
+   
 .LabelForm {
     font-size: 1.6rem;
     color: rgb(81, 87, 106);
@@ -26,7 +26,7 @@
     display: block;
     margin: 0.5rem 0;
 }
-
+    
 .inputbox {
     width: 26rem;
     padding: 0.5rem;
@@ -38,7 +38,7 @@
     font-size: 1.1rem;
     font-weight: 500;
 }
-
+    
 .options {
     width: 25rem;
     padding: 1rem;
@@ -46,7 +46,7 @@
     margin-bottom: 1rem;
     border-radius: 0.3rem;
 }
-
+    
 .submitbtn {
     width: 13rem;
     padding: 0.7rem;
@@ -59,11 +59,11 @@
     cursor: pointer;
     transition: 0.4s;
 }
-
+    
 .submitbtn:hover {
     background: #d66a1d;
 }
-
+    
 .imgpart {
     background: #3a4b6b;
     width: 25rem;
@@ -73,7 +73,7 @@
     border-top-left-radius: 1.5rem;
     border-bottom-left-radius: 1.5rem;
 }
-
+    
 .bottompart {
     width: 60rem;
     margin: 0 auto;
@@ -85,15 +85,15 @@
     display: flex;
     flex-direction: row;
 }
-
+    
 .formpart {
     width: 35rem;
     border-bottom-right-radius: 1.5rem;
     border-top-right-radius: 1.5rem;
     padding: 2rem 2rem 4rem;
 }
-
+    
 .error {
-    color: #f54f63;
+    color:#f54f63;
     font-family: Arial, Helvetica, sans-serif;
 }

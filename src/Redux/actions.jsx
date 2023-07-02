@@ -173,7 +173,7 @@ export const deleteAllCarrito = (userId) => {
   return async (dispatch) => {
     try {
       await axios.delete(`${url}/cart?user_id=${userId}`);
-      dispatch({ type: DELETE_ALL_CART });
+      dispatch({ type: DELETE_ALL_CART, payload: [] });
     } catch (error) {
       console.log(error);       
     } 
@@ -181,7 +181,7 @@ export const deleteAllCarrito = (userId) => {
 };
 
 // ----------Borrar un elemento
-export const deleteCarrito = (id) => {
+export const deleteCarrito = (userId, id) => {
   return async (dispatch) => {
     try {
       await axios.delete(`${url}/cart/remove?userId=${userId}&product_id=${id}`);

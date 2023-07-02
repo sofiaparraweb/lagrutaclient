@@ -14,6 +14,19 @@ const Carrito = ({ id, name, image, price, stock }) => {
   const Cart = useSelector((state) => state.LocalPersist.Carrito);
   const userId = useSelector((state) => state.LocalPersist.userId);
   const [productCount, setProductCount] = useState(0);
+  //const [total, setTotal] = useState(price)
+
+//   useEffect(() => {
+//     setTotal(productCount * price);
+//     setArray([
+//       ...array,{
+//         id,
+//         name,
+//         price: total,
+//         amount: cant,
+//       }]
+//     )
+// },[]);
 
   let subTotalProd = Cart.map((el) => el.price);
   let subtotal = Cart.reduce((acc, el) => acc + el.price, 0);
@@ -110,7 +123,7 @@ const Carrito = ({ id, name, image, price, stock }) => {
             <div className={style.ContenedorDetallePago}>
               <div>
                 <span>Sub-Total = </span>
-                <span>${subtotal}</span>
+                {/* <span>${subtotal}</span> */}
               </div>
               <div>
                 <span>Servicio = </span>
@@ -118,7 +131,7 @@ const Carrito = ({ id, name, image, price, stock }) => {
               </div>
               <div>
                 <span>Total a pagar = </span>
-                <span>${total}</span>
+                {/* <span>${total}</span> */}
               </div>
             </div>
             <button className={style.ButtonVaciarCarro} value="pagar" onClick={handlePay}>Checkout</button>
@@ -165,7 +178,7 @@ const Carrito = ({ id, name, image, price, stock }) => {
               <CardBody p={4}>
                 <Heading width='100px' size='xs' textAlign='center' >Sub Total</Heading>
                 <Text py='3' textAlign='center'>
-                ${subTotalProd}
+                {/* ${subTotalProd} */}
                 </Text>
               </CardBody>
             </HStack>
