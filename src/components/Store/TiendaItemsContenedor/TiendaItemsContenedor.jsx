@@ -12,6 +12,7 @@ const TiendaItemsContenedor = ({ products, setCurrentPage }) => {
             </div> 
             <div className={style.TiendaItemsContainer}> 
                 {products.length > 0 && products?.map((prod) => {
+                    console.log(products);
                     return (
                         <TiendaItems
                             key={prod.id}
@@ -22,6 +23,11 @@ const TiendaItemsContenedor = ({ products, setCurrentPage }) => {
                             ProductsTypes={prod.ProductsTypes?.map((v) => v.name).join(' / ')}
                             description={prod.description}
                             stock={prod.stock}
+                            Reviews={prod.Reviews?.map((r) =>({
+                                content: r.content,
+                                rating: r.rating,
+                                user_id: r.user_id,
+                            }))}
                         />
                     ); 
                 })}
