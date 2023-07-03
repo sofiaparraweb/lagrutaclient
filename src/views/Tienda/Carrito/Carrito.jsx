@@ -11,40 +11,43 @@ const Carrito = ({ id, name, image, price, stock }) => {
 
   const dispatch = useDispatch();
   const Cart = useSelector((state) => state.LocalPersist.Carrito);
-  //const Cart = useSelector((state) => state.LocalPersist.allProducts);
-  const userId = useSelector((state) => state.LocalPersist.userId);
-  const [productCount, setProductCount] = useState(0);
+  const userId = useSelector(state => state.LocalPersist.userInfo.id);
+  const [quantity, setQuantity] = useState(1);
   const [subTotal, setSubTotal] = useState(0);
-  const [subTotalFinal, setSubTotalFinal] = useState(0);
+
+  useEffect(() => { // Calcula el subtotal inicial al cargar el carrito
+    const initialSubTotal = Cart.reduce((amount, item) => item.price * item.quantity + amount, 0);
+    setSubTotal(initialSubTotal);
+  }, [Cart]);
 
   useEffect(() => {
-    dispatch(getCarrito(), subTotal, servicio, total, subTotalFinal);
+    dispatch(getCarrito(), servicio, total, subTotal, quantity);
   }, [dispatch]);
 
-  useEffect(() => {
-    const newSubTotalFinal = Cart.reduce((accumulator, product) => accumulator + (product.price * productCount), 0);
-    setSubTotalFinal(newSubTotalFinal);
-  }, [Cart, productCount]);
-
-  const servicio = subTotalFinal * 0.10;
-  const total = subTotalFinal + servicio;
+  let servicio = subTotal * 0.10;
+  let total = subTotal + servicio;
 
   const handleClickAdd = (userId, id, name, image, price, stock) => {
-    if (productCount < stock) {
+    const existingProduct = Cart?.find((item) => item.id === id);
+
+    if (existingProduct) {
+      if (existingProduct.quantity < stock) {
+        dispatch(cargarProductos(userId, id, name, image, price, stock));
+        setQuantity(existingProduct.quantity + 1);
+        toast.success("Producto agregado al carrito", {
+          duration: 3000
+        });
+      } else {
+        toast.error("No hay más productos disponibles");
+      }
+    } else {
       dispatch(cargarProductos(userId, id, name, image, price, stock));
-      setProductCount(productCount + 1);
-      const newSubTotal = price * (productCount + 1);
-      setSubTotal(newSubTotal);
+      setQuantity(1);
       toast.success("Producto agregado al carrito", {
         duration: 3000
       });
-    } else {
-      setProductCount(stock);
-      toast.error("No hay más productos disponibles");
     }
   };
-
-  console.log(Cart)
 
   // const handleAddToCart = (id) => {
   //   if(productCount<stock) {
@@ -61,25 +64,25 @@ const Carrito = ({ id, name, image, price, stock }) => {
   // }
     
   const handleDeleteFromCart = (userId, id) => {
-    if(productCount>0){
-      dispatch(deleteCarrito(userId, id));
-      setProductCount(productCount - 1);
-      setSubTotal(price * (productCount - 1));
-      toast.success("Producto eliminado del carrito", {
-        duration: 3000
-      })
-    } else {
-      dispatch(QuitarProducto(id)); 
-      setProductCount(0);
-      toast.success("Producto eliminado del carrito", {
+    const existingProduct = Cart?.find((item) => item.id === id);
+
+    if (existingProduct) {
+      if (existingProduct.quantity > 1) {
+        dispatch(deleteCarrito(userId, id));
+        setQuantity(existingProduct.quantity - 1);
+      } else {
+        dispatch(QuitarProducto(id));
+        setQuantity(0);
+      }
+      toast.success("Se ha eliminado un producto del carrito", {
         duration: 3000
       });
-    } 
+    }
   };
 
   const handleDeleteProductCart = (id) =>{
     dispatch(QuitarProducto(id));
-    setProductCount(0);
+    setQuantity(0);
     toast.success("Producto eliminado del carrito", {
       duration: 3000
     })
@@ -87,7 +90,7 @@ const Carrito = ({ id, name, image, price, stock }) => {
 
   const handleDeleteCart = (userId) =>{
     dispatch(deleteAllCarrito(userId));
-    setProductCount(0);
+    setQuantity(0);
     toast.success("Carrito vaciado correctamente", {
       duration: 3000
     })
@@ -118,7 +121,7 @@ const Carrito = ({ id, name, image, price, stock }) => {
             <div className={style.VaciarCarrito}>
               <p>Vaciar carrito</p>
             </div>
-            <button onClick={handleDeleteCart} className={style.ButtonVaciarCarro}>x</button>
+            <button onClick={() => handleDeleteCart(userId)} className={style.ButtonVaciarCarro}>x</button>
           </div>
           <div className={style.ContenedorVaciarCarro}>
             <div className={style.VaciarCarrito}>
@@ -127,7 +130,7 @@ const Carrito = ({ id, name, image, price, stock }) => {
             <div className={style.ContenedorDetallePago}>
               <div>
                 <span>Subtotal = </span>
-                <span>${subTotalFinal}</span>
+                <span>${subTotal}</span>
               </div>
               <div style={{marginBottom: '2%'}}>
                 <span>Cargos = </span>
@@ -176,20 +179,20 @@ const Carrito = ({ id, name, image, price, stock }) => {
               <CardBody p={4} size='md'>
                 <Heading width='100px' size='md' textAlign='center'>Cantidad</Heading>
                 <Text py='3' className={style.ContenedorBotonesCart}>
-                  <button className={style.ButtonsSumaResta} onClick={handleDeleteFromCart} value="less" >-</button>
-                    {productCount}
+                  <button className={style.ButtonsSumaResta} onClick={()=> handleDeleteFromCart(id)} value="less" >-</button>
+                    {quantity}
                   <button className={style.ButtonsSumaResta} onClick={() => handleClickAdd(userId, id, name, image, price, stock)} value="add" >+</button>
                 </Text>
               </CardBody>
               <CardBody p={4} size='md'>
                 <Heading width='100px' size='md' textAlign='center'>Subtotal</Heading>
                 <Text py='3' textAlign='center'>
-                  {subTotal}
+                  {price * quantity}
                 </Text>
               </CardBody>
               <CardBody p={4}>
                 <Text textAlign='center' color='#B9362C'>
-                  <button onClick={handleDeleteProductCart} value="less" ><AiOutlineDelete size='2em'/></button>
+                  <button onClick={()=>handleDeleteProductCart(id)} value="less" ><AiOutlineDelete size='2em'/></button>
                 </Text>
               </CardBody>
             </HStack>

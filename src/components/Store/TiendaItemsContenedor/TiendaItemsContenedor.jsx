@@ -12,7 +12,6 @@ const TiendaItemsContenedor = ({ products, setCurrentPage }) => {
             </div> 
             <div className={style.TiendaItemsContainer}> 
                 {products.length > 0 && products?.map((prod) => {
-                    console.log(products);
                     return (
                         <TiendaItems
                             key={prod.id}
