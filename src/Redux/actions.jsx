@@ -1,6 +1,5 @@
 import { useRadio } from "@chakra-ui/react";
 import axios from "axios";
-import { useId } from "react";
 import Swal from "sweetalert2";
 
 export const GET_ALL_ACTIVITY = "GET_ALL_ACTIVITY";
@@ -34,8 +33,8 @@ export const FORM_FOOTER = 'FORM_FOOTER';
 export const FORM_PADRINO = 'FORM_PADRINO';
 export const FORM_DONACION = 'FORM_DONACION';
 
-export const url = "http://localhost:3001";
-// export const url = "https://lagruta.onrender.com";
+//export const url = "http://localhost:3001";
+export const url = "https://lagruta.onrender.com";
 // const LOCAL = "http://localhost:3001";
 
 export function getAllActivity() {
@@ -161,8 +160,8 @@ export const cargarProductos = (userId, id, name, image, price, stock) => {
 };
 
 // ----------Eliminar a carrito Localmente
-export const QuitarProducto = () => {
-  return { type: QUITAR_PRODUCTOS, payload: [] };
+export const QuitarProducto = (id) => {
+  return { type: QUITAR_PRODUCTOS, payload: id };
 };
 
 // ----------Agregar a carrito a Base de Datos
@@ -179,16 +178,19 @@ export const addToCart = (userId, product_id, quantity) => {
 }
 
 // ----------Borrar todo el carrito
-export const deleteAllCarrito = (userId) => {
-  return async (dispatch) => {
-    try {
-      await axios.delete(`${url}/cart?user_id=${userId}`);
-      dispatch({ type: DELETE_ALL_CART, payload: [] });
-    } catch (error) {
-      console.log(error);       
-    } 
-  };
+export const deleteAllCarrito = () => {
+  return { type: DELETE_ALL_CART, payload: []}
 };
+// export const deleteAllCarrito = (userId) => {
+//   return async (dispatch) => {
+//     try {
+//       await axios.delete(`${url}/cart/remove?user_id=${userId}`);
+//       dispatch({ type: DELETE_ALL_CART, payload: [] });
+//     } catch (error) {
+//       console.log(error);       
+//     } 
+//   };
+// };
 
 // ----------Borrar un elemento
 export const deleteCarrito = (userId, id) => {
@@ -201,22 +203,6 @@ export const deleteCarrito = (userId, id) => {
     }
   };
 };
-
-// export const amountCarrito = (value, userId, product_id) => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.put(
-//         `${url}/cart/${userId}/${product_id}?putAmount=${value}`
-//       );
-//       dispatch({
-//         type: PUT_AMOUNT_CART,
-//         payload: { id: product_id, amount: response.data },
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
 
 
 /* -----------------------------profile----------------------------- */
@@ -258,7 +244,8 @@ export const getProfile = (userId) => {
 export const getUserId = (email) =>{
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${url}/user/mail?mail=${email}`);
+      const response = await axios.get(`${url}/user/mail/${email}`);
+      console.log(response)
       dispatch({
         type: GET_USERID,
         payload: response.data,
