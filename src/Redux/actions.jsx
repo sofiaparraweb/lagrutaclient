@@ -1,6 +1,5 @@
 import { useRadio } from "@chakra-ui/react";
 import axios from "axios";
-import { useId } from "react";
 import Swal from "sweetalert2";
 
 export const GET_ALL_ACTIVITY = "GET_ALL_ACTIVITY";
@@ -28,14 +27,15 @@ export const GET_USERID = "GET_USERID";
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
 export const POST_NEWS_DASHBOARD = "POST_NEWS_DASHBOARD";
 export const SET_USER_ID = 'SET_USER_ID';
-export const POST_DONACIONES = "POST_DONACIONES"
+export const POST_DONACIONES = "POST_DONACIONES";
+//export const ENVIAR_INFORMACION = "ENVIAR_INFORMACION";
 export const FORM_VOLUNTARIO = 'FORM_VOLUNTARIO';
 export const FORM_FOOTER = 'FORM_FOOTER';
 export const FORM_PADRINO = 'FORM_PADRINO';
 export const FORM_DONACION = 'FORM_DONACION';
 
-export const url = "http://localhost:3001";
-// export const url = "https://lagruta.onrender.com";
+//export const url = "http://localhost:3001";
+export const url = "https://lagruta.onrender.com";
 // const LOCAL = "http://localhost:3001";
 
 export function getAllActivity() {
@@ -161,8 +161,8 @@ export const cargarProductos = (userId, id, name, image, price, stock) => {
 };
 
 // ----------Eliminar a carrito Localmente
-export const QuitarProducto = () => {
-  return { type: QUITAR_PRODUCTOS, payload: [] };
+export const QuitarProducto = (id) => {
+  return { type: QUITAR_PRODUCTOS, payload: id };
 };
 
 // ----------Agregar a carrito a Base de Datos
@@ -179,16 +179,19 @@ export const addToCart = (userId, product_id, quantity) => {
 }
 
 // ----------Borrar todo el carrito
-export const deleteAllCarrito = (userId) => {
-  return async (dispatch) => {
-    try {
-      await axios.delete(`${url}/cart?user_id=${userId}`);
-      dispatch({ type: DELETE_ALL_CART, payload: [] });
-    } catch (error) {
-      console.log(error);       
-    } 
-  };
+export const deleteAllCarrito = () => {
+  return { type: DELETE_ALL_CART, payload: []}
 };
+// export const deleteAllCarrito = (userId) => {
+//   return async (dispatch) => {
+//     try {
+//       await axios.delete(`${url}/cart/remove?user_id=${userId}`);
+//       dispatch({ type: DELETE_ALL_CART, payload: [] });
+//     } catch (error) {
+//       console.log(error);       
+//     } 
+//   };
+// };
 
 // ----------Borrar un elemento
 export const deleteCarrito = (userId, id) => {
@@ -201,22 +204,6 @@ export const deleteCarrito = (userId, id) => {
     }
   };
 };
-
-// export const amountCarrito = (value, userId, product_id) => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.put(
-//         `${url}/cart/${userId}/${product_id}?putAmount=${value}`
-//       );
-//       dispatch({
-//         type: PUT_AMOUNT_CART,
-//         payload: { id: product_id, amount: response.data },
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
 
 
 /* -----------------------------profile----------------------------- */
@@ -258,7 +245,8 @@ export const getProfile = (userId) => {
 export const getUserId = (email) =>{
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${url}/user/mail?mail=${email}`);
+      const response = await axios.get(`${url}/user/mail/${email}`);
+      console.log(response)
       dispatch({
         type: GET_USERID,
         payload: response.data,
@@ -314,30 +302,21 @@ export function create_news(payload) {
 }
 
 //==========>>>Donaciones<<<==========//
-export const enviarInformacion = (data) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.post(`${LOCAL}/payment/donation/create-order/`, data);
-
-      if (response.data.success) {
-        Swal.fire({
-          icon: 'success',
-          title: 'La información se envió correctamente',
-        });
-      }
-
-      dispatch({ type: POST_DONACIONES, payload: response.data });
-
-    } catch (error) {
-
-      alert("Error al enviar la información al backend");
-
-      dispatch({ type: "ENVIO_INFORMACION_ERROR", payload: error });
-    }
-  };
+ export const enviarInformacion = (data) => {
+   return async (dispatch) => {
+     try {
+       const response = await axios.post(`${url}/payment/donation/create-order/`, data)
+       if (response) {
+         console.log("estoy en actions, La información se envió correctamente", response);
+       
+       dispatch({ type: POST_DONACIONES, payload: response.data })
+       return response.data;
+     } 
+   }catch (error) {
+    console.log("Error al enviar la información al backend", error)
+  }
+ }
 };
-
-
 
 /* -----------------------------formulario----------------------------- */
 

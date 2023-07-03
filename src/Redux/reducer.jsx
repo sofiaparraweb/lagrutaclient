@@ -38,9 +38,9 @@ const initialstate = {
   Carrito: [],
   CarritoProductos: [],
   profile: null,
+  donaciones: {},
   userId: "",
   userInfo: [],
-  donaciones: [],
   forms: [], 
 };
 
@@ -92,18 +92,33 @@ function rootReducer(state = initialstate, action) {
     case CARGAR_PRODUCTOS:
       {
         const { userId, id, name, price, stock, image } = action.payload;
-        const cartProduct = {
-          id: id,
-          name: name,
-          image: image,
-          price: price,
-          stock: stock,
-        } 
-        return {
-          ...state,
-          Carrito: [...state.Carrito, cartProduct],
-        };
+        const existingProduct = state.Carrito.find(item => item.id === id);
+        if (existingProduct) {
+          if (existingProduct.quantity < stock) {
+            return {
+              ...state,
+              Carrito: state.Carrito.map(item =>
+                item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+              )
+            };
+          } else {
+            return state; // No se actualiza el estado si no hay stock suficiente
+          }
+        } else {
+          return {
+            ...state,
+            Carrito: [ ...state.Carrito, {
+                id,
+                name,
+                image,
+                price,
+                stock,
+                quantity: 1
+            }]
+          }
+        }
       }
+      return state;
 
     case ADD_TO_CART:
       {const newProduct = action.payload;
@@ -209,11 +224,12 @@ function rootReducer(state = initialstate, action) {
       };
 
     //=====>>>caso donaciones<<<=====// 
-      case POST_DONACIONES:
-      return {
-        ...state,
-        donaciones: [...state.donaciones, action.payload],
-      };
+       case POST_DONACIONES:
+       return {
+         ...state,
+         donaciones: action.payload,
+       };
+
     case FORM_VOLUNTARIO:
       return {
         ...state,
