@@ -40,7 +40,7 @@ const initialstate = {
   profile: null,
   userId: "",
   userInfo: [],
-  donaciones: [],
+  donaciones: {},
   forms: [], 
 };
 
@@ -224,11 +224,12 @@ function rootReducer(state = initialstate, action) {
       };
 
     //=====>>>caso donaciones<<<=====// 
-      case POST_DONACIONES:
+    case POST_DONACIONES:
       return {
         ...state,
-        donaciones: [...state.donaciones, action.payload],
+        donaciones: action.payload,
       };
+      
     case FORM_VOLUNTARIO:
       return {
         ...state,
