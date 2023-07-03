@@ -10,18 +10,18 @@ import FotosSlider from "./FotosSlider/FotosSlider";
 import Headerslider from "./FotosSlider/HeaderSlider";
 import lagruta from '../../assets/lagruta.png';
 import PedirInfo from './Informacion/informacion';
-import { getAllActivity, createProfile } from "../../Redux/actions.jsx";
+import { getAllActivity, createProfile, getProfile, getUserId } from "../../Redux/actions.jsx";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useRef } from 'react';
 import logo from "../../assets/logo.png";
 
 const Home = () => {
 
-    const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
-    console.log(user)
-    console.log(getAccessTokenSilently())
+    const { user, isAuthenticated, isLoading } = useAuth0();
     const dispatch = useDispatch();
-    const allActivity = useSelector(state => state.allActivity);
+    const allActivity = useSelector(state => state.LocalPersist.allActivity);
+    const userInfo = useSelector(state => state.LocalPersist.userInfo.id);
+    console.log(userInfo)
     const isProfileCreatedRef = useRef(false);
 
     useEffect(() => {
@@ -35,10 +35,14 @@ const Home = () => {
         }
       }, [dispatch, isAuthenticated, user]);
     
- 
-    useEffect(() => {
-    dispatch(getAllActivity());
-    },[]);
+      useEffect(() => {
+        if (isAuthenticated && user && isProfileCreatedRef.current) {
+          dispatch(getProfile(user.userId)); // Usar user.userId en lugar de userId
+          dispatch(getUserId(user.email))
+        }
+        dispatch(getAllActivity());
+      }, [dispatch, isAuthenticated, user]);
+
 
     const handleClick = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -93,8 +97,7 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-            
+            </div>     
         </div>
     );
 }

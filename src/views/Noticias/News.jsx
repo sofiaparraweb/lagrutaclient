@@ -11,7 +11,7 @@ import { getAllActivity } from "../../Redux/actions.jsx"
 export default function News() {
 
 const dispatch = useDispatch();
-const allActivity = useSelector(state => state.allActivity);
+const allActivity = useSelector(state => state.LocalPersist.allActivity);
 
 
 useEffect(() => {

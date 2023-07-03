@@ -6,7 +6,7 @@ import style from "./Search.module.css";
 
 const Search = () => {
   const dispatch = useDispatch()
-  const products = useSelector(state => state.allProducts);
+  const products = useSelector(state => state.LocalPersist.allProducts);
   const [ productName, setProductName ] = useState("")
 
   const handleChange = (event) =>{

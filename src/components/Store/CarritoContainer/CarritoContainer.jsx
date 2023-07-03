@@ -1,20 +1,20 @@
 import Carrito from "../../../views/Tienda/Carrito/Carrito";
 import style from "./CarritoContainer.module.css";
 import { useEffect } from 'react';
-import { getAllProducts } from '../../../Redux/actions';
+import { getCarrito } from '../../../Redux/actions';
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom";
 
 const CarritoContainer = () => {
 
-    //const Cart = useSelector(state=>state.allProducts);
-    const Cart = useSelector(state=>state.Carrito);
-
+    const Cart = useSelector((state) => state.LocalPersist.Carrito);
+    // const Cart = useSelector((state) => state.LocalPersist.allProducts);
+    const userId = useSelector((state) => state.LocalPersist.userId);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getAllProducts());
-      },[]);
+        dispatch(getCarrito());
+    },[dispatch]);
       
     return (
         <div className={style.TiendaItemsContainerCART}> 
@@ -31,11 +31,10 @@ const CarritoContainer = () => {
                             <Carrito
                                 key={prod.id}
                                 id={prod.id}
-                                image={prod.image}
                                 name={prod.name}
+                                image={prod.image}
                                 price={prod.price}
                                 stock={prod.stock}
-                                quantity={prod.quantity}
                             />
                         ); 
                     })}

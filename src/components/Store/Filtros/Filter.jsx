@@ -8,7 +8,7 @@ const Filter = ({ setCurrentPage }) => {
 
   const [activeFilter, setActiveFilter] = useState(null);  //Para modificar el estado del filtro activo
   const dispatch = useDispatch();
-  const allProductTypes = useSelector(state => state.allProductTypes);
+  const allProductTypes = useSelector(state => state.LocalPersist.allProductTypes);
 
   const handleFilter = name => {  //Ejecutamos la action segun el filtro que seleccionemos abajo
     dispatch(filterByType(name));
@@ -30,7 +30,7 @@ const Filter = ({ setCurrentPage }) => {
   return (
     <div className={style.FilterContainer}>
         <AiOutlineFilter className={style.Icon1} />
-        <h1 className={style.FiltrarTexto}>CATEGORIA</h1>
+        <h1 className={style.FiltrarTexto}> PRODUCTO</h1>
         <ul className={style.ContenedorBotonesFiltro}>
           <li className={style.FilterLI}>
             <button onClick={handleReset} className={activeFilter === null ? style.ActiveButtonNull : ''}>Todos los productos</button>

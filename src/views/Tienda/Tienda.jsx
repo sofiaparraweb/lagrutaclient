@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { getAllProducts } from '../../Redux/actions';
-import NavBar from "../../components/NavBar/NavBar";
 import TiendaItemsContenedor from "../../components/Store/TiendaItemsContenedor/TiendaItemsContenedor";
 import style from "./Tienda.module.css";
 import { useDispatch, useSelector } from 'react-redux'
@@ -9,12 +8,9 @@ import Search from "../../components/Store/Search/Search"
 import Pagination from "../../components/Store/paginado/Paginacion"
 
 const Tienda = () => {
+  
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.userId); // Obtener el userId del estado
-  //const products = useSelector(state => state.allProducts);
-  const prod = useSelector(state => state.products);
-
-  console.log(userId)
+  const prod = useSelector(state => state.LocalPersist.products);
   
   const [currentPage, setCurrentPage] = useState(1); 
   const productsPerPage = 9;
@@ -36,7 +32,6 @@ const Tienda = () => {
 
   return (
     <div className={style.FondoTienda}>
-      <NavBar />
       <div className={style.tienda}>
         <div className={style.SearchOrder}>
           <Search />
@@ -57,3 +52,6 @@ const Tienda = () => {
 }
 
 export default Tienda;
+
+
+

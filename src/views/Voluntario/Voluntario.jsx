@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import './Voluntario.css';
 import FormVoluntario from '../../components/FormVoluntario/FormVoluntario';
-// import FotosSlider from '../Home/FotosSlider/FotosSlider';
+import FotosSlider from '../Home/FotosSlider/FotosSlider';
 
 const Voluntario = () => {
 
@@ -11,12 +11,21 @@ const Voluntario = () => {
       <h1 className="voluntario-title">Se Voluntario</h1>
       
       <div className="voluntario-section">
-        <h2 className="voluntario-section-title">¿Qué es ser voluntario?</h2>
-        <p className="voluntario-section-description">Aquí va la descripción de qué significa ser voluntario.</p>
-      </div>
+  <h2 className="voluntario-section-title">¿Qué es ser voluntario?</h2>
+  <p className="voluntario-section-description">
+    Ser voluntario es dejar que la realidad te interpele. Es una experiencia gratificante y enriquecedora para generar un impacto positivo. Es animarte a salir de la zona de comfort y ser parte del cambio. Te animas a entregar tu tiempo y energía en La Gruta?
+  </p>
+</div>
 
-      {/* <FotosSlider /> */}
+      <FotosSlider />
       
+      <div className="voluntario-section">
+  <h2 className="voluntario-section-title">¿Cómo ser voluntario?</h2>
+  <p className="voluntario-section-description">
+    Para ser voluntario en La gruta, simplemente necesitas contactar a nuestro equipo de voluntariado y manifestar tu interés en sumarte. Te brindaremos toda la información necesaria sobre nuestras actividades y proyectos, así como los requisitos y las opciones de participación. No se requiere experiencia previa, solo las ganas de ayudar y el compromiso de dedicar tu tiempo de acuerdo a tus posibilidades. ¡Anímate a ser voluntario y contribuir con tu granito de arena!
+  </p>
+</div>
+
       <div className="voluntario-section">
   <h2 className="voluntario-section-title">Proyectos para ser voluntario</h2>
   <ul className="voluntario-section-description">
@@ -29,8 +38,14 @@ const Voluntario = () => {
   </ul>
 </div>
 
-      
-      <FormVoluntario />
+<div className="voluntario-section">
+  <h2 className="voluntario-section-title">¿Interesado en ser voluntario? ¡Contáctanos!</h2>
+  <p className="voluntario-section-description">
+    Si estás interesado en ser voluntario en nuestra fundación y deseas obtener más información, puedes completar el formulario a continuación. Nos pondremos en contacto contigo para brindarte todos los detalles y responder a tus preguntas. ¡Gracias por tu interés en ser parte!
+  </p>
+  </div>
+
+  <FormVoluntario />
     </div>
   );
 };

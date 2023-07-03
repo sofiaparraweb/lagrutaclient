@@ -2,7 +2,9 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { create_news, getTypeActi } from "../../../Redux/actions";
-
+import Swal from 'sweetalert2';
+import "@szhsin/react-menu/dist/index.css";
+import "@szhsin/react-menu/dist/transitions/slide.css";
 import style from "./FormCreacion.module.css";
 
 function validate(name, date, description, selectedImage) {
@@ -26,7 +28,7 @@ function validate(name, date, description, selectedImage) {
 
 const FormCreacion = () => {
   const dispatch = useDispatch();
-  const Types = useSelector((state) => state.activityTypes);
+  const Types = useSelector((state) => state.LocalPersist.activityTypes);
 
   const [errors, setErrors] = useState({});
   const [selectedImage, setSelectedImage] = useState(null);
@@ -89,9 +91,11 @@ const FormCreacion = () => {
     formData.append("types_activity", types_activity);
 
     try {
-      const res = await axios.post(`${LOCAL}/activity/`, formData);
-      alert("Actividad creada con éxito");
-      console.log(res);
+      const res = await axios.post(`${LOCAL}/products/create/`, formData);
+      Swal.fire({
+        icon: 'success',
+        title: 'Actividad creada con éxito',
+      });
       const imgUrl = res.data;
       console.log("url de la img", imgUrl);
 
@@ -112,15 +116,11 @@ const FormCreacion = () => {
   return (
     <section className={style.section}>
       <div className={style.formContainer}>
-        <div className={style.headerForm}>
-          <h1 className={style.h1form}>
-            Publicar noticias y actividades nuevas
-          </h1>
-          <p>
-            En este apartado puedes crear una noticias o actividad nueva,
-            recuerda también, que puedes editarla una vez este publicada.{" "}
-          </p>
-        </div>
+      <div className="flex items-center justify-between mb-10">
+        <h1 className="text-4xl text-gray-700">Estadísticas Generales</h1>
+      </div>
+
+      
         <div className={style.bottompart}>
           <div className={style.imgpart}>
             {previewImage && (

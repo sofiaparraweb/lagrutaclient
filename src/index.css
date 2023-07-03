@@ -1,3 +1,11 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
 body {
 	background-repeat:  no-repeat;
 	background-size:  cover;
@@ -19,6 +27,8 @@ body::-webkit-scrollbar-thumb {
   background-color: #e4d1bb;
   outline: 0px solid #e1e0e0;
 }
+
+
 
 
 /* :root {

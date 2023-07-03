@@ -33,10 +33,10 @@ const Footer = () => {
               <a href="/about">Qué hace La Gruta</a>
             </li>
             <li className={style.itemsTex}>
-              <a href="/noticias">Publicaciones datos</a>
+              <a href="/noticias">Novedades</a>
             </li>
             <li className={style.itemsTex}>
-              <a href="/novedades">Novedades</a>
+              <a href="/tienda">Tienda Online</a>
             </li>
           </ul>
         </div>

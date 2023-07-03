@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProductTypes } from "../../../Redux/actions";
-
+import Swal from "sweetalert2";
 import style from "./FormCreacion.module.css";
 
-function validate(name, price, selectedImage, description, stock, product_Types) {
+import "@szhsin/react-menu/dist/index.css";
+import "@szhsin/react-menu/dist/transitions/slide.css";
+
+function validate(name, price, image, description, stock, type) {
   let errors = {};
   if (!name) {
     errors.name = "Debe ingresar un nombre para el producto";
@@ -13,7 +16,7 @@ function validate(name, price, selectedImage, description, stock, product_Types)
   if (!price) {
     errors.price = "Debe ingresar un precio del producto";
   }
-  if (!selectedImage) {
+  if (!image) {
     errors.img = "Debe ingresar una imagen del producto";
   }
   if (!description) {
@@ -22,8 +25,8 @@ function validate(name, price, selectedImage, description, stock, product_Types)
   if (!stock) {
     errors.stock = "Debe ingresar el stock de unidades a vender";
   }
-  if (!product_Types) {
-    errors.product_Types = "Debe ingresar el tipo de producto a vender";
+  if (!type) {
+    errors.type = "Debe ingresar el tipo de producto a vender";
   }
 
   return errors;
@@ -31,16 +34,16 @@ function validate(name, price, selectedImage, description, stock, product_Types)
 
 const FormCreacion = () => {
   const dispatch = useDispatch();
-  const allProductTypes = useSelector((state) => state.allProductTypes);
+  const allProductTypes = useSelector((state) => state.LocalPersist.allProductTypes);
 
   const [errors, setErrors] = useState({});
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [image, setImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
   const [name, setName] = useState("");
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
-  const [stock, setStock] = useState(0);
-  const [product_Types, setProduct_Types] = useState("");
+  const [stock, setStock] = useState("");
+  const [type, setType] = useState("");
 
   useEffect(() => {
     dispatch(getAllProductTypes());
@@ -63,14 +66,14 @@ const FormCreacion = () => {
       setDescription(value);
     } else if (name === "stock") {
       setStock(value);
-    } else if (name === "product_Types") {
-      setProduct_Types(value);
+    } else if (name === "type") {
+      setType(value);
     }
   };
-
+ 
 
   const handleImageChange = (e) => {
-    setSelectedImage(e.target.files[0]);
+    setImage(e.target.files[0]);
     setPreviewImage(URL.createObjectURL(e.target.files[0]));
     setErrors((prevErrors) => ({
       ...prevErrors,
@@ -82,7 +85,7 @@ const FormCreacion = () => {
     const LOCAL = "http://localhost:3001";
     e.preventDefault();
 
-    const validationErrors = validate(name, price, selectedImage, description, stock, product_Types); 
+    const validationErrors = validate(name, price, image, description, stock, type); 
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length > 0) {
@@ -90,40 +93,41 @@ const FormCreacion = () => {
     }
 
     const formData = new FormData();
-    formData.append("img", selectedImage);
+    formData.append("image", image);
     formData.append("name", name);
     formData.append("price", price);
     formData.append("description", description);
     formData.append("stock", stock);
-    formData.append("product_Types", product_Types);
+    formData.append("type", type);
 
     try {
-      const res = await axios.post(`${LOCAL}/products/`, formData);
-      alert("Producto agregado con éxito");
-      console.log(res);
+      const res = await axios.post(`${LOCAL}/products/create`, formData);
+      Swal.fire({
+        icon: 'success',
+        title: 'Producto agregado con éxito',
+      });
       const imgUrl = res.data;
-      console.log("url de la img", imgUrl);
+      console.log("url de la img", imgUrl);      
 
     setName("");
-    setSelectedImage(null);
+    setImage(null);
     setPreviewImage(null);
     setDescription("");
     setPrice("");
     setStock("");
-    setProduct_Types("");
+    setType("");
     setErrors({});
 
     } catch (err) {
       console.log("error al subir imagen", err);
     }
-
   };
 
   return (
     <section className={style.section}>
       <div className={style.formContainer}>
-        <div className={style.headerForm}>
-          <h1 className={style.h1form}>
+        <div className="flex items-center justify-between mb-10">
+          <h1 className="text-4xl text-gray-700">
             Agregar productos nuevos a la tienda
           </h1>
           <p>
@@ -178,7 +182,7 @@ const FormCreacion = () => {
               {errors?.description && (
                 <p className={style.error}> {errors.description}</p>
               )}
-              <label className={style.LabelForm} htmlFor="img">
+              <label className={style.LabelForm} htmlFor="image">
                 Imagen ilustrativa del producto
               </label>
               <input
@@ -205,8 +209,8 @@ const FormCreacion = () => {
               <div className="types-s">
                 <select
                   className={style.inputbox}
-                  value={product_Types}
-                  onChange={(e) => setProduct_Types(e.target.value)}>
+                  value={type}
+                  onChange={(e) => setType(e.target.value)}>
                   <option className={style.options} key="" value="">
                     {" "}
                     Seleccionar categoría

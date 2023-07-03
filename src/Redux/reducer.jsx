@@ -8,6 +8,8 @@ import {
   ORDER_BY_PRICE,
   GET_CART,
   ADD_TO_CART,
+  CARGAR_PRODUCTOS,
+  QUITAR_PRODUCTOS,
   DELETE_ALL_CART,
   DELETE_CARRITO,
   PUT_AMOUNT_CART,
@@ -15,6 +17,7 @@ import {
   GET_DETAIL_ACTIVITY,
   GET_TYPEACTY,
   FETCH_PROFILE,
+  GET_USERID,
   CREATE_PROFILE,
   UPDATE_PROFILE,
   POST_NEWS_DASHBOARD,
@@ -35,8 +38,9 @@ const initialstate = {
   Carrito: [],
   CarritoProductos: [],
   profile: null,
-  userId: null,
   donaciones: {},
+  userId: "",
+  userInfo: [],
   forms: [], 
 };
 
@@ -84,9 +88,40 @@ function rootReducer(state = initialstate, action) {
         ...state,
         Carrito: action.payload,
       };
-    
+
+    case CARGAR_PRODUCTOS:
+      {
+        const { userId, id, name, price, stock, image } = action.payload;
+        const existingProduct = state.Carrito.find(item => item.id === id);
+        if (existingProduct) {
+          if (existingProduct.quantity < stock) {
+            return {
+              ...state,
+              Carrito: state.Carrito.map(item =>
+                item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+              )
+            };
+          } else {
+            return state; // No se actualiza el estado si no hay stock suficiente
+          }
+        } else {
+          return {
+            ...state,
+            Carrito: [ ...state.Carrito, {
+                id,
+                name,
+                image,
+                price,
+                stock,
+                quantity: 1
+            }]
+          }
+        }
+      }
+      return state;
+
     case ADD_TO_CART:
-      const newProduct = action.payload;
+      {const newProduct = action.payload;
       const existingProduct = state.Carrito.find((prod) => prod.product_id === newProduct.id);
   
       if (existingProduct) {
@@ -103,7 +138,13 @@ function rootReducer(state = initialstate, action) {
           ...state,
           Carrito: updatedCart,
         };
-      }
+      }}
+
+    case QUITAR_PRODUCTOS:
+      return {
+        ...state,
+        Carrito: state.Carrito.filter((cart) => cart.id !== action.payload),
+      };
 
     case DELETE_ALL_CART:
       return {
@@ -114,7 +155,7 @@ function rootReducer(state = initialstate, action) {
     case DELETE_CARRITO:
       return {
         ...state,
-        Carrito: state.Carrito.filter((cart) => cart.product_id !== action.payload),
+        Carrito: state.Carrito.filter((cart) => cart.userId !== action.payload),
       };
 
     case PUT_AMOUNT_CART:
@@ -152,6 +193,12 @@ function rootReducer(state = initialstate, action) {
         ...state,
         profile: action.payload,
       };
+
+    case GET_USERID:
+      return {
+        ...state,
+        userInfo: action.payload,
+      }
 
     case CREATE_PROFILE:
       return {

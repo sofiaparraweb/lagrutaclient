@@ -3,10 +3,13 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Button, ChakraProvider, Input, Select } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile, updateProfile } from "../../Redux/actions";
+import { useForm } from "react-hook-form";
 import "./Perfil.css";
 
 const Perfil = () => {
   const { user, isAuthenticated } = useAuth0();
+  const [editing, setEditing] = useState(false);
+  
   const [newProfile, setNewProfile] = useState({
     name: "",
     mail: user.mail,
@@ -17,17 +20,19 @@ const Perfil = () => {
     role: "",
     profileImage: "",
   });
-
+  
+  const userId = useSelector((state) => state.LocalPersist.userId); // Obtener el userId del estado
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const { name, mail, birthdate, phone, address, occupation, role, profileImage } = newProfile;
   const dispatch = useDispatch();
-  const profile = useSelector((state) => state.profile);
+  const profile = useSelector((state) => state.LocalPersist.profile);
   const isProfileFetchedRef = useRef(false);
-  const userId = useSelector((state) => state.userId); // Obtener el userId del estado
 
   useEffect(() => {
-    if (isAuthenticated && user && !isProfileFetchedRef.current && userId) {
+   if( !isProfileFetchedRef.current && userId) {
       dispatch(getProfile(userId));
-      isProfileFetchedRef.current = true;
+      // isProfileFetchedRef.current = true;
+      console.log(userId);
     }
   }, [dispatch, isAuthenticated, user, userId]);
 
@@ -46,48 +51,33 @@ const Perfil = () => {
     }
   }, [profile]);
 
-  const handleNameChange = (e) => {
-    const updatedProfile = { ...newProfile, name: e.target.value };
-    setNewProfile(updatedProfile);
+  const handleEditProfile = () => {
+    setEditing(true);
   };
 
-  const handleBirthdateChange = (e) => {
-    const updatedProfile = { ...newProfile, birthdate: e.target.value };
-    setNewProfile(updatedProfile);
+  const handleCancelEdit = () => {
+    setEditing(false);
+    reset(newProfile);
   };
 
-  const handlePhoneChange = (e) => {
-    const updatedProfile = { ...newProfile, phone: e.target.value };
-    setNewProfile(updatedProfile);
-  };
-
-  const handleAddressChange = (e) => {
-    const updatedProfile = { ...newProfile, address: e.target.value };
-    setNewProfile(updatedProfile);
-  };
-
-  const handleOccupationChange = (e) => {
-    const updatedProfile = { ...newProfile, occupation: e.target.value };
-    setNewProfile(updatedProfile);
-  };
-
-  const handleRoleChange = (e) => {
-    const updatedProfile = { ...newProfile, role: e.target.value };
-    setNewProfile(updatedProfile);
+  const handleSaveProfile = (data) => {
+    dispatch(updateProfile(data));
+    setEditing(false);
+    reset(data);
   };
 
   const handleProfileImageChange = (e) => {
     const file = e.target.files[0];
-    const imageUrl = URL.createObjectURL(file);
-    const updatedProfile = { ...newProfile, profileImage: imageUrl };
-    setNewProfile(updatedProfile);
-  };
+    const reader = new FileReader();
 
-  const handleUpdateProfile = () => {
-    dispatch(updateProfile(newProfile)); 
-    console.log('se ejecuta el update');
+    reader.onloadend = () => {
+      setNewProfile({ ...newProfile, profileImage: reader.result });
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   };
-  
 
   return (
     isAuthenticated && (
@@ -96,6 +86,20 @@ const Perfil = () => {
           <div className="row">
             <div className="d-flex justify-content-between align-items-center mb-3">
               <h4 className="text-left profile-title">TU PERFIL</h4>
+              {!editing ? (
+                <Button className="profile-edit-button" colorScheme="teal" onClick={handleEditProfile}>
+                  Modificar Cambios
+                </Button>
+              ) : (
+                <>
+                  <Button className="profile-save-button" colorScheme="teal" onClick={handleSubmit(handleSaveProfile)}>
+                    Guardar Cambios
+                  </Button>
+                  <Button className="profile-cancel-button" colorScheme="teal" onClick={handleCancelEdit}>
+                    Cancelar
+                  </Button>
+                </>
+              )}
             </div>
             <div className="col-md-3 border-right">
               <div className="d-flex flex-column align-items-center text-center p-3 py-5">
@@ -105,92 +109,136 @@ const Perfil = () => {
                     src={profileImage || "https://www.pngmart.com/files/21/Account-Avatar-Profile-PNG-Clipart.png"}
                     alt="Profile"
                   />
-                  <div className="profile-picture-label">
-                    <input
-                      id="profile-picture"
-                      type="file"
-                      accept="image/*"
-                      onChange={handleProfileImageChange}
-                    />
-                  </div>
                 </div>
+                {editing ? (
+                  <div>
+                    <input type="file" accept="image/*" onChange={handleProfileImageChange} />
+                  </div>
+                ) : null}
+                <span className="font-weight-bold">{name}</span>
+                <span className="text-black-50">{mail}</span>
               </div>
             </div>
-            <div className="col-md-5 border-right">
+            <div className="col-md-8 border-right">
               <div className="p-3 py-5">
+                <div className="d-flex justify-content-between align-items-center mb-3">
+                  <h6 className="text-right">Información Personal</h6>
+                </div>
                 <div className="row mt-2">
                   <div className="col-md-6">
-                    <label className="labels">Nombre y Apellido</label>
                     <Input
-                      type="text"
-                      className="form-control custom-input"
-                      placeholder="Nombre completo"
+                      className="form-control"
+                      placeholder="Nombre"
+                      name="name"
                       value={name}
-                      onChange={handleNameChange}
+                      onChange={(e) => setNewProfile({ ...newProfile, name: e.target.value })}
+                      disabled={!editing}
+                      {...register("name", { 
+                        required: "Campo obligatorio",
+                        pattern: {
+                          value: /^[A-Za-z]+$/i,
+                          message: "Solo se permiten letras"
+                        }
+                      })}
                     />
+                    {errors.name && <p>{errors.name.message}</p>}
                   </div>
                   <div className="col-md-6">
-                    <label className="labels">Fecha de Nacimiento</label>
                     <Input
-                      type="date"
-                      className="form-control custom-input"
-                      placeholder="Ingresa tu fecha de nacimiento"
-                      value={birthdate}
-                      onChange={handleBirthdateChange}
+                      className="form-control"
+                      placeholder="Correo Electrónico"
+                      name="mail"
+                      value={mail}
+                      onChange={(e) => setNewProfile({ ...newProfile, mail: e.target.value })}
+                      disabled
                     />
-                  </div>
-                  <div className="col-md-6">
-                    <label className="labels">Número de Teléfono</label>
-                    <Input
-                      type="text"
-                      className="form-control custom-input"
-                      placeholder="Tu número de teléfono"
-                      value={phone}
-                      onChange={handlePhoneChange}
-                    />
-                  </div>
-                  <div className="col-md-12">
-                    <label className="labels">Dirección</label>
-                    <Input
-                      type="text"
-                      className="form-control custom-input"
-                      placeholder="Tu dirección"
-                      value={address}
-                      onChange={handleAddressChange}
-                    />
-                  </div>
-                  <div className="col-md-6">
-                    <label className="labels">Ocupación</label>
-                    <Input
-                      type="text"
-                      className="form-control custom-input"
-                      placeholder="Ayúdanos a conocerte más"
-                      value={occupation}
-                      onChange={handleOccupationChange}
-                    />
-                  </div>
-                  <div className="col-md-6">
-                    <label className="labels">Rol</label>
-                    <Select
-                      className="form-control custom-select"
-                      value={role}
-                      onChange={handleRoleChange}
-                    >
-                      <option value="">Selecciona un rol</option>
-                      <option value="voluntario">Voluntario</option>
-                      <option value="padrino">Padrino</option>
-                      <option value="miembro">Miembro</option>
-                    </Select>
                   </div>
                 </div>
-                <div>
-                  <Button
-                    className="profile-button"
-                    colorScheme="teal"
-                    onClick={handleUpdateProfile}
-                  >
-                    Guardar Cambios
-                  </Button>
+                <div className="row mt-3">
+                  <div className="col-md-6">
+                    <Input
+                      className="form-control"
+                      placeholder="Fecha de Nacimiento"
+                      name="birthdate"
+                      type="date"
+                      value={birthdate}
+                      onChange={(e) => setNewProfile({ ...newProfile, birthdate: e.target.value })}
+                      disabled={!editing}
+                      {...register("birthdate")}
+                    />
+                  </div>
+                  <div className="col-md-6">
+                    <Input
+                      className="form-control"
+                      placeholder="Número de Teléfono"
+                      name="phone"
+                      value={phone}
+                      onChange={(e) => setNewProfile({ ...newProfile, phone: e.target.value })}
+                      disabled={!editing}
+                      {...register("phone", { 
+                        required: "Campo obligatorio",
+                        pattern: {
+                          value: /^[0-9]+$/i,
+                          message: "Solo se permiten números"
+                        }
+                      })}
+                    />
+                    {errors.phone && <p>{errors.phone.message}</p>}
+                  </div>
+                </div>
+                <div className="row mt-3">
+                  <div className="col-md-12">
+                    <Input
+                      className="form-control"
+                      placeholder="Dirección"
+                      name="address"
+                      value={address}
+                      onChange={(e) => setNewProfile({ ...newProfile, address: e.target.value })}
+                      disabled={!editing}
+                      {...register("address", { 
+                        pattern: {
+                          value: /^[A-Za-z0-9\s]+$/i,
+                          message: "Solo se permiten letras, números y espacios"
+                        }
+                      })}
+                    />
+                    {errors.address && <p>{errors.address.message}</p>}
+                  </div>
+                </div>
+                <div className="row mt-3">
+                  <div className="col-md-6">
+                    <Input
+                      className="form-control"
+                      placeholder="Ocupación"
+                      name="occupation"
+                      value={occupation}
+                      onChange={(e) => setNewProfile({ ...newProfile, occupation: e.target.value })}
+                      disabled={!editing}
+                      {...register("occupation", { 
+                        pattern: {
+                          value: /^[A-Za-z]+$/i,
+                          message: "Solo se permiten letras"
+                        }
+                      })}
+                    />
+                    {errors.occupation && <p>{errors.occupation.message}</p>}
+                  </div>
+                  <div className="col-md-6">
+                    <Select
+                      className="form-control"
+                      placeholder="Rol"
+                      name="role"
+                      value={role}
+                      onChange={(e) => setNewProfile({ ...newProfile, role: e.target.value })}
+                      disabled={!editing}
+                      {...register("role")}
+                    >
+                      <option value="">Seleccionar Rol</option>
+                      <option value="Voluntario">Voluntario</option>
+                      <option value="Miembro">Miembro</option>
+                      <option value="Administrador">Administrador</option>
+                    </Select>
+                  </div>
                 </div>
               </div>
             </div>
