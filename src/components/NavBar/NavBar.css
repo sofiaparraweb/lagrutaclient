@@ -9,7 +9,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  height: 65px;
+  height: 10.8%;
   width: 100%; 
   border-bottom: 2px solid silver;
   z-index: 1;
@@ -31,7 +31,7 @@
   font-family: 'DK Lemon Yellow Sun', sans-serif;
   text-decoration: none;
   color: grey;
-  padding: 24.5px;
+  padding: 22.5px;
   padding-left: 20px;
   padding-right: 20px;
   transition: 0.5s ease;
@@ -56,6 +56,25 @@
 }
 .active[id="conocenosNav"]{
   background-color: #D7B63E;
+  color: white;
+  text-decoration: none;
+}
+
+
+/* -------------------------------------nuestroEquipoNav */
+.dropdownOption[id="nuestroEquipoNav"]{
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  font-weight: 600;
+  border-bottom:3px solid #124476;
+}
+.dropdownOption[id="nuestroEquipoNav"]:hover{
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  background-color: #124476;
+  text-decoration: none;
+}
+.active[id="nuestroEquipoNav"]{
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  background-color: #124476;
   color: white;
   text-decoration: none;
 }
@@ -110,6 +129,7 @@
 .active[id="perfilNav"]{
   background-color: rgba(53,99,70,255);
   color: white;
+  text-decoration: none;
 }
 
 /* -------------------------------------Dona */
@@ -166,7 +186,6 @@
   text-decoration: none;
 }
 
-
 .dropdownContainer {
   display: flex;
   align-items: center;
@@ -220,4 +239,38 @@ button[id="cerrariniciarNav"]:hover{
 .loggingIn{
   background-color: #124476;
   color: white;
+}
+
+
+
+@media screen and (max-width: 768px) {
+  /* Estilos para pantallas con un ancho máximo de 768px */
+  .LeftSection {
+    margin-left: 5px;
+  }
+  
+  .logo {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  
+  .link {
+    padding: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 15px;
+  }
+  
+  .dropdownOption {
+    padding: 4px 4px;
+    font-size: 13px;
+  }
+  
+  .rightSection {
+    margin-right: 5px;
+  }
+  
+  button[id="cerrariniciarNav"]{
+    border-bottom: 4px solid #124476;
+  }
 }

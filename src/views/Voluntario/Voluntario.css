@@ -3,29 +3,28 @@
 
 .voluntario-container {
     max-width: 100%;
-    margin: 55px auto;
-    padding: 30px;
-
+    margin: 5% auto;
+    padding: 3%;
     color: #124476;
   }
   
   .voluntario-title {
     font-size: 44px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 2%;
     Color: #B9362C;
     font-family: 'Wicked Grit', sans-serif;
   }
   
   .voluntario-section {
-    margin-bottom: 30px;
+    margin-bottom: 2%;
     font-family: 'Wicked Grit', sans-serif;
   }
   
   .voluntario-section-title {
     font-size: 30px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 2%;
     font-family: 'Wicked Grit', sans-serif;
   }
   
@@ -33,10 +32,11 @@
     font-size: 22px;
     color: black;
     font-family: 'DK Lemon Yellow Sun', sans-serif;
+    padding: 2% 0;
   }
   
   .voluntario-form {
-    margin-top: 30px;
+    margin-top: 2%;
     font-family: 'DK Lemon Yellow Sun', sans-serif;
   }
   

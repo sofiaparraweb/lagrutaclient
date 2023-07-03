@@ -8,6 +8,8 @@ import {
   ORDER_BY_PRICE,
   GET_CART,
   ADD_TO_CART,
+  CARGAR_PRODUCTOS,
+  QUITAR_PRODUCTOS,
   DELETE_ALL_CART,
   DELETE_CARRITO,
   PUT_AMOUNT_CART,
@@ -15,6 +17,7 @@ import {
   GET_DETAIL_ACTIVITY,
   GET_TYPEACTY,
   FETCH_PROFILE,
+  GET_USERID,
   CREATE_PROFILE,
   UPDATE_PROFILE,
   POST_NEWS_DASHBOARD,
@@ -37,6 +40,7 @@ const initialstate = {
   CarritoProductos: [],
   profile: null,
   userId: "",
+  userInfo: [],
   donaciones: [],
   forms: [], 
 };
@@ -86,8 +90,24 @@ function rootReducer(state = initialstate, action) {
         Carrito: action.payload,
       };
 
+    case CARGAR_PRODUCTOS:
+      {
+        const { userId, id, name, price, stock, image } = action.payload;
+        const cartProduct = {
+          id: id,
+          name: name,
+          image: image,
+          price: price,
+          stock: stock,
+        } 
+        return {
+          ...state,
+          Carrito: [...state.Carrito, cartProduct],
+        };
+      }
+
     case ADD_TO_CART:
-      const newProduct = action.payload;
+      {const newProduct = action.payload;
       const existingProduct = state.Carrito.find((prod) => prod.product_id === newProduct.id);
   
       if (existingProduct) {
@@ -104,7 +124,13 @@ function rootReducer(state = initialstate, action) {
           ...state,
           Carrito: updatedCart,
         };
-      }
+      }}
+
+    case QUITAR_PRODUCTOS:
+      return {
+        ...state,
+        Carrito: state.Carrito.filter((cart) => cart.id !== action.payload),
+      };
 
     case DELETE_ALL_CART:
       return {
@@ -115,7 +141,7 @@ function rootReducer(state = initialstate, action) {
     case DELETE_CARRITO:
       return {
         ...state,
-        Carrito: state.Carrito.filter((cart) => cart.product_id !== action.payload),
+        Carrito: state.Carrito.filter((cart) => cart.userId !== action.payload),
       };
 
     case PUT_AMOUNT_CART:
@@ -153,6 +179,12 @@ function rootReducer(state = initialstate, action) {
         ...state,
         profile: action.payload,
       };
+
+    case GET_USERID:
+      return {
+        ...state,
+        userInfo: action.payload,
+      }
 
       case GET_PROFILE_MAIL:
         return {

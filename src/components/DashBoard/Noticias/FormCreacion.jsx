@@ -28,7 +28,7 @@ function validate(name, date, description, selectedImage) {
 
 const FormCreacion = () => {
   const dispatch = useDispatch();
-  const Types = useSelector((state) => state.activityTypes);
+  const Types = useSelector((state) => state.LocalPersist.activityTypes);
 
   const [errors, setErrors] = useState({});
   const [selectedImage, setSelectedImage] = useState(null);

@@ -35,9 +35,9 @@
 
 .Parrafos {
   color: white;
-  font-size: 20px;
+  font-size: 25px;
   padding: 45px;
-  font-family: 'Wicked Grit', sans-serif;
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -57,7 +57,7 @@
 
 .ValuesTitle {
   color: #fff;
-  font-size: 24px;
+  font-size: 30px;
   margin-bottom: 16px;
 }
 
@@ -69,6 +69,6 @@
 
 .ValueItem {
   color: #fff;
-  font-size: 18px;
+  font-size: 25px;
   margin-top: 10px;
 }

@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import style from "./LastNews.module.css";
 
 const Card = ({ id, img, ActivityTypes, name, date, description }) => {
-
-  console.log(ActivityTypes)
   
   return (
     <>
