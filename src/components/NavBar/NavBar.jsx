@@ -10,7 +10,7 @@ const NavBar = ({ isAuthenticated }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isOptionHovered, setIsOptionHovered] = useState(false);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
-
+ 
   const handleLogout = () => {
     logout({ returnTo: window.location.origin });
   };
@@ -69,7 +69,7 @@ const NavBar = ({ isAuthenticated }) => {
                 to="/about"
                 className="dropdownOption"
                 activeclassname="active"
-                id="sepadrinoNav"
+                id="nosotros"
                 onClick={handleClick}>
                 NOSOTROS
               </NavLink>
@@ -77,7 +77,7 @@ const NavBar = ({ isAuthenticated }) => {
                 to="/historia"
                 className="dropdownOption"
                 activeclassname="active"
-                id="sevoluntarioNav"
+                id="nuestraHistoria"
                 onClick={handleClick}>
                 Nuestra Historia
               </NavLink>

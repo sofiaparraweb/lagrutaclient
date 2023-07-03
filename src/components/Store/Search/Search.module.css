@@ -3,6 +3,7 @@
     align-items: center;
     flex-direction: row;
     width: 345px;
+    color: black;
   }
 
   .SearchBar {
