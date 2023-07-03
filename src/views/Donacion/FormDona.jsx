@@ -9,48 +9,48 @@ import { useState } from "react";
 
 
 const FormDona = ({ selectedOption, customValue }) => {
-    const {
-        register,
-        reset,
-        handleSubmit,
-        formState: { errors },
-      } = useForm();
-      const dispatch = useDispatch();
-      const [loading, setLoading] = useState(false);
-      const [user, setUser] = useState({
-        name: "",
-        lastName: "",
-        user_mail: "",
-        phone: "",
-      });
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState({
+    name: "",
+    lastName: "",
+    user_mail: "",
+    phone: "",
+  });
 
-    const handleInput = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        setUser({ ...user, [name]: value });
-    };
-    console.log(selectedOption, customValue);
-    
-    const customSubmit = async (user) => {
-        setLoading(true);
-        user.amount = selectedOption;
-        user.customValue = customValue;
-        console.log(user);
-        dispatch(enviarInformacion(user)).then((response) => {
-            console.log("esto es prueba", response);
-          if (response) {
-            window.open(response.init_point, "_blank");
-          } else {
-            Swal.fire("Error", "Hubo un error al enviar la información", "error");
-          }
-          setLoading(false);
-          reset();
-        });
-    };
-    
+  const handleInput = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setUser({ ...user, [name]: value });
+  };
+  console.log(selectedOption, customValue);
+
+  const customSubmit = async (user) => {
+    setLoading(true);
+    user.amount = selectedOption;
+    user.customValue = customValue;
+    console.log(user);
+    dispatch(enviarInformacion(user)).then((response) => {
+        console.log("esto es prueba", response);
+      if (response) {
+        window.open(response.init_point, "_blank");
+      } else {
+        Swal.fire("Error", "Hubo un error al enviar la información", "error");
+      }
+      setLoading(false);
+      reset();
+    });
+  };
+
   return (
     <>
-    <div className={style.contentPrincipal}>
+      <div className={style.contentPrincipal}>
         <form onSubmit={handleSubmit(customSubmit)} className={style.formReact}>
           <div className={style.formControl}>
             <label className={style.labeles}>Nombre</label>
@@ -71,9 +71,15 @@ const FormDona = ({ selectedOption, customValue }) => {
             {errors.name?.type === "maxLength" && (
               <p className={style.fail}>El máximo de caracteres es 30</p>
             )}
+<<<<<<< HEAD
         </div>
 
         <div className={style.formControl}>
+=======
+          </div>
+
+          <div className={style.formControl}>
+>>>>>>> f87c3e19ecc097b7aa0f789ddd7ca424cf5bcd36
             <label className={style.labeles}>Apellido</label>
             <input
               className={style.inputs}

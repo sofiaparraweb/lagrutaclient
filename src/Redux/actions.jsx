@@ -302,22 +302,21 @@ export function create_news(payload) {
 }
 
 //==========>>>Donaciones<<<==========//
-export const enviarInformacion = (data) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.post(`${url}/payment/donation/create-order/`, data)
-      if (response) {
-        console.log("estoy en actions, La información se envió correctamente", response);
-
-      dispatch({ type: POST_DONACIONES, payload: response.data })
-      return response.data;
-    } 
-  }catch (error) {
-   console.log("Error al enviar la información al backend", error)
+ export const enviarInformacion = (data) => {
+   return async (dispatch) => {
+     try {
+       const response = await axios.post(`${url}/payment/donation/create-order/`, data)
+       if (response) {
+         console.log("estoy en actions, La información se envió correctamente", response);
+       
+       dispatch({ type: POST_DONACIONES, payload: response.data })
+       return response.data;
+     } 
+   }catch (error) {
+    console.log("Error al enviar la información al backend", error)
+  }
  }
-}
 };
-
 
 /* -----------------------------formulario----------------------------- */
 
