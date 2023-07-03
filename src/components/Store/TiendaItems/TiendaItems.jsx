@@ -14,8 +14,7 @@ const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
-  //const allProducts = useSelector((state) => state.LocalPersist.Carrito);
-  const userId = useSelector((state) => state.LocalPersist.userId); // Obtener el userId del estado
+  const userId = useSelector(state => state.LocalPersist.userInfo.id);
   
   const [review, setReview] = useState({
     user_id:`${userId}`, /* <----------------------- FALTA ASIGNARLE BIEN EL USERID QUE TIENE EL USUARIO QUE COMENTA */
@@ -35,10 +34,15 @@ const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes
     setIsModalOpen(!isModalOpen);
   };
   
+  useEffect(()=>{
+    dispatch(getCarrito())
+  },[dispatch])
+  
   const handleClickAdd = (userId, id, name, image, price, stock) => { // agregamos el producto seleccionado al estado local
     if(productCount<stock){
       dispatch(cargarProductos(userId, id, name, image, price, stock));
       setProductCount(productCount + 1);
+      console.log(productCount)
       toast.success("Producto agregado al carrito", {
         duration: 3000
       })
@@ -47,10 +51,6 @@ const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes
       toast.error("No hay mas productos disponibles")
     }
   };
-  
-  useEffect(()=>{
-    dispatch(getCarrito())
-  },[dispatch])
 
   const handleSubmit = (event) => {
       event.preventDefault()
@@ -88,7 +88,7 @@ const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes
           </CardBody>
           <CardFooter h='49px'> 
             {isAuthenticated ? (
-              <Button className={style.BotonAddToCart} onClick={()=>handleClickAdd(id)} backgroundColor='#B9362C' _hover={{ color:'#124476'}} color='white' fontWeight='normal' fontSize='25px' marginTop='-19px'>
+              <Button className={style.BotonAddToCart} onClick={()=>handleClickAdd(userId, id, name, image, price, stock)} backgroundColor='#B9362C' _hover={{ color:'#124476'}} color='white' fontWeight='normal' fontSize='25px' marginTop='-19px'>
                 Add to cart
               </Button>
             ) : (

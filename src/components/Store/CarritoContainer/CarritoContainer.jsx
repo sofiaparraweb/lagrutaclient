@@ -14,7 +14,6 @@ const CarritoContainer = () => {
 
     useEffect(() => {
         dispatch(getCarrito());
-        console.log(Cart, 'useEffect')
     },[dispatch]);
       
     return (
