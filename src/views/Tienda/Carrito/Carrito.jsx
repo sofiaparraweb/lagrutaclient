@@ -1,9 +1,8 @@
-import { getCarrito, cargarProductos, addToCart, deleteAllCarrito, deleteCarrito, url } from "../../../Redux/actions";
+import { getCarrito, cargarProductos, addToCart, deleteAllCarrito, deleteCarrito, QuitarProducto, url } from "../../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Image , Card, HStack, Text, Heading, CardBody } from '@chakra-ui/react';
-import {AiOutlineShoppingCart } from "react-icons/ai";
-//import { Link } from 'react-router-dom';
+import {AiOutlineShoppingCart, AiOutlineDelete } from "react-icons/ai";
 import axios from "axios";
 import style from "./Carrito.module.css";
 import { Toaster, toast } from "react-hot-toast";
@@ -12,40 +11,40 @@ const Carrito = ({ id, name, image, price, stock }) => {
 
   const dispatch = useDispatch();
   const Cart = useSelector((state) => state.LocalPersist.Carrito);
+  //const Cart = useSelector((state) => state.LocalPersist.allProducts);
   const userId = useSelector((state) => state.LocalPersist.userId);
   const [productCount, setProductCount] = useState(0);
-  //const [total, setTotal] = useState(price)
+  const [subTotal, setSubTotal] = useState(0);
+  const [subTotalFinal, setSubTotalFinal] = useState(0);
 
-//   useEffect(() => {
-//     setTotal(productCount * price);
-//     setArray([
-//       ...array,{
-//         id,
-//         name,
-//         price: total,
-//         amount: cant,
-//       }]
-//     )
-// },[]);
+  useEffect(() => {
+    dispatch(getCarrito(), subTotal, servicio, total, subTotalFinal);
+  }, [dispatch]);
 
-  let subTotalProd = Cart.map((el) => el.price);
-  let subtotal = Cart.reduce((acc, el) => acc + el.price, 0);
-  let servicio = subtotal * 0.10;
-  let total = subtotal + servicio;
-  console.log(Cart)
+  useEffect(() => {
+    const newSubTotalFinal = Cart.reduce((accumulator, product) => accumulator + (product.price * productCount), 0);
+    setSubTotalFinal(newSubTotalFinal);
+  }, [Cart, productCount]);
 
-  const handleClickAdd = (id, userId, name, image, price, stock) => { // agregamos el producto seleccionado al estado local
-    if(productCount<stock){
-      dispatch(cargarProductos(id, userId, name, image, price, stock));
+  const servicio = subTotalFinal * 0.10;
+  const total = subTotalFinal + servicio;
+
+  const handleClickAdd = (userId, id, name, image, price, stock) => {
+    if (productCount < stock) {
+      dispatch(cargarProductos(userId, id, name, image, price, stock));
       setProductCount(productCount + 1);
+      const newSubTotal = price * (productCount + 1);
+      setSubTotal(newSubTotal);
       toast.success("Producto agregado al carrito", {
         duration: 3000
-      })
+      });
     } else {
-      setProductCount(stock)
-      toast.error("No hay mas productos disponibles")
+      setProductCount(stock);
+      toast.error("No hay más productos disponibles");
     }
   };
+
+  console.log(Cart)
 
   // const handleAddToCart = (id) => {
   //   if(productCount<stock) {
@@ -65,17 +64,26 @@ const Carrito = ({ id, name, image, price, stock }) => {
     if(productCount>0){
       dispatch(deleteCarrito(userId, id));
       setProductCount(productCount - 1);
+      setSubTotal(price * (productCount - 1));
       toast.success("Producto eliminado del carrito", {
         duration: 3000
       })
     } else {
-      dispatch(deleteCarrito(userId, id)); 
-      setProductCount(1);
+      dispatch(QuitarProducto(id)); 
+      setProductCount(0);
       toast.success("Producto eliminado del carrito", {
         duration: 3000
       });
     } 
   };
+
+  const handleDeleteProductCart = (id) =>{
+    dispatch(QuitarProducto(id));
+    setProductCount(0);
+    toast.success("Producto eliminado del carrito", {
+      duration: 3000
+    })
+  }
 
   const handleDeleteCart = (userId) =>{
     dispatch(deleteAllCarrito(userId));
@@ -96,10 +104,6 @@ const Carrito = ({ id, name, image, price, stock }) => {
       })
     }
   }
-
-  useEffect(() => {
-    dispatch(getCarrito());
-  }, [dispatch]);
 
   return (
     <div className={style.ContenedorTiendaCART}>
@@ -123,7 +127,7 @@ const Carrito = ({ id, name, image, price, stock }) => {
             <div className={style.ContenedorDetallePago}>
               <div>
                 <span>Subtotal = </span>
-                {/* <span>${subtotal}</span> */}
+                <span>${subTotalFinal}</span>
               </div>
               <div style={{marginBottom: '2%'}}>
                 <span>Cargos = </span>
@@ -132,7 +136,7 @@ const Carrito = ({ id, name, image, price, stock }) => {
               <hr style={{ width: '80%', margin: '1% auto', border: '1px solid black', paddingRight: '20%'}}></hr>
               <div style={{marginTop: '2%'}}>
                 <span>Total a pagar = </span>
-                {/* <span>${total}</span> */}
+                <span>${total}</span>
               </div>
             </div>
             <button className={style.ButtonVaciarCarro} value="pagar" onClick={handlePay}>Confirmar</button>
@@ -157,30 +161,35 @@ const Carrito = ({ id, name, image, price, stock }) => {
               marginRight='80px'
             />
             <HStack >
-              <CardBody p={1}>
-                <Heading width='230px' size='xs' >Nombre</Heading>
+              <CardBody p={1} size='md'>
+                <Heading width='230px' size='md'>Nombre</Heading>
                 <Text py='3' >
                   {name}
                 </Text>
               </CardBody>
-              <CardBody p={4}>
-                <Heading width='100px' size='xs' textAlign='center' >Precio</Heading>
+              <CardBody p={4} size='md'>
+                <Heading width='100px' size='md' textAlign='center' >Precio</Heading>
                 <Text py='3' textAlign='center'>
                   ${price}
                 </Text>
               </CardBody>
-              <CardBody p={4}>
-                <Heading width='100px' size='xs' textAlign='center'>Cantidad</Heading>
+              <CardBody p={4} size='md'>
+                <Heading width='100px' size='md' textAlign='center'>Cantidad</Heading>
                 <Text py='3' className={style.ContenedorBotonesCart}>
                   <button className={style.ButtonsSumaResta} onClick={handleDeleteFromCart} value="less" >-</button>
                     {productCount}
-                  <button className={style.ButtonsSumaResta} onClick={() => handleClickAdd(id, userId, name, image, price, stock)} value="add" >+</button>
+                  <button className={style.ButtonsSumaResta} onClick={() => handleClickAdd(userId, id, name, image, price, stock)} value="add" >+</button>
+                </Text>
+              </CardBody>
+              <CardBody p={4} size='md'>
+                <Heading width='100px' size='md' textAlign='center'>Subtotal</Heading>
+                <Text py='3' textAlign='center'>
+                  {subTotal}
                 </Text>
               </CardBody>
               <CardBody p={4}>
-                <Heading width='100px' size='xs' textAlign='center' >Sub Total</Heading>
-                <Text py='3' textAlign='center'>
-                  {price * productCount}
+                <Text textAlign='center' color='#B9362C'>
+                  <button onClick={handleDeleteProductCart} value="less" ><AiOutlineDelete size='2em'/></button>
                 </Text>
               </CardBody>
             </HStack>
