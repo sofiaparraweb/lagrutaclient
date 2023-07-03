@@ -10,8 +10,8 @@ const DonationForm = () => {
   const [selectedOption, setSelectedOption] = useState("");
   const [customValue, setCustomValue] = useState("");
   const [error, setError] = useState(false);
-  //const [success, setSuccess] = useState(false);
   const [showForm, setShowForm] = useState(false);
+  const [showInput, setShowInput] = useState(false);
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
@@ -41,22 +41,21 @@ const DonationForm = () => {
       timer: 3000
   })
     if (selectedOption === "otraOpcion") {
-      //alert("Valor personalizado:", customValue);
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: "Valor personalizado:",
-        showConfirmButton: false,
-        timer: 3000
-    })
+      alert("Valor personalizado:", customValue);
+    //   Swal.fire({
+    //     position: 'center',
+    //     icon: 'success',
+    //     title: "Valor personalizado:",
+    //     showConfirmButton: false,
+    //     timer: 3000
+    // })
     }
     setError(false);
     setCustomValue("");
-    //setSuccess(true);
     setShowForm(true);
   };
 
-  const showInput = selectedOption === "otraOpcion";
+  //const showInput = selectedOption === "otraOpcion";
 
   return (
     <>
@@ -66,9 +65,9 @@ const DonationForm = () => {
             <img src={dona1} alt="img" id="img-Donacion"/>
           </div>
           
-          {showForm ? 
-          <FormDona />
-           : (
+          {showForm ?(
+           <FormDona selectedOption={selectedOption} customValue={customValue} />
+          ) : (
           <form className={style.contenForm} onSubmit={handleSubmit}>
             <h3 className={style.title1}>¡DONÁ AHORA!</h3>
 
@@ -84,8 +83,8 @@ const DonationForm = () => {
                 className={style.inputs}
                 name="amount"
                 type="radio"
-                value="opcion1"
-                checked={selectedOption === "opcion1"}
+                value="15000"
+                checked={selectedOption === "15000"}
                 onChange={handleOptionChange}
               />
               ARS 15.000
@@ -96,8 +95,8 @@ const DonationForm = () => {
                 className={style.inputs}
                 name="amount"
                 type="radio"
-                value="opcion2"
-                checked={selectedOption === "opcion2"}
+                value="10000"
+                checked={selectedOption === "10000"}
                 onChange={handleOptionChange}
               />
               ARS 10.000
@@ -108,8 +107,8 @@ const DonationForm = () => {
                 className={style.inputs}
                 name="amount"
                 type="radio"
-                value="opcion3"
-                checked={selectedOption === "opcion3"}
+                value="5000"
+                checked={selectedOption === "5000"}
                 onChange={handleOptionChange}
               />
               ARS 5.000
@@ -140,6 +139,7 @@ const DonationForm = () => {
                     placeholder="Ingrese otro valor"
                   />
                 </div>
+                <p style={{ color: "#fff" }}>Valor personalizado: {customValue}</p>
               </label>
             )}
 

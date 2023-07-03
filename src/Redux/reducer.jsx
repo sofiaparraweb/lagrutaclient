@@ -36,7 +36,7 @@ const initialstate = {
   CarritoProductos: [],
   profile: null,
   userId: null,
-  donaciones: [],
+  donaciones: {},
   forms: [], 
 };
 
@@ -177,11 +177,12 @@ function rootReducer(state = initialstate, action) {
       };
 
     //=====>>>caso donaciones<<<=====// 
-      case POST_DONACIONES:
-      return {
-        ...state,
-        donaciones: [...state.donaciones, action.payload],
-      };
+       case POST_DONACIONES:
+       return {
+         ...state,
+         donaciones: action.payload,
+       };
+
     case FORM_VOLUNTARIO:
       return {
         ...state,
