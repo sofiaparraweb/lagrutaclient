@@ -22,7 +22,7 @@ const Footer = () => {
 
   return (
     <footer className={style.mainFooter}>
-      <div className={style.container}>
+      <div className={style.containerFooter}>
         <div className={style.footerSection}>
           <h3 className={style.title}>Conocé LA GRUTA</h3>
           <ul>
