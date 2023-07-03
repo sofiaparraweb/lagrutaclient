@@ -23,8 +23,7 @@ import {
   POST_NEWS_DASHBOARD,
   SET_USER_ID,
   POST_DONACIONES,
-  FORM_VOLUNTARIO,
-  GET_PROFILE_MAIL,
+  FORM_VOLUNTARIO
 } from "./actions";
 
 const initialstate = {
@@ -200,12 +199,6 @@ function rootReducer(state = initialstate, action) {
         ...state,
         userInfo: action.payload,
       }
-
-      case GET_PROFILE_MAIL:
-        return {
-          ...state,
-          profile: action.payload,
-        };
 
     case CREATE_PROFILE:
       return {

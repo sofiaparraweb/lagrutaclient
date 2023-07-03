@@ -1,5 +1,19 @@
+@import url('https://fonts.cdnfonts.com/css/wicked-grit');
+@import url('https://fonts.cdnfonts.com/css/dk-lemon-yellow-sun');
+
+/* // amarillo: #D7B63E o rgb(215,182,62);
+// naranja: #EB5D0B o rgb(235,93,11);
+// rojo: #B9362C o rgb(185,54,44);
+// azul: #124476 o rgb(18,68,118);
+
+// COLORES FONDO PARA CONTENIDO
+// rgb(214, 122, 116) o #D67A74 con transparencia, 64% de opacidad => rgb(214, 122, 116, 0.64)
+// rgb(242, 217, 152) o #F2D998 con transparencia, 77% de opacidad => rgb(242, 217, 152, 0.77)
+// font-family: 'Wicked Grit', sans-serif;
+//font-family: 'DK Lemon Yellow Sun', sans-serif; */
+
 .containerPerfil {
-  margin-top: 50px;
+  margin-top: 90px;
   margin-bottom: 50px;
   padding: 20px;
   background-color: #fff;
@@ -42,6 +56,7 @@
   font-size: 15px;
   border-radius: 5px;
   cursor: pointer;
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
 }
 
 .custom-input {
@@ -77,12 +92,13 @@
   font-weight: bold;
   color: #1d2636;
   margin-bottom: 20px;
+  font-family: 'Wicked Grit', 'sans-serif';
 }
 
 .profile-edit-button,
 .profile-save-button,
 .profile-cancel-button {
-  background-color: #007bff;
+  background-color: #B9362C;
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -95,7 +111,7 @@
 .profile-edit-button:hover,
 .profile-save-button:hover,
 .profile-cancel-button:hover {
-  background-color: #0056b3;
+  background-color: #B9362C;
 }
 
 .profile-edit-button:focus,

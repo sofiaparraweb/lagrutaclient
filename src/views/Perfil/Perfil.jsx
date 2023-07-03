@@ -2,23 +2,21 @@ import React, { useState, useEffect, useRef } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button, ChakraProvider, Input, Select } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProfileByEmail, updateProfile } from "../../Redux/actions";
+import { getUserId, updateProfile } from "../../Redux/actions";
 import { useForm } from "react-hook-form";
 import "./Perfil.css";
 
 const Perfil = () => {
   const { user, isAuthenticated } = useAuth0();
-  const [editing, setEditing] = useState(false);
-  
+  const userInfo = useSelector(state => state.LocalPersist.userInfo)
   const [newProfile, setNewProfile] = useState({
-    name: "",
-    mail: user.email,
-    birthdate: "",
-    phone: "",
-    address: "",
-    occupation: "",
-    role: "",
-    profileImage: "",
+    name: userInfo.fullName,
+    mail: userInfo.mail,
+    birthdate:userInfo.birthDate,
+    phone: userInfo.phone,
+    address: userInfo.address,
+    occupation: userInfo.occupation,
+    profileImage: userInfo.image,
   });
   
   const email = user.email;
@@ -26,22 +24,24 @@ const Perfil = () => {
   const { name, mail, birthdate, phone, address, occupation, role, profileImage } = newProfile;
   const dispatch = useDispatch();
   const userProfile = useSelector((state) => state.userProfile);
+  console.log(userInfo)
   const isProfileFetchedRef = useRef(false);
+  const [editing, setEditing] = useState(false);
+
 
   useEffect(() => {
     if (!isProfileFetchedRef.current && isAuthenticated) {
-      dispatch(getProfileByEmail(email));
+      dispatch(getUserId(email));
       isProfileFetchedRef.current = true;
     }
   }, [dispatch, isAuthenticated, email]);
 
   useEffect(() => {
     if (userProfile) {
-      setNewProfile((prevProfile) => ({
-        ...prevProfile,
-        name: userProfile.name || "",
+      setNewProfile(() => ({
+        name: userProfile.fullName || "",
         mail: userProfile.mail,
-        birthdate: userProfile.birthdate || "",
+        birthdate: userProfile.birthDate || "",
         phone: userProfile.phone || "",
         address: userProfile.address || "",
         occupation: userProfile.occupation || "",
@@ -232,10 +232,9 @@ const Perfil = () => {
                       disabled={!editing}
                       {...register("role")}
                     >
-                      <option value="">Seleccionar Rol</option>
+                      <option value="Miembro">Miembro</option>
                       <option value="Voluntario">Voluntario</option>
                       <option value="Miembro">Miembro</option>
-                      <option value="Administrador">Administrador</option>
                     </Select>
                   </div>
                 </div>

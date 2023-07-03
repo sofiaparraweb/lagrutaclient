@@ -37,10 +37,6 @@ import DashboardShop from "./views/DashBoard/DashboardShop";
 import DashboardUsers from "./views/DashBoard/DashboardUsers";
 
 
-
-
-
-
 const App = () => {
   const { isAuthenticated, isLoading } = useAuth0();
 

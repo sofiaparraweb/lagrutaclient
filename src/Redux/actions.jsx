@@ -34,8 +34,8 @@ export const FORM_FOOTER = 'FORM_FOOTER';
 export const FORM_PADRINO = 'FORM_PADRINO';
 export const FORM_DONACION = 'FORM_DONACION';
 
-//export const url = "http://localhost:3001";
-export const url = "https://lagruta.onrender.com";
+export const url = "http://localhost:3001";
+//export const url = "https://lagruta.onrender.com";
 // const LOCAL = "http://localhost:3001";
 
 export function getAllActivity() {
@@ -242,19 +242,6 @@ export const getProfile = (userId) => {
   };
 };
 
-export const getProfileByEmail = (email) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.get(`${url}/user/mail/${email}`);
-      dispatch({
-        type: GET_PROFILE_MAIL,
-        payload: response.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  }
-};
 
 export const getUserId = (email) =>{
   return async (dispatch) => {
