@@ -16,6 +16,7 @@ export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
 export const GET_CART = "GET_CART";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const CARGAR_PRODUCTOS = 'CARGAR_PRODUCTOS';
+export const QUITAR_PRODUCTOS = 'QUITAR_PRODUCTOS';
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const DELETE_ALL_CART = "DELETE_ALL_CART";
@@ -23,6 +24,7 @@ export const DELETE_CARRITO = "DELETE_CARRITO";
 export const PUT_AMOUNT_CART = "PUT_AMOUNT_CART";
 export const FETCH_PROFILE = "FETCH_PROFILE";
 export const CREATE_PROFILE = "CREATE_PROFILE";
+export const GET_USERID = "GET_USERID";
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
 export const POST_NEWS_DASHBOARD = "POST_NEWS_DASHBOARD";
 export const SET_USER_ID = 'SET_USER_ID';
@@ -154,8 +156,13 @@ export const getCarrito = (userId) => {
 };
 
 // ----------Agregar a carrito Localmente
-export const cargarProductos = (id, userId, name, price, stock, image) => {
-  dispatch({ type: CARGAR_PRODUCTOS, payload: { id, userId, name, price, stock, image } });
+export const cargarProductos = (userId, id, name, image, price, stock) => {
+  return { type: CARGAR_PRODUCTOS, payload: { userId, id, name, image, price, stock } };
+};
+
+// ----------Eliminar a carrito Localmente
+export const QuitarProducto = () => {
+  return { type: QUITAR_PRODUCTOS, payload: [] };
 };
 
 // ----------Agregar a carrito a Base de Datos
@@ -247,6 +254,20 @@ export const getProfile = (userId) => {
     }
   };
 };
+
+export const getUserId = (email) =>{
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`${url}/user/mail?mail=${email}`);
+      dispatch({
+        type: GET_USERID,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
 
 export const updateProfile = (userId, newProfile) => {
   return async (dispatch) => {
