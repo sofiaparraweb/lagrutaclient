@@ -8,7 +8,7 @@ import { Image, Card, Text, Heading, CardBody, CardFooter, Button, Modal, ModalO
 import { Toaster, toast } from "react-hot-toast";
 import { useAuth0 } from "@auth0/auth0-react";
 
-const TiendaItems = ({ id, name, image, price, description, stock, ProductsTypes, Reviews }) => {
+const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes, Reviews }) => {
   
   const [productCount, setProductCount] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,32 +16,28 @@ const TiendaItems = ({ id, name, image, price, description, stock, ProductsTypes
   const dispatch = useDispatch();
   //const allProducts = useSelector((state) => state.LocalPersist.Carrito);
   const userId = useSelector((state) => state.LocalPersist.userId); // Obtener el userId del estado
-
-  useEffect(()=>{
-    dispatch(getCarrito())
-  },[dispatch])
-
+  
   const [review, setReview] = useState({
     user_id:`${userId}`, /* <----------------------- FALTA ASIGNARLE BIEN EL USERID QUE TIENE EL USUARIO QUE COMENTA */
     rating: 0,
     content: "",
     product_id: `${id}`, 
   })
-
+  
   const changeHandler = (event) => {
     const property = event.target.name;
     const value = event.target.value;
-
+    
     setReview({ ...review, [property]: value});
   }
-
+  
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
   
-  const handleClickAdd = (id, userId, name, image, price, stock) => { // agregamos el producto seleccionado al estado local
+  const handleClickAdd = (userId, id, name, image, price, stock) => { // agregamos el producto seleccionado al estado local
     if(productCount<stock){
-      dispatch(cargarProductos(id, userId, name, image, price, stock));
+      dispatch(cargarProductos(userId, id, name, image, price, stock));
       setProductCount(productCount + 1);
       toast.success("Producto agregado al carrito", {
         duration: 3000
@@ -51,14 +47,11 @@ const TiendaItems = ({ id, name, image, price, description, stock, ProductsTypes
       toast.error("No hay mas productos disponibles")
     }
   };
+  
+  useEffect(()=>{
+    dispatch(getCarrito())
+  },[dispatch])
 
-  // const handleClick = (id, userId) =>{
-  //   dispatch(addToCart(id, userId));
-  //   console.log(userId);
-  //   toast.success("Producto agregado al carrito", {
-  //     duration: 3000
-  //   })
-  // }
   const handleSubmit = (event) => {
       event.preventDefault()
       axios.post ('http://localhost:3001/review/post', review)
@@ -95,7 +88,7 @@ const TiendaItems = ({ id, name, image, price, description, stock, ProductsTypes
           </CardBody>
           <CardFooter h='49px'> 
             {isAuthenticated ? (
-              <Button className={style.BotonAddToCart} onClick={handleClickAdd} backgroundColor='#B9362C' _hover={{ color:'#124476'}} color='white' fontWeight='normal' fontSize='25px' marginTop='-19px'>
+              <Button className={style.BotonAddToCart} onClick={()=>handleClickAdd(id)} backgroundColor='#B9362C' _hover={{ color:'#124476'}} color='white' fontWeight='normal' fontSize='25px' marginTop='-19px'>
                 Add to cart
               </Button>
             ) : (

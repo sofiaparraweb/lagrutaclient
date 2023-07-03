@@ -8,11 +8,13 @@ import { Link } from "react-router-dom";
 const CarritoContainer = () => {
 
     const Cart = useSelector((state) => state.LocalPersist.Carrito);
+    // const Cart = useSelector((state) => state.LocalPersist.allProducts);
     const userId = useSelector((state) => state.LocalPersist.userId);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getCarrito());
+        console.log(Cart, 'useEffect')
     },[dispatch]);
       
     return (
