@@ -58,18 +58,6 @@ const Footer = () => {
 
         <form className={style.footerSection} onSubmit={handleSubmit(onSubmit)}>
           <h3 className={style.title}>¡Suscríbete para más información!</h3>
-<<<<<<< HEAD
-            <input
-              className={style.input}
-              type="email"
-              name="email"
-              placeholder="Ingresar Email"
-              {...register("email", {
-                required: true,
-                pattern: /^[^\s@]+@gmail\.com$/i,
-              })}
-            />
-=======
           <input
             className={style.input}
             type="email"
@@ -80,7 +68,6 @@ const Footer = () => {
               pattern: /^[^\s@]+@gmail\.com$/i,
             })}
           />
->>>>>>> f87c3e19ecc097b7aa0f789ddd7ca424cf5bcd36
           {errors.email && (
             <p className={style.fail}>Ingresar tu email válido</p>
           )}

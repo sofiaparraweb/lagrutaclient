@@ -71,15 +71,9 @@ const FormDona = ({ selectedOption, customValue }) => {
             {errors.name?.type === "maxLength" && (
               <p className={style.fail}>El máximo de caracteres es 30</p>
             )}
-<<<<<<< HEAD
-        </div>
-
-        <div className={style.formControl}>
-=======
           </div>
 
           <div className={style.formControl}>
->>>>>>> f87c3e19ecc097b7aa0f789ddd7ca424cf5bcd36
             <label className={style.labeles}>Apellido</label>
             <input
               className={style.inputs}
