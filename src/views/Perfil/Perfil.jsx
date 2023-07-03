@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button, ChakraProvider, Input, Select } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProfile, updateProfile } from "../../Redux/actions";
+import { getProfileByEmail, updateProfile } from "../../Redux/actions";
 import { useForm } from "react-hook-form";
 import "./Perfil.css";
 
@@ -12,7 +12,7 @@ const Perfil = () => {
   
   const [newProfile, setNewProfile] = useState({
     name: "",
-    mail: user.mail,
+    mail: user.email,
     birthdate: "",
     phone: "",
     address: "",
@@ -21,35 +21,34 @@ const Perfil = () => {
     profileImage: "",
   });
   
-  const userId = useSelector((state) => state.LocalPersist.userId); // Obtener el userId del estado
+  const email = user.email;
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const { name, mail, birthdate, phone, address, occupation, role, profileImage } = newProfile;
   const dispatch = useDispatch();
-  const profile = useSelector((state) => state.LocalPersist.profile);
+  const userProfile = useSelector((state) => state.userProfile);
   const isProfileFetchedRef = useRef(false);
 
   useEffect(() => {
-   if( !isProfileFetchedRef.current && userId) {
-      dispatch(getProfile(userId));
-      // isProfileFetchedRef.current = true;
-      console.log(userId);
+    if (!isProfileFetchedRef.current && isAuthenticated) {
+      dispatch(getProfileByEmail(email));
+      isProfileFetchedRef.current = true;
     }
-  }, [dispatch, isAuthenticated, user, userId]);
+  }, [dispatch, isAuthenticated, email]);
 
   useEffect(() => {
-    if (profile) {
+    if (userProfile) {
       setNewProfile((prevProfile) => ({
         ...prevProfile,
-        name: profile.name || "",
-        mail: profile.mail,
-        birthdate: profile.birthdate || "",
-        phone: profile.phone || "",
-        address: profile.address || "",
-        occupation: profile.occupation || "",
-        role: profile.role || "",
+        name: userProfile.name || "",
+        mail: userProfile.mail,
+        birthdate: userProfile.birthdate || "",
+        phone: userProfile.phone || "",
+        address: userProfile.address || "",
+        occupation: userProfile.occupation || "",
+        role: userProfile.role || "",
       }));
     }
-  }, [profile]);
+  }, [userProfile]);
 
   const handleEditProfile = () => {
     setEditing(true);
@@ -82,7 +81,7 @@ const Perfil = () => {
   return (
     isAuthenticated && (
       <ChakraProvider>
-        <div className="container rounded bg-white mt-5 mb-5">
+        <div className="containerPerfil">
           <div className="row">
             <div className="d-flex justify-content-between align-items-center mb-3">
               <h4 className="text-left profile-title">TU PERFIL</h4>

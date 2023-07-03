@@ -19,6 +19,7 @@ export const DELETE_ALL_CART = "DELETE_ALL_CART";
 export const DELETE_CARRITO = "DELETE_CARRITO";
 export const PUT_AMOUNT_CART = "PUT_AMOUNT_CART";
 export const FETCH_PROFILE = "FETCH_PROFILE";
+export const GET_PROFILE_MAIL = 'GET_PROFILE_MAIL';
 export const CREATE_PROFILE = "CREATE_PROFILE";
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
 export const ADD_PRODUCT = "ADD_PRODUCT";
@@ -235,6 +236,20 @@ export const getProfile = (userId) => {
       const response = await axios.get(`${url}/user/${userId}`);
       dispatch({
         type: FETCH_PROFILE,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getProfileByEmail = (email) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`${url}/user/mail/${email}`);
+      dispatch({
+        type: GET_PROFILE_MAIL,
         payload: response.data,
       });
     } catch (error) {
