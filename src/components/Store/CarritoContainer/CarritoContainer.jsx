@@ -30,8 +30,8 @@ const CarritoContainer = () => {
                             <Carrito
                                 key={prod.id}
                                 id={prod.id}
-                                image={prod.image}
                                 name={prod.name}
+                                image={prod.image}
                                 price={prod.price}
                                 stock={prod.stock}
                             />
