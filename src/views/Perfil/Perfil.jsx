@@ -10,9 +10,9 @@ const Perfil = () => {
   const { user, isAuthenticated } = useAuth0();
   const userInfo = useSelector((state) => state.LocalPersist.userInfo);
   const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm();
-   console.log(userInfo)
-  const [initialProfile, setInitialProfile] = useState({
-    profileImage: userInfo.profileImage,
+  
+   const [initialProfile, setInitialProfile] = useState({
+    image: userInfo.image,
     fullName: userInfo.fullName,
     mail: userInfo.mail,
     birthDate: userInfo.birthDate,
@@ -23,14 +23,14 @@ const Perfil = () => {
   });
 
   const [editedProfile, setEditedProfile] = useState({
-    profileImage: '',
-    fullName: '',
+    image: userInfo.image,
+    fullName: userInfo.fullName,
     mail: userInfo.mail,
-    birthDate: '',
-    phone: '',
-    address: '',
-    occupation: '',
-    role: '',
+    birthDate: userInfo.birthDate,
+    phone: userInfo.phone,
+    address: userInfo.address,
+    occupation: userInfo.occupation,
+    role: userInfo.role,
   });
 
   const userProfile = useSelector((state) => state.userProfile);
@@ -82,7 +82,8 @@ const Perfil = () => {
     setEditing(false);
     setInitialProfile(data);
     setEditedProfile(data);
-    console.log(data)
+    reset(editedProfile)
+    //en desmontad alimpiar la dtaa para q cuando s emonte se traiga del vuelta
   };
 
   const handleProfileImageChange = (e) => {
@@ -90,7 +91,7 @@ const Perfil = () => {
     const reader = new FileReader();
 
     reader.onloadend = () => {
-      setEditedProfile((prevState) => ({ ...prevState, profileImage: reader.result }));
+      setEditedProfile((prevState) => ({ ...prevState, image: reader.result }));
     };
 
     if (file) {
@@ -124,7 +125,7 @@ const Perfil = () => {
               <div className="d-flex flex-column align-items-center">
                 <div className="profile-image-container">
                   <img
-                    src={editedProfile?.profileImage || "https://via.placeholder.com/150"}
+                    src={editedProfile?.image || "https://via.placeholder.com/150"}
                     alt="Profile"
                     className="profile-image"
                   />
