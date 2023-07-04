@@ -145,20 +145,15 @@ export const orderByPrice = (price) => {
 
 /* -----------------------------carrito----------------------------- */
 // ----------Traer el carrito
-export const getCarrito = (userId) => {
+export const getCarrito = (user_id) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${url}/cart/${userId}`);
+      const response = await axios.get(`${url}/cart/${user_id}`);
       dispatch({ type: GET_CART, payload: response.data });
     } catch (error) {
       console.log(error);
     }
   };
-};
-
-// ----------Agregar a carrito Localmente
-export const cargarProductos = (userId, id, name, image, price, stock) => {
-  return { type: CARGAR_PRODUCTOS, payload: { userId, id, name, image, price, stock } };
 };
 
 // ----------Eliminar a carrito Localmente
@@ -167,11 +162,14 @@ export const QuitarProducto = (id) => {
 };
 
 // ----------Agregar a carrito a Base de Datos
-export const addToCart = (userId, product_id, quantity) => {
+export const addToCart = (user_id, id, quantity) => {
+  console.log(user_id)
+  console.log(id)
+  console.log(quantity)
   return async (dispatch) =>{
     try {
-        const response = await axios.post(`${url}/cart/add?user_id=${userId}&product_id=${product_id}&quantity=${quantity}`)
-        console.log(response.data);
+        const response = await axios.post(`${url}/cart/add?user_id=${user_id}&product_id=${id}&quantity=${quantity}`)
+        console.log(response);
         dispatch({ type: ADD_TO_CART, payload: response.data})
     } catch (error){
       console.log(error);
@@ -180,25 +178,25 @@ export const addToCart = (userId, product_id, quantity) => {
 }
 
 // ----------Borrar todo el carrito
-export const deleteAllCarrito = () => {
-  return { type: DELETE_ALL_CART, payload: []}
-};
-// export const deleteAllCarrito = (userId) => {
-//   return async (dispatch) => {
-//     try {
-//       await axios.delete(`${url}/cart/remove?user_id=${userId}`);
-//       dispatch({ type: DELETE_ALL_CART, payload: [] });
-//     } catch (error) {
-//       console.log(error);       
-//     } 
-//   };
+// export const deleteAllCarrito = () => {
+//   return { type: DELETE_ALL_CART, payload: []}
 // };
-
-// ----------Borrar un elemento
-export const deleteCarrito = (userId, id) => {
+export const deleteAllCarrito = (userId) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`${url}/cart/remove?userId=${userId}&product_id=${id}`);
+      await axios.delete(`${url}/cart/remove?user_id=${userId}`);
+      dispatch({ type: DELETE_ALL_CART, payload: [] });
+    } catch (error) {
+      console.log(error);       
+    } 
+  };
+};
+
+// ----------Borrar un elemento
+export const deleteCarrito = (user_id, id) => {
+  return async (dispatch) => {
+    try {
+      await axios.delete(`${url}/cart/remove?user_id=${user_id}&product_id=${id}`);
       dispatch({ type: DELETE_CARRITO, payload: id });
     } catch (error) {
       console.log(error);  

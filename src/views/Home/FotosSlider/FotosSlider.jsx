@@ -29,7 +29,7 @@ const FotosSlider = () => {
 
     return (
         <Slider className={style.GalleryHome} ref={sliderRef} {...settings}>
-            {gallery.map((val) => {
+            {gallery?.map((val) => {
                 return (
                     <div className={style.ImagenesCarrusel}>
                         <img src={val.cover} alt="" />

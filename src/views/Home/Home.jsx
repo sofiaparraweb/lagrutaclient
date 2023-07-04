@@ -1,4 +1,3 @@
-import NavBar from "../../components/NavBar/NavBar";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
 import LastNews from "../../components/News/HeaderNews/LastNews";
@@ -17,8 +16,8 @@ import logo from "../../assets/logo.png";
 
 const Home = () => {
 
-    const { user, isAuthenticated, isLoading } = useAuth0();
     const dispatch = useDispatch();
+    const { user, isAuthenticated, isLoading } = useAuth0();
     const allActivity = useSelector(state => state.LocalPersist.allActivity);
     const userInfo = useSelector(state => state.LocalPersist.userInfo?.id);
     console.log(userInfo)
@@ -48,6 +47,7 @@ const Home = () => {
         if (isAuthenticated && user && isProfileCreatedRef.current) {
           dispatch(getProfile(user.userId)); // Usar user.userId en lugar de userId
           dispatch(getUserId(user.email))
+          console.log(user.email)
         }
         dispatch(getAllActivity());
       }, [dispatch, isAuthenticated, user]);
