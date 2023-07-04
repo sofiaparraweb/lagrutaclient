@@ -7,7 +7,6 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-start; /* Alineación vertical en la parte superior */
-    
 }
 
 .ContenedorBotonesCart{
@@ -38,5 +37,5 @@
     height: 35px;
     display: flex;
     padding: 10%;
-    margin-top: 6%;
+    margin-top: 9%;
 }

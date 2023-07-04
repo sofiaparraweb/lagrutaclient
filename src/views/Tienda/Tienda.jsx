@@ -14,6 +14,10 @@ const Tienda = () => {
   
   const [currentPage, setCurrentPage] = useState(1); 
   const productsPerPage = 9;
+  
+    useEffect(() => {
+      dispatch(getAllProducts());
+    }, [dispatch]);
 
   const handlePaginate = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -25,10 +29,6 @@ const Tienda = () => {
     indexOfFirstProduct,
     indexOfLastProduct
   ); 
-
-  useEffect(() => {
-    dispatch(getAllProducts());
-  }, [dispatch]);
 
   return (
     <div className={style.FondoTienda}>

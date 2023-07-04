@@ -3,7 +3,7 @@ import axios from "axios";
 import style from "./TiendaItems.module.css";
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { cargarProductos, getCarrito, addToCart } from "../../../Redux/actions"
+import { getCarrito, addToCart } from "../../../Redux/actions"
 import { Image, Card, Text, Heading, CardBody, CardFooter, Button, Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton, Box, Grid } from '@chakra-ui/react'
 import { Toaster, toast } from "react-hot-toast";
 import { useAuth0 } from "@auth0/auth0-react"; 
@@ -17,6 +17,10 @@ const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes
   const { isAuthenticated } = useAuth0();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [quantity, setQuantity] = useState(0);
+  
+  useEffect(()=>{
+    dispatch(getCarrito())
+  },[dispatch])
   
   const [review, setReview] = useState({
     user_id:`${user_id}`, /* <----------------------- FALTA ASIGNARLE BIEN EL USERID QUE TIENE EL USUARIO QUE COMENTA */
@@ -35,10 +39,6 @@ const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
-  
-  useEffect(()=>{
-    dispatch(getCarrito())
-  },[dispatch])
   
   const handleAdd = (event) => {
     event.preventDefault()

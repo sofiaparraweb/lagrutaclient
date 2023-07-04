@@ -7,17 +7,19 @@ import { Link } from "react-router-dom";
 
 const CarritoContainer = () => {
 
-    const Cart = useSelector((state) => state.LocalPersist.Carrito);
-    // const Cart = useSelector((state) => state.LocalPersist.allProducts);
     const dispatch = useDispatch();
+    const Cart = useSelector((state) => state.LocalPersist.Carrito.Products);
+    const userId = useSelector(state => state.LocalPersist.userInfo.id);
+    // const Cart = useSelector((state) => state.LocalPersist.allProducts);
+    console.log(Cart)
 
     useEffect(() => { 
-        dispatch(getCarrito());
+        dispatch(getCarrito(userId));
     },[dispatch]);
       
     return (
         <div className={style.TiendaItemsContainerCART}> 
-            {Cart.length === 0 ? (
+            {Cart?.length === 0 ? (
                 <>
                     <p className={style.MensajeCartVacio}>Tu carrito está vacío, volvé a la tienda para colaborar con La Gruta</p>
                     <Link to="/tienda" className={style.BtnVolverTienda}>tienda</Link>
@@ -25,7 +27,7 @@ const CarritoContainer = () => {
                 ) : (
                     <>
                     <h1 className={style.ContenedorCartProductosTitulo}>Productos seleccionados</h1>
-                    {Cart.length > 0 && Cart?.map((prod) => {
+                    {Cart?.length > 0 && Cart?.map((prod) => {
                         return (
                             <Carrito
                                 key={prod.id} 
@@ -34,6 +36,7 @@ const CarritoContainer = () => {
                                 image={prod.image}
                                 price={prod.price}
                                 stock={prod.stock}
+                                quantityProd={prod.Cart_Products.quantity}
                             />
                         ); 
                     })}

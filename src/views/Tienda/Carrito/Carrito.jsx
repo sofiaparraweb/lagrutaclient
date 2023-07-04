@@ -1,4 +1,4 @@
-import { getCarrito, cargarProductos, addToCart, deleteAllCarrito, deleteCarrito, QuitarProducto, url } from "../../../Redux/actions";
+import { getCarrito, addToCart, deleteAllCarrito, deleteCarrito, QuitarProducto, url } from "../../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Image , Card, HStack, Text, Heading, CardBody } from '@chakra-ui/react';
@@ -7,47 +7,48 @@ import axios from "axios";
 import style from "./Carrito.module.css";
 import { Toaster, toast } from "react-hot-toast";
 
-const Carrito = ({ id, name, image, price, stock }) => {
+const Carrito = ({ id, name, image, price, stock, quantityProd}) => {
 
   const dispatch = useDispatch();
-  const Cart = useSelector((state) => state.LocalPersist.Carrito);
+  const Cart = useSelector((state) => state.LocalPersist.Carrito.Products);
   const userId = useSelector(state => state.LocalPersist.userInfo.id);
   const [quantity, setQuantity] = useState(1);
   const [subTotal, setSubTotal] = useState(0);
+  console.log(quantityProd)
 
   useEffect(() => { // Calcula el subtotal inicial al cargar el carrito
-    const initialSubTotal = Cart.reduce((amount, item) => item.price * item.quantity + amount, 0);
+    const initialSubTotal = Cart?.reduce((amount, item) => item.price * item.quantity + amount, 0);
     setSubTotal(initialSubTotal);
   }, [Cart]);
 
   useEffect(() => {
-    dispatch(getCarrito(), servicio, total, subTotal, quantity);
-  }, [dispatch]);
+    dispatch(getCarrito(userId), servicio, total, subTotal, quantity, quantityProd);
+  }, [Cart]);
 
   let servicio = subTotal * 0.10;
   let total = subTotal + servicio;
 
-  const handleClickAdd = (userId, id, name, image, price, stock) => {
-    const existingProduct = Cart?.find((item) => item.id === id);
+  // const handleClickAdd = (userId, id, name, image, price, stock) => {
+  //   const existingProduct = Cart?.find((item) => item.id === id);
 
-    if (existingProduct) {
-      if (existingProduct.quantity < stock) {
-        dispatch(cargarProductos(userId, id, name, image, price, stock));
-        setQuantity(existingProduct.quantity + 1);
-        toast.success("Producto agregado al carrito", {
-          duration: 3000
-        });
-      } else {
-        toast.error("No hay más productos disponibles");
-      }
-    } else {
-      dispatch(cargarProductos(userId, id, name, image, price, stock));
-      setQuantity(1);
-      toast.success("Producto agregado al carrito", {
-        duration: 3000
-      });
-    }
-  };
+  //   if (existingProduct) {
+  //     if (existingProduct.quantity < stock) {
+  //       dispatch(cargarProductos(userId, id, name, image, price, stock));
+  //       setQuantity(existingProduct.quantity + 1);
+  //       toast.success("Producto agregado al carrito", {
+  //         duration: 3000
+  //       });
+  //     } else {
+  //       toast.error("No hay más productos disponibles");
+  //     }
+  //   } else {
+  //     dispatch(cargarProductos(userId, id, name, image, price, stock));
+  //     setQuantity(1);
+  //     toast.success("Producto agregado al carrito", {
+  //       duration: 3000
+  //     });
+  //   }
+  // };
 
   // const handleAddToCart = (id) => {
   //   if(productCount<stock) {
@@ -64,29 +65,20 @@ const Carrito = ({ id, name, image, price, stock }) => {
   // }
     
   const handleDeleteFromCart = (userId, id) => {
-    const existingProduct = Cart?.find((item) => item.id === id);
-
-    if (existingProduct) {
-      if (existingProduct.quantity > 1) {
-        dispatch(deleteCarrito(userId, id));
-        setQuantity(existingProduct.quantity - 1);
-      } else {
-        dispatch(QuitarProducto(id));
-        setQuantity(0);
-      }
-      toast.success("Se ha eliminado un producto del carrito", {
-        duration: 3000
-      });
-    }
+    dispatch(deleteCarrito(userId, id));
+    setQuantity(0);
+    toast.success("Se ha eliminado un producto del carrito", {
+      duration: 3000
+    });
   };
 
-  const handleDeleteProductCart = (id) =>{
-    dispatch(QuitarProducto(id));
-    setQuantity(0);
-    toast.success("Producto eliminado del carrito", {
-      duration: 3000
-    })
-  }
+  // const handleDeleteProductCart = (id) =>{
+  //   dispatch(QuitarProducto(id));
+  //   setQuantity(0);
+  //   toast.success("Producto eliminado del carrito", {
+  //     duration: 3000
+  //   })
+  // }
 
   const handleDeleteCart = (userId) =>{
     dispatch(deleteAllCarrito(userId));
@@ -100,7 +92,7 @@ const Carrito = ({ id, name, image, price, stock }) => {
     try {
       const { data } = await axios.post(`${url}/payment/create-order?user_id=${userId}`, Cart);
       window.location.href = data.init_point;
-      window.localStorage.removeItem("Cart");
+      // window.localStorage.removeItem("Cart");
     } catch (error) {
       toast.error("Debes seleccionar un producto", {
         duration: 3000
@@ -142,8 +134,8 @@ const Carrito = ({ id, name, image, price, stock }) => {
                 <span>${total}</span>
               </div>
             </div>
-            <button className={style.ButtonVaciarCarro} value="pagar" onClick={handlePay}>Confirmar</button>
-            <button className={style.ButtonVaciarCarro} value="pagar" onClick={handlePay}>Pagar</button>
+            <button className={style.ButtonVaciarCarro} value="pagar" onClick={()=>handlePay(userId)}>Confirmar</button>
+            <button className={style.ButtonVaciarCarro} value="pagar" onClick={()=>handlePay(userId)}>Pagar</button>
           </div>
         </div>
       </div>
@@ -180,7 +172,7 @@ const Carrito = ({ id, name, image, price, stock }) => {
                 <Heading width='100px' size='md' textAlign='center'>Cantidad</Heading>
                 <Text py='3' className={style.ContenedorBotonesCart}>
                   <button className={style.ButtonsSumaResta} onClick={()=> handleDeleteFromCart(id)} value="less" >-</button>
-                    {quantity}
+                    {quantityProd}
                   <button className={style.ButtonsSumaResta} onClick={() => handleClickAdd(userId, id, name, image, price, stock)} value="add" >+</button>
                 </Text>
               </CardBody>
@@ -192,7 +184,7 @@ const Carrito = ({ id, name, image, price, stock }) => {
               </CardBody>
               <CardBody p={4}>
                 <Text textAlign='center' color='#B9362C'>
-                  <button onClick={()=>handleDeleteProductCart(id)} value="less" ><AiOutlineDelete size='2em'/></button>
+                  <button onClick={()=>handleDeleteFromCart(userId, id)} value="less" ><AiOutlineDelete size='2em'/></button>
                 </Text>
               </CardBody>
             </HStack>

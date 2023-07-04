@@ -34,8 +34,8 @@ export const FORM_FOOTER = 'FORM_FOOTER';
 export const FORM_PADRINO = 'FORM_PADRINO';
 export const FORM_DONACION = 'FORM_DONACION';
 
-//export const url = "http://localhost:3001";
-export const url = "https://lagruta.onrender.com";
+export const url = "http://localhost:3001";
+//export const url = "https://lagruta.onrender.com";
 // const LOCAL = "http://localhost:3001";
 
 export function getAllActivity() {
@@ -155,11 +155,6 @@ export const getCarrito = (user_id) => {
   };
 };
 
-// ----------Agregar a carrito Localmente
-export const cargarProductos = (user_id, id, name, image, price, stock) => {
-  return { type: CARGAR_PRODUCTOS, payload: { user_id, id, name, image, price, stock } };
-};
-
 // ----------Eliminar a carrito Localmente
 export const QuitarProducto = (id) => {
   return { type: QUITAR_PRODUCTOS, payload: id };
@@ -167,7 +162,7 @@ export const QuitarProducto = (id) => {
 
 // ----------Agregar a carrito a Base de Datos
 export const addToCart = (user_id, id, quantity) => {
-  console.log(user_id, "user")
+  console.log(user_id)
   console.log(id)
   console.log(quantity)
   return async (dispatch) =>{
@@ -182,19 +177,19 @@ export const addToCart = (user_id, id, quantity) => {
 }
 
 // ----------Borrar todo el carrito
-export const deleteAllCarrito = () => {
-  return { type: DELETE_ALL_CART, payload: []}
-};
-// export const deleteAllCarrito = (userId) => {
-//   return async (dispatch) => {
-//     try {
-//       await axios.delete(`${url}/cart/remove?user_id=${userId}`);
-//       dispatch({ type: DELETE_ALL_CART, payload: [] });
-//     } catch (error) {
-//       console.log(error);       
-//     } 
-//   };
+// export const deleteAllCarrito = () => {
+//   return { type: DELETE_ALL_CART, payload: []}
 // };
+export const deleteAllCarrito = (userId) => {
+  return async (dispatch) => {
+    try {
+      await axios.delete(`${url}/cart/remove?user_id=${userId}`);
+      dispatch({ type: DELETE_ALL_CART, payload: [] });
+    } catch (error) {
+      console.log(error);       
+    } 
+  };
+};
 
 // ----------Borrar un elemento
 export const deleteCarrito = (user_id, id) => {
