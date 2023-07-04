@@ -5,7 +5,7 @@ import SideBar from "../SideBar/SideBar"
 
 const TiendaItemsContenedor = ({ products, setCurrentPage }) => {
 
-    return (
+    return ( 
         <div className={style.ContenedorTienda}>
             <div className={style.TiendaSideBar}>
                 <SideBar setCurrentPage={setCurrentPage}/>

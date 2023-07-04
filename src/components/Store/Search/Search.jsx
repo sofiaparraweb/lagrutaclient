@@ -41,8 +41,8 @@ const Search = () => {
             />
           </div>
           <div className={style.DivButton}>
-            <button type="submit" className={style.SearchBarButton}>Search</button>
-            <button className={style.ResetButton} onClick={handleReset}>Reset</button>
+            <button type="submit" className={style.SearchBarButton}>Buscar</button>
+            <button className={style.ResetButton} onClick={handleReset}>Resetear</button>
           </div>
         </form> 
     </div>

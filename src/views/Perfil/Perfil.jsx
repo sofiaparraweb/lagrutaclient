@@ -28,6 +28,7 @@ const Perfil = () => {
   const profile = useSelector((state) => state.LocalPersist.profile);
   const isProfileFetchedRef = useRef(false);
 
+
   useEffect(() => {
    if( !isProfileFetchedRef.current && userId) {
       dispatch(getProfile(userId));

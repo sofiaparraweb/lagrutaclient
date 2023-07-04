@@ -50,17 +50,46 @@
 .link[id="conocenosNav"]{
   border-bottom:6px solid #D7B63E;
   border-bottom-left-radius: 5px;
+  text-decoration: none;
 }
 .link[id="conocenosNav"]:hover{
   background-color: #D7B63E;
+  text-decoration: none;
 }
-.active[id="conocenosNav"]{
-  background-color: #D7B63E;
+/* -------------------------------------NOSOTROS */
+.dropdownOption[id="nosotros"]{
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  font-weight: 600;
+  border-bottom:3px solid #EB5D0B;
+}
+.dropdownOption[id="nosotros"]:hover{
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  background-color: #EB5D0B;
+  text-decoration: none;
+}
+.active[id="nosotros"]{
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  background-color: #EB5D0B;
   color: white;
   text-decoration: none;
 }
-
-
+/* -------------------------------------Nuestra Historia */
+.dropdownOption[id="nuestraHistoria"]{
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  font-weight: 600;
+  border-bottom:3px solid #B9362C;
+}
+.dropdownOption[id="nuestraHistoria"]:hover{
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  background-color: #B9362C;
+  text-decoration: none;
+}
+.active[id="nuestraHistoria"]{
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  background-color: #B9362C;
+  color: white;
+  text-decoration: none;
+}
 /* -------------------------------------nuestroEquipoNav */
 .dropdownOption[id="nuestroEquipoNav"]{
   font-family: 'DK Lemon Yellow Sun', sans-serif;

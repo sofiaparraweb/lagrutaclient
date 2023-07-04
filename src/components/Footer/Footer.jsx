@@ -95,7 +95,7 @@ const Footer = () => {
               <a href="https://twitter.com/" target="_blank" rel="noreferrer">
                 <FaTwitter />
               </a>
-          </li>*/}
+            </li>*/}
             <li className={style.itemRedes}>
               <a
                 href="https://www.instagram.com/lagrutacdi/"
@@ -105,7 +105,6 @@ const Footer = () => {
                 <FaInstagram />
               </a>
             </li>
-
             {/*<li className={style.itemRedes}>
               <a href="https://www.youtube.com/" target="_blank" rel="noreferrer">
                 <FaYoutube />
@@ -114,7 +113,6 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-
       <div className={style.copy}>
         <p>© 2023 La Gruta.</p>
       </div>

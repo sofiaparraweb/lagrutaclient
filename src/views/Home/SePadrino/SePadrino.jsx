@@ -16,9 +16,10 @@ const SePadrinoHome = () =>{
             </div>
             <div className={style.SumateContainerParteDerecha}>
                 <img src={naranja} alt="naranja"></img>
+                <div className={style.TextoContainer}></div>
                 <p id="SePadrino">Te invitamos a formar parte de esta comunidad tan linda, sumate como padrino o madrina de los niños que están esperando por vos, por tu abrazo y todo el cariño que tenés para brindarles</p>
+                <Link to="/se-padrino" className={style.BotonSePadrino} onClick={handleClick} id="se-Padrino">Sumate!</Link>
             </div>
-            <Link to="/sePadrino" className={style.BotonSePadrino} onClick={handleClick}>Sumate! </Link>
         </div>
     )
 }
