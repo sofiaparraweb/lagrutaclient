@@ -87,7 +87,7 @@ input::placeholder {
   margin-top: 60px;
 }
 
-.footerSection .itemRedes {
+.itemRedes{
   width: 35px;
   height: 35px;
   font-size: 35px;
@@ -95,8 +95,8 @@ input::placeholder {
   transition: color .3s;
 }
 
-.footerSection .itemRedes:hover{
-  color: #ff8000 !important;
+.itemRedes:hover{
+  color: #ff8000;
   cursor: pointer;
 }
 

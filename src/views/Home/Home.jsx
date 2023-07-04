@@ -1,4 +1,3 @@
-import NavBar from "../../components/NavBar/NavBar";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
 import LastNews from "../../components/News/HeaderNews/LastNews";
@@ -18,9 +17,9 @@ import logo from "../../assets/logo.png";
 const Home = () => {
 
     const dispatch = useDispatch();
-    const allActivity = useSelector(state => state.LocalPersist.allActivity);
-    const userInfo = useSelector(state => state.LocalPersist.userInfo);
     const { user, isAuthenticated, isLoading } = useAuth0();
+    const allActivity = useSelector(state => state.LocalPersist.allActivity);
+    const userInfo = useSelector(state => state.LocalPersist.userInfo?.id);
     console.log(userInfo)
     const isProfileCreatedRef = useRef(false);
 
