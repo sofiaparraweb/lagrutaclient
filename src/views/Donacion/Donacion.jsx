@@ -21,7 +21,8 @@ const DonationForm = () => {
   };
 
   const handleCustomValueChange = (event) => {
-    setCustomValue(event.target.value);
+    const value = event.target.value;
+    setCustomValue(value);
   };
 
   const handleSubmit = (event) => {
@@ -40,19 +41,19 @@ const DonationForm = () => {
       timer: 3000
     });
   
-    if (selectedOption === "otraOpcion") {
-      alert("Valor personalizado:", customValue);
-    //   Swal.fire({
-    //     position: 'center',
-    //     icon: 'success',
-    //     title: "Valor personalizado:",
-    //     showConfirmButton: false,
-    //     timer: 3000
-    // })
+    if (selectedOption) {
+    //  alert("Valor personalizado:", customValue);
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title:  `Opción seleccionada: ${selectedOption}`,
+        showConfirmButton: false,
+        timer: 3000
+    })
     }
   
     setError(false);
-    setCustomValue("");
+    //setCustomValue("");
     setShowForm(true);
   };
   
@@ -141,7 +142,6 @@ const DonationForm = () => {
                     placeholder="Ingrese otro valor"
                   />
                 </div>
-                <p style={{ color: "#fff" }}>Valor personalizado: {customValue}</p>
               </label>
             )}
 
