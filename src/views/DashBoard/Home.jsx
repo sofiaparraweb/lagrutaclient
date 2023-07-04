@@ -1,18 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CardsHeader from "../../components/DashBoard/General/CardsHeader.jsx";
-import TablaUsers from "../../components/DashBoard/Usuarios/TablaUsers.jsx";
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 
-import { getUserId } from "../../Redux/actions.jsx";
+import { getAllActivity, getAllProducts } from "../../Redux/actions.jsx";
 
 export default function Dashboard() {
-  const userInfo = useSelector((state) => state.LocalPersist.userInfo);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getUserId());
+    dispatch(getAllActivity());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getAllProducts());
+  }, [dispatch]);
+
+  const allActivity = useSelector((state) => state.LocalPersist.allActivity);
+  const allProducts = useSelector((state) => state.LocalPersist.allProducts);
+
+  const totalNewsCount = allActivity.length; // Contar la cantidad de...
+  const totalProductsCount = allProducts.length;
+  console.log("Número total de noticias:", totalNewsCount);
 
   return (
     <div>
@@ -31,7 +41,7 @@ export default function Dashboard() {
         />
         <CardsHeader
           datacard="totalNews"
-          totalValue="130"
+          totalValue={totalNewsCount}
           text="Noticias totales"
           icon="totalNews"
           route="totalNews"
@@ -39,7 +49,7 @@ export default function Dashboard() {
         />
         <CardsHeader
           datacard="ventas"
-          totalValue="500"
+          totalValue={totalProductsCount}
           text="Total de productos"
           icon="ventas"
           route="ventas"
@@ -53,37 +63,23 @@ export default function Dashboard() {
           per="messagesend"
         />
       </div>
-      {userInfo?.map((i) => {
-        return (
-          <TablaUsers
-            key={i.id}
-            id={i.id}
-            name={i.fullname}
-            updatedAt={i.updatedAt}
-            rol={i.Rol}
-          />
-        );
-      })}
-
       {/* por debajo tile*/}
 
-      <div className="bg-gray-800 px-4 py-2 flex flex-col lg:flex-row lg:items-center flex-shrink-0">
-        <h1 className="text-2xl text-white my-10">Últimas ventas</h1>
-      </div>
-      <div className="bg-secondary-100 p-8 rounded-xl">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center mb-4 bg-secondary-900 p-4 rounded-xl">
-          <div>hhhh22</div>
-        </div>
-      </div>
+<div className="flex">
+  <div className="bg-secondary-100 p-8 rounded-xl w-1/2">
+    <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center mb-4 bg-secondary-900 p-4 rounded-xl">
+      <span>Analitica tienda</span>
+    </div>
+  </div>
 
-      <div className="bg-gray-800 px-4 py-2 flex flex-col lg:flex-row lg:items-center flex-shrink-0">
-        <h1 className="text-2xl text-white my-10">Trafíco</h1>
-      </div>
-      <div className="bg-secondary-100 p-8 rounded-xl">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center mb-4 bg-secondary-900 p-4 rounded-xl">
-          <div>hhhh</div>
-        </div>
-      </div>
+  <div className="bg-secondary-100 p-8 rounded-xl w-1/2">
+    <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center mb-4 bg-secondary-900 p-4 rounded-xl">
+      <span>Analitica usuarios</span>
+    </div>
+  </div>
+</div>
+
+
     </div>
   );
 }

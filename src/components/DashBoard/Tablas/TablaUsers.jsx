@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 
@@ -7,6 +7,8 @@ import "@szhsin/react-menu/dist/transitions/slide.css";
 
 export default function TablaUsers() {
 
+  const userInfo = useSelector((state) => state.LocalPersist.profile);
+console.log(userInfo)
 
   const [buttonStates, setButtonStates] = useState({});
   const [buttonTexts, setButtonTexts] = useState({});
@@ -41,15 +43,17 @@ export default function TablaUsers() {
         </h1>
       </div>
 
-      <div className="bg-secondary-100 p-8 rounded-xl">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center mb-4 bg-secondary-900 p-4 rounded-xl">
-          <div>
+
+          {userInfo?.map((u) => (
+  <div className="bg-secondary-100 p-8 rounded-xl">
+  <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center mb-4 bg-secondary-900 p-4 rounded-xl">
+          <div key={u.id}>
             <h5 className="md:hidden text-gray-700 font-bold mb-2">ID</h5>
-            <span className="text-gray-700">#25546</span>
+            <span className="text-gray-700">{u.id}</span>
           </div>
           <div>
             <h5 className="md:hidden text-gray-700 font-bold mb-2">Nombre</h5>
-            <p className="text-gray-700">Pepito Gonzales</p>
+            <p className="text-gray-700">{u.name}</p>
           </div>
           <div>
             <h5 className="md:hidden text-gray-700 font-bold mb-2">Rol</h5>
@@ -61,7 +65,7 @@ export default function TablaUsers() {
             <h5 className="md:hidden text-gray-700 font-bold mb-2">
               Fecha registro
             </h5>
-            <span className="text-gray-700">28 octubre 2022</span>
+            <span className="text-gray-700">{u.createdAt}</span>
           </div>
           {/*botones banneo/activación*/}
           <div>
@@ -183,9 +187,10 @@ export default function TablaUsers() {
               </span>
             </button>
             </div> */}
-          </div>
+          </div> 
+          </div>   
         </div>
-      </div>
+       ))}
     </>
   );
 }

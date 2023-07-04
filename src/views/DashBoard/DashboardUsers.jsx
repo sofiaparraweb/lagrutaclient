@@ -1,5 +1,5 @@
 import React from "react";
-
+import TablaUsers from "../../components/DashBoard/Tablas/TablaUsers";
 
 
 export default function DashboardUsers() {
@@ -11,9 +11,7 @@ export default function DashboardUsers() {
         </div>
       </div>
       {/* aca colocar el componente*/}
-      <div className="bg-gray-800 px-4 py-2 flex flex-col lg:flex-row lg:items-center flex-shrink-0">
-        <h1 className="text-2xl text-white my-10">Últmos usuarios registrados</h1>
-      </div>
+      <TablaUsers />
 </>
     );
 }
