@@ -96,7 +96,7 @@ input::placeholder {
 }
 
 .footerSection .itemRedes:hover{
-  color: #ff8000;
+  color: #ff8000 !important;
   cursor: pointer;
 }
 

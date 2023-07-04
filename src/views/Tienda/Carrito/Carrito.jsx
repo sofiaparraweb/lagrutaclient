@@ -161,7 +161,7 @@ const Carrito = ({ id, name, image, price, stock }) => {
               alt='product-image'
               width='13%'
               height='13%x'
-              marginRight='9%'
+              marginRight='9%' 
             />
             <HStack >
               <CardBody p={1} size='md'>

@@ -3,21 +3,23 @@ import axios from "axios";
 import style from "./TiendaItems.module.css";
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { cargarProductos, getCarrito } from "../../../Redux/actions"
+import { cargarProductos, getCarrito, addToCart } from "../../../Redux/actions"
 import { Image, Card, Text, Heading, CardBody, CardFooter, Button, Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton, Box, Grid } from '@chakra-ui/react'
 import { Toaster, toast } from "react-hot-toast";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react"; 
+import { cartArrowDown } from "fontawesome";
 
 const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes, Reviews }) => {
   
-  const [productCount, setProductCount] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const { isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
-  const userId = useSelector(state => state.LocalPersist.userInfo.id);
+  const user_id = useSelector(state => state.LocalPersist.userInfo.id);
+  const Cart = useSelector((state) => state.LocalPersist.Carrito);
+  const { isAuthenticated } = useAuth0();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [quantity, setQuantity] = useState(0);
   
   const [review, setReview] = useState({
-    user_id:`${userId}`, /* <----------------------- FALTA ASIGNARLE BIEN EL USERID QUE TIENE EL USUARIO QUE COMENTA */
+    user_id:`${user_id}`, /* <----------------------- FALTA ASIGNARLE BIEN EL USERID QUE TIENE EL USUARIO QUE COMENTA */
     rating: 0,
     content: "",
     product_id: `${id}`, 
@@ -38,19 +40,37 @@ const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes
     dispatch(getCarrito())
   },[dispatch])
   
-  const handleClickAdd = (userId, id, name, image, price, stock) => { // agregamos el producto seleccionado al estado local
-    if(productCount<stock){
-      dispatch(cargarProductos(userId, id, name, image, price, stock));
-      setProductCount(productCount + 1);
-      console.log(productCount)
+  const handleAdd = (event) => {
+    event.preventDefault()
+    if (quantity < stock) {
+      setQuantity(quantity + 1); // Agrega 1 a la cantidad actual
+    } else {
+      setQuantity(stock);
+      toast.error("La cantidad deseada supera el stock disponible", {
+        duration: 3000
+      })
+    }
+  };
+
+  const handleDelete = (event) => {
+    event.preventDefault()
+    if (quantity > 0) {
+      setQuantity(quantity - 1); // Resta 1 a la cantidad actual
+    }
+  };
+
+  const handleAddToCart = (user_id, id, quantity) => {
+    if(quantity>stock) {
+      toast.error("La cantidad deseada supera el stock disponible", {
+        duration: 3000
+      })    
+    } else {
+      dispatch(addToCart(user_id, id, quantity));
       toast.success("Producto agregado al carrito", {
         duration: 3000
       })
-    } else {
-      setProductCount(stock)
-      toast.error("No hay mas productos disponibles")
     }
-  };
+  }
 
   const handleSubmit = (event) => {
       event.preventDefault()
@@ -80,17 +100,26 @@ const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes
               <Text fontSize='l' textTransform='uppercase' fontWeight='normal'>{name}</Text>
               <Text fontSize='l' fontWeight='normal'> $ {price}</Text>
             </Heading>
-            {/* <Stack height='53px' mt='1'>
-              <Text color='grey' fontWeight='normal'>
-                {ProductsTypes} | {description}
-              </Text>     
-            </Stack> */}
           </CardBody>
-          <CardFooter h='49px'> 
+          <CardFooter h='20%'> 
             {isAuthenticated ? (
-              <Button className={style.BotonAddToCart} onClick={()=>handleClickAdd(userId, id, name, image, price, stock)} backgroundColor='#B9362C' _hover={{ color:'#124476'}} color='white' fontWeight='normal' fontSize='25px' marginTop='-19px'>
-                Add to cart
-              </Button>
+              <>
+                <Grid templateColumns="repeat(2, 1fr)" gap={1} margin='2% 2%' >
+                  <Box width='80%'>
+                    <Heading size='md' textAlign='center'>Cantidad</Heading>
+                    <Text py='1' className={style.ContenedorBotonesCart}>
+                      <button className={style.ButtonsSumaResta} onClick={handleDelete} value="less" >-</button>
+                        {quantity}
+                      <button className={style.ButtonsSumaResta} onClick={handleAdd} value="add" >+</button>
+                    </Text>
+                  </Box>
+                  <Box >
+                    <Button className={style.BotonAddToCart} onClick={()=>handleAddToCart(user_id, id, quantity)} backgroundColor='#B9362C' _hover={{ color:'#124476'}} color='white' fontWeight='normal' fontSize='20px'>
+                      Agregar al carrito
+                    </Button>
+                  </Box>
+                </Grid>
+              </>
             ) : (
               <Button className={style.BotonAddToCart} onClick={() => toast.error('Debe iniciar sesión para agregar productos.')} backgroundColor='#B9362C' _hover={{ color: '#124476' }} color='white' fontWeight='normal' fontSize='25px' marginTop='-19px' disabled>
                 Add to cart
@@ -128,7 +157,7 @@ const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes
                   <Grid>
                     <Text fontSize="xl" fontWeight="bold" mb={4} textTransform='uppercase'>
                       aca irian las valoraciones (estrellitas)
-                      {Reviews && Reviews.map ((review) =>(
+                      {Reviews && Reviews?.map ((review) =>(
                         <div>
                           <p>Rating: {review.rating}</p>
                         </div>

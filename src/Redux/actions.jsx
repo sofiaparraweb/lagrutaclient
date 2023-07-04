@@ -144,10 +144,10 @@ export const orderByPrice = (price) => {
 
 /* -----------------------------carrito----------------------------- */
 // ----------Traer el carrito
-export const getCarrito = (userId) => {
+export const getCarrito = (user_id) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${url}/cart/${userId}`);
+      const response = await axios.get(`${url}/cart/${user_id}`);
       dispatch({ type: GET_CART, payload: response.data });
     } catch (error) {
       console.log(error);
@@ -156,8 +156,8 @@ export const getCarrito = (userId) => {
 };
 
 // ----------Agregar a carrito Localmente
-export const cargarProductos = (userId, id, name, image, price, stock) => {
-  return { type: CARGAR_PRODUCTOS, payload: { userId, id, name, image, price, stock } };
+export const cargarProductos = (user_id, id, name, image, price, stock) => {
+  return { type: CARGAR_PRODUCTOS, payload: { user_id, id, name, image, price, stock } };
 };
 
 // ----------Eliminar a carrito Localmente
@@ -166,11 +166,14 @@ export const QuitarProducto = (id) => {
 };
 
 // ----------Agregar a carrito a Base de Datos
-export const addToCart = (userId, product_id, quantity) => {
+export const addToCart = (user_id, id, quantity) => {
+  console.log(user_id, "user")
+  console.log(id)
+  console.log(quantity)
   return async (dispatch) =>{
     try {
-        const response = await axios.post(`${url}/cart/add?user_id=${userId}&product_id=${product_id}&quantity=${quantity}`)
-        console.log(response.data);
+        const response = await axios.post(`${url}/cart/add?user_id=${user_id}&product_id=${id}&quantity=${quantity}`)
+        console.log(response);
         dispatch({ type: ADD_TO_CART, payload: response.data})
     } catch (error){
       console.log(error);
@@ -194,10 +197,10 @@ export const deleteAllCarrito = () => {
 // };
 
 // ----------Borrar un elemento
-export const deleteCarrito = (userId, id) => {
+export const deleteCarrito = (user_id, id) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`${url}/cart/remove?userId=${userId}&product_id=${id}`);
+      await axios.delete(`${url}/cart/remove?user_id=${user_id}&product_id=${id}`);
       dispatch({ type: DELETE_CARRITO, payload: id });
     } catch (error) {
       console.log(error);  

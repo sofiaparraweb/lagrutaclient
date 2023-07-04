@@ -24,7 +24,7 @@ const Tienda = () => {
   const currentProducts = prod?.length > 0 && prod.slice(
     indexOfFirstProduct,
     indexOfLastProduct
-  );
+  ); 
 
   useEffect(() => {
     dispatch(getAllProducts());

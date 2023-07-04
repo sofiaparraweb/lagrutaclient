@@ -9,10 +9,9 @@ const CarritoContainer = () => {
 
     const Cart = useSelector((state) => state.LocalPersist.Carrito);
     // const Cart = useSelector((state) => state.LocalPersist.allProducts);
-    const userId = useSelector((state) => state.LocalPersist.userId);
     const dispatch = useDispatch();
 
-    useEffect(() => {
+    useEffect(() => { 
         dispatch(getCarrito());
     },[dispatch]);
       
@@ -29,7 +28,7 @@ const CarritoContainer = () => {
                     {Cart.length > 0 && Cart?.map((prod) => {
                         return (
                             <Carrito
-                                key={prod.id}
+                                key={prod.id} 
                                 id={prod.id}
                                 name={prod.name}
                                 image={prod.image}
