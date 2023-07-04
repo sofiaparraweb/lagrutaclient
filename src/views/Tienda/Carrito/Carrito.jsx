@@ -156,12 +156,12 @@ const Carrito = ({ id, name, image, price, stock }) => {
           >
             <Image 
               objectFit='cover'
-              maxW={{ base: '100%', sm: '200px' }}
+              maxW={{ base: '100%', sm: '14%' }}
               src={image}
               alt='product-image'
-              width='120px'
-              height='120px'
-              marginRight='80px'
+              width='13%'
+              height='13%x'
+              marginRight='9%'
             />
             <HStack >
               <CardBody p={1} size='md'>

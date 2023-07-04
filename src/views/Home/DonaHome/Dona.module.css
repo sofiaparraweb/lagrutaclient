@@ -11,8 +11,9 @@ img[alt="yellow"]{
     margin-left: 12%;
     z-index: -1;
     position: absolute;
-    width: 900px;
+    width: 73%;
 }
+
 img[alt="flechaazul"]{
     position: absolute;
     left: 60%;
@@ -25,16 +26,17 @@ p[id="PrimerAmarillo"]{
     left: 46%;
     transform: translate(-70%, -100%);
     width: 45%;
-    font-size: 21px;
+    font-size: 150%;
     color: rgba(16, 68, 118, 255);
     text-align: center;
     font-family: 'DK Lemon Yellow Sun', sans-serif;
 }
+
 p[id="SegundoAmarillo"]{
     position: absolute;
     top: 52%;
     left: 50%;
-    font-size: 21px;
+    font-size: 150%;
     transform: translate(-60%, -1%);
     color: rgba(16, 68, 118, 255);
     text-align: center;
@@ -47,21 +49,59 @@ p[id="SegundoAmarillo"]{
     background-size: 120px;
     background-repeat: no-repeat;
     animation: resize 1s infinite alternate;
+    color: rgba(16, 68, 118, 255);
     height: 120px;
     width: 120px;
     top:57%;
     left: 72%;
     font-size: 25px;
-    font-style: italic;
+    font-style: italic; 
     display: flex;
     align-items: center;
     justify-content: center;
 }
-@keyframes resize {
-    0% {
-      transform: scale(1); 
+
+@media (max-width: 767px) {
+    .DonaHome {
+      height: auto;
     }
-    100% {
-      transform: scale(1.1); 
+  
+    img[alt="yellow"] {
+      width: 100%;
+      height: auto;
+      margin: 0;
+    }
+  
+    img[alt="flechaazul"] {
+      display: none;
+    }
+  
+    p[id="PrimerAmarillo"], p[id="SegundoAmarillo"] {
+      position: static;
+      transform: none;
+      width: 80%;
+      text-align: center;
+      margin-top: 2%;
+      font-size: 140%;
+    }
+  
+    .BotonMasNoticias[id="Dona"] {
+      position: static;
+      margin-top: 10px;
+      margin-left: 40%;
+    }
+  }
+  
+  /* Responsive para menos de 480px */
+  @media (max-width: 479px) {
+    p[id="PrimerAmarillo"], p[id="SegundoAmarillo"] {
+      font-size: 90%;
+    }
+  
+    .BotonMasNoticias[id="Dona"] {
+      font-size: 20px;
+      height: 80px;
+      width: 80px;
+      background-size: 80px;
     }
   }
