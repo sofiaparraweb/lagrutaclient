@@ -2,10 +2,7 @@ import React, { useEffect } from "react";
 import style from "./LastNews.module.css";
 import Card from "./Card";
 
-
 const LastNews = ({ allActivity }) => {
-
-
   return (
     <>
       <section className={style.hero}>
@@ -19,7 +16,7 @@ const LastNews = ({ allActivity }) => {
                 date={i.date}
                 img={i.img}
                 description={i.description}
-                ActivityTypes={i.ActivityTypes}  
+                ActivityTypes={i.ActivityTypes}
               />
             );
           })}

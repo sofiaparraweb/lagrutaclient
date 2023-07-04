@@ -241,7 +241,6 @@ export const getProfile = (userId) => {
   };
 };
 
-
 export const getUserId = (email) =>{
   return async (dispatch) => {
     try {

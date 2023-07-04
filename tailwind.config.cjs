@@ -10,6 +10,7 @@ module.exports = {
             300: "#f1f5f9", /* bg-component */
             555: "#27272a", /* SideBar*/
             900: "#ffffff", /* color principal */
+            200: "#374151",
           },
         },
       },
