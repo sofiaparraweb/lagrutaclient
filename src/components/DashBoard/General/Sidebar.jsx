@@ -18,7 +18,7 @@ const Sidebar = () => {
   return (
     <>
       <div
-        className={`xl:h-[100vh] overflow-y-scroll fixed xl:static w-[80%] md:w-[40%] lg:w-[30%] xl:w-auto h-full top-0 bg-secondary-555 p-4 flex flex-col justify-between z-50 ${
+        className={`xl:h-[100vh] overflow-y-scroll fixed xl:static w-[80%] md:w-[40%] lg:w-[30%] xl:w-auto h-full top-0 bg-gray-800 p-4 flex flex-col justify-between z-50 ${
           showMenu ? "left-0" : "-left-full"
         } transition-all`}>
         <div>
@@ -29,14 +29,14 @@ const Sidebar = () => {
             <li>
               <Link
                 to="dashboard"
-                className="flex items-center gap-4 py-2 px-4 rounded-lg hover:bg-secondary-900 transition-colors">
+                className="flex items-center gap-4 py-2 px-4 rounded-lg text-white hover:no-underline hover:text-white hover:bg-secondary-200 transition-colors">
                 <RiBarChart2Line className="text-primary" /> Analíticas
               </Link>
             </li>
             <li>
               <button
                 onClick={() => setShowSubmenu(!showSubmenu)}
-                className="w-full flex items-center justify-between py-2 px-4 rounded-lg hover:bg-secondary-900 transition-colors">
+                className="w-full flex items-center justify-between py-2 px-4 rounded-lg  hover:text-white hover:bg-secondary-200 text-white transition-colors">
                 <span className="flex items-center gap-4">
                   <RiEarthLine className="text-primary" /> Modificaciones
                 </span>
@@ -53,21 +53,21 @@ const Sidebar = () => {
                 <li>
                   <Link
                     to="users"
-                    className="py-2 px-4 border-l border-gray-500 ml-6 block relative before:w-3 before:h-3 before:absolute before:bg-primary before:rounded-full before:-left-[6.5px] before:top-1/2 before:-translate-y-1/2 before:border-4 before:border-secondary-100 hover:text-white transition-colors">
+                    className="py-2 px-4 border-l border-gray-500 ml-6 block hover:no-underline hover:text-white hover:bg-secondary-200 transition-colors text-white relative before:w-3 before:h-3 before:absolute before:bg-primary before:rounded-full before:-left-[6.5px] before:top-1/2 before:-translate-y-1/2 before:border-4 before:border-secondary-100 hover:text-white transition-colors">
                     Usuarios
                   </Link>
                 </li>
                 <li>
                   <Link
                     to="shop"
-                    className="py-2 px-4 border-l border-gray-500 ml-6 block relative before:w-3 before:h-3 before:absolute before:bg-gray-500 before:rounded-full before:-left-[6.5px] before:top-1/2 before:-translate-y-1/2 before:border-4 before:border-secondary-100 hover:text-white transition-colors">
+                    className="py-2 px-4 border-l border-gray-500 hover:no-underline hover:text-white hover:bg-secondary-200 transition-colors text-white ml-6 block relative before:w-3 before:h-3 before:absolute before:bg-gray-500 before:rounded-full before:-left-[6.5px] before:top-1/2 before:-translate-y-1/2 before:border-4 before:border-secondary-100 hover:text-white transition-colors">
                     Tienda
                   </Link>
                 </li>
                 <li>
                   <Link
                     to="news"
-                    className="py-2 px-4 border-l border-gray-500 ml-6 block relative before:w-3 before:h-3 before:absolute before:bg-gray-500 before:rounded-full before:-left-[6.5px] before:top-1/2 before:-translate-y-1/2 before:border-4 before:border-secondary-100 hover:text-white transition-colors">
+                    className="py-2 px-4 border-l border-gray-500 hover:no-underline hover:text-white hover:bg-secondary-200 transition-colors text-white ml-6 block relative before:w-3 before:h-3 before:absolute before:bg-gray-500 before:rounded-full before:-left-[6.5px] before:top-1/2 before:-translate-y-1/2 before:border-4 before:border-secondary-100 hover:text-white transition-colors">
                     Noticias
                   </Link>
                 </li>
@@ -76,7 +76,7 @@ const Sidebar = () => {
             <li>
               <Link
                 to="/"
-                className="flex items-center gap-4 py-2 px-4 rounded-lg hover:bg-secondary-900 transition-colors">
+                className="flex items-center gap-4 py-2 px-4 text-white rounded-lg hover:no-underline  hover:text-white hover:bg-secondary-200 transition-colors">
                 <RiCalendarTodoLine className="text-primary" /> Calendario
               </Link>
             </li>
@@ -85,7 +85,7 @@ const Sidebar = () => {
         <nav>
           <Link
             to="/"
-            className="flex items-center gap-4 py-2 px-4 rounded-lg hover:bg-secondary-900 transition-colors">
+            className="flex items-center gap-4 py-2 px-4 rounded-lg hover:no-underline text-white hover:text-white hover:bg-secondary-200 transition-colors">
             <RiLogoutCircleRLine className="text-primary" /> Cerrar sesión
           </Link>
         </nav>

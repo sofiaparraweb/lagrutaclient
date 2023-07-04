@@ -96,9 +96,8 @@ const FormularioNews = () => {
     try {
       const res = await axios.post(`${LOCAL}/activity/`, formData);
       alert("Actividad creada con éxito");
-      console.log(res);
       const imgUrl = res.data;
-      console.log("url de la img", imgUrl);
+    
 
     setName("");
     setSelectedImage(null);
@@ -134,7 +133,8 @@ const FormularioNews = () => {
             <div>
                 <label class="text-white dark:text-gray-200" htmlFor="">Seleccione categoría de la publicación</label>
                 <select 
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"value={types_activity}
+                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+                value={types_activity}
                 onChange={(e) => setTypesActivity(e.target.value)}>
                 <option key="" value="">
                   {" "}
