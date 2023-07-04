@@ -20,7 +20,7 @@ const Home = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
     const dispatch = useDispatch();
     const allActivity = useSelector(state => state.LocalPersist.allActivity);
-    const userInfo = useSelector(state => state.LocalPersist.userInfo.id);
+    const userInfo = useSelector(state => state.LocalPersist.userInfo?.id);
     console.log(userInfo)
     const isProfileCreatedRef = useRef(false);
 
