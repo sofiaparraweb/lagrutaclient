@@ -48,6 +48,7 @@ const Home = () => {
         if (isAuthenticated && user && isProfileCreatedRef.current) {
           dispatch(getProfile(user.userId)); // Usar user.userId en lugar de userId
           dispatch(getUserId(user.email))
+          console.log(user.email)
         }
         dispatch(getAllActivity());
       }, [dispatch, isAuthenticated, user]);
