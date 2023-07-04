@@ -6,21 +6,21 @@ import { Navigate } from "react-router-dom";
 
 
 export const ProtectedRoutes = ({ children, redirectTo="/Home" }) => {
-    const { user } = useAuth0();
+    const { user, isAuthenticated } = useAuth0();
     const dispatch = useDispatch();
     const admin = useSelector(state => state.LocalPersist.userInfo.Rols[0])
     
-    useEffect(()=>{
-        dispatch(getUserId(user.email))
-        console.log(admin);
-    }, [])
+    useEffect(() => {
+        if (isAuthenticated && user && user.email) {
+          dispatch(getUserId(user.email));
+          console.log(user);
+        }
+      }, [isAuthenticated, dispatch, user]);
     
-   if(admin?.name === "admin") {
-    return children
-} else {
-    return <Navigate to = {redirectTo}/>
-} 
-
-    console.log(admin);
-    return children;
-}
+      if (!isAuthenticated || !admin || admin.name !== "admin") {
+        return <Navigate to={redirectTo} />;
+      } else {
+        return children;
+      }
+    }
+    
