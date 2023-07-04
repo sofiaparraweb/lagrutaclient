@@ -3,9 +3,10 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { formFooter } from "../../Redux/actions";
-import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
-import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+import {
+  FaFacebook, /*FaTwitter, FaYoutube*/ 
+  FaInstagram,
+} from "react-icons/fa";
 
 const Footer = () => {
   const {
@@ -19,10 +20,7 @@ const Footer = () => {
   const onSubmit = (data) => {
     dispatch(formFooter(data.email));
     reset();
-    Swal.fire({
-      icon: "success",
-      title: "¡Formulario enviado!",
-    });
+    alert("¡Formulario enviado!");
   };
 
   return (
@@ -32,7 +30,7 @@ const Footer = () => {
           <h3 className={style.title}>Conocé LA GRUTA</h3>
           <ul>
             <li className={style.itemsTex}>
-              <a href="/about">Qué hace la Gruta</a>
+              <a href="/about">Qué hace La Gruta</a>
             </li>
             <li className={style.itemsTex}>
               <a href="/noticias">Novedades</a>
@@ -47,13 +45,13 @@ const Footer = () => {
           <h3 className={style.title}>Campañas</h3>
           <ul>
             <li className={style.itemsTex}>
-              <a href="/">Eventos especiales</a>
+              <a href="/dona">Donaciones</a>
             </li>
             <li className={style.itemsTex}>
-              <a href="/">Acciones solidarias</a>
+              <a href="/se-voluntario">Acciones solidarias</a>
             </li>
             <li className={style.itemsTex}>
-              <a href="/">Emergencias</a>
+              <a href="/tienda">Colaboraciones</a>
             </li>
           </ul>
         </div>
@@ -67,11 +65,11 @@ const Footer = () => {
             placeholder="Ingresar Email"
             {...register("email", {
               required: true,
-              pattern: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/i,
+              pattern: /^[^\s@]+@gmail\.com$/i,
             })}
           />
           {errors.email && (
-            <p className={style.fail}>Correo electrónico no válido</p>
+            <p className={style.fail}>Ingresar tu email válido</p>
           )}
           <button className={style.btnSuscripcion} type="submit">
             SUSCRIBIRSE
@@ -79,41 +77,40 @@ const Footer = () => {
         </form>
 
         <div className={style.footerSection}>
-          <div className={style.footerSection}>
-            <Link to="/donacion" className={style.btnFooter}>
-              DONÁ AHORA
-            </Link>
-          </div>
+          <a href="/dona" className={style.btnFooter}>
+            {" "}
+            DONÁ AHORA
+          </a>
           <ul className={style.redes}>
-            <li className={style.itemsRedes}>
+            <li className={style.itemRedes}>
               <a
                 href="https://www.facebook.com/lagrutacomedor"
                 target="_blank"
-                rel="noreferrer">
+                rel="noreferrer"
+              >
                 <FaFacebook />
               </a>
             </li>
-            <li className={style.itemsRedes}>
+            {/*<li className={style.itemRedes}>
               <a href="https://twitter.com/" target="_blank" rel="noreferrer">
                 <FaTwitter />
               </a>
-            </li>
-            <li className={style.itemsRedes}>
+          </li>*/}
+            <li className={style.itemRedes}>
               <a
                 href="https://www.instagram.com/lagrutacdi/"
                 target="_blank"
-                rel="noreferrer">
+                rel="noreferrer"
+              >
                 <FaInstagram />
               </a>
             </li>
-            <li className={style.itemsRedes}>
-              <a
-                href="https://www.youtube.com/"
-                target="_blank"
-                rel="noreferrer">
+
+            {/*<li className={style.itemRedes}>
+              <a href="https://www.youtube.com/" target="_blank" rel="noreferrer">
                 <FaYoutube />
               </a>
-            </li>
+              </li>*/}
           </ul>
         </div>
       </div>
