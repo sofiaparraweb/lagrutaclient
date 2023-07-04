@@ -28,6 +28,7 @@ const Perfil = () => {
     }
   }, [dispatch, isAuthenticated, email]);
 
+
   useEffect(() => {
     if (userProfile) {
       setInitialProfile(userProfile);

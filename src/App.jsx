@@ -23,6 +23,7 @@ import Equipo from "./views/About/Equipo/Equipo";
 import Perfil from "./views/Perfil/Perfil";
 import LogIn from "./views/LogIn/LogIn";
 import LogOut from "./views/LogIn/LogOut";
+import { ProtectedRoutes } from "./components/ProtectedRoutes/ProtectedRoutes";
 
 /* donaciones */
 import DonationForm from "./views/Donacion/Donacion";
@@ -39,7 +40,6 @@ import DashboardUsers from "./views/DashBoard/DashboardUsers";
 
 const App = () => {
   const { isAuthenticated, isLoading } = useAuth0();
-
 
   if (isLoading) {
     return (
@@ -87,7 +87,11 @@ const App = () => {
         <Route path="/login" element={<LogIn />} />
         <Route path="/logout" element={<LogOut />} />
         <Route path="/" element={<LayoutAdmin />}>
-        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="dashboard" element={
+        <ProtectedRoutes redirectTo="/">
+          <Dashboard />
+        </ProtectedRoutes>
+        } />
         <Route path="news" element={<DashboardNoticias />} />
         <Route path="shop" element={<DashboardShop />}  />
         <Route path="users" element={<DashboardUsers />}  />

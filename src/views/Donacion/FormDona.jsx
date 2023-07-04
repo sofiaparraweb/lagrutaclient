@@ -5,16 +5,17 @@ import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 import { enviarInformacion } from "../../Redux/actions";
 import { useState } from "react";
-//import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
-const FormDona = ({ selectedOption, customValue }) => {
+const FormDona = ({selectedOption, customValue }) => {
   const {
     register,
     reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({
@@ -22,6 +23,7 @@ const FormDona = ({ selectedOption, customValue }) => {
     lastName: "",
     user_mail: "",
     phone: "",
+    amount:0,
   });
 
   const handleInput = (event) => {
@@ -33,8 +35,13 @@ const FormDona = ({ selectedOption, customValue }) => {
 
   const customSubmit = async (user) => {
     setLoading(true);
-    user.amount = selectedOption;
-    user.customValue = customValue;
+    //user.amount = selectedOption;
+    if(!user.amount && customValue !== "") {
+        user.amount = customValue
+    }else{
+        user.amount=selectedOption
+    }
+   
     console.log(user);
     dispatch(enviarInformacion(user)).then((response) => {
         console.log("esto es prueba", response);
@@ -45,8 +52,10 @@ const FormDona = ({ selectedOption, customValue }) => {
       }
       setLoading(false);
       reset();
+      navigate(0);
     });
   };
+  
 
   return (
     <>
