@@ -10,17 +10,35 @@ const Perfil = () => {
   const { user, isAuthenticated } = useAuth0();
   const userInfo = useSelector((state) => state.LocalPersist.userInfo);
   const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm();
+   console.log(userInfo)
+  const [initialProfile, setInitialProfile] = useState({
+    profileImage: userInfo.profileImage,
+    fullName: userInfo.fullName,
+    mail: userInfo.mail,
+    birthDate: userInfo.birthDate,
+    phone: userInfo.phone,
+    address: userInfo.address,
+    occupation: userInfo.occupation,
+    role: userInfo.role,
+  });
 
-  const [initialProfile, setInitialProfile] = useState(null);
-  const [editedProfile, setEditedProfile] = useState(null);
+  const [editedProfile, setEditedProfile] = useState({
+    profileImage: '',
+    fullName: '',
+    mail: userInfo.mail,
+    birthDate: '',
+    phone: '',
+    address: '',
+    occupation: '',
+    role: '',
+  });
 
   const userProfile = useSelector((state) => state.userProfile);
   const dispatch = useDispatch();
   const isProfileFetchedRef = useRef(false);
   const [editing, setEditing] = useState(false);
   const email = user.email;
-//Nop contorlo de vuelta a aver
-//no se si lo habia guardado ql
+
   useEffect(() => {
     if (!isProfileFetchedRef.current && isAuthenticated) {
       dispatch(getUserId(email));
@@ -149,7 +167,7 @@ const Perfil = () => {
                       className="form-control"
                       placeholder="Correo Electrónico"
                       name="mail"
-                      disabled={!editing}
+                      disabled
                       {...register("mail", { 
                         required: "Campo obligatorio",
                         pattern: {
@@ -204,6 +222,7 @@ const Perfil = () => {
                   </div>
                   <div className="row mt-3">
                     <div className="col-md-6">
+                      <label>Ocupación</label>
                       <Input
                         className="form-control"
                         type="occupation"
@@ -221,6 +240,7 @@ const Perfil = () => {
                       {errors.occupation && <p>{errors.occupation.message}</p>}
                     </div>
                     <div className="col-md-6">
+                    <label>Cuál es tu rol en La Gruta?</label>
                       <Select
                         className="form-control"
                         placeholder="Rol"
