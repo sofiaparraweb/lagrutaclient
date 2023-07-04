@@ -35,14 +35,16 @@ const Headerslider = () => {
     <Slider className={style.GalleryHome} ref={sliderRef} {...settings}>
       {galleryHead.map((val) => {
         return (
-          <div className={style.ImagenesCarrusel}>
-            <img src={val.image} alt="" />
-            <h2 className={style.sectionTitle}> {val.title} </h2>
-            <Link to="/about" onClick={handleClick}>
-              {" "}
-              <button className={style.buttoninfo}> Únete</button>
-            </Link>
-          </div>
+          <>
+            <div className={style.ImagenesCarrusel}>
+              <img src={val.image} alt="" />
+              <h2 className={style.sectionTitle}> {val.title} </h2>
+              <Link to="/about" onClick={handleClick}>
+                {" "}
+                <button className={style.buttoninfo}> Únete</button>
+              </Link>
+            </div>
+          </>
         );
       })}
     </Slider>
