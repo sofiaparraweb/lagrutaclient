@@ -259,14 +259,15 @@ export const getUserId = (email) =>{
   }
 };
 
-export const updateProfile = (userId, newProfile) => {
+export const updateProfile = (data) => {
   return async (dispatch) => {
     try {
-      const response = await axios.put(`${url}/user/edit`, newProfile);
+      const response = await axios.put(`${url}/user/edit`, data);
       dispatch({
         type: UPDATE_PROFILE,
         payload: response.data,
       });
+      console.log('se ejecuto con exitot bbbb')
     } catch (error) {
       console.log({ error: error.message });
     }
