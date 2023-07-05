@@ -8,7 +8,6 @@ export const CLEANDETAIL = "CREALDETAIL";
 export const GET_TYPEACTY = "GET_TYPEACTY";
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const GET_ALL_PRODUCTS_TYPES = "GET_ALL_PRODUCTS_TYPES";
-export const GET_DETAIL_PRODUCTS = "GET_DETAIL_PRODUCTS";
 export const FILTER_BY_NAME = "FILTER_BY_NAME";
 export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
 export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
@@ -102,13 +101,6 @@ export const getAllProductTypes = () =>{
   }
 }
 
-export const getDetailProducts = (id_products) =>{
-  return async (dispatch) =>{
-    const {data} = await axios.get(`${url}/products/${id_products}`);
-    return dispatch({type: GET_DETAIL_PRODUCTS, payload: data})
-  }
-}
-
 export const filterByName = (name) => {
   return async (dispatch) => {
     try {
@@ -176,10 +168,6 @@ export const addToCart = (user_id, id, quantity) => {
   }
 }
 
-// ----------Borrar todo el carrito
-// export const deleteAllCarrito = () => {
-//   return { type: DELETE_ALL_CART, payload: []}
-// };
 export const deleteAllCarrito = (userId) => {
   return async (dispatch) => {
     try {

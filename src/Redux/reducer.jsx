@@ -2,7 +2,6 @@ import {
   CLEANDETAIL,
   GET_ALL_PRODUCTS,
   GET_ALL_PRODUCTS_TYPES,
-  GET_DETAIL_PRODUCTS,
   FILTER_BY_NAME,
   FILTER_BY_TYPE,
   ORDER_BY_PRICE,
@@ -34,7 +33,6 @@ const initialstate = {
   allProducts: [],
   allProductTypes: [],
   products: [],
-  ProductsDetail: [],
   Carrito: [],
   CarritoProductos: [],
   profile: null,
@@ -57,12 +55,6 @@ function rootReducer(state = initialstate, action) {
       return {
         ...state,
         allProductTypes: action.payload,
-      };
-
-    case GET_DETAIL_PRODUCTS:
-      return {
-        ...state,
-        ProductsDetail: action.payload,
       };
     
     case FILTER_BY_NAME:
