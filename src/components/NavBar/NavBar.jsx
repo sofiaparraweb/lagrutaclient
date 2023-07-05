@@ -40,6 +40,7 @@ const NavBar = ({ isAuthenticated }) => {
     window.scrollTo({ top: 0 });
   };
 
+  const isAdmin = isAuthenticated && user.email === "lagrutacdi@gmail.com";
   return (
     <nav className="navContainer">
       <div className="LeftSection">
@@ -158,6 +159,17 @@ const NavBar = ({ isAuthenticated }) => {
             Perfil
           </NavLink>
         ) : null}
+        {isAdmin && (
+          <NavLink
+            to="/dashboard"
+            className="link"
+            activeclassname="active"
+            id="administradorNav"
+            onClick={handleClick}
+          >
+            Administrador
+          </NavLink>
+        )}
       </div>
       <div className="rightSection">
         {isAuthenticated ? (

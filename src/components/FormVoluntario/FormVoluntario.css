@@ -1,5 +1,8 @@
+@import url('https://fonts.cdnfonts.com/css/wicked-grit');
+@import url('https://fonts.cdnfonts.com/css/dk-lemon-yellow-sun');
+
 .form-voluntario {
-  width: 1000px;
+  width: 100%;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -8,14 +11,16 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   padding: 10px;
   border-radius: 10px;
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
 }
 
 .form-voluntario h1 {
   margin-bottom: 40px;
   color: rgb(0, 0, 0);
-  font-size: 24px;
+  font-size: 34px;
   text-align: center;
   border-radius: 10px 10px 10px 10px;
+  font-family: 'Wicked Grit', sans-serif;
 }
 
 .form-voluntario div {
@@ -27,7 +32,7 @@
 }
 
 .form-voluntario-label {
-  font-size: 15px;
+  font-size: 25px;
   color: black;
   text-transform: uppercase;
   margin-bottom: 10px;
@@ -50,7 +55,7 @@
 .form-voluntario-submit-button {
   margin: 20px 0;
   padding: 10px 20px;
-  background-color: #b84b3f;
+  background-color: #124476 !important;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -61,11 +66,11 @@
 }
 
 .form-voluntario-submit-button:hover {
-  background-color: #a1a1a1;
+  background-color: #124476 !important;
 }
 
 .form-voluntario-error-message {
-  color: #b84b3f;
+  color: #124476;
   font-size: 14px;
   margin-top: 5px;
   text-align: center;

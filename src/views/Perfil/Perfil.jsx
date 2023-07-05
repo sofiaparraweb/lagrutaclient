@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserId, updateProfile } from "../../Redux/actions";
 import { useForm } from "react-hook-form";
 import "./Perfil.css";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo.png"
 
 const Perfil = () => {
   const { user, isAuthenticated } = useAuth0();
@@ -171,6 +171,7 @@ return (
           isDisabled={!editing}
           defaultValue={editedProfile.phone}
           {...register("phone", { required: true })}
+          placeholder="Ej: +5493815709293"
         />
         {errors.phone && <span className="error-message">Campo obligatorio</span>}
         <label htmlFor="address" className="perfil-label">
@@ -207,7 +208,8 @@ return (
           defaultValue={editedProfile.role}
           {...register("role", { required: true })}
         >
-          <option value="admin">Administrador</option>
+          <option value="padrino">Padrino</option>
+          <option value="voluntario">Voluntario</option>
           <option value="user">Usuario</option>
         </Select>
         {errors.role && <span className="error-message">Campo obligatorio</span>}

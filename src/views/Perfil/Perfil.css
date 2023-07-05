@@ -15,20 +15,24 @@
 }
 
 .logo-perfil {
-  width: 60px;
+  width: 80px;
   position: absolute;
   top: 10px;
   right: 10px;
 }
 
 .perfil-title {
-  font-size: 24px;
+  font-size: 40px;
   font-weight: bold;
+  font-family: 'Wicked Grit', sans-serif;
+  color: #EB5D0B;
 }
 
 .perfil-content {
   display: flex;
   flex-direction: column;
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  font-size: 20px;
 }
 
 .perfil-image {
@@ -70,6 +74,7 @@
 
 .perfil-label {
   font-weight: bold;
+  color: #124476;
 }
 
 .perfil-input {
@@ -77,6 +82,8 @@
   border-radius: 4px;
   border: 1px solid #ccc;
   outline: none;
+  color: black;
+  font-size: 16px !important;
 }
 
 .error-message {
@@ -94,23 +101,27 @@
 .edit-button,
 .save-button,
 .cancel-button {
-  padding: 10px 20px;
+  padding: 20px 40px; /* Ajusta el padding del botón */
   margin-left: 10px;
-  border-radius: 4px;
+  border-radius: 10px !important;
   cursor: pointer;
+  font-size: 30px !important; 
+  width: 45%; 
+  height: auto; 
+  letter-spacing: 1.5px;
 }
 
 .edit-button {
-  background-color: #4285f4;
-  color: #fff;
+  color: #EB5D0B !important;
+  background-color: #fff;
 }
 
 .save-button {
-  background-color: #4caf50;
-  color: #fff;
+  color: #38693a !important;
+  background-color: #fff !important;
 }
 
 .cancel-button {
-  background-color: #ccc;
-  color: #fff;
+  color: #7d3e3e !important;
+  background-color: #fff !important;
 }

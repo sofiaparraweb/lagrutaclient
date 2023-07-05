@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import style from "./Donacion.module.css";
 import dona1 from "../../assets/Donaciones/dona2.jpg";
-import dona3 from "../../assets/Donaciones/dona3.jpg"
+import dona3 from "../../assets/nino.jpg"
 import FormDona from "./FormDona";
 import Swal from "sweetalert2";
-
 
 const DonationForm = () => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -27,12 +26,12 @@ const DonationForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-  
+
     if (!selectedOption || (selectedOption === "otraOpcion" && !customValue)) {
       setError(true);
       return;
     }
-  
+
     Swal.fire({
       position: 'center',
       icon: 'success',
@@ -40,133 +39,117 @@ const DonationForm = () => {
       showConfirmButton: false,
       timer: 3000
     });
-  
+
     if (selectedOption) {
-    //  alert("Valor personalizado:", customValue);
       Swal.fire({
         position: 'center',
         icon: 'success',
         title:  `Valor personalizado: ${customValue}`,
         showConfirmButton: false,
         timer: 3000
-    })
+      })
     }
-  
+
     setError(false);
-    //setCustomValue("");
     setShowForm(true);
   };
-  
-
-  //const showInput = selectedOption === "otraOpcion";
 
   return (
     <>
       <div className={style.containerPrincipal}>
         <div className={style.containerSecundario}>
           <div className={style.container1}>
-            <img src={dona1} alt="img" id="img-Donacion"/>
+            <img src={dona1} alt="img" className={style.imgDonacion} />
           </div>
-          
-          {showForm ?(
-           <FormDona selectedOption={selectedOption} customValue={customValue} />
+          {showForm ? (
+            <FormDona selectedOption={selectedOption} customValue={customValue} />
           ) : (
-          <form className={style.contenForm} onSubmit={handleSubmit}>
-            <h3 className={style.title1}>¡DONÁ AHORA!</h3>
+            <form className={style.contenForm} onSubmit={handleSubmit}>
+              <h3 className={style.title1}>¡DONÁ AHORA!</h3>
 
-            <p className={style.parrafoDona}>
-              LA GRUTA está presente para ayudar a las niñas y niños que nos
-              necesitan HOY.
-            </p>
-
-            <h3 className={style.title2}>Selecciona y doná</h3>
-
-            <label className={style.labels}>
-              <input
-                className={style.inputs}
-                name="amount"
-                type="radio"
-                value="15000"
-                checked={selectedOption === "15000"}
-                onChange={handleOptionChange}
-              />
-              ARS 15.000
-            </label>
-
-            <label className={style.labels}>
-              <input
-                className={style.inputs}
-                name="amount"
-                type="radio"
-                value="10000"
-                checked={selectedOption === "10000"}
-                onChange={handleOptionChange}
-              />
-              ARS 10.000
-            </label>
-
-            <label className={style.labels}>
-              <input
-                className={style.inputs}
-                name="amount"
-                type="radio"
-                value="5000"
-                checked={selectedOption === "5000"}
-                onChange={handleOptionChange}
-              />
-              ARS 5.000
-            </label>
-
-            <label className={style.labels}>
-              <input
-                className={style.inputs}
-                name="amount"
-                type="radio"
-                value="otraOpcion"
-                checked={selectedOption === "otraOpcion"}
-                onChange={handleOptionChange}
-              />
-              Otro
-            </label>
-
-            {showInput && (
-              <label className={style.labelOtro}>
-                <div className={style.inputContainer}>
-                  <span className={style.currency}>ARS</span>
-                  <input
-                    className={style.inputOtro}
-                    name="amount"
-                    type="number"
-                    value={customValue}
-                    onChange={handleCustomValueChange}
-                    placeholder="Ingrese otro valor"
-                  />
-                </div>
-              </label>
-            )}
-
-            {error && (
-              <p className={style.errorMessage} style={{ color: "red" }}>
-                Por favor, seleccione un monto.
+              <p className={style.parrafoDona}>
+                LA GRUTA está presente para ayudar a las niñas y niños que nos
+                necesitan HOY.
               </p>
-            )}
-             
-                 <button className={style.btnDona} type="submit" >
-                 Siguiente
-               </button>
-                
-            
-          </form>
-           )}
-          
 
-          <div className={style.container2}>
-            <div className={style.container3}>
-              <img
-                src={dona3}
-                alt="img"
-                style={{ width: "600px", height: "300px" }}
-              />
+              <h3 className={style.title2}>Selecciona y doná</h3>
+
+              <label className={style.labels}>
+                <input
+                  className={style.inputs}
+                  name="amount"
+                  type="radio"
+                  value="15000"
+                  checked={selectedOption === "15000"}
+                  onChange={handleOptionChange}
+                />
+                ARS 15.000
+              </label>
+
+              <label className={style.labels}>
+                <input
+                  className={style.inputs}
+                  name="amount"
+                  type="radio"
+                  value="10000"
+                  checked={selectedOption === "10000"}
+                  onChange={handleOptionChange}
+                />
+                ARS 10.000
+              </label>
+
+              <label className={style.labels}>
+                <input
+                  className={style.inputs}
+                  name="amount"
+                  type="radio"
+                  value="5000"
+                  checked={selectedOption === "5000"}
+                  onChange={handleOptionChange}
+                />
+                ARS 5.000
+              </label>
+
+              <label className={style.labels}>
+                <input
+                 className={style.inputs}
+                  name="amount"
+                  type="radio"
+                  value="otraOpcion"
+                  checked={selectedOption === "otraOpcion"}
+                  onChange={handleOptionChange}
+                />
+                Otro
+              </label>
+
+              {showInput && (
+                <label className={style.labelOtro}>
+                  <div className={style.inputContainer}>
+                    <span className={style.currency}>ARS</span>
+                    <input
+                      className={style.inputOtro}
+                      name="amount"
+                      type="number"
+                      value={customValue}
+                      onChange={handleCustomValueChange}
+                      placeholder="Ingrese otro valor"
+                    />
+                  </div>
+                </label>
+              )}
+
+              {error && (
+                <p className={style.errorMessage} style={{ color: "red" }}>
+                  Por favor, seleccione un monto.
+                </p>
+              )}
+
+              <button className={style.btnDona} type="submit">
+                Siguiente
+              </button>
+            </form>
+          )}
+
               <p className={style.parrafo2}>
                 <p>DESNUTRICIÓN </p>
                 La desnutrición aguda, la forma más letal de la malnutrición,
@@ -184,8 +167,6 @@ const DonationForm = () => {
                 recorrer muchos kilómetros por día.
               </p>
             </div>
-          </div>
-        </div>
       </div>
     </>
   );

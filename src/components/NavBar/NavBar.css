@@ -136,27 +136,25 @@
 
 /* -------------------------------------Ayudar */
 .link[id="ayudarNav"]{
-  border-bottom:6px solid #124476;
-  border-bottom-right-radius: 5px;
+  border-bottom:6px solid rgba(53,99,70,255);
   text-decoration: none;
 }
 .link[id="ayudarNav"]:hover{
-  background-color: #124476;
+  background-color: solid rgba(53,99,70,255);
   text-decoration: none;
 }
 
+
 /* -------------------------------------Perfil */
 .link[id="perfilNav"]{
-  border-bottom:6px solid rgba(53,99,70,255);
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-bottom:6px solid #124476;
 }
 .link[id="perfilNav"]:hover{
-  background-color: rgba(53,99,70,255);
+  background-color: #124476;
   text-decoration: none;
 }
 .active[id="perfilNav"]{
-  background-color: rgba(53,99,70,255);
+  background-color: #124476;
   color: white;
   text-decoration: none;
 }
@@ -259,17 +257,30 @@
 }
 
 button[id="cerrariniciarNav"]{
-  border-bottom: 6px solid #124476;
+  border-bottom: 6px solid #B9362C;
   border-radius: 5px;
 }
 button[id="cerrariniciarNav"]:hover{
-  background-color: #124476;
+  background-color: #B9362C;
 }
 .loggingIn{
-  background-color: #124476;
+  background-color: #B9362C;
   color: white;
 }
 
+
+/* -------------------------------------Administrador */
+.link[id="administradorNav"]{
+  border-bottom:6px solid #3c67a4;
+}
+.link[id="administradorNav"]:hover{
+  background-color: #3c67a4;
+}
+.active[id="administradorNav"]{
+  background-color: #3c67a4;
+  color: white;
+  text-decoration: none;
+}
 
 
 @media screen and (max-width: 768px) {
