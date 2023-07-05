@@ -20,7 +20,7 @@ export const ADD_PRODUCT = "ADD_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const DELETE_ALL_CART = "DELETE_ALL_CART";
 export const DELETE_CARRITO = "DELETE_CARRITO";
-export const PUT_AMOUNT_CART = "PUT_AMOUNT_CART";
+export const POST_PAGO_TIENDA = "POST_PAGO_TIENDA";
 export const FETCH_PROFILE = "FETCH_PROFILE";
 export const CREATE_PROFILE = "CREATE_PROFILE";
 export const GET_USERID = "GET_USERID";
@@ -201,6 +201,21 @@ export const deleteCarrito = (user_id, id) => {
       console.log(error);  
     }
   };
+};
+
+export const enviarDataTienda = (user_id, data) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`${url}/payment/create-order?user_id=${user_id}`, data)
+      if (response) {
+        console.log("estoy en actions, La información se envió correctamente", response);
+      dispatch({ type: POST_PAGO_TIENDA, payload: response.data })
+      return response.data;
+      } 
+    }catch (error) {
+      console.log("Error al enviar la información al backend", error)
+    }
+  }
 };
 
 

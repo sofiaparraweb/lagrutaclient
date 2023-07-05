@@ -12,7 +12,7 @@ import {
   QUITAR_PRODUCTOS,
   DELETE_ALL_CART,
   DELETE_CARRITO,
-  PUT_AMOUNT_CART,
+  POST_PAGO_TIENDA,
   GET_ALL_ACTIVITY,
   GET_DETAIL_ACTIVITY,
   GET_TYPEACTY,
@@ -144,12 +144,12 @@ function rootReducer(state = initialstate, action) {
         Carrito: state.Carrito.filter((cart) => cart.userId !== action.payload),
       };
 
-    case PUT_AMOUNT_CART:
+    case POST_PAGO_TIENDA:
       return {
         ...state,
         CarritoProductos: action.payload,
       };
-      
+
     case GET_ALL_ACTIVITY:
       return {
         ...state,
