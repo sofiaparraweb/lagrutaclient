@@ -2,7 +2,6 @@ import {
   CLEANDETAIL,
   GET_ALL_PRODUCTS,
   GET_ALL_PRODUCTS_TYPES,
-  GET_DETAIL_PRODUCTS,
   FILTER_BY_NAME,
   FILTER_BY_TYPE,
   ORDER_BY_PRICE,
@@ -12,7 +11,7 @@ import {
   QUITAR_PRODUCTOS,
   DELETE_ALL_CART,
   DELETE_CARRITO,
-  PUT_AMOUNT_CART,
+  POST_PAGO_TIENDA,
   GET_ALL_ACTIVITY,
   GET_DETAIL_ACTIVITY,
   GET_TYPEACTY,
@@ -34,7 +33,6 @@ const initialstate = {
   allProducts: [],
   allProductTypes: [],
   products: [],
-  ProductsDetail: [],
   Carrito: [],
   CarritoProductos: [],
   profile: null,
@@ -57,12 +55,6 @@ function rootReducer(state = initialstate, action) {
       return {
         ...state,
         allProductTypes: action.payload,
-      };
-
-    case GET_DETAIL_PRODUCTS:
-      return {
-        ...state,
-        ProductsDetail: action.payload,
       };
     
     case FILTER_BY_NAME:
@@ -144,12 +136,12 @@ function rootReducer(state = initialstate, action) {
         Carrito: state.Carrito.filter((cart) => cart.userId !== action.payload),
       };
 
-    case PUT_AMOUNT_CART:
+    case POST_PAGO_TIENDA:
       return {
         ...state,
         CarritoProductos: action.payload,
       };
-      
+
     case GET_ALL_ACTIVITY:
       return {
         ...state,

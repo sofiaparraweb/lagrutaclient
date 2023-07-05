@@ -20,11 +20,12 @@ const SideBar = ({ setCurrentPage }) =>{
     dispatch(getCarrito(userId));
   }, [dispatch]);
 
+  const cartQuantity = Carrito?.reduce((accumulator, product) => accumulator + parseInt(product.Cart_Products.quantity, 10), 0);
+  
   const handleCartClick = () => {
     if (isAuthenticated) {
       navigate('/cart');
     } else {
-      // El usuario no está autenticado, muestra un mensaje de alerta.
       toast.error('Debe iniciar sesión para acceder al carrito.');
     }
   };
@@ -35,7 +36,7 @@ const SideBar = ({ setCurrentPage }) =>{
       <span className={style.Changuito}>
         <button onClick={handleCartClick} >
           <AiOutlineShoppingCart size={30} />
-          {isAuthenticated ? <sup className={style.NumeroChango}>{Carrito?.length}</sup> : <sup className={style.NumeroChango}>0</sup>}         
+          {isAuthenticated ? <p className={style.NumeroChango}>{cartQuantity}</p> : <p className={style.NumeroChango}>0</p>}         
         </button>
       </span>
       <div className={style.ContenedorFiltroOrden}>

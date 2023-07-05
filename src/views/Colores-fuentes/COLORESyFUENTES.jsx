@@ -18,3 +18,8 @@
 // subtitulos:
 // @import url('https://fonts.cdnfonts.com/css/dk-lemon-yellow-sun');
 //font-family: 'DK Lemon Yellow Sun', sans-serif;
+
+// Texto general: 
+// @import url('https://fonts.cdnfonts.com/css/qanelas-soft');
+// font-family: 'Qanelas Soft', sans-serif;
+

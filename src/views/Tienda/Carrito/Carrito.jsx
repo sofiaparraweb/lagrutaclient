@@ -1,11 +1,11 @@
-import { getCarrito, addToCart, deleteAllCarrito, deleteCarrito, QuitarProducto, url } from "../../../Redux/actions";
+import { getCarrito, addToCart, deleteAllCarrito, deleteCarrito, QuitarProducto } from "../../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Image , Card, HStack, Text, Heading, CardBody } from '@chakra-ui/react';
 import {AiOutlineShoppingCart, AiOutlineDelete } from "react-icons/ai";
-import axios from "axios";
 import style from "./Carrito.module.css";
 import { Toaster, toast } from "react-hot-toast";
+import FormPago from "../Pago/FormPago";
 
 const Carrito = ({ id, name, image, price, stock, quantityProd}) => {
 
@@ -14,23 +14,26 @@ const Carrito = ({ id, name, image, price, stock, quantityProd}) => {
   const userId = useSelector(state => state.LocalPersist.userInfo.id);
   const [quantity, setQuantity] = useState(1);
   const [subTotal, setSubTotal] = useState(0);
-  console.log(quantityProd)
-
-  useEffect(() => { // Calcula el subtotal inicial al cargar el carrito
-    const initialSubTotal = Cart?.reduce((amount, item) => item.price * item.quantity + amount, 0);
-    setSubTotal(initialSubTotal);
-  }, [Cart]);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
-    dispatch(getCarrito(userId), servicio, total, subTotal, quantity, quantityProd);
+    dispatch(getCarrito(userId));
+  }, [dispatch]);
+
+  useEffect(() => {
+    let newSubTotal = 0;
+    Cart?.forEach((product) => {
+      newSubTotal += product.price * parseInt(product.Cart_Products.quantity, 10);
+    });
+    setSubTotal(newSubTotal);
   }, [Cart]);
 
+  const cartQuantity = Cart?.reduce((accumulator, product) => accumulator + parseInt(product.Cart_Products.quantity, 10), 0);  
   let servicio = subTotal * 0.10;
   let total = subTotal + servicio;
 
   // const handleClickAdd = (userId, id, name, image, price, stock) => {
   //   const existingProduct = Cart?.find((item) => item.id === id);
-
   //   if (existingProduct) {
   //     if (existingProduct.quantity < stock) {
   //       dispatch(cargarProductos(userId, id, name, image, price, stock));
@@ -64,13 +67,14 @@ const Carrito = ({ id, name, image, price, stock, quantityProd}) => {
   //   }
   // }
     
-  const handleDeleteFromCart = (userId, id) => {
-    dispatch(deleteCarrito(userId, id));
-    setQuantity(0);
-    toast.success("Se ha eliminado un producto del carrito", {
-      duration: 3000
-    });
-  };
+  // const handleDeleteFromCart = async (userId, id) => {
+  //   await dispatch(deleteCarrito(userId, id));
+  //   setQuantity(0);
+  //   toast.success("Se ha eliminado un producto del carrito", {
+  //     duration: 3000
+  //   });
+  //   dispatch(getCarrito(userId));
+  // };
 
   // const handleDeleteProductCart = (id) =>{
   //   dispatch(QuitarProducto(id));
@@ -80,25 +84,26 @@ const Carrito = ({ id, name, image, price, stock, quantityProd}) => {
   //   })
   // }
 
-  const handleDeleteCart = (userId) =>{
-    dispatch(deleteAllCarrito(userId));
+  const handleDeleteCart = async (userId) =>{
+    await dispatch(deleteAllCarrito(userId));
     setQuantity(0);
     toast.success("Carrito vaciado correctamente", {
       duration: 3000
     })
+    dispatch(getCarrito(userId));
   }
 
-  const handlePay = async (userId) => {
-    try {
-      const { data } = await axios.post(`${url}/payment/create-order?user_id=${userId}`, Cart);
-      window.location.href = data.init_point;
-      // window.localStorage.removeItem("Cart");
-    } catch (error) {
-      toast.error("Debes seleccionar un producto", {
+  const handlePay = (event) => {
+    event.preventDefault();
+    if (Cart) {
+      setShowForm(true);
+    } else {
+      toast.error("Debe seleccionar productos", {
         duration: 3000
       })
+      return;
     }
-  }
+  } 
 
   return (
     <div className={style.ContenedorTiendaCART}>
@@ -106,8 +111,8 @@ const Carrito = ({ id, name, image, price, stock, quantityProd}) => {
       <div className={style.TiendaSideBarCART}>
         <div className={style.sidebarContenedorCART}>
           <span className={style.ChanguitoCART}>
-            <AiOutlineShoppingCart size={30} /> 
-            <p className={style.NumeroChangoCART}>{Cart.length}</p>
+            <AiOutlineShoppingCart size={30}/> 
+            <p className={style.NumeroChangoCART}>{cartQuantity}</p>
           </span>
           <div className={style.ContenedorVaciarCarro}>
             <div className={style.VaciarCarrito}>
@@ -117,7 +122,7 @@ const Carrito = ({ id, name, image, price, stock, quantityProd}) => {
           </div>
           <div className={style.ContenedorVaciarCarro}>
             <div className={style.VaciarCarrito}>
-              <p>Checkout</p>
+              <p>Tu carrito</p>
             </div>
             <div className={style.ContenedorDetallePago}>
               <div>
@@ -134,17 +139,25 @@ const Carrito = ({ id, name, image, price, stock, quantityProd}) => {
                 <span>${total}</span>
               </div>
             </div>
-            <button className={style.ButtonVaciarCarro} value="pagar" onClick={()=>handlePay(userId)}>Confirmar</button>
-            <button className={style.ButtonVaciarCarro} value="pagar" onClick={()=>handlePay(userId)}>Pagar</button>
           </div>
+            <div className={style.ContenedorProcederAlPago}>
+              <div className={style.ProcederAlPago}>
+                <p>Proceder al Pago</p>
+              </div>
+              <button className={style.ButtonVaciarCarro} onClick={handlePay}>x</button>
+            </div>
         </div>
       </div>
-      <div className={style.ContenedorCartProductos}>
+      {showForm ? (
+        <FormPago total={total}/>
+      ) : (
+        <div className={style.ContenedorCartProductos}>
           <Card
             direction={{ base: 'column', sm: 'row' }}
             overflow='hidden'
             variant='outline'
             backgroundColor='white'
+            maxH='120px'
           >
             <Image 
               objectFit='cover'
@@ -152,7 +165,7 @@ const Carrito = ({ id, name, image, price, stock, quantityProd}) => {
               src={image}
               alt='product-image'
               width='13%'
-              height='13%x'
+              height='100%'
               marginRight='9%' 
             />
             <HStack >
@@ -163,9 +176,9 @@ const Carrito = ({ id, name, image, price, stock, quantityProd}) => {
                 </Text>
               </CardBody>
               <CardBody p={4} size='md'>
-                <Heading width='100px' size='md' textAlign='center' >Precio</Heading>
+                <Heading width='100px' size='md' textAlign='center' >Precio unitario  </Heading>
                 <Text py='3' textAlign='center'>
-                  ${price}
+                  $ {price}
                 </Text>
               </CardBody>
               <CardBody p={4} size='md'>
@@ -179,7 +192,7 @@ const Carrito = ({ id, name, image, price, stock, quantityProd}) => {
               <CardBody p={4} size='md'>
                 <Heading width='100px' size='md' textAlign='center'>Subtotal</Heading>
                 <Text py='3' textAlign='center'>
-                  {price * quantity}
+                  $ {price * quantityProd}
                 </Text>
               </CardBody>
               <CardBody p={4}>
@@ -189,8 +202,8 @@ const Carrito = ({ id, name, image, price, stock, quantityProd}) => {
               </CardBody>
             </HStack>
           </Card>
-
-      </div>
+        </div>
+      )}
     </div>
   )
 }

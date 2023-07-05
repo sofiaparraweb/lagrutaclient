@@ -8,7 +8,6 @@ export const CLEANDETAIL = "CREALDETAIL";
 export const GET_TYPEACTY = "GET_TYPEACTY";
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const GET_ALL_PRODUCTS_TYPES = "GET_ALL_PRODUCTS_TYPES";
-export const GET_DETAIL_PRODUCTS = "GET_DETAIL_PRODUCTS";
 export const FILTER_BY_NAME = "FILTER_BY_NAME";
 export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
 export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
@@ -20,7 +19,7 @@ export const ADD_PRODUCT = "ADD_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const DELETE_ALL_CART = "DELETE_ALL_CART";
 export const DELETE_CARRITO = "DELETE_CARRITO";
-export const PUT_AMOUNT_CART = "PUT_AMOUNT_CART";
+export const POST_PAGO_TIENDA = "POST_PAGO_TIENDA";
 export const FETCH_PROFILE = "FETCH_PROFILE";
 export const GET_PROFILE_MAIL = 'GET_PROFILE_MAIL';
 export const CREATE_PROFILE = "CREATE_PROFILE";
@@ -103,13 +102,6 @@ export const getAllProductTypes = () =>{
   }
 }
 
-export const getDetailProducts = (id_products) =>{
-  return async (dispatch) =>{
-    const {data} = await axios.get(`${url}/products/${id_products}`);
-    return dispatch({type: GET_DETAIL_PRODUCTS, payload: data})
-  }
-}
-
 export const filterByName = (name) => {
   return async (dispatch) => {
     try {
@@ -177,10 +169,6 @@ export const addToCart = (user_id, id, quantity) => {
   }
 }
 
-// ----------Borrar todo el carrito
-// export const deleteAllCarrito = () => {
-//   return { type: DELETE_ALL_CART, payload: []}
-// };
 export const deleteAllCarrito = (userId) => {
   return async (dispatch) => {
     try {
@@ -202,6 +190,21 @@ export const deleteCarrito = (user_id, id) => {
       console.log(error);  
     }
   };
+};
+
+export const enviarDataTienda = (user_id, data) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`${url}/payment/create-order?user_id=${user_id}`, data)
+      if (response) {
+        console.log("estoy en actions, La información se envió correctamente", response);
+      dispatch({ type: POST_PAGO_TIENDA, payload: response.data })
+      return response.data;
+      } 
+    }catch (error) {
+      console.log("Error al enviar la información al backend", error)
+    }
+  }
 };
 
 
@@ -358,9 +361,9 @@ export const formFooter = (formData) => {
         type: 'FORM_FOOTER',
         payload: response.data,
       });
-      console.log('funcion mail footer')
+      console.log('funcion mail footer', response);
     } catch (error) {
-      console.log(error);
+      console.log("estoy en las actions", error);
     }
   };
 };

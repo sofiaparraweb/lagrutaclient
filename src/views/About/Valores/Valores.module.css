@@ -9,7 +9,8 @@
 
 .parallax {
   position: absolute;
-  background-image: url("https://asepyme.com/wp-content/uploads/2017/07/como-constituir-una-fundacion-1200x630.jpg");
+  background-image: url("C:\Users\gonza\Desktop\Henry\PF\lagrutaclient\src\assets\Parallax2.jpg");
+  /* background-image: url("https://asepyme.com/wp-content/uploads/2017/07/como-constituir-una-fundacion-1200x630.jpg"); */
   height: 100vh;
   background-size: cover;
   background-position: center; 
