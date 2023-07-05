@@ -134,6 +134,14 @@ export const orderByPrice = (price) => {
   };
 };
 
+// export const filterByType = (type) => {
+//   return { type: FILTER_BY_TYPE, payload: type };
+// };
+
+// export const orderByPrice = (order) => {
+//   return { type: ORDER_BY_PRICE, payload: order };
+// };
+
 /* -----------------------------carrito----------------------------- */
 // ----------Traer el carrito
 export const getCarrito = (user_id) => {
@@ -154,13 +162,9 @@ export const QuitarProducto = (id) => {
 
 // ----------Agregar a carrito a Base de Datos
 export const addToCart = (user_id, id, quantity) => {
-  console.log(user_id)
-  console.log(id)
-  console.log(quantity)
   return async (dispatch) =>{
     try {
         const response = await axios.post(`${url}/cart/add?user_id=${user_id}&product_id=${id}&quantity=${quantity}`)
-        console.log(response);
         dispatch({ type: ADD_TO_CART, payload: response.data})
     } catch (error){
       console.log(error);
@@ -197,8 +201,8 @@ export const enviarDataTienda = (user_id, data) => {
       const response = await axios.post(`${url}/payment/create-order?user_id=${user_id}`, data)
       if (response) {
         console.log("estoy en actions, La información se envió correctamente", response);
-      dispatch({ type: POST_PAGO_TIENDA, payload: response.data })
-      return response.data;
+        dispatch({ type: POST_PAGO_TIENDA, payload: response.data })
+        return response.data;
       } 
     }catch (error) {
       console.log("Error al enviar la información al backend", error)

@@ -63,6 +63,35 @@ function rootReducer(state = initialstate, action) {
         products: action.payload,
       };
 
+    // case FILTER_BY_TYPE: {
+    //   let allProductsType = [...state.allProducts];
+    //   let typeFiltered = action.payload  === 'all'
+    //     ? allProductsType
+    //     : allProductsType.filter((prod) => {
+    //       return prod.ProductsTypes.some((type) => type.name === action.payload);
+    //     });
+    //   return {...state, products: typeFiltered}
+    // }
+      
+    // case ORDER_BY_PRICE:
+    //   const allProductsCopy = [...state.allProducts];
+    //   let order;
+    //   switch (action.payload) {
+    //     case "asc":
+    //       order = allProductsCopy.sort((a, b) => {
+    //         return a.price - b.price;
+    //       })
+    //     break;
+    //     case "des":
+    //       order = allProductsCopy.sort((a, b) => {
+    //         return b.price - a.price;
+    //       })
+    //     break;
+    //     default:
+    //       order = allProductsCopy;
+    //   }
+    //   return {...state, products: order};
+
     case FILTER_BY_TYPE:
       return {
         ...state,

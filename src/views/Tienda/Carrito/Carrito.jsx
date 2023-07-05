@@ -67,14 +67,14 @@ const Carrito = ({ id, name, image, price, stock, quantityProd}) => {
   //   }
   // }
     
-  // const handleDeleteFromCart = async (userId, id) => {
-  //   await dispatch(deleteCarrito(userId, id));
-  //   setQuantity(0);
-  //   toast.success("Se ha eliminado un producto del carrito", {
-  //     duration: 3000
-  //   });
-  //   dispatch(getCarrito(userId));
-  // };
+  const handleDeleteFromCart = async (userId, id) => {
+    await dispatch(deleteCarrito(userId, id));
+    setQuantity(0);
+    toast.success("Se ha eliminado un producto del carrito", {
+      duration: 3000
+    });
+    dispatch(getCarrito(userId));
+  };
 
   // const handleDeleteProductCart = (id) =>{
   //   dispatch(QuitarProducto(id));
@@ -84,14 +84,14 @@ const Carrito = ({ id, name, image, price, stock, quantityProd}) => {
   //   })
   // }
 
-  const handleDeleteCart = async (userId) =>{
-    await dispatch(deleteAllCarrito(userId));
-    setQuantity(0);
-    toast.success("Carrito vaciado correctamente", {
-      duration: 3000
-    })
-    dispatch(getCarrito(userId));
-  }
+  // const handleDeleteCart = async (userId) =>{
+  //   await dispatch(deleteAllCarrito(userId));
+  //   setQuantity(0);
+  //   toast.success("Carrito vaciado correctamente", {
+  //     duration: 3000
+  //   })
+  //   dispatch(getCarrito(userId));
+  // }
 
   const handlePay = (event) => {
     event.preventDefault();
@@ -112,7 +112,8 @@ const Carrito = ({ id, name, image, price, stock, quantityProd}) => {
         <div className={style.sidebarContenedorCART}>
           <span className={style.ChanguitoCART}>
             <AiOutlineShoppingCart size={30}/> 
-            <p className={style.NumeroChangoCART}>{cartQuantity}</p>
+            <p className={style.NumeroChangoCART}>{Cart?.length}</p>
+            {/* <p className={style.NumeroChangoCART}>{cartQuantity}</p> */}
           </span>
           <div className={style.ContenedorVaciarCarro}>
             <div className={style.VaciarCarrito}>
