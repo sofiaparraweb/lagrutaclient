@@ -96,7 +96,6 @@
     background-color: transparent;
     margin: 5px;
     font-size: 30px;
-
 }
 
 .labelOtro {
@@ -113,6 +112,13 @@
     color: blue;
     font-weight: bold;
     font-size: 16px;
+}
+.inputOtro:focus{
+  outline: none;
+}
+.inputOtro::placeholder{
+  color: #747fac;
+  padding-left: 5px;
 }
 
 /*=======>>><<<========*/
