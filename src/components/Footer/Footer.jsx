@@ -3,6 +3,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { formFooter } from "../../Redux/actions";
+import Swal from "sweetalert2";
 import {
   FaFacebook, /*FaTwitter, FaYoutube*/ 
   FaInstagram,
@@ -20,7 +21,14 @@ const Footer = () => {
   const onSubmit = (data) => {
     dispatch(formFooter(data.email));
     reset();
-    alert("¡Formulario enviado!");
+    //alert("¡Formulario enviado!");
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: `¡Formulario enviado!`,
+      showConfirmButton: false,
+      timer: 3000
+    });
   };
 
   return (
@@ -60,12 +68,12 @@ const Footer = () => {
           <h3 className={style.title}>¡Suscríbete para más información!</h3>
           <input
             className={style.input}
-            type="email"
+            type="text"
             name="email"
             placeholder="Ingresar Email"
             {...register("email", {
-              required: true,
               pattern: /^[^\s@]+@gmail\.com$/i,
+              required: true,
             })}
           />
           {errors.email && (
