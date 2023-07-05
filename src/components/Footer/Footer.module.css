@@ -30,9 +30,13 @@
   border: none;
   color: #000;
 }
-input::placeholder {
-  color: #000;
+.input:focus {
+  outline: none;
 }
+.input::placeholder{
+  color: #747fac;
+}
+
 .footerSection .btnSuscripcion {
   font-family: 'Roboto Condensed', sans-serif;
   background-color: #ea5d0b;

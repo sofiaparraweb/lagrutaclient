@@ -46,7 +46,7 @@ const DonationForm = () => {
       Swal.fire({
         position: 'center',
         icon: 'success',
-        title:  `Opción seleccionada: ${selectedOption}`,
+        title:  `Valor personalizado: ${customValue}`,
         showConfirmButton: false,
         timer: 3000
     })

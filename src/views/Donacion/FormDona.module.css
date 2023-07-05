@@ -25,27 +25,33 @@
     width: 40%;
     height: 150px;
   }
-  .formControl .labeles {
+  .labeles {
     color: #fff;
     font-weight: bold;
     font-size: 20px;
   }
 
-  .formControl .inputs {
-    border: none;
+  .inputs {
+    border: 2px solid #fff;
     border-radius: 5px;
-    background-color: #f0f0f0;
+    /* background-color: #f0f0f0; */
+    /* background-color: transparent; */
     display: block;
     font-family: inherit;
+    font-weight: bold;
     font-size: 16px;
     padding: 12px;
     margin-top: 10px;
-    width: 100%;    
+    width: 100%;
+      
   }
-  .formControl .inputs:focus {
+  .inputs:focus {
     outline: none;
   }
-  .formReact .boton {
+  .inputs::placeholder{
+    color: #747fac;
+  }
+   .boton {
     background: #ea5d0b;
     border:1px solid #ea5d0b;
     border-radius: 5px;
@@ -55,25 +61,41 @@
     padding: 5px;
     font-size: 20px;
   }
-  .formReact .boton:hover {
+  .boton:hover {
     background-color: #ff8000;
   }
   .fail {
     color: red;
   }
 
+  .error {
+    background-color: #f2d7d7;
+    border: 2px solid red;
+  }
+  
+  .success {
+   
+    border: 2px solid green;
+  }
+  
+
   /*========>>>responsivos<<<========*/
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 860px) {
+  
   .formReact {
     width: 80%;
+    
     display: flex;
     justify-content: center;
     flex-direction: column;
-    align-items: center;  
+    align-items: center;
   }
+  /* .formControl{
+    background-color: #104476;
+  } */
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 680px) {
   .formReact {
     width: 80%;
   }

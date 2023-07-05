@@ -358,9 +358,9 @@ export const formFooter = (formData) => {
         type: 'FORM_FOOTER',
         payload: response.data,
       });
-      console.log('funcion mail footer')
+      console.log('funcion mail footer', response);
     } catch (error) {
-      console.log(error);
+      console.log("estoy en las actions", error);
     }
   };
 };
