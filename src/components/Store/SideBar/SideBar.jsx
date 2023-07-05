@@ -26,7 +26,6 @@ const SideBar = ({ setCurrentPage }) =>{
     if (isAuthenticated) {
       navigate('/cart');
     } else {
-      // El usuario no está autenticado, muestra un mensaje de alerta.
       toast.error('Debe iniciar sesión para acceder al carrito.');
     }
   };

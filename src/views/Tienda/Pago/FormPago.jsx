@@ -7,20 +7,14 @@ import { enviarDataTienda } from "../../../Redux/actions";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
-const FormPago = () => {
+const FormPago = ({total}) => {
     
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const Cart = useSelector((state) => state.LocalPersist.Carrito.Products);
     const user_id = useSelector(state => state.LocalPersist.userInfo.id);
 
-    const {
-        register,
-        reset,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
+    const { register, reset, handleSubmit, formState: { errors }} = useForm();
     const [loading, setLoading] = useState(false);
     const [user, setUser] = useState({
         name: "",
@@ -38,13 +32,8 @@ const FormPago = () => {
 
     const customSubmit = async (user) => {
         setLoading(true);
-        //user.amount = selectedOption;
-        if(!user.amount && customValue !== "") {
-            user.amount = customValue
-        }else{
-            user.amount=selectedOption
-        }
-   
+        user.amount=total
+           
         dispatch(enviarDataTienda(user, user_id)).then((response) => {
             console.log("esto es prueba", response);
         if (response) {

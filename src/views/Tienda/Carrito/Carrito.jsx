@@ -149,7 +149,7 @@ const Carrito = ({ id, name, image, price, stock, quantityProd}) => {
         </div>
       </div>
       {showForm ? (
-        <FormPago />
+        <FormPago total={total}/>
       ) : (
         <div className={style.ContenedorCartProductos}>
           <Card
@@ -157,6 +157,7 @@ const Carrito = ({ id, name, image, price, stock, quantityProd}) => {
             overflow='hidden'
             variant='outline'
             backgroundColor='white'
+            maxH='120px'
           >
             <Image 
               objectFit='cover'
@@ -164,7 +165,7 @@ const Carrito = ({ id, name, image, price, stock, quantityProd}) => {
               src={image}
               alt='product-image'
               width='13%'
-              height='13%x'
+              height='100%'
               marginRight='9%' 
             />
             <HStack >

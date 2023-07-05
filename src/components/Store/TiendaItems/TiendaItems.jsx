@@ -13,7 +13,7 @@ const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes
   
   const dispatch = useDispatch();
   const user_id = useSelector(state => state.LocalPersist.userInfo.id);
-  const Cart = useSelector((state) => state.LocalPersist.Carrito);
+  const Cart = useSelector((state) => state.LocalPersist.Carrito.Products);
   const { isAuthenticated } = useAuth0();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [quantity, setQuantity] = useState(0);
@@ -60,7 +60,14 @@ const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes
   };
 
   const handleAddToCart = (user_id, id, quantity) => {
-    if(quantity>stock) {
+    const cartItems = Cart;
+    const productInCart = cartItems.find(item => item.id === id); //Verificamos si el producto ya esta en el carrito
+
+    if (productInCart) {
+      toast.error("El producto ya está en el carrito", {
+        duration: 3000
+      });
+    } else if(quantity>stock) {
       toast.error("La cantidad deseada supera el stock disponible", {
         duration: 3000
       })    
