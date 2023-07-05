@@ -7,16 +7,9 @@ import { Link } from "react-router-dom";
 
 const CarritoContainer = () => {
 
-    const dispatch = useDispatch();
     const Cart = useSelector((state) => state.LocalPersist.Carrito.Products);
-    const userId = useSelector(state => state.LocalPersist.userInfo.id);
-    // const Cart = useSelector((state) => state.LocalPersist.allProducts);
-    console.log(Cart)
-
-    useEffect(() => { 
-        dispatch(getCarrito(userId));
-    },[dispatch]);
-      
+    // const userId = useSelector(state => state.LocalPersist.userInfo.id);
+          
     return (
         <div className={style.TiendaItemsContainerCART}> 
             {Cart?.length === 0 ? (

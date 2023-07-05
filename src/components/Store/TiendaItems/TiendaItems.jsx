@@ -7,19 +7,19 @@ import { getCarrito, addToCart } from "../../../Redux/actions"
 import { Image, Card, Text, Heading, CardBody, CardFooter, Button, Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton, Box, Grid } from '@chakra-ui/react'
 import { Toaster, toast } from "react-hot-toast";
 import { useAuth0 } from "@auth0/auth0-react"; 
-import { cartArrowDown } from "fontawesome";
+//import { cartArrowDown } from "fontawesome";
 
 const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes, Reviews }) => {
   
   const dispatch = useDispatch();
   const user_id = useSelector(state => state.LocalPersist.userInfo.id);
-  const Cart = useSelector((state) => state.LocalPersist.Carrito);
+  const Cart = useSelector((state) => state.LocalPersist.Carrito.Products);
   const { isAuthenticated } = useAuth0();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [quantity, setQuantity] = useState(0);
   
   useEffect(()=>{
-    dispatch(getCarrito())
+    dispatch(getCarrito(user_id))
   },[dispatch])
   
   const [review, setReview] = useState({
@@ -60,7 +60,14 @@ const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes
   };
 
   const handleAddToCart = (user_id, id, quantity) => {
-    if(quantity>stock) {
+    const cartItems = Cart;
+    const productInCart = cartItems.find(item => item.id === id); //Verificamos si el producto ya esta en el carrito
+
+    if (productInCart) {
+      toast.error("El producto ya está en el carrito", {
+        duration: 3000
+      });
+    } else if(quantity>stock) {
       toast.error("La cantidad deseada supera el stock disponible", {
         duration: 3000
       })    
@@ -122,17 +129,17 @@ const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes
               </>
             ) : (
               <Button className={style.BotonAddToCart} onClick={() => toast.error('Debe iniciar sesión para agregar productos.')} backgroundColor='#B9362C' _hover={{ color: '#124476' }} color='white' fontWeight='normal' fontSize='25px' marginTop='-19px' disabled>
-                Add to cart
+                Agregar al carrito
               </Button>
             )}
           </CardFooter>
         </Card>
-        <Modal isOpen={isModalOpen} onClose={toggleModal} size="7xl" >
+        <Modal isOpen={isModalOpen} onClose={toggleModal} size="7xl">
           <ModalOverlay />
           <ModalContent >
           {/* <ModalContent backgroundColor='transparent' border='1px solid white' backdropFilter="blur(5px)"> */}
             <ModalCloseButton fontSize="2xl" color='#124476'/>
-            <ModalBody>
+            <ModalBody color='black' >
               <Grid templateColumns="repeat(3, 1fr)" gap={1} margin='2% 0'>
                 <Box>
                   <Image src={image} alt={name} maxH='100%' />
@@ -158,9 +165,11 @@ const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes
                     <Text fontSize="xl" fontWeight="bold" mb={4} textTransform='uppercase'>
                       aca irian las valoraciones (estrellitas)
                       {Reviews && Reviews?.map ((review) =>(
-                        <div>
-                          <p>Rating: {review.rating}</p>
-                        </div>
+                        <>
+                          <div>
+                            <p>Rating: {review.rating}</p>
+                          </div>
+                          </>  
                       ))
                       }
                     </Text>
@@ -171,18 +180,22 @@ const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes
                       value={review.rating} />
                   </Grid>
                 </Box>
-                <Box border='1px' >
+                <Box paddingRight='10%'>
                   <Grid>
-                    <Text fontSize="xl" fontWeight="bold" mb={4} textTransform='uppercase'>
+                    <Text className={style.TextoComentarios} mb={4} border='3px solid silver' minH='100px'>
+                      HOLAA
                       {Reviews && Reviews?.map ((review) =>(
-                        <div>
-                          <p>User ID: {review.user_id}</p>
-                          <p>Contenido: {review.content}</p>
-                        </div>
+                        <>
+                          <div className={style.TextoComentariosIndividuales}>
+                            <p fontWeight="bold">User ID: {review.user_id}</p>
+                            <p >Contenido: {review.content}</p>
+                            <hr style={{ width: '70%', margin: '1% auto', border: '1px solid #124476' }}></hr>
+                          </div>
+                        </>
                       ) )}
                     </Text>
                     <div> {/* <-------- ACA IRIAN LAS ESTRELLITAS :V */}
-                      <label htmlFor="">Dejá tu review sobre este producto.</label>
+                      <label htmlFor="" >Dejá tu review sobre este producto.</label>
                       <textarea id="content"
                         name="content" rows="4" cols="50"
                         value={review.content}
