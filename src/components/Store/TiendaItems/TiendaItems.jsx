@@ -128,7 +128,7 @@ const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes
                 </Grid>
               </>
             ) : (
-              <Button className={style.BotonAddToCart} onClick={() => toast.error('Debe iniciar sesión para agregar productos.')} backgroundColor='#B9362C' _hover={{ color: '#124476' }} color='white' fontWeight='normal' fontSize='25px' marginTop='-19px' disabled>
+              <Button className={style.BotonAddToCart} onClick={() => toast.error('Debe iniciar sesión para agregar productos.')} backgroundColor='#B9362C' _hover={{ color: '#124476' }} color='white' fontWeight='normal' fontSize='25px' marginTop='-5px' width='100%' disabled>
                 Agregar al carrito
               </Button>
             )}
