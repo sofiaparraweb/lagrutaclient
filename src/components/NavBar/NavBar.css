@@ -22,7 +22,7 @@
   align-items: center;
 }
 
-.logo {
+.logo-NavBar {
   margin-right: 15px;
   margin-left: 15px;
 }
@@ -278,7 +278,7 @@ button[id="cerrariniciarNav"]:hover{
     margin-left: 5px;
   }
   
-  .logo {
+  .logo-NavBar {
     margin-right: 10px;
     margin-left: 10px;
   }

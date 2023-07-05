@@ -48,7 +48,7 @@ const NavBar = ({ isAuthenticated }) => {
             src={logo}
             alt="logo"
             width="60px"
-            className="logo"
+            className="logo-NavBar"
             onClick={handleClick}
           />
         </Link>

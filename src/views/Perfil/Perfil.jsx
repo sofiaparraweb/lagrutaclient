@@ -5,13 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserId, updateProfile } from "../../Redux/actions";
 import { useForm } from "react-hook-form";
 import "./Perfil.css";
+import logo from "../../assets/logo.png";
 
 const Perfil = () => {
   const { user, isAuthenticated } = useAuth0();
   const userInfo = useSelector((state) => state.LocalPersist.userInfo);
   const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm();
   
-   const [initialProfile, setInitialProfile] = useState({
+  const [initialProfile, setInitialProfile] = useState({
     image: userInfo.image,
     fullName: userInfo.fullName,
     mail: userInfo.mail,
@@ -46,7 +47,6 @@ const Perfil = () => {
     }
   }, [dispatch, isAuthenticated, email]);
 
-
   useEffect(() => {
     if (userProfile) {
       setInitialProfile(userProfile);
@@ -78,12 +78,21 @@ const Perfil = () => {
   };
 
   const handleSaveProfile = (data) => {
-    dispatch(updateProfile(data));
+    const formData = new FormData();
+    formData.append("image", editedProfile.image);
+    formData.append("fullName", data.fullName);
+    formData.append("mail", data.mail);
+    formData.append("birthDate", data.birthDate);
+    formData.append("phone", data.phone);
+    formData.append("address", data.address);
+    formData.append("occupation", data.occupation);
+    formData.append("role", data.role);
+
+    dispatch(updateProfile(formData));
     setEditing(false);
     setInitialProfile(data);
     setEditedProfile(data);
-    reset(editedProfile)
-    //en desmontad alimpiar la dtaa para q cuando s emonte se traiga del vuelta
+    reset(editedProfile);
   };
 
   const handleProfileImageChange = (e) => {
@@ -95,177 +104,143 @@ const Perfil = () => {
     };
 
     if (file) {
-      reader.readAsDataURL(file);
-    }
-  };
-
-  return (
-    isAuthenticated && (
-      <ChakraProvider>
-        <div className="containerPerfil">
-          <div className="row">
-            <div className="d-flex justify-content-between align-items-center mb-3">
-              <h4 className="text-left profile-title">TU PERFIL</h4>
-              {!editing ? (
-                <Button className="profile-edit-button" colorScheme="teal" onClick={handleEditProfile}>
-                  Modificar Cambios
-                </Button>
-              ) : (
-                <>
-                  <Button className="profile-save-button" colorScheme="teal" onClick={handleSubmit(handleSaveProfile)}>
-                    Guardar Cambios
-                  </Button>
-                  <Button className="profile-cancel-button" colorScheme="red" onClick={handleCancelEdit}>
-                    Cancelar
-                  </Button>
-                </>
-              )}
-            </div>
-            <div className="col-4 col-lg-3">
-              <div className="d-flex flex-column align-items-center">
-                <div className="profile-image-container">
-                  <img
-                    src={editedProfile?.image || "https://via.placeholder.com/150"}
-                    alt="Profile"
-                    className="profile-image"
-                  />
-                  {editing && (
-                    <Input type="file" accept="image/*" onChange={handleProfileImageChange} className="mt-2" />
-                  )}
-                </div>
-                <span className="mt-2">
-                  {editing ? (
-                    <span>Editar Imagen</span>
-                  ) : (
-                    <span>{`${initialProfile?.fullName}'s Profile`}</span>
-                  )}
-                </span>
-              </div>
-            </div>
-            <div className="col-8 col-lg-9">
-              <div className="profile-details">
-                <form onSubmit={handleSubmit(handleSaveProfile)}>
-                  <div className="form-group">
-                    <label htmlFor="fullName">Nombre</label>
-                    <Input
-                      className="form-control"
-                      placeholder="Nombre"
-                      name="fullName"
-                      disabled={!editing}
-                      {...register("fullName", { 
-                        required: "Campo obligatorio",
-                        pattern: {
-                          value: /[A-Za-z\s]+/,
-                          message: "Solo se permiten letras"
-                        }
-                      })}
-                    />
-                    {errors.fullName && <span>{errors.fullName.message}</span>}
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="mail">Correo Electrónico</label>
-                    <Input
-                      className="form-control"
-                      placeholder="Correo Electrónico"
-                      name="mail"
-                      disabled
-                      {...register("mail", { 
-                        required: "Campo obligatorio",
-                        pattern: {
-                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                          message: "Dirección de correo electrónico inválida"
-                        }
-                      })}
-                    />
-                    {errors.mail && <span>{errors.mail.message}</span>}
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="birthDate">Fecha de Nacimiento</label>
-                    <Input
-                      className="form-control"
-                      type="date"
-                      placeholder="Fecha de Nacimiento"
-                      name="birthDate"
-                      disabled={!editing}
-                      {...register("birthDate", { 
-                        required: "Campo obligatorio"
-                      })}
-                    />
-                    {errors.birthDate && <span>{errors.birthDate.message}</span>}
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="phone">Teléfono</label>
-                    <Input
-                      className="form-control"
-                      type="tel"
-                      placeholder="Teléfono"
-                      name="phone"
-                      disabled={!editing}
-                      {...register("phone", { 
-                        required: "Campo obligatorio",
-                        pattern: {
-                          value: /^\d{10}$/,
-                          message: "El número de teléfono debe tener 10 dígitos"
-                        }
-                      })}
-                    />
-                    {errors.phone && <span>{errors.phone.message}</span>}
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="address">Dirección</label>
-                    <Input
-                      className="form-control"
-                      placeholder="Dirección"
-                      name="address"
-                      disabled={!editing}
-                      {...register("address")}
-                    />
-                  </div>
-                  <div className="row mt-3">
-                    <div className="col-md-6">
-                      <label>Ocupación</label>
-                      <Input
-                        className="form-control"
-                        type="occupation"
-                        placeholder="Contanos un poco más de vos"
-                        name="occupation"
-                        disabled={!editing}
-                        {...register("occupation", { 
-                          required: "Campo obligatorio",
-                          pattern: {
-                            value: /[A-Za-z\s]+/,
-                            message: "Solo se permiten letras"
-                          }
-                        })}
-                      />
-                      {errors.occupation && <p>{errors.occupation.message}</p>}
-                    </div>
-                    <div className="col-md-6">
-                    <label>Cuál es tu rol en La Gruta?</label>
-                      <Select
-                        className="form-control"
-                        placeholder="Rol"
-                        name="role"
-                        value={editing ? editedProfile?.role : initialProfile?.role}
-                        onChange={(e) => setEditedProfile({ ...editedProfile, role: e.target.value })}
-                        disabled={!editing}
-                        {...register("role")}
-                      >
-                        <option value="Miembro">Miembro</option>
-                        <option value="Voluntario">Voluntario</option>
-                        <option value="Miembro">Miembro</option>
-                      </Select>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </ChakraProvider>
-    )
-  );
+  reader.readAsDataURL(file);
+}
 };
 
-export default Perfil;
+return (
+<ChakraProvider>
+  <div className="perfil-container">
+    <div className="perfil-header">
+      <img src={logo} alt="logo" className="logo-perfil" />
+      <h1 className="perfil-title">Mi Perfil</h1>
+    </div>
+    <div className="perfil-content">
+      {/* <div className="perfil-image">
+        <img src={editedProfile.image} alt="profile" className="profile-image" />
+        {editing && (
+          <div className="image-upload">
+            <input type="file" accept="image/*" onChange={handleProfileImageChange} />
+          </div>
+        )}
+      </div> */}
+      <form className="perfil-form" onSubmit={handleSubmit(handleSaveProfile)}>
+        <label htmlFor="fullName" className="perfil-label">
+          Nombre completo
+        </label>
+        <Input
+          type="text"
+          id="fullName"
+          className="perfil-input"
+          isDisabled={!editing}
+          defaultValue={editedProfile.fullName}
+          {...register("fullName", { required: true })}
+        />
+        {errors.fullName && <span className="error-message">Campo obligatorio</span>}
+        <label htmlFor="mail" className="perfil-label">
+          Correo electrónico
+        </label>
+        <Input
+          type="email"
+          id="mail"
+          className="perfil-input"
+          isDisabled={!editing}
+          defaultValue={editedProfile.mail}
+          {...register("mail", { required: true })}
+        />
+        {errors.mail && <span className="error-message">Campo obligatorio</span>}
+        <label htmlFor="birthDate" className="perfil-label">
+          Fecha de nacimiento
+        </label>
+        <Input
+          type="date"
+          id="birthDate"
+          className="perfil-input"
+          isDisabled={!editing}
+          defaultValue={editedProfile.birthDate}
+          {...register("birthDate", { required: true })}
+        />
+        {errors.birthDate && <span className="error-message">Campo obligatorio</span>}
+        <label htmlFor="phone" className="perfil-label">
+          Teléfono
+        </label>
+        <Input
+          type="tel"
+          id="phone"
+          className="perfil-input"
+          isDisabled={!editing}
+          defaultValue={editedProfile.phone}
+          {...register("phone", { required: true })}
+        />
+        {errors.phone && <span className="error-message">Campo obligatorio</span>}
+        <label htmlFor="address" className="perfil-label">
+          Dirección
+        </label>
+        <Input
+          type="text"
+          id="address"
+          className="perfil-input"
+          isDisabled={!editing}
+          defaultValue={editedProfile.address}
+          {...register("address", { required: true })}
+        />
+        {errors.address && <span className="error-message">Campo obligatorio</span>}
+        <label htmlFor="occupation" className="perfil-label">
+          Ocupación
+        </label>
+        <Input
+          type="text"
+          id="occupation"
+          className="perfil-input"
+          isDisabled={!editing}
+          defaultValue={editedProfile.occupation}
+          {...register("occupation", { required: true })}
+        />
+        {errors.occupation && <span className="error-message">Campo obligatorio</span>}
+        <label htmlFor="role" className="perfil-label">
+          Rol
+        </label>
+        <Select
+          id="role"
+          className="perfil-input"
+          isDisabled={!editing}
+          defaultValue={editedProfile.role}
+          {...register("role", { required: true })}
+        >
+          <option value="admin">Administrador</option>
+          <option value="user">Usuario</option>
+        </Select>
+        {errors.role && <span className="error-message">Campo obligatorio</span>}
+        <div className="button-group">
+          {!editing && (
+            <Button
+              type="button"
+              className="edit-button"
+              onClick={() => setEditing(true)}
+            >
+              Editar
+            </Button>
+          )}
+          {editing && (
+            <div>
+              <Button type="submit" className="save-button">
+                Guardar
+              </Button>
+              <Button
+                type="button"
+                className="cancel-button"
+                onClick={() => setEditing(false)}
+              >
+                Cancelar
+              </Button>
+            </div>
+          )}
+        </div>
+      </form>
+    </div>
+  </div>
+</ChakraProvider>
+);
+}
 
+export default Perfil;
