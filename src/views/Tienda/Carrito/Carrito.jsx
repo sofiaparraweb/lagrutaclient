@@ -67,14 +67,14 @@ const Carrito = ({ id, name, image, price, stock, quantityProd}) => {
   //   }
   // }
     
-  const handleDeleteFromCart = async (userId, id) => {
-    await dispatch(deleteCarrito(userId, id));
-    setQuantity(0);
-    toast.success("Se ha eliminado un producto del carrito", {
-      duration: 3000
-    });
-    dispatch(getCarrito(userId));
-  };
+  // const handleDeleteFromCart = async (userId, id) => {
+  //   await dispatch(deleteCarrito(userId, id));
+  //   setQuantity(0);
+  //   toast.success("Se ha eliminado un producto del carrito", {
+  //     duration: 3000
+  //   });
+  //   dispatch(getCarrito(userId));
+  // };
 
   // const handleDeleteProductCart = (id) =>{
   //   dispatch(QuitarProducto(id));

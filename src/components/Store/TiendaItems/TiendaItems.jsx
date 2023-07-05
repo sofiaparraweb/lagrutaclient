@@ -192,7 +192,7 @@ const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes
                             <hr style={{ width: '70%', margin: '1% auto', border: '1px solid #124476' }}></hr>
                           </div>
                         </>
-                      ) )}
+                      ))}
                     </Text>
                     <div> {/* <-------- ACA IRIAN LAS ESTRELLITAS :V */}
                       <label htmlFor="" >Dejá tu review sobre este producto.</label>
