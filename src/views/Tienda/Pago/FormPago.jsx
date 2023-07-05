@@ -66,10 +66,10 @@ const FormPago = ({total}) => {
                     })}
                     />
                     {errors.name?.type === "required" && (
-                    <p className={style.failTienda}>El campo no puede estar vacío</p>
+                        <p className={style.failTienda}>El campo no puede estar vacío</p>
                     )}
                     {errors.name?.type === "maxLength" && (
-                    <p className={style.failTienda}>El máximo de caracteres es 30</p>
+                        <p className={style.failTienda}>El máximo de caracteres es 30</p>
                     )}
                 </div>
 
@@ -87,10 +87,10 @@ const FormPago = ({total}) => {
                     })}
                     />
                     {errors.lastName?.type === "required" && (
-                    <p className={style.failTienda}>El campo no puede estar vacío</p>
+                        <p className={style.failTienda}>El campo no puede estar vacío</p>
                     )}
                     {errors.lastName?.type === "maxLength" && (
-                    <p className={style.failTienda}>El máximo de caracteres es 30</p>
+                        <p className={style.failTienda}>El máximo de caracteres es 30</p>
                     )}
                 </div>
 
@@ -108,16 +108,16 @@ const FormPago = ({total}) => {
                     })}
                     />
                     {errors.user_mail?.type === "pattern" && (
-                    <p className={style.failTienda}>Tiene que ser un email correcto</p>
+                        <p className={style.failTienda}>Tiene que ser un email correcto</p>
                     )}
                     {errors.user_mail?.type === "required" && (
-                    <p className={style.failTienda}>El correo es requerido</p>
+                        <p className={style.failTienda}>El correo es requerido</p>
                     )}
                 </div>
 
                 <div className={style.formControlTienda}>
                     <label className={style.labelesTienda}>
-                    Teléfono (Cód. Área + número)
+                        Teléfono (Cód. Área + número)
                     </label>
                     <input
                     className={style.inputsTienda}
@@ -133,7 +133,7 @@ const FormPago = ({total}) => {
                     })}
                     />
                     {errors.telefono && (
-                    <p className={style.failTienda}>{errors.telefono.message}</p>
+                        <p className={style.failTienda}>{errors.telefono.message}</p>
                     )}
                 </div>
                 <button className={style.botonTienda} type="submit" disabled={loading}>
