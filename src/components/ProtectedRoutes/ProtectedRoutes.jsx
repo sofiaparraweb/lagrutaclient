@@ -26,26 +26,5 @@ export const ProtectedRoutes = ({ children, redirectTo="/Home" }) => {
       }
     }
 
-/*     Jose Maria Marquez Velasquez12:05
-import { Navigate, Outlet } from 'react-router-dom';
-import { getAuthState } from '../services/storage';
 
-export const AuthGuard = () => {
-  const isUserAuthenticated = getAuthState();
-
-  return isUserAuthenticated ? <Outlet /> : <Navigate to={'/auth'} />;
-};
-
-export default AuthGuard;
-Jose Maria Marquez Velasquez12:07
-<Route element={<AuthGuard />}>
-          <Route
-            key={'dashKey'}
-            path="/dashboard"
-            element={<DashboardLayout />}
-          >
-            <Route index element={<HomeDashLazy />} />
-            <Route path="tables" element={<TablesDashboard />} />
- </Route>
-  */
     
