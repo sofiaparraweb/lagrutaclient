@@ -38,10 +38,6 @@ import DashboardShop from "./views/DashBoard/DashboardShop";
 import DashboardUsers from "./views/DashBoard/DashboardUsers";
 import Modifiview from "./views/DashBoard/Modifiview.jsx";
 
-
-
-
-
 const App = () => {
   const { isAuthenticated, isLoading } = useAuth0();
 

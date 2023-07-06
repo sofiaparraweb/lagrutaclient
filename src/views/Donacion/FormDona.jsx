@@ -77,7 +77,7 @@ const FormDona = ({ selectedOption, customValue }) => {
           <div className={style.formControl}>
             <label className={style.labeles}>Nombre</label>
             <input
-              className={`${style.inputs} ${
+              className={`${style.inputsDona} ${
                 errors.name ? style.error : style.success
               }`}
               name="name"
@@ -100,7 +100,7 @@ const FormDona = ({ selectedOption, customValue }) => {
           <div className={style.formControl}>
             <label className={style.labeles}>Apellido</label>
             <input
-              className={`${style.inputs} ${
+              className={`${style.inputsDona} ${
                 errors.lastName ? style.error : style.success
               }`}
               name="lastName"
@@ -123,7 +123,7 @@ const FormDona = ({ selectedOption, customValue }) => {
           <div className={style.formControl}>
             <label className={style.labeles}>Email</label>
             <input
-              className={`${style.inputs} ${
+              className={`${style.inputsDona} ${
                 errors.user_mail ? style.error : style.success
               }`}
               name="user_mail"
@@ -148,7 +148,7 @@ const FormDona = ({ selectedOption, customValue }) => {
               Teléfono (Cód. Área + número)
             </label>
             <input
-              className={`${style.inputs} ${
+              className={`${style.inputsDona} ${
                 errors.phone ? style.error : style.success
               }`}
               name="phone"

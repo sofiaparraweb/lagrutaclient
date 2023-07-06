@@ -2,129 +2,110 @@
 @import url('https://fonts.cdnfonts.com/css/dk-lemon-yellow-sun');
 
 .SePadrinoHome {
-    display: flex;
-    height: 100%;
-    margin-bottom: 80px;
-  }
-
-/* -------------------------------------------------PARTE IZQUIERDA------------------------------------------------- */
-.ImagenContainer{
-    flex: 1; /* Ocupa la mitad izquierda del contenedor */
-    overflow: hidden;
+  display: flex;
+  height: 100%;
+  margin-bottom: 80px;
 }
 
-img[alt="sumate"]{
-    transition: 1s ease;
-    border: none;
-}
-img[alt="sumate"]:hover{
-    transition: 1s ease;
-    transform: scale(1.05);
+.ImagenContainer {
+  flex: 1 !important; /* Ocupa la mitad izquierda del contenedor */
+  overflow: hidden;
 }
 
+img[alt="sumate"] {
+  transition: 1s ease;
+  border: none;
+}
 
-/* -------------------------------------------------PARTE DERECHA------------------------------------------------- */
+img[alt="sumate"]:hover {
+  transition: 1s ease;
+  transform: scale(1.05);
+}
+
 .SumateContainerParteDerecha {
-    flex: 1; /* Ocupa la mitad derecha del contenedor */
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  flex: 1 !important; /* Ocupa la mitad derecha del contenedor */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-family: 'DK Lemon Yellow Sun', sans-serif !important;
+  font-size: 25px;
 }
 
-.TextoContainer {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    padding: 20px;
+.TextoContainerPadrino {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin-bottom: 20px;
 }
 
-img[alt="naranja"]{
-    position: absolute;
-    margin: 10%;
-    top: 0;
-    left: 0;
-    width: 80%;
-    height: 80%;
-    z-index: -1;
+p#SePadrino {
+  text-align: center !important;
+  font-family: 'DK Lemon Yellow Sun', sans-serif !important;
+  color: white !important;
 }
 
-p[id="SePadrino"]{
-    position: absolute;
-    top: 60%;
-    left: 80%;
-    width: 55%;
-    height: 60%;
-    text-align: center;
-    font-family: 'DK Lemon Yellow Sun', sans-serif;
-    font-size: 200%;
-    color:white;
-    transform: translate(-110%, -50%);
+.BotonSePadrinoHome {
+  margin-top: 15px;
+  background-color: #B9362C;
+  color: white;
+  height: 50px;
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
 }
 
-.BotonSePadrino{
-    position: absolute;
-    top: 75%;
-    left: 20%;
-    background-image: url("../../../assets/rojo.png");
-    background-size: cover;
-    color: white;
-    height: 140px;
-    width: 140px;
-    font-size: 20px;
-    font-style: italic;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.BotonSePadrino:hover {
-    color: white;
+.BotonSePadrinoHome:hover {
+  background-color: #B9362C;
 }
 
 @media (max-width: 768px) {
-    .SePadrinoHome {
-      flex-direction: column;
-    }
-  
-    .ImagenContainer,
-    .SumateContainerParteDerecha {
-      flex: none; /* Restablecer el comportamiento de tamaño flexible */
-      width: 100%;
-      height: auto;
-    }
-  
-    img[alt="naranja"] {
-        position: relative;
-        width: 80%;
-        height: auto;
-        margin: 0;
-      }
+  .SePadrinoHome {
+    flex-direction: column;
+  }
 
-    p[id="SePadrino"] {
-      font-size: 150%;
-    }
-  
-    .BotonSePadrino {
-      font-size: 16px;
-    }
+  .ImagenContainer,
+  .SumateContainerParteDerecha {
+    flex: none !important; /* Restablecer el comportamiento de tamaño flexible */
+    width: 100%;
+    height: auto;
   }
-  
-  @media (max-width: 480px) {
-    img[alt="naranja"] {
-      position: relative;
-      width: 100%;
-      height: auto;
-      margin: 0;
-    }
-  
-    p[id="SePadrino"] {
-      font-size: 16px;
-    }
-  
-    .BotonSePadrino {
-      font-size: 14px;
-    }
+
+  img[alt="sumate"] {
+    position: relative;
+    width: 80%;
+    height: auto;
+    margin: 0;
   }
+
+  p[id="SePadrino"] {
+    font-size: 150%;
+  }
+
+  .BotonSePadrino {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  img[alt="sumate"] {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+
+  p[id="SePadrino"] {
+    font-size: 16px;
+  }
+
+  .BotonSePadrino {
+    font-size: 14px;
+  }
+}

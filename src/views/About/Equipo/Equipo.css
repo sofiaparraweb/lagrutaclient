@@ -61,7 +61,7 @@ width: calc(33.33% - 40px);
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #e17231;
+    background-color: #d28254;
     transform: perspective(600px) rotateY(0deg);
     box-shadow: 0 5px 5px;
 }

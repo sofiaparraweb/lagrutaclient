@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 const FormPadrino = () => {
   const dispatch = useDispatch();
   const { register, handleSubmit, formState: {errors}, reset } = useForm();
-
+  
   const onSubmit = (data) => {
     dispatch(formPadrino(data));
     reset();
