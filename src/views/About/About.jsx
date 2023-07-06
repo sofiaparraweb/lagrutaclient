@@ -3,7 +3,7 @@ import style from "./About.module.css";
 import Mision from "./Mision/Mision";
 import Vision from "./Vision/Vision";
 import Valores from "./Valores/Valores";
-import Timeline from "./Timeline/Timeline";
+import Timeline from "./Timeline/timeline";
 import Equipo from "./Equipo/Equipo";
 
 const About = () => {
