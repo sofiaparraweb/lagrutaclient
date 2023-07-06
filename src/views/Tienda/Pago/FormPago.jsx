@@ -41,7 +41,7 @@ const FormPago = ({total}) => {
         }
         setLoading(false);
         reset();
-        navigate(0);
+        // navigate(0);
         });
     };
   
