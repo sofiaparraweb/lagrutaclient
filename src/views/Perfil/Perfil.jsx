@@ -13,7 +13,7 @@ const Perfil = () => {
   const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm();
   
   const [initialProfile, setInitialProfile] = useState({
-    image: userInfo.image,
+    // image: userInfo.image,
     fullName: userInfo.fullName,
     mail: userInfo.mail,
     birthDate: userInfo.birthDate,
@@ -24,7 +24,7 @@ const Perfil = () => {
   });
 
   const [editedProfile, setEditedProfile] = useState({
-    image: userInfo.image,
+    // image: userInfo.image,
     fullName: userInfo.fullName,
     mail: userInfo.mail,
     birthDate: userInfo.birthDate,
@@ -79,7 +79,7 @@ const Perfil = () => {
 
   const handleSaveProfile = (data) => {
     const formData = new FormData();
-    formData.append("image", editedProfile.image);
+    // formData.append("image", editedProfile.image);
     formData.append("fullName", data.fullName);
     formData.append("mail", data.mail);
     formData.append("birthDate", data.birthDate);
@@ -95,18 +95,18 @@ const Perfil = () => {
     reset(editedProfile);
   };
 
-  const handleProfileImageChange = (e) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
+//   const handleProfileImageChange = (e) => {
+//     const file = e.target.files[0];
+//     const reader = new FileReader();
 
-    reader.onloadend = () => {
-      setEditedProfile((prevState) => ({ ...prevState, image: reader.result }));
-    };
+//     reader.onloadend = () => {
+//       setEditedProfile((prevState) => ({ ...prevState, image: reader.result }));
+//     };
 
-    if (file) {
-  reader.readAsDataURL(file);
-}
-};
+//     if (file) {
+//   reader.readAsDataURL(file);
+// }
+// };
 
 return (
 <ChakraProvider>
