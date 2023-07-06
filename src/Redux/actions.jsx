@@ -200,7 +200,6 @@ export const changeQuantity = (user_id, id, quantity) => {
 export const enviarDataTienda = (user_id) => {
   return async (dispatch) => {
     try {
-      console.log(user_id);
       const response = await axios.post(`${url}/payment/cart/create-order/${user_id}`)
       if (response) {
         dispatch({ type: POST_PAGO_TIENDA, payload: response.data })

@@ -34,7 +34,6 @@ const FormPago = ({total}) => {
         user.amount=total
            
         dispatch(enviarDataTienda(user_id)).then((response) => {
-            console.log("esto es prueba", response);
         if (response) {
             window.open(response.init_point, "_blank");
         } else {
@@ -42,7 +41,7 @@ const FormPago = ({total}) => {
         }
         setLoading(false);
         reset();
-        // navigate(0);
+        navigate(0);
         });
     };
   
