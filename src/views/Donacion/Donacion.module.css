@@ -102,9 +102,15 @@ font-family: 'DK Lemon Yellow Sun', sans-serif; */
 }
 
 .inputOtro {
-  width: 100px;
+  color: blue;
+  width: 150px;
   height: 28px;
   margin-left: 5px;
+  padding-left: 5px;
+  border-radius: 3px;
+}
+.inputOtro:focus{
+  outline:none;
 }
 
 .errorMessage {
