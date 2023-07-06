@@ -15,10 +15,7 @@ font-family: 'Wicked Grit', sans-serif; */
   text-align: center;
   box-sizing:border-box;
   box-shadow:0 0 20px rgba(0,0,0,.2);
-
 }
-
-
 
 .modalcontent {
   width: 100%;
@@ -31,7 +28,6 @@ font-family: 'Wicked Grit', sans-serif; */
   opacity: 1;
   font-family: 'Wicked Grit', sans-serif;
 }
-
 
 .modalcontent span {
     display: flex;
