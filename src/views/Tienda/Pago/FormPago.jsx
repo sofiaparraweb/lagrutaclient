@@ -33,8 +33,7 @@ const FormPago = ({total}) => {
         setLoading(true);
         user.amount=total
            
-        dispatch(enviarDataTienda(user, user_id)).then((response) => {
-            console.log("esto es prueba", response);
+        dispatch(enviarDataTienda(user_id)).then((response) => {
         if (response) {
             window.open(response.init_point, "_blank");
         } else {

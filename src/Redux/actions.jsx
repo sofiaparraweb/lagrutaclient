@@ -1,3 +1,4 @@
+import { User } from "@auth0/auth0-spa-js";
 import { useRadio } from "@chakra-ui/react";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -33,8 +34,8 @@ export const FORM_FOOTER = 'FORM_FOOTER';
 export const FORM_PADRINO = 'FORM_PADRINO';
 export const FORM_DONACION = 'FORM_DONACION';
 
-export const url = "http://localhost:3001";
-// export const url = "https://lagruta.onrender.com";
+//export const url = "http://localhost:3001";
+export const url = "https://lagruta.onrender.com";
 // const LOCAL = "http://localhost:3001";
 
 export function getAllActivity() {
@@ -196,12 +197,11 @@ export const changeQuantity = (user_id, id, quantity) => {
 };
 
 // ----------Para ir al formulario de pago
-export const enviarDataTienda = (user_id, data) => {
+export const enviarDataTienda = (user_id) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post(`${url}/payment/create-order?user_id=${user_id}`, data)
+      const response = await axios.post(`${url}/payment/cart/create-order/${user_id}`)
       if (response) {
-        console.log("estoy en actions, La información se envió correctamente", response);
         dispatch({ type: POST_PAGO_TIENDA, payload: response.data })
         return response.data;
       } 
