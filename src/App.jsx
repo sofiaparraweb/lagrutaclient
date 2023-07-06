@@ -16,7 +16,7 @@ import CarritoContainer from "./components/Store/CarritoContainer/CarritoContain
 import PopUpDonateNow from "./components/MensajeFloat/DonateNow";
 import WP_Button from "./components/MensajeFloat/WP_Button.jsx";
 import BackToTop from "./components/BackToTop/BackToTop";
-import Timeline from "./views/About/Timeline/Timeline";
+import Timeline from "./views/About/Timeline/timeline";
 import Equipo from "./views/About/Equipo/Equipo";
 
 /* componentes usuarios */

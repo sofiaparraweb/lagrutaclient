@@ -140,14 +140,14 @@
   text-decoration: none;
 }
 .link[id="ayudarNav"]:hover{
-  background-color: solid rgba(53,99,70,255);
+  background-color: rgba(53,99,70,255);
   text-decoration: none;
 }
-
 
 /* -------------------------------------Perfil */
 .link[id="perfilNav"]{
   border-bottom:6px solid #124476;
+  border-bottom-right-radius: 5px;
 }
 .link[id="perfilNav"]:hover{
   background-color: #124476;
