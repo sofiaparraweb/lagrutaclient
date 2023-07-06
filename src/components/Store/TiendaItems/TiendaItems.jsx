@@ -23,7 +23,7 @@ const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes
     dispatch(getCarrito(user_id))
   },[dispatch])
   
-  const [review, setReview] = useState({
+  const [review, setReview] = useState({  // --------------------------------------------------REVIEWS
     user_id:`${user_id}`, /* <----------------------- FALTA ASIGNARLE BIEN EL USERID QUE TIENE EL USUARIO QUE COMENTA */
     rating: 0,
     content: "",
@@ -38,16 +38,17 @@ const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes
   
   const handleSubmit = async (event) => {
     event.preventDefault()
+    // await axios.post('https://lagruta.onrender.com/review/post', review)
     await axios.post('http://localhost:3001/review/post', review)
     .then(res=>alert("Gracias por opinar sobre nuestro producto!"))
     .catch((error) => alert(error))
   }
   
-  const toggleModal = () => {
+  const toggleModal = () => {  // --------------------------------------------------MODAL CON DETALLE PRODUCTOS
     setIsModalOpen(!isModalOpen);
   };
   
-  const handleAdd = (event) => {
+  const handleAdd = (event) => {  // --------------------------------------------------BOTON SUMAR
     event.preventDefault()
     if (quantity < stock) {
       setQuantity(quantity + 1); // Agrega 1 a la cantidad actual
@@ -59,14 +60,14 @@ const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes
     }
   };
 
-  const handleDelete = (event) => {
+  const handleDelete = (event) => {  // --------------------------------------------------BOTON SUMAR
     event.preventDefault()
     if (quantity > 0) {
       setQuantity(quantity - 1); // Resta 1 a la cantidad actual
     }
   };
 
-  const handleAddToCart = (user_id, id, quantity) => {
+  const handleAddToCart = (user_id, id, quantity) => {  // --------------------------------------------------AGREGAR PRODUCTOS AL CARRITO
     const cartItems = Cart;
     const productInCart = cartItems.find(item => item.id === id); //Verificamos si el producto ya esta en el carrito
 
@@ -87,6 +88,7 @@ const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes
     }
   }
 
+  
   return (
     <form onSubmit={handleSubmit}>
      <div>
@@ -196,7 +198,7 @@ const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes
                       name="content" rows="4" cols="50"
                       value={review.content}
                       onChange={changeHandler}/>
-                    <Button type="submit" _hover={{backgroundColor:'#B9362C', color:'white'}} onClick={console.log("Hola")}>Comentar</Button>
+                    <Button type="submit" _hover={{backgroundColor:'#B9362C', color:'white'}}>Comentar</Button>
                   </Grid>
                 </Box>
               </Grid>

@@ -1,4 +1,4 @@
-import { getCarrito, addToCart, deleteAllCarrito, deleteCarrito, QuitarProducto } from "../../../Redux/actions";
+import { getCarrito, changeQuantity, deleteAllCarrito, deleteCarrito } from "../../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Image , Card, HStack, Text, Heading, CardBody } from '@chakra-ui/react';
@@ -12,13 +12,13 @@ const Carrito = ({ id, name, image, price, stock, quantityProd}) => {
   const dispatch = useDispatch();
   const Cart = useSelector((state) => state.LocalPersist.Carrito.Products);
   const userId = useSelector(state => state.LocalPersist.userInfo.id);
-  const [quantity, setQuantity] = useState(1);
+  const [quantitys, setQuantity] = useState(1);
   const [subTotal, setSubTotal] = useState(0);
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     dispatch(getCarrito(userId));
-  }, [dispatch]);
+  },[dispatch]);
 
   useEffect(() => {
     let newSubTotal = 0;
@@ -32,42 +32,40 @@ const Carrito = ({ id, name, image, price, stock, quantityProd}) => {
   let servicio = subTotal * 0.10;
   let total = subTotal + servicio;
 
-  // const handleClickAdd = (userId, id, name, image, price, stock) => {
-  //   const existingProduct = Cart?.find((item) => item.id === id);
-  //   if (existingProduct) {
-  //     if (existingProduct.quantity < stock) {
-  //       dispatch(cargarProductos(userId, id, name, image, price, stock));
-  //       setQuantity(existingProduct.quantity + 1);
-  //       toast.success("Producto agregado al carrito", {
-  //         duration: 3000
-  //       });
-  //     } else {
-  //       toast.error("No hay más productos disponibles");
-  //     }
-  //   } else {
-  //     dispatch(cargarProductos(userId, id, name, image, price, stock));
-  //     setQuantity(1);
-  //     toast.success("Producto agregado al carrito", {
-  //       duration: 3000
-  //     });
-  //   }
-  // };
 
-  // const handleAddToCart = (id) => {
-  //   if(productCount<stock) {
-  //     dispatch(addToCart(user_id, id));
-  //     setProductCount(productCount + 1);
-  //     toast.success("Producto agregado al carrito", {
-  //       duration: 3000
-  //     })
-  //   } else {
-  //     toast.error("La cantidad supera el stock disponible", {
-  //       duration: 3000
-  //     })    
-  //   }
-  // }
-    
-  const handleDeleteFromCart = async (userId, id) => {
+  const handleClickAdd = (user_id, id, quantity) => {  //PARA SUMAR UNA UNIDAD DE UN PRODUCTO DEL CARRITO
+    if(parseInt(quantityProd) < stock) {
+      quantity = parseInt(quantityProd) + 1;
+      dispatch(changeQuantity(user_id, id, quantity));
+      toast.success("Se agrego una unidad al carrito", {
+        duration: 3000
+      })
+    } else {
+      toast.error("La cantidad supera el stock disponible", {
+        duration: 3000
+      })    
+    }
+    dispatch(getCarrito(user_id));
+  }
+
+
+  const handleClickDelete = (user_id, id, quantity) => {  //PARA QUITAR UNA UNIDAD DE UN PRODUCTO DEL CARRITO
+    if(parseInt(quantityProd) > 1) {
+      quantity = parseInt(quantityProd) - 1;
+      dispatch(changeQuantity(user_id, id, quantity));
+      toast.success("Se quito una unidad del carrito", {
+        duration: 3000
+      })
+    } else {
+      toast.error("No se pueden quitar mas unidades de este producto", {
+        duration: 3000
+      })    
+    }
+    dispatch(getCarrito(user_id));
+  }
+  
+  
+  const handleDeleteFromCart = async (userId, id) => {  //PARA BORRAR UN PRODUCTO DEL CARRITO
     await dispatch(deleteCarrito(userId, id));
     setQuantity(0);
     toast.success("Se ha eliminado un producto del carrito", {
@@ -76,24 +74,18 @@ const Carrito = ({ id, name, image, price, stock, quantityProd}) => {
     dispatch(getCarrito(userId));
   };
 
-  // const handleDeleteProductCart = (id) =>{
-  //   dispatch(QuitarProducto(id));
-  //   setQuantity(0);
-  //   toast.success("Producto eliminado del carrito", {
-  //     duration: 3000
-  //   })
-  // }
 
-  // const handleDeleteCart = async (userId) =>{
-  //   await dispatch(deleteAllCarrito(userId));
-  //   setQuantity(0);
-  //   toast.success("Carrito vaciado correctamente", {
-  //     duration: 3000
-  //   })
-  //   dispatch(getCarrito(userId));
-  // }
+  const handleDeleteCart = async (userId) =>{   //PARA VACIAR EL CARRITO
+    await dispatch(deleteAllCarrito(userId));
+    setQuantity(0);
+    toast.success("Carrito vaciado correctamente", {
+      duration: 3000
+    })
+    dispatch(getCarrito(userId));
+  }
 
-  const handlePay = (event) => {
+
+  const handlePay = (event) => {   //PARA PROCEDER AL PAGO
     event.preventDefault();
     if (Cart) {
       setShowForm(true);
@@ -113,7 +105,6 @@ const Carrito = ({ id, name, image, price, stock, quantityProd}) => {
           <span className={style.ChanguitoCART}>
             <AiOutlineShoppingCart size={30}/> 
             <p className={style.NumeroChangoCART}>{Cart?.length}</p>
-            {/* <p className={style.NumeroChangoCART}>{cartQuantity}</p> */}
           </span>
           <div className={style.ContenedorVaciarCarro}>
             <div className={style.VaciarCarrito}>
@@ -185,9 +176,9 @@ const Carrito = ({ id, name, image, price, stock, quantityProd}) => {
               <CardBody p={4} size='md'>
                 <Heading width='100px' size='md' textAlign='center'>Cantidad</Heading>
                 <Text py='3' className={style.ContenedorBotonesCart}>
-                  <button className={style.ButtonsSumaResta} onClick={()=> handleDeleteFromCart(id)} value="less" >-</button>
+                  <button className={style.ButtonsSumaResta} onClick={()=> handleClickDelete(userId, id, name, image, price, stock)} value="less" disabled={parseInt(quantityProd) === 1}>-</button>
                     {quantityProd}
-                  <button className={style.ButtonsSumaResta} onClick={() => handleClickAdd(userId, id, name, image, price, stock)} value="add" >+</button>
+                  <button className={style.ButtonsSumaResta} onClick={() => handleClickAdd(userId, id, name, image, price, stock)} value="add" disabled={parseInt(quantityProd) === stock}>+</button>
                 </Text>
               </CardBody>
               <CardBody p={4} size='md'>

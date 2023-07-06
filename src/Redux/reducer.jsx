@@ -7,10 +7,9 @@ import {
   ORDER_BY_PRICE,
   GET_CART,
   ADD_TO_CART,
-  CARGAR_PRODUCTOS,
-  QUITAR_PRODUCTOS,
   DELETE_ALL_CART,
   DELETE_CARRITO,
+  CHANGE_QUANTITY,
   POST_PAGO_TIENDA,
   GET_ALL_ACTIVITY,
   GET_DETAIL_ACTIVITY,
@@ -44,6 +43,7 @@ const initialstate = {
 
 function rootReducer(state = initialstate, action) {
   switch (action.type) {
+    // --------------------------------------------------TIENDA--------------------------------------------------
     case GET_ALL_PRODUCTS:
       return {
         ...state,
@@ -63,35 +63,6 @@ function rootReducer(state = initialstate, action) {
         products: action.payload,
       };
 
-    // case FILTER_BY_TYPE: {
-    //   let allProductsType = [...state.allProducts];
-    //   let typeFiltered = action.payload  === 'all'
-    //     ? allProductsType
-    //     : allProductsType.filter((prod) => {
-    //       return prod.ProductsTypes.some((type) => type.name === action.payload);
-    //     });
-    //   return {...state, products: typeFiltered}
-    // }
-      
-    // case ORDER_BY_PRICE:
-    //   const allProductsCopy = [...state.allProducts];
-    //   let order;
-    //   switch (action.payload) {
-    //     case "asc":
-    //       order = allProductsCopy.sort((a, b) => {
-    //         return a.price - b.price;
-    //       })
-    //     break;
-    //     case "des":
-    //       order = allProductsCopy.sort((a, b) => {
-    //         return b.price - a.price;
-    //       })
-    //     break;
-    //     default:
-    //       order = allProductsCopy;
-    //   }
-    //   return {...state, products: order};
-
     case FILTER_BY_TYPE:
       return {
         ...state,
@@ -104,53 +75,31 @@ function rootReducer(state = initialstate, action) {
         products: action.payload,
       };
 
+    // --------------------------------------------------CARRITO--------------------------------------------------  
     case GET_CART:
       return {
         ...state,
         Carrito: action.payload,
       };
 
-    // case CARGAR_PRODUCTOS:
-    //   {
-    //     const { userId, id, name, price, stock, image } = action.payload;
-    //     const existingProduct = state.Carrito.find(item => item.id === id);
-    //     if (existingProduct) {
-    //       if (existingProduct.quantity < stock) {
-    //         return {
-    //           ...state,
-    //           Carrito: state.Carrito.map(item =>
-    //             item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-    //           )
-    //         };
-    //       } else {
-    //         return state; // No se actualiza el estado si no hay stock suficiente
-    //       }
-    //     } else {
-    //       return {
-    //         ...state,
-    //         Carrito: [ ...state.Carrito, {
-    //             id,
-      //           name,
-      //           image,
-      //           price,
-      //           stock,
-      //           quantity: 1
-      //       }]
-      //     }
-      //   }
-      // }
-      // return state;
+    case CHANGE_QUANTITY: {
+      const updatedCart = state.Carrito.map((item) => {
+        if (item.id === action.payload.id) {
+          return { ...item, quantity: action.payload.quantity };
+        }
+        return item;
+      });
+
+      return {
+        ...state,
+        Carrito: updatedCart,
+      };
+    }
 
     case ADD_TO_CART:
       return {
         ...state,
         Carrito: [...state.Carrito, action.payload],
-      };
-
-    case QUITAR_PRODUCTOS:
-      return {
-        ...state,
-        Carrito: state.Carrito.filter((cart) => cart.id !== action.payload),
       };
 
     case DELETE_ALL_CART:
@@ -170,7 +119,8 @@ function rootReducer(state = initialstate, action) {
         ...state,
         CarritoProductos: action.payload,
       };
-
+    
+    // --------------------------------------------------NOTICIAS--------------------------------------------------  
     case GET_ALL_ACTIVITY:
       return {
         ...state,
@@ -195,6 +145,7 @@ function rootReducer(state = initialstate, action) {
         activityDetail: {},
       };
     
+    // --------------------------------------------------USUARIOS--------------------------------------------------  
     case FETCH_PROFILE:
       return {
         ...state,
@@ -230,7 +181,7 @@ function rootReducer(state = initialstate, action) {
         ...state,
       };
 
-    //=====>>>caso donaciones<<<=====// 
+    // --------------------------------------------------DONACIONES--------------------------------------------------
     case POST_DONACIONES:
       return {
         ...state,
@@ -241,7 +192,6 @@ function rootReducer(state = initialstate, action) {
       return {
         ...state,
       }
-
 
     default:
       return state;

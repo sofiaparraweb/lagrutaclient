@@ -18,7 +18,7 @@ const SideBar = ({ setCurrentPage }) =>{
 
   useEffect(() => {
     dispatch(getCarrito(userId));
-  }, [dispatch]);
+  }, [userId]);
 
   //const cartQuantity = Carrito?.reduce((accumulator, product) => accumulator + parseInt(product.Cart_Products.quantity, 10), 0);
   
