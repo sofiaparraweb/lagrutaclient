@@ -55,7 +55,7 @@ const FormPago = ({total}) => {
                         <input
                             className={style.inputsTienda}
                             name="name"
-                            placeholder="Nombre"
+                            placeholder="Ingrese su nombre"
                             onChange={handleInput}
                             type="text"
                             {...register("name", {
@@ -76,7 +76,7 @@ const FormPago = ({total}) => {
                         <input
                             className={style.inputsTienda}
                             name="lastName"
-                            placeholder="Apellido"
+                            placeholder="Ingrese su apellido"
                             onChange={handleInput}
                             type="text"
                             {...register("lastName", {
@@ -97,11 +97,11 @@ const FormPago = ({total}) => {
                         <input
                             className={style.inputsTienda}
                             name="user_mail"
-                            placeholder="Ingrese correo"
+                            placeholder="Ingrese su Email"
                             onChange={handleInput}
                             type="text"
                             {...register("user_mail", {
-                                pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/i,
+                                pattern: /^([^\s@]+@(gmail\.com|hotmail\.com|yahoo\.com))$/i,
                                 required: true,
                             })}
                             />
@@ -118,20 +118,27 @@ const FormPago = ({total}) => {
                             Teléfono (Cód. Área + número)
                         </label>
                         <input
-                            className={style.inputsTienda}
+                            className={`${style.inputsTienda} ${
+                                errors.phone ? style.error : style.success
+                              }`}
                             name="phone"
                             placeholder="11 12345678"
                             onChange={handleInput}
-                            type="number"
+                            type="number" 
                             {...register("telefono", {
                                 required: {
-                                value: true,
-                                message: "El campo no puede estar vacio",
+                                    value:
+                                    /^\+(?:[0-9]?){1,3}[-. (]*(?:[0-9]{1,})[-. )]*(?:[0-9]{1,})[-. ]*(?:[0-9]{1,})$/,
+                                    message:
+                                    "Ingrese un número de teléfono válido (ejemplo: +54 9 11 12345678)",
                                 },
                             })}
                         />
-                        {errors.telefono && (
-                            <p className={style.failTienda}>{errors.telefono.message}</p>
+                        {errors.phone && (
+                            <p className={style.failTienda}>{errors.phone.message}</p>
+                        )}
+                        {errors.phone?.type === "maxLength" && (
+                            <p className={style.failTienda}> Ingrese un contacto válido</p>
                         )}
                     </div>
                     <button className={style.botonTienda} type="submit" disabled={loading}>
