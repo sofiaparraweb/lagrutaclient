@@ -24,6 +24,8 @@ import {
   SET_USER_ID,
   POST_DONACIONES,
   FORM_VOLUNTARIO,
+  GET_ALL_USERS,
+  DELETE_USER,
 } from "./actions";
 
 const initialstate = {
@@ -42,6 +44,7 @@ const initialstate = {
   userId: "",
   userInfo: [],
   forms: [], 
+  allUsers: [],
 };
 
 function rootReducer(state = initialstate, action) {
@@ -59,12 +62,19 @@ function rootReducer(state = initialstate, action) {
         allProductTypes: action.payload,
       };
 
+      case GET_ALL_USERS:
+        return {
+          ...state,
+          allUsers: action.payload
+        }
+
     case GET_DETAIL_PRODUCTS:
       return {
         ...state,
         ProductsDetail: action.payload,
       };
-    
+
+     
     case FILTER_BY_NAME:
       return {
         ...state,
@@ -143,6 +153,15 @@ function rootReducer(state = initialstate, action) {
         ...state,
         Carrito: state.Carrito.filter((cart) => cart.userId !== action.payload),
       };
+
+      case DELETE_USER:
+        return {
+          ...state,
+          allUsers: state.allUsers.filter(
+            (us) => us.id !== action.payload
+          ),
+        };
+    
 
     case PUT_AMOUNT_CART:
       return {

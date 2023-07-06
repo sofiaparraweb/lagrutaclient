@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CardsHeader from "../../components/DashBoard/General/CardsHeader.jsx";
+import LineChart from "../../components/DashBoard/General/Graficas/LinesTablet.jsx";
+import PieCharts from "../../components/DashBoard/General/Graficas/pieCharts.jsx";
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 
@@ -68,13 +70,13 @@ export default function Dashboard() {
 <div className="flex">
   <div className="bg-secondary-100 p-8 rounded-xl w-1/2">
     <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center mb-4 bg-secondary-900 p-4 rounded-xl">
-      <span>Analitica tienda</span>
+      <LineChart/>
     </div>
   </div>
 
   <div className="bg-secondary-100 p-8 rounded-xl w-1/2">
     <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center mb-4 bg-secondary-900 p-4 rounded-xl">
-      <span>Analitica usuarios</span>
+      <PieCharts />
     </div>
   </div>
 </div>
