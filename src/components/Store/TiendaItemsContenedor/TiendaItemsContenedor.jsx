@@ -11,7 +11,7 @@ const TiendaItemsContenedor = ({ products, setCurrentPage }) => {
                 <SideBar setCurrentPage={setCurrentPage}/>
             </div> 
             <div className={style.TiendaItemsContainer}> 
-                {products.length > 0 && products?.map((prod) => {
+                {products?.length > 0 && products?.map((prod) => {
                     return (
                         <TiendaItems
                             key={prod.id}

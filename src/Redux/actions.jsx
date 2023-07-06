@@ -13,12 +13,11 @@ export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
 export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
 export const GET_CART = "GET_CART";
 export const ADD_TO_CART = "ADD_TO_CART";
-export const CARGAR_PRODUCTOS = 'CARGAR_PRODUCTOS';
-export const QUITAR_PRODUCTOS = 'QUITAR_PRODUCTOS';
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const DELETE_ALL_CART = "DELETE_ALL_CART";
 export const DELETE_CARRITO = "DELETE_CARRITO";
+export const CHANGE_QUANTITY = "CHANGE_QUANTITY";
 export const POST_PAGO_TIENDA = "POST_PAGO_TIENDA";
 export const FETCH_PROFILE = "FETCH_PROFILE";
 export const GET_PROFILE_MAIL = 'GET_PROFILE_MAIL';
@@ -35,7 +34,7 @@ export const FORM_PADRINO = 'FORM_PADRINO';
 export const FORM_DONACION = 'FORM_DONACION';
 
 export const url = "http://localhost:3001";
-//export const url = "https://lagruta.onrender.com";
+// export const url = "https://lagruta.onrender.com";
 // const LOCAL = "http://localhost:3001";
 
 export function getAllActivity() {
@@ -148,31 +147,23 @@ export const getCarrito = (user_id) => {
   };
 };
 
-// ----------Eliminar a carrito Localmente
-export const QuitarProducto = (id) => {
-  return { type: QUITAR_PRODUCTOS, payload: id };
-};
-
-// ----------Agregar a carrito a Base de Datos
+// ----------Agregar al carrito en Base de Datos desde la tienda
 export const addToCart = (user_id, id, quantity) => {
-  console.log(user_id)
-  console.log(id)
-  console.log(quantity)
   return async (dispatch) =>{
     try {
-        const response = await axios.post(`${url}/cart/add?user_id=${user_id}&product_id=${id}&quantity=${quantity}`)
-        console.log(response);
-        dispatch({ type: ADD_TO_CART, payload: response.data})
+      const response = await axios.post(`${url}/cart/add?user_id=${user_id}&product_id=${id}&quantity=${quantity}`)
+      dispatch({ type: ADD_TO_CART, payload: response.data})
     } catch (error){
       console.log(error);
     }
   }
 }
 
-export const deleteAllCarrito = (userId) => {
+// ----------Borra todo el carrito
+export const deleteAllCarrito = (user_id) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`${url}/cart/remove?user_id=${userId}`);
+      await axios.delete(`${url}/cart/removeAll?user_id=${user_id}`);
       dispatch({ type: DELETE_ALL_CART, payload: [] });
     } catch (error) {
       console.log(error);       
@@ -180,7 +171,7 @@ export const deleteAllCarrito = (userId) => {
   };
 };
 
-// ----------Borrar un elemento
+// ----------Borrar un elemento del Carrito
 export const deleteCarrito = (user_id, id) => {
   return async (dispatch) => {
     try {
@@ -192,20 +183,34 @@ export const deleteCarrito = (user_id, id) => {
   };
 };
 
+// ----------Modificar cantidades desde vista Carrito
+export const changeQuantity = (user_id, id, quantity) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.put(`${url}/cart?user_id=${user_id}&product_id=${id}&quantity=${quantity}`);
+      dispatch({ type: CHANGE_QUANTITY, payload: response.data });
+    } catch (error) {
+      console.log(error);  
+    }
+  };
+};
+
+// ----------Para ir al formulario de pago
 export const enviarDataTienda = (user_id, data) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(`${url}/payment/create-order?user_id=${user_id}`, data)
       if (response) {
         console.log("estoy en actions, La información se envió correctamente", response);
-      dispatch({ type: POST_PAGO_TIENDA, payload: response.data })
-      return response.data;
+        dispatch({ type: POST_PAGO_TIENDA, payload: response.data })
+        return response.data;
       } 
     }catch (error) {
       console.log("Error al enviar la información al backend", error)
     }
   }
 };
+
 
 
 /* -----------------------------profile----------------------------- */
