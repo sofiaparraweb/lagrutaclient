@@ -40,7 +40,7 @@ const Timeline = () => {
           <div className="timeline-item" ref={el => itemRefs.current[0] = el}>
             <div className="timeline__content">
               <div className="timeline__img-container">
-                <img className="timeline__img" src="https://losprimeros.tv/download/multimedia.normal.acb337f67917389b.6e6f726d616c2e77656270.webp" alt="La Gruta 2011" />
+                <img className="timeline__img" src="https://media.urgente24.com/p/0ae47081aec9a87bd46839cccad49f80/adjuntos/319/imagenes/002/744/0002744459/1200x0/smart/pobrezajpg.jpg" alt="La Gruta 2011" />
               </div>
               <h2 className="timeline__content-title">2011</h2>
               <p className="timeline__content-desc">Nace la gruta como un proyecto de la fundacion "JQM"</p>

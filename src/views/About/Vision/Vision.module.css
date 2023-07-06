@@ -10,7 +10,7 @@
   
 .parallax {
   position: absolute;
-  background-image: url("C:\Users\gonza\Desktop\Henry\PF\lagrutaclient\src\assets\Parallax2.jpg");
+  background-image: url("../../../assets/IMG_3752.jpg");
   height: 100vh;
   background-size: cover;
   background-position: center; 
@@ -19,6 +19,7 @@
   width: 100%;
   z-index: -1;
 }
+
   
 .TittleVision {
   color: white;
