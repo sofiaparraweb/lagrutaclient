@@ -39,7 +39,7 @@ const FormDona = ({ selectedOption, customValue }) => {
     setFormErrors(formValidation || {});
     return Object.keys(formValidation || {}).length === 0;
   };
-  console.log(selectedOption, customValue);
+  //console.log(selectedOption, customValue);
 
   const customSubmit = async (user) => {
     setLoading(true);
@@ -57,7 +57,7 @@ const FormDona = ({ selectedOption, customValue }) => {
       console.log(user);
 
       dispatch(enviarInformacion(user)).then((response) => {
-        console.log("esto es prueba", response);
+      //  console.log("esto es prueba", response);
         if (response) {
           window.open(response.init_point, "_blank");
         } else {

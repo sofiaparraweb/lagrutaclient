@@ -315,7 +315,7 @@ export function create_news(payload) {
      try {
        const response = await axios.post(`${url}/payment/donation/create-order/`, data)
        if (response) {
-         console.log("estoy en actions, La información se envió correctamente", response);
+      //   console.log("estoy en actions, La información se envió correctamente", response);
        
        dispatch({ type: POST_DONACIONES, payload: response.data })
        return response.data;
