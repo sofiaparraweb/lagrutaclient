@@ -101,7 +101,7 @@ const FormPago = ({total}) => {
                             onChange={handleInput}
                             type="text"
                             {...register("user_mail", {
-                                pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/i,
+                                pattern: /^([^\s@]+@(gmail\.com|hotmail\.com|yahoo\.com))$/i,
                                 required: true,
                             })}
                             />
