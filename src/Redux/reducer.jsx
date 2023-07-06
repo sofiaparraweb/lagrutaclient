@@ -22,7 +22,7 @@ import {
   POST_NEWS_DASHBOARD,
   SET_USER_ID,
   POST_DONACIONES,
-  FORM_VOLUNTARIO,
+  FORM_VOLUNTARIO
 } from "./actions";
 
 const initialstate = {

@@ -1,5 +1,10 @@
+@import url('https://fonts.cdnfonts.com/css/wicked-grit');
+@import url('https://fonts.cdnfonts.com/css/dk-lemon-yellow-sun');
+/* font-family: 'Wicked Grit', sans-serif;
+font-family: 'DK Lemon Yellow Sun', sans-serif; */
+
 .contentPrincipal{
-    background-color: #dede;
+    background-color: rgb(242, 217, 152);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -29,15 +34,16 @@
     color: #fff;
     font-weight: bold;
     font-size: 20px;
+    font-family: 'DK Lemon Yellow Sun', sans-serif; 
   }
 
-  .inputs {
+  .inputsDona {
     border: 2px solid #fff;
     border-radius: 5px;
     /* background-color: #f0f0f0; */
     /* background-color: transparent; */
     display: block;
-    font-family: inherit;
+    font-family: 'DK Lemon Yellow Sun', sans-serif; 
     font-weight: bold;
     font-size: 16px;
     padding: 12px;
@@ -45,21 +51,21 @@
     width: 100%;
       
   }
-  .inputs:focus {
+  .inputsDona:focus {
     outline: none;
   }
-  .inputs::placeholder{
+  .inputsDona::placeholder{
     color: #747fac;
   }
    .boton {
-    background: #ea5d0b;
-    border:1px solid #ea5d0b;
+    background-color: #4184c2 !important;
     border-radius: 5px;
     color: #f6f6e9;
     display: block;
     width: 100%;
     padding: 5px;
     font-size: 20px;
+    font-family: 'DK Lemon Yellow Sun', sans-serif; 
   }
   .boton:hover {
     background-color: #ff8000;

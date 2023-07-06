@@ -1,4 +1,7 @@
-
+@import url('https://fonts.cdnfonts.com/css/wicked-grit');
+@import url('https://fonts.cdnfonts.com/css/dk-lemon-yellow-sun');
+/* font-family: 'DK Lemon Yellow Sun', sans-serif;
+font-family: 'Wicked Grit', sans-serif; */
 
 .modal {
   position:fixed;
@@ -26,6 +29,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   transition: opacity 0.3s ease;
   opacity: 1;
+  font-family: 'Wicked Grit', sans-serif;
 }
 
 
@@ -35,7 +39,7 @@
   }
   
   .modalcontent h2 {
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'Wicked Grit', sans-serif;
     font-weight: 600;
     color: #35332a;
     font-size: 30px;
@@ -44,7 +48,7 @@
   
   .buttonModal {
     border: solid 2px;
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'Wicked Grit', sans-serif;
     font-weight: bold;
     background-color: #D7B63E;
     font-size: 20px;

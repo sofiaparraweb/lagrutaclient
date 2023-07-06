@@ -21,6 +21,7 @@ export const DELETE_ALL_CART = "DELETE_ALL_CART";
 export const DELETE_CARRITO = "DELETE_CARRITO";
 export const POST_PAGO_TIENDA = "POST_PAGO_TIENDA";
 export const FETCH_PROFILE = "FETCH_PROFILE";
+export const GET_PROFILE_MAIL = 'GET_PROFILE_MAIL';
 export const CREATE_PROFILE = "CREATE_PROFILE";
 export const GET_USERID = "GET_USERID";
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
@@ -243,7 +244,7 @@ export const getProfile = (userId) => {
   };
 };
 
-export const getUserId = (email) => {
+export const getUserId = (email) =>{
   return async (dispatch) => {
     try {
       const response = await axios.get(`${url}/user/mail/${email}`);
@@ -255,17 +256,18 @@ export const getUserId = (email) => {
     } catch (error) {
       console.log(error);
     }
-  };
-}
+  }
+};
 
-export const updateProfile = (userId, newProfile) => {
+export const updateProfile = (data) => {
   return async (dispatch) => {
     try {
-      const response = await axios.put(`${url}/user/edit`, newProfile);
+      const response = await axios.put(`${url}/user/edit`, data);
       dispatch({
         type: UPDATE_PROFILE,
         payload: response.data,
       });
+      console.log('se ejecuto con exitot bbbb')
     } catch (error) {
       console.log({ error: error.message });
     }
