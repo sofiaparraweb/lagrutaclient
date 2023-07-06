@@ -1,3 +1,4 @@
+import { User } from "@auth0/auth0-spa-js";
 import { useRadio } from "@chakra-ui/react";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -196,12 +197,12 @@ export const changeQuantity = (user_id, id, quantity) => {
 };
 
 // ----------Para ir al formulario de pago
-export const enviarDataTienda = (user_id, data) => {
+export const enviarDataTienda = (user_id) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post(`${url}/payment/create-order?user_id=${user_id}`, data)
+      console.log(user_id);
+      const response = await axios.post(`${url}/payment/cart/create-order/${user_id}`)
       if (response) {
-        console.log("estoy en actions, La información se envió correctamente", response);
         dispatch({ type: POST_PAGO_TIENDA, payload: response.data })
         return response.data;
       } 
