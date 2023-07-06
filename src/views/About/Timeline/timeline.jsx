@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import './Timeline.css';
+import './timeline.css';
 import $ from 'jquery';
 
 const Timeline = () => {
