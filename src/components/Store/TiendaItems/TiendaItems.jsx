@@ -38,8 +38,8 @@ const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes
   
   const handleSubmit = async (event) => {
     event.preventDefault()
-    // await axios.post('https://lagruta.onrender.com/review/post', review)
-    await axios.post('http://localhost:3001/review/post', review)
+    await axios.post('https://lagruta.onrender.com/review/post', review)
+    //await axios.post('http://localhost:3001/review/post', review)
     .then(res=>alert("Gracias por opinar sobre nuestro producto!"))
     .catch((error) => alert(error))
   }
