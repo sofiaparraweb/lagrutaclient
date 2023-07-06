@@ -12,9 +12,10 @@ const PedirInfo = () => {
     <>
       <div className={style.infoCon}>
         <div className={style.innerContainer}>
-          <h1 className={style.sectionTitle}>
-            Trabajamos para que <span>los niños sean sólo niños</span>
-          </h1>
+        <h1 className={style.sectionTitle}>
+  Trabajamos para que{" "}
+  <span className={style.customFont}>los niños sean sólo niños</span>
+</h1>
           <div className={style.border}></div>
           <div className={style.serviceContainer}>
             <div className={style.infobox}>

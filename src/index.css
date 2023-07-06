@@ -11,8 +11,7 @@ body {
 	background-size:  cover;
 	background-attachment: fixed;
 	margin: 0;
- font-family: Roboto, Helvetica, Arial, sans-serif;
-
+  font-family: Roboto, Helvetica, Arial, sans-serif;
 }
 
 body::-webkit-scrollbar { 
@@ -27,8 +26,6 @@ body::-webkit-scrollbar-thumb {
   background-color: #e4d1bb;
   outline: 0px solid #e1e0e0;
 }
-
-
 
 
 /* :root {

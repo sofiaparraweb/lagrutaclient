@@ -8,12 +8,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-const FormDona = ({selectedOption, customValue }) => {
+const FormDona = ({ selectedOption, customValue }) => {
   const {
     register,
     reset,
     handleSubmit,
     formState: { errors },
+    trigger,
   } = useForm();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -23,39 +24,51 @@ const FormDona = ({selectedOption, customValue }) => {
     lastName: "",
     user_mail: "",
     phone: "",
-    amount:0,
+    amount: 0,
   });
+  const [formErrors, setFormErrors] = useState({});
 
   const handleInput = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     setUser({ ...user, [name]: value });
   };
-  console.log(selectedOption, customValue);
+
+  const validateForm = async () => {
+    const formValidation = await trigger();
+    setFormErrors(formValidation || {});
+    return Object.keys(formValidation || {}).length === 0;
+  };
+  //console.log(selectedOption, customValue);
 
   const customSubmit = async (user) => {
     setLoading(true);
-    //user.amount = selectedOption;
-    if(!user.amount && customValue !== "") {
-        user.amount = customValue
-    }else{
-        user.amount=selectedOption
-    }
-   
-    console.log(user);
-    dispatch(enviarInformacion(user)).then((response) => {
-        console.log("esto es prueba", response);
-      if (response) {
-        window.open(response.init_point, "_blank");
+
+    const isFormValid = await validateForm();
+
+    if (isFormValid) {
+      //user.amount = selectedOption;
+      if (!user.amount && customValue !== "") {
+        user.amount = customValue;
       } else {
-        Swal.fire("Error", "Hubo un error al enviar la información", "error");
+        user.amount = selectedOption;
       }
-      setLoading(false);
-      reset();
-      navigate(0);
-    });
+
+      console.log(user);
+
+      dispatch(enviarInformacion(user)).then((response) => {
+      //  console.log("esto es prueba", response);
+        if (response) {
+          window.open(response.init_point, "_blank");
+        } else {
+          Swal.fire("Error", "Hubo un error al enviar la información", "error");
+        }
+        setLoading(false);
+        reset();
+        navigate(0);
+      });
+    }
   };
-  
 
   return (
     <>
@@ -64,9 +77,11 @@ const FormDona = ({selectedOption, customValue }) => {
           <div className={style.formControl}>
             <label className={style.labeles}>Nombre</label>
             <input
-              className={style.inputs}
+              className={`${style.inputsDona} ${
+                errors.name ? style.error : style.success
+              }`}
               name="name"
-              placeholder="Nombre"
+              placeholder="Ingresar Nombre"
               onChange={handleInput}
               type="text"
               {...register("name", {
@@ -85,9 +100,11 @@ const FormDona = ({selectedOption, customValue }) => {
           <div className={style.formControl}>
             <label className={style.labeles}>Apellido</label>
             <input
-              className={style.inputs}
+              className={`${style.inputsDona} ${
+                errors.lastName ? style.error : style.success
+              }`}
               name="lastName"
-              placeholder="Apellido"
+              placeholder="Ingresar Apellido"
               onChange={handleInput}
               type="text"
               {...register("lastName", {
@@ -106,13 +123,15 @@ const FormDona = ({selectedOption, customValue }) => {
           <div className={style.formControl}>
             <label className={style.labeles}>Email</label>
             <input
-              className={style.inputs}
+              className={`${style.inputsDona} ${
+                errors.user_mail ? style.error : style.success
+              }`}
               name="user_mail"
-              placeholder="Ingrese correo"
+              placeholder="Ingresar Email"
               onChange={handleInput}
               type="text"
               {...register("user_mail", {
-                pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/i,
+                pattern: /^[^\s@]+@gmail\.com$/i,
                 required: true,
               })}
             />
@@ -129,20 +148,29 @@ const FormDona = ({selectedOption, customValue }) => {
               Teléfono (Cód. Área + número)
             </label>
             <input
-              className={style.inputs}
+              className={`${style.inputsDona} ${
+                errors.phone ? style.error : style.success
+              }`}
               name="phone"
-              placeholder="11 12345678"
+              placeholder="+54 9 11 12345678"
               onChange={handleInput}
-              type="number"
-              {...register("telefono", {
-                required: {
-                  value: true,
-                  message: "El campo no puede estar vacio",
+              type="text"
+              {...register("phone", {
+                maxLength: 15,
+                required: "El campo no puede estar vacío",
+                pattern: {
+                  value:
+                    /^\+(?:[0-9]?){1,3}[-. (]*(?:[0-9]{1,})[-. )]*(?:[0-9]{1,})[-. ]*(?:[0-9]{1,})$/,
+                  message:
+                    "Ingrese un número de teléfono válido (ejemplo: +54 9 11 12345678)",
                 },
               })}
             />
-            {errors.telefono && (
-              <p className={style.fail}>{errors.telefono.message}</p>
+            {errors.phone && (
+              <p className={style.fail}>{errors.phone.message}</p>
+            )}
+            {errors.phone?.type === "maxLength" && (
+              <p className={style.fail}> Ingrese un contacto válido</p>
             )}
           </div>
           <button className={style.boton} type="submit" disabled={loading}>
@@ -154,6 +182,5 @@ const FormDona = ({selectedOption, customValue }) => {
     </>
   );
 };
-
 
 export default FormDona;

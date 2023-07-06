@@ -16,14 +16,14 @@ import CarritoContainer from "./components/Store/CarritoContainer/CarritoContain
 import PopUpDonateNow from "./components/MensajeFloat/DonateNow";
 import WP_Button from "./components/MensajeFloat/WP_Button.jsx";
 import BackToTop from "./components/BackToTop/BackToTop";
-import Timeline from "./views/About/Timeline/Timeline";
+import Timeline from "./views/About/Timeline/timeline";
 import Equipo from "./views/About/Equipo/Equipo";
 
 /* componentes usuarios */
 import Perfil from "./views/Perfil/Perfil";
 import LogIn from "./views/LogIn/LogIn";
 import LogOut from "./views/LogIn/LogOut";
-import { ProtectedRoutes } from "./components/ProtectedRoutes/ProtectedRoutes";
+//import { ProtectedRoutes } from "./components/ProtectedRoutes/ProtectedRoutes";
 
 /* donaciones */
 import DonationForm from "./views/Donacion/Donacion";
@@ -36,11 +36,7 @@ import Dashboard from "./views/DashBoard/Home";
 import DashboardNoticias from "./views/DashBoard/DashboarNoticias";
 import DashboardShop from "./views/DashBoard/DashboardShop";
 import DashboardUsers from "./views/DashBoard/DashboardUsers";
-
-
-
-
-
+import Modifiview from "./views/DashBoard/Modifiview.jsx";
 
 const App = () => {
   const { isAuthenticated, isLoading } = useAuth0();
@@ -91,14 +87,16 @@ const App = () => {
         <Route path="/login" element={<LogIn />} />
         <Route path="/logout" element={<LogOut />} />
         <Route path="/" element={<LayoutAdmin />}>
-        <Route path="dashboard" element={
+        {/* <Route path="dashboard" element={
         <ProtectedRoutes redirectTo="/">
           <Dashboard />
         </ProtectedRoutes>
-        } />
+        } />  */}
+        {<Route path="/dashboard" element={<Dashboard/>} /> }
         <Route path="news" element={<DashboardNoticias />} />
         <Route path="shop" element={<DashboardShop />}  />
         <Route path="users" element={<DashboardUsers />}  />
+        <Route path="modifi" element={<Modifiview />} />
         </Route>
       </Routes> 
       <WP_Button />

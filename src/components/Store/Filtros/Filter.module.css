@@ -53,12 +53,11 @@
 }
 
 .ActiveButtonFilter{
-  /* background-color: rgb(241, 241, 241); */
-  background-color: white;
+  background-color: rgb(241, 241, 241);
   color: black;
   border-radius: 5px;
   padding: 5px;
-  padding-right: 100px;
+  padding-right: 150px;
 }
 
 .ActiveButtonNull{

@@ -9,9 +9,9 @@
     top: 0;
     left: 0;
     border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-bottom-right-radius: 10px; 
     height: 100%;
-    width: 170px;
+    width: 15%;
     background-color:#EB5D0B;
     overflow-x: hidden;
 }

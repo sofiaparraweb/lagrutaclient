@@ -10,8 +10,9 @@ import "@szhsin/react-menu/dist/transitions/slide.css";
 
 function validate(name, price, image, description, stock, type) {
   let errors = {};
-  if (!name) {
-    errors.name = "Debe ingresar un nombre para el producto";
+
+  if (!name || !/^[A-Za-z]+$/.test(name)) {
+    errors.name = "Debe ingresar un nombre válido, solo se permiten letras";
   }
   if (!price) {
     errors.price = "Debe ingresar un precio del producto";
@@ -34,7 +35,9 @@ function validate(name, price, image, description, stock, type) {
 
 const FormCreacion = () => {
   const dispatch = useDispatch();
-  const allProductTypes = useSelector((state) => state.LocalPersist.allProductTypes);
+  const allProductTypes = useSelector(
+    (state) => state.LocalPersist.allProductTypes
+  );
 
   const [errors, setErrors] = useState({});
   const [image, setImage] = useState(null);
@@ -70,7 +73,6 @@ const FormCreacion = () => {
       setType(value);
     }
   };
- 
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
@@ -82,10 +84,18 @@ const FormCreacion = () => {
   };
 
   const handleSubmit = async (e) => {
-    const LOCAL = "http://localhost:3001";
+    const LOCAL = "https://lagruta.onrender.com";
+    // const LOCAL = "http://localhost:3001";
     e.preventDefault();
 
-    const validationErrors = validate(name, price, image, description, stock, type); 
+    const validationErrors = validate(
+      name,
+      price,
+      image,
+      description,
+      stock,
+      type
+    );
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length > 0) {
@@ -103,136 +113,174 @@ const FormCreacion = () => {
     try {
       const res = await axios.post(`${LOCAL}/products/create`, formData);
       Swal.fire({
-        icon: 'success',
-        title: 'Producto agregado con éxito',
+        icon: "success",
+        title: "Producto agregado con éxito",
       });
       const imgUrl = res.data;
-      console.log("url de la img", imgUrl);      
+      console.log("url de la img", imgUrl);
 
-    setName("");
-    setImage(null);
-    setPreviewImage(null);
-    setDescription("");
-    setPrice("");
-    setStock("");
-    setType("");
-    setErrors({});
-
+      setName("");
+      setImage(null);
+      setPreviewImage(null);
+      setDescription("");
+      setPrice("");
+      setStock("");
+      setType("");
+      setErrors({});
     } catch (err) {
       console.log("error al subir imagen", err);
     }
   };
 
   return (
-    <section className={style.section}>
-      <div className={style.formContainer}>
-        <div className="flex items-center justify-between mb-10">
-          <h1 className="text-4xl text-gray-700">
-            Agregar productos nuevos a la tienda
-          </h1>
-          <p>
-            En este apartado puedes añadir productos nuevos a la tienda,
-            recuerda también, que puedes editarlos una vez este publicados.{" "}
-          </p>
-        </div>
-        <div className={style.bottompart}>
-          <div className={style.imgpart}>
-            {previewImage && (
-              <img
-                className={style.previewImage}
-                src={previewImage}
-                alt="Vista previa de la imagen"
-              />
-            )}
-          </div>
-          <div className={style.formpart}>
-            <form onSubmit={handleSubmit}>
-              <label className={style.LabelForm} htmlFor="name">
+    <div>
+      <section class="max-w-4xl p-6 mx-auto bg-indigo-600 rounded-md shadow-md dark:bg-gray-800 mt-20">
+        <h1 class="text-xl font-bold text-white capitalize dark:text-white">
+          Publicar nuevo producto
+        </h1>
+        <form onSubmit={handleSubmit}>
+          <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+            <div>
+              <label class="text-white dark:text-gray-200" htmlFor="name">
                 Nombre del producto
               </label>
               <input
-                className={style.inputbox}
                 type="text"
                 name="name"
                 value={name}
+                placeholder="Nombre de producto"
                 onChange={handleInputChange}
+                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
               />
-              {errors?.name && <p className={style.error}> {errors.name}</p>}
-              <label className={style.LabelForm} htmlFor="price">
-                Precio del producto
+              {errors?.name && <p className="text-red-600"> {errors.name}</p>}
+            </div>
+            <div>
+              <label class="text-white dark:text-gray-200" htmlFor="">
+                Seleccione categoría del producto
+              </label>
+              <select
+                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+                value={type}
+                onChange={(e) => setType(e.target.value)}>
+                <option key="" value="">
+                  {" "}
+                  Seleccionar categoría
+                </option>
+                {allProductTypes?.map((e) => {
+                  return (
+                    <option key={e.id} value={e.name}>
+                      {" "}
+                      {e.name}
+                    </option>
+                  );
+                })}{" "}
+              </select>
+            </div>
+            <div>
+              <label class="text-white dark:text-gray-200" htmlFor="price">
+                Precio $$
               </label>
               <input
-                className={style.inputbox}
-                type="integer"
+                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+                type="number"
                 value={price}
                 name="price"
+                placeholder="indique un valor"
                 onChange={handleInputChange}
               />
-              {errors?.price && <p className={style.error}> {errors.price}</p>}
-              <label className={style.LabelForm} htmlFor="description">
+              {errors?.price && <p className="text-red-600"> {errors.price}</p>}
+            </div>
+            <div>
+              <label
+                class="text-white dark:text-gray-200"
+                htmlFor="description">
                 Descripción del producto
               </label>
               <textarea
-                className={style.inputbox}
+                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
                 value={description}
                 name="description"
                 placeholder="descripción del producto"
                 onChange={handleInputChange}
               />
               {errors?.description && (
-                <p className={style.error}> {errors.description}</p>
+                <p className="text-red-600"> {errors.description}</p>
               )}
-              <label className={style.LabelForm} htmlFor="image">
-                Imagen ilustrativa del producto
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-white">
+                Cargar imagen
               </label>
-              <input
-                className={style.inputbox}
-                type="file"
-                accept="img/*"
-                onChange={handleImageChange}
-              />{" "}
-              {errors?.img && <p className={style.error}> {errors.img}</p>}
-              <label className={style.LabelForm} htmlFor="stock">
-                Cantidad de unidades a vender
+              <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                <div className="space-y-1 text-center">
+                  <svg
+                    className="mx-auto h-12 w-12 text-white mt-0.5"
+                    stroke="currentColor"
+                    fill="none"
+                    viewBox="0 0 48 48"
+                    aria-hidden="true">
+                    <path
+                      d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <div className="flex text-sm text-gray-600">
+                    <label
+                      htmlFor="img"
+                      className="relative cursor-pointer bg-indigo-600 rounded-md font-medium text-white  focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                      <input
+                        id="file-upload"
+                        name="file-upload"
+                        type="file"
+                        accept="img/*"
+                        onChange={handleImageChange}
+                        className="flex justify-center"
+                      />
+                    </label>
+                  </div>
+                  <p class="text-xs text-white">PNG, JPG, GIF up to 10MB</p>
+                </div>
+              </div>{" "}
+              {errors?.img && <p className="text-red-600"> {errors.img}</p>}
+            </div>
+            <div className="justify-end">
+              <label class="block text-sm font-medium text-white">
+                Pevisualizacion
               </label>
-              <input
-                className={style.inputbox}
-                type="integer"
-                value={stock}
-                name="stock"
-                onChange={handleInputChange}
-              />
-              {errors?.stock && <p className={style.error}> {errors.stock}</p>}  
-              <label className={style.LabelForm} htmlFor="">
-                Seleccione un tipo de producto
-              </label>
-              <div className="types-s">
-                <select
-                  className={style.inputbox}
-                  value={type}
-                  onChange={(e) => setType(e.target.value)}>
-                  <option className={style.options} key="" value="">
-                    {" "}
-                    Seleccionar categoría
-                  </option>
-                  {allProductTypes?.map((e) => {
-                    return (
-                      <option key={e.id} value={e.name}>
-                        {" "}
-                        {e.name}
-                      </option>
-                    )
-                  })}{" "}
-                </select>
+              <div className="mt-1 flex justify-center  px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                {previewImage && (
+                  <img src={previewImage} alt="Vista previa de la imagen" />
+                )}
               </div>
-              <button className={style.submitbtn} type="submit">
-                Publicar
-              </button>
-            </form>
+            </div>
+
+            <label class="text-white dark:text-gray-200" htmlFor="stock">
+              Cantidad de unidades a vender
+            </label>
+            <input
+              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+              type="integer"
+              value={stock}
+              name="stock"
+              onChange={handleInputChange}
+            />
+            {errors?.stock && <p className="text-red-600"> {errors.stock}</p>}
+            <label className={style.LabelForm} htmlFor="">
+              Seleccione un tipo de producto
+            </label>
           </div>
-        </div>
-      </div>
-    </section>
+          <div class="flex justify-end mt-6">
+            <button
+              type="submit"
+              className="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600">
+              Publicar
+            </button>
+          </div>
+        </form>
+      </section>
+    </div>
   );
 };
 

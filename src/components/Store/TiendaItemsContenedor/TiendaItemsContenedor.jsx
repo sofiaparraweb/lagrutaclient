@@ -5,13 +5,13 @@ import SideBar from "../SideBar/SideBar"
 
 const TiendaItemsContenedor = ({ products, setCurrentPage }) => {
 
-    return (
+    return ( 
         <div className={style.ContenedorTienda}>
             <div className={style.TiendaSideBar}>
                 <SideBar setCurrentPage={setCurrentPage}/>
             </div> 
             <div className={style.TiendaItemsContainer}> 
-                {products.length > 0 && products?.map((prod) => {
+                {products?.length > 0 && products?.map((prod) => {
                     return (
                         <TiendaItems
                             key={prod.id}

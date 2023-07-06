@@ -6,9 +6,9 @@ import { AiOutlineFilter } from "react-icons/ai";
 
 const Filter = ({ setCurrentPage }) => {
 
-  const [activeFilter, setActiveFilter] = useState(null);  //Para modificar el estado del filtro activo
   const dispatch = useDispatch();
   const allProductTypes = useSelector(state => state.LocalPersist.allProductTypes);
+  const [activeFilter, setActiveFilter] = useState(null);  //Para modificar el estado del filtro activo
 
   const handleFilter = name => {  //Ejecutamos la action segun el filtro que seleccionemos abajo
     dispatch(filterByType(name));
