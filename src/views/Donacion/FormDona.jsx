@@ -131,7 +131,7 @@ const FormDona = ({ selectedOption, customValue }) => {
               onChange={handleInput}
               type="text"
               {...register("user_mail", {
-                pattern: /^[^\s@]+@gmail\.com$/i,
+                pattern: /^([^\s@]+@(gmail\.com|hotmail\.com|yahoo\.com))$/i,
                 required: true,
               })}
             />
