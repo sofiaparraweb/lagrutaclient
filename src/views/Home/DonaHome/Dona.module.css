@@ -25,7 +25,7 @@ p#SegundoAmarillo {
   margin-bottom: 20px;
 }
 
-.BotonMasNoticias {
+.BotonParaDonar {
   margin-top: 15px;
   background-color: #124476;
   color: white;
@@ -38,8 +38,8 @@ p#SegundoAmarillo {
   transition: background-color 0.3s ease;
 }
 
-.BotonMasNoticias#Dona:hover {
-  background-color: rgba(0, 0, 0, 0.2);
+.BotonParaDonar:hover {
+  color: #B9362C;
 }
 
 @media (max-width: 767px) {
