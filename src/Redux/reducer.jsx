@@ -2,17 +2,15 @@ import {
   CLEANDETAIL,
   GET_ALL_PRODUCTS,
   GET_ALL_PRODUCTS_TYPES,
-  GET_DETAIL_PRODUCTS,
   FILTER_BY_NAME,
   FILTER_BY_TYPE,
   ORDER_BY_PRICE,
   GET_CART,
   ADD_TO_CART,
-  CARGAR_PRODUCTOS,
-  QUITAR_PRODUCTOS,
   DELETE_ALL_CART,
   DELETE_CARRITO,
-  PUT_AMOUNT_CART,
+  CHANGE_QUANTITY,
+  POST_PAGO_TIENDA,
   GET_ALL_ACTIVITY,
   GET_DETAIL_ACTIVITY,
   GET_TYPEACTY,
@@ -26,6 +24,7 @@ import {
   FORM_VOLUNTARIO,
   GET_ALL_USERS,
   DELETE_USER,
+  FORM_VOLUNTARIO,
 } from "./actions";
 
 const initialstate = {
@@ -36,23 +35,23 @@ const initialstate = {
   allProducts: [],
   allProductTypes: [],
   products: [],
-  ProductsDetail: [],
   Carrito: [],
   CarritoProductos: [],
   profile: null,
   donaciones: {},
   userId: "",
   userInfo: [],
-  forms: [], 
+  forms: [],
   allUsers: [],
 };
 
 function rootReducer(state = initialstate, action) {
   switch (action.type) {
+    // --------------------------------------------------TIENDA--------------------------------------------------
     case GET_ALL_PRODUCTS:
       return {
         ...state,
-        allProducts: action.payload, 
+        allProducts: action.payload,
         products: action.payload,
       };
 
@@ -62,11 +61,11 @@ function rootReducer(state = initialstate, action) {
         allProductTypes: action.payload,
       };
 
-      case GET_ALL_USERS:
-        return {
-          ...state,
-          allUsers: action.payload
-        }
+    case GET_ALL_USERS:
+      return {
+        ...state,
+        allUsers: action.payload,
+      };
 
     case GET_DETAIL_PRODUCTS:
       return {
@@ -74,7 +73,6 @@ function rootReducer(state = initialstate, action) {
         ProductsDetail: action.payload,
       };
 
-     
     case FILTER_BY_NAME:
       return {
         ...state,
@@ -93,53 +91,31 @@ function rootReducer(state = initialstate, action) {
         products: action.payload,
       };
 
+    // --------------------------------------------------CARRITO--------------------------------------------------
     case GET_CART:
       return {
         ...state,
         Carrito: action.payload,
       };
 
-    // case CARGAR_PRODUCTOS:
-    //   {
-    //     const { userId, id, name, price, stock, image } = action.payload;
-    //     const existingProduct = state.Carrito.find(item => item.id === id);
-    //     if (existingProduct) {
-    //       if (existingProduct.quantity < stock) {
-    //         return {
-    //           ...state,
-    //           Carrito: state.Carrito.map(item =>
-    //             item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-    //           )
-    //         };
-    //       } else {
-    //         return state; // No se actualiza el estado si no hay stock suficiente
-    //       }
-    //     } else {
-    //       return {
-    //         ...state,
-    //         Carrito: [ ...state.Carrito, {
-    //             id,
-      //           name,
-      //           image,
-      //           price,
-      //           stock,
-      //           quantity: 1
-      //       }]
-      //     }
-      //   }
-      // }
-      // return state;
+    case CHANGE_QUANTITY: {
+      const updatedCart = state.Carrito.map((item) => {
+        if (item.id === action.payload.id) {
+          return { ...item, quantity: action.payload.quantity };
+        }
+        return item;
+      });
+
+      return {
+        ...state,
+        Carrito: updatedCart,
+      };
+    }
 
     case ADD_TO_CART:
       return {
         ...state,
         Carrito: [...state.Carrito, action.payload],
-      };
-
-    case QUITAR_PRODUCTOS:
-      return {
-        ...state,
-        Carrito: state.Carrito.filter((cart) => cart.id !== action.payload),
       };
 
     case DELETE_ALL_CART:
@@ -154,21 +130,20 @@ function rootReducer(state = initialstate, action) {
         Carrito: state.Carrito.filter((cart) => cart.userId !== action.payload),
       };
 
-      case DELETE_USER:
-        return {
-          ...state,
-          allUsers: state.allUsers.filter(
-            (us) => us.id !== action.payload
-          ),
-        };
-    
+    case DELETE_USER:
+      return {
+        ...state,
+        allUsers: state.allUsers.filter((us) => us.id !== action.payload),
+      };
 
     case PUT_AMOUNT_CART:
+    case POST_PAGO_TIENDA:
       return {
         ...state,
         CarritoProductos: action.payload,
       };
-      
+
+    // --------------------------------------------------NOTICIAS--------------------------------------------------
     case GET_ALL_ACTIVITY:
       return {
         ...state,
@@ -192,7 +167,8 @@ function rootReducer(state = initialstate, action) {
         ...state,
         activityDetail: {},
       };
-    
+
+    // --------------------------------------------------USUARIOS--------------------------------------------------
     case FETCH_PROFILE:
       return {
         ...state,
@@ -203,7 +179,7 @@ function rootReducer(state = initialstate, action) {
       return {
         ...state,
         userInfo: action.payload,
-      }
+      };
 
     case CREATE_PROFILE:
       return {
@@ -216,30 +192,29 @@ function rootReducer(state = initialstate, action) {
         ...state,
         profile: action.payload,
       };
-  
+
     case SET_USER_ID:
       return {
         ...state,
         userId: action.payload,
       };
-  
+
     case POST_NEWS_DASHBOARD:
       return {
         ...state,
       };
 
-    //=====>>>caso donaciones<<<=====// 
+    // --------------------------------------------------DONACIONES--------------------------------------------------
     case POST_DONACIONES:
       return {
         ...state,
         donaciones: action.payload,
       };
-      
+
     case FORM_VOLUNTARIO:
       return {
         ...state,
-      }
-
+      };
 
     default:
       return state;

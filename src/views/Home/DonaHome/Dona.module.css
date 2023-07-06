@@ -1,109 +1,56 @@
 @import url('https://fonts.cdnfonts.com/css/wicked-grit');
 @import url('https://fonts.cdnfonts.com/css/dk-lemon-yellow-sun');
 
-.DonaHome{
+.DonaHome {
   position: relative;
   margin: 10px 0;
-  height: 320px;
-}
-
-img[alt="yellow"]{
-  margin-left: 12%;
-  z-index: -1;
-  position: absolute;
-  width: 73%;
-}
-
-img[alt="flechaazul"]{
-  position: absolute;
-  left: 60%;
-  top: 65%;
-}
-
-p[id="PrimerAmarillo"]{
-  position: absolute;
-  top: 54%;
-  left: 46%;
-  transform: translate(-70%, -100%);
-  width: 45%;
-  font-size: 150%;
-  color: rgba(16, 68, 118, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   font-family: 'DK Lemon Yellow Sun', sans-serif;
+  font-size: 24px;
 }
 
-p[id="SegundoAmarillo"]{
-  position: absolute;
-  top: 52%;
-  left: 50%;
-  font-size: 150%;
-  transform: translate(-60%, -1%);
+p#PrimerAmarillo {
+  font-size: 24px;
   color: rgba(16, 68, 118, 255);
-  text-align: center;
-  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  margin-bottom: 20px;
 }
 
-.BotonMasNoticias[id="Dona"]{
-  position: absolute;
-  background-image: url(../../../assets/corazon.png);
-  background-size: 120px;
-  background-repeat: no-repeat;
-  animation: resize 1s infinite alternate;
+p#SegundoAmarillo {
+  font-size: 24px;
   color: rgba(16, 68, 118, 255);
-  height: 120px;
-  width: 120px;
-  top:57%;
-  left: 72%;
-  font-size: 25px;
-  font-style: italic; 
+  margin-bottom: 20px;
+}
+
+.BotonParaDonar {
+  margin-top: 15px;
+  background-color: #124476;
+  color: white;
+  height: 50px;
+  width: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-@keyframes resize {
-  0% {
-    transform: scale(1); 
-  }
-  100% {
-    transform: scale(1.15); 
-  }
+  text-decoration: none;
+  transition: background-color 0.3s ease;
 }
 
+.BotonParaDonar:hover {
+  color: #B9362C;
+}
 
 @media (max-width: 767px) {
   .DonaHome {
     height: auto;
   }
-
-  img[alt="yellow"] {
-    width: 100%;
-    height: auto;
-    margin: 0;
-  }
-
-  img[alt="flechaazul"] {
-    display: none;
-  }
-
-  p[id="PrimerAmarillo"], p[id="SegundoAmarillo"] {
-    position: static;
-    transform: none;
-    width: 80%;
-    text-align: center;
-    margin-top: 2%;
-    font-size: 140%;
-  }
-
-  .BotonMasNoticias[id="Dona"] {
-    position: static;
-    margin-top: 10px;
-    margin-left: 40%;
-  }
 }
 
-/* Responsive para menos de 480px */
 @media (max-width: 479px) {
-  p[id="PrimerAmarillo"], p[id="SegundoAmarillo"] {
+  p[id="PrimerAmarillo"],
+  p[id="SegundoAmarillo"] {
     font-size: 90%;
   }
 

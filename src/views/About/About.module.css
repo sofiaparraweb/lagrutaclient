@@ -1,5 +1,6 @@
 @import url('https://fonts.cdnfonts.com/css/wicked-grit');
 @import url('https://fonts.cdnfonts.com/css/dk-lemon-yellow-sun');
+@import url('https://fonts.cdnfonts.com/css/qanelas-soft');
 
 .Introduccion{
   padding: 45px;
@@ -7,9 +8,10 @@
 
 .headerAboutLaGruta {
   text-align: center;
-  padding-top: 100px;
+  padding-top: 8%;
   padding-bottom: 20px;
   background-color: white;
+  margin-top: 10%;
 }
 
 .headerAboutLaGruta h1 {
@@ -36,7 +38,7 @@
 }
 
 .TextoAbout p {
-  font-size: 22px;
+  font-size: 25px;
   line-height: 1.5;
   padding: 20px 50px;
   text-align: justify;

@@ -1,164 +1,128 @@
-.container {
-  margin-top: 50px;
-  margin-bottom: 50px;
+@import url('https://fonts.cdnfonts.com/css/wicked-grit');
+@import url('https://fonts.cdnfonts.com/css/dk-lemon-yellow-sun');
+
+.perfil-container {
+  max-width: 1000px;
+  margin-top: 100px;
   padding: 20px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-.form-control {
-  border-radius: 5px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  width: 100%;
-  margin-top: 5px;
-  margin-bottom: 10px;
-}
-
-.profile-picture-container {
   position: relative;
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-  margin-bottom: 30px;
-  overflow: hidden;
 }
 
-.profile-picture {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 30px;
-}
-
-.profile-picture-label {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  padding: 5px 10px;
-  background-color: #1d2636;
-  color: #fff;
-  font-size: 15px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.custom-input {
-  text-align: left;
-  font-size: 16px;
-  font-weight: bold;
-  background-color: #f8f8f8;
-  border: none;
-  border-radius: 8px;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-.custom-select {
-  text-align: left;
-  font-size: 16px;
-  font-weight: bold;
-  background-color: #f8f8f8;
-  border: none;
-  border-radius: 8px;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-.labels {
-  font-size: 12px;
-  color: #777;
-  margin-bottom: 3px;
-}
-
-.profile-title {
-  font-size: 34px;
-  font-weight: bold;
-  color: #1d2636;
+.perfil-header {
+  display: flex;
+  align-items: center;
   margin-bottom: 20px;
 }
 
-.profile-edit-button,
-.profile-save-button,
-.profile-cancel-button {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 20px;
-}
-
-.profile-edit-button:hover,
-.profile-save-button:hover,
-.profile-cancel-button:hover {
-  background-color: #0056b3;
-}
-
-.profile-edit-button:focus,
-.profile-save-button:focus,
-.profile-cancel-button:focus {
-  outline: none;
-}
-
-.profile-edit-button:disabled,
-.profile-save-button:disabled,
-.profile-cancel-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-.editar {
+.logo-perfil {
+  width: 80px;
   position: absolute;
   top: 10px;
   right: 10px;
-  padding: 10px 20px;
-  background-color: #f0f0f0;
-  color: #333;
-  border: none;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
 }
 
-.editar:hover {
-  background-color: #e0e0e0;
+.perfil-title {
+  font-size: 40px;
+  font-weight: bold;
+  font-family: 'Wicked Grit', sans-serif;
+  margin-bottom: 3%;
+  color: #EB5D0B;
+}
+
+.perfil-content {
+  display: flex;
+  flex-direction: column;
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  font-size: 20px;
+}
+
+.perfil-image {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin-bottom: 20px;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.image-upload {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
 }
 
-@media (max-width: 576px) {
-  .container {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 10px;
-  }
+.image-upload input[type="file"] {
+  display: none;
+}
 
-  .col-md-3,
-  .col-md-9 {
-    padding: 0px;
-  }
+.perfil-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 10px;
+}
 
-  .profile-picture-container {
-    margin-bottom: 15px;
-  }
+.perfil-label {
+  font-weight: bold;
+  color: #124476;
+}
 
-  .profile-picture-label {
-    font-size: 12px;
-    padding: 3px 6px;
-  }
+.perfil-input {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  outline: none;
+  color: black;
+  font-size: 16px !important;
+}
 
-  .profile-title {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
 
-  .editar {
-    top: 5px;
-    right: 5px;
-    padding: 5px 10px;
-    font-size: 12px;
-  }
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.edit-button,
+.save-button,
+.cancel-button {
+  padding: 20px 40px; /* Ajusta el padding del botón */
+  margin-left: 10px;
+  border-radius: 10px !important;
+  cursor: pointer;
+  font-size: 30px !important; 
+  width: 45%; 
+  height: auto; 
+  letter-spacing: 1.5px;
+}
+
+.edit-button {
+  color: #EB5D0B !important;
+  background-color: #fff;
+}
+
+.save-button {
+  color: #38693a !important;
+  background-color: #fff !important;
+}
+
+.cancel-button {
+  color: #7d3e3e !important;
+  background-color: #fff !important;
 }

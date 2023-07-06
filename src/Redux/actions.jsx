@@ -1,3 +1,4 @@
+import { User } from "@auth0/auth0-spa-js";
 import { useRadio } from "@chakra-ui/react";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -8,7 +9,6 @@ export const CLEANDETAIL = "CREALDETAIL";
 export const GET_TYPEACTY = "GET_TYPEACTY";
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const GET_ALL_PRODUCTS_TYPES = "GET_ALL_PRODUCTS_TYPES";
-export const GET_DETAIL_PRODUCTS = "GET_DETAIL_PRODUCTS";
 export const FILTER_BY_NAME = "FILTER_BY_NAME";
 export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
 export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
@@ -20,8 +20,10 @@ export const ADD_PRODUCT = "ADD_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const DELETE_ALL_CART = "DELETE_ALL_CART";
 export const DELETE_CARRITO = "DELETE_CARRITO";
-export const PUT_AMOUNT_CART = "PUT_AMOUNT_CART";
+export const CHANGE_QUANTITY = "CHANGE_QUANTITY";
+export const POST_PAGO_TIENDA = "POST_PAGO_TIENDA";
 export const FETCH_PROFILE = "FETCH_PROFILE";
+export const GET_PROFILE_MAIL = "GET_PROFILE_MAIL";
 export const CREATE_PROFILE = "CREATE_PROFILE";
 export const GET_USERID = "GET_USERID";
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
@@ -36,8 +38,8 @@ export const FORM_DONACION = "FORM_DONACION";
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const DELETE_USER = "DELETE_USER";
 
-export const url = "http://localhost:3001";
-/* export const url = "https://lagruta.onrender.com"; */
+//export const url = "http://localhost:3001";
+export const url = "https://lagruta.onrender.com";
 // const LOCAL = "http://localhost:3001";
 
 export function getAllActivity() {
@@ -156,22 +158,13 @@ export const getCarrito = (user_id) => {
   };
 };
 
-// ----------Eliminar a carrito Localmente
-export const QuitarProducto = (id) => {
-  return { type: QUITAR_PRODUCTOS, payload: id };
-};
-
-// ----------Agregar a carrito a Base de Datos
+// ----------Agregar al carrito en Base de Datos desde la tienda
 export const addToCart = (user_id, id, quantity) => {
-  console.log(user_id);
-  console.log(id);
-  console.log(quantity);
   return async (dispatch) => {
     try {
       const response = await axios.post(
         `${url}/cart/add?user_id=${user_id}&product_id=${id}&quantity=${quantity}`
       );
-      console.log(response);
       dispatch({ type: ADD_TO_CART, payload: response.data });
     } catch (error) {
       console.log(error);
@@ -179,14 +172,11 @@ export const addToCart = (user_id, id, quantity) => {
   };
 };
 
-// ----------Borrar todo el carrito
-// export const deleteAllCarrito = () => {
-//   return { type: DELETE_ALL_CART, payload: []}
-// };
-export const deleteAllCarrito = (userId) => {
+// ----------Borra todo el carrito
+export const deleteAllCarrito = (user_id) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`${url}/cart/remove?user_id=${userId}`);
+      await axios.delete(`${url}/cart/removeAll?user_id=${user_id}`);
       dispatch({ type: DELETE_ALL_CART, payload: [] });
     } catch (error) {
       console.log(error);
@@ -194,7 +184,7 @@ export const deleteAllCarrito = (userId) => {
   };
 };
 
-// ----------Borrar un elemento
+// ----------Borrar un elemento del Carrito
 export const deleteCarrito = (user_id, id) => {
   return async (dispatch) => {
     try {
@@ -204,6 +194,37 @@ export const deleteCarrito = (user_id, id) => {
       dispatch({ type: DELETE_CARRITO, payload: id });
     } catch (error) {
       console.log(error);
+    }
+  };
+};
+
+// ----------Modificar cantidades desde vista Carrito
+export const changeQuantity = (user_id, id, quantity) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.put(
+        `${url}/cart?user_id=${user_id}&product_id=${id}&quantity=${quantity}`
+      );
+      dispatch({ type: CHANGE_QUANTITY, payload: response.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+// ----------Para ir al formulario de pago
+export const enviarDataTienda = (user_id) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(
+        `${url}/payment/cart/create-order/${user_id}`
+      );
+      if (response) {
+        dispatch({ type: POST_PAGO_TIENDA, payload: response.data });
+        return response.data;
+      }
+    } catch (error) {
+      console.log("Error al enviar la información al backend", error);
     }
   };
 };
@@ -246,10 +267,10 @@ export function getAllUsers() {
 
 export const deleteUser = (id) => {
   return {
-         type: "DELETE_USER",
-         payload: id,
-     }
- };
+    type: "DELETE_USER",
+    payload: id,
+  };
+};
 
 export const getProfile = (userId) => {
   return async (dispatch) => {
@@ -280,14 +301,15 @@ export const getUserId = (email) => {
   };
 };
 
-export const updateProfile = (userId, newProfile) => {
+export const updateProfile = (data) => {
   return async (dispatch) => {
     try {
-      const response = await axios.put(`${url}/user/edit`, newProfile);
+      const response = await axios.put(`${url}/user/edit`, data);
       dispatch({
         type: UPDATE_PROFILE,
         payload: response.data,
       });
+      console.log("se ejecuto con exitot bbbb");
     } catch (error) {
       console.log({ error: error.message });
     }
@@ -333,10 +355,7 @@ export const enviarInformacion = (data) => {
         data
       );
       if (response) {
-        console.log(
-          "estoy en actions, La información se envió correctamente",
-          response
-        );
+        //   console.log("estoy en actions, La información se envió correctamente", response);
 
         dispatch({ type: POST_DONACIONES, payload: response.data });
         return response.data;
@@ -387,9 +406,9 @@ export const formFooter = (formData) => {
         type: "FORM_FOOTER",
         payload: response.data,
       });
-      console.log("funcion mail footer");
+      console.log("funcion mail footer", response);
     } catch (error) {
-      console.log(error);
+      console.log("estoy en las actions", error);
     }
   };
 };

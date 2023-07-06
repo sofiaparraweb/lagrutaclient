@@ -1,8 +1,8 @@
 .GalleryHome{
-  background-color:antiquewhite;
+  background-color: rgb(242, 217, 152, 0.77);
   padding-top: 10px;
   padding-left: 5px;
-  box-shadow: 0px 10px 11px -5px rgba(0,0,0,0.61);
+  box-shadow: 0px 0px 20px -5px rgba(0,0,0,0.61);
   margin-bottom: 40px;
 }
 
