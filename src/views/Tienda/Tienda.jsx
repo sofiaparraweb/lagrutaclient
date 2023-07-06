@@ -15,9 +15,9 @@ const Tienda = () => {
   const [currentPage, setCurrentPage] = useState(1); 
   const productsPerPage = 9;
   
-    useEffect(() => {
-      dispatch(getAllProducts());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(getAllProducts());
+  }, [dispatch]);
 
   const handlePaginate = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -52,6 +52,3 @@ const Tienda = () => {
 }
 
 export default Tienda;
-
-
-

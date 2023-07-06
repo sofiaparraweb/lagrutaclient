@@ -20,7 +20,7 @@ const DonaHome = () => {
         transformar y mejorar la calidad de vida de los más de 130 chicos del barrio
         que concurren al comedor. ¿Cómo contribuir?
       </p>
-      <Link to="/dona" className={style.BotonMasNoticias} onClick={handleClick} id="Dona">
+      <Link to="/dona" className={style.BotonParaDonar} onClick={handleClick} id="Dona">
         Ver más
       </Link>
     </div>

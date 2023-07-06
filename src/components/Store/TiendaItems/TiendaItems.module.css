@@ -44,5 +44,6 @@
 /* -----------------------------------------------COMENTARIOS----------------------------------------------- */
 .TextoComentarios{
     font-family: 'DK Lemon Yellow Sun', sans-serif;
-    font-size: 15px;
+    margin-top: 1%;
+    font-size: 16px;
 }

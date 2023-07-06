@@ -1,4 +1,3 @@
-import React from "react";
 import style from "./FormPago.module.css";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
@@ -34,8 +33,7 @@ const FormPago = ({total}) => {
         setLoading(true);
         user.amount=total
            
-        dispatch(enviarDataTienda(user, user_id)).then((response) => {
-            console.log("esto es prueba", response);
+        dispatch(enviarDataTienda(user_id)).then((response) => {
         if (response) {
             window.open(response.init_point, "_blank");
         } else {
@@ -50,98 +48,105 @@ const FormPago = ({total}) => {
 
     return (
         <>
-        <div className={style.contentPrincipalTienda}>
-            <form onSubmit={handleSubmit(customSubmit)} className={style.formReactTienda}>
-                <div className={style.formControlTienda}>
-                    <label className={style.labelesTienda}>Nombre</label>
-                    <input
-                    className={style.inputsTienda}
-                    name="name"
-                    placeholder="Nombre"
-                    onChange={handleInput}
-                    type="text"
-                    {...register("name", {
-                        required: true,
-                        maxLength: 30,
-                    })}
-                    />
-                    {errors.name?.type === "required" && (
-                        <p className={style.failTienda}>El campo no puede estar vacío</p>
-                    )}
-                    {errors.name?.type === "maxLength" && (
-                        <p className={style.failTienda}>El máximo de caracteres es 30</p>
-                    )}
-                </div>
+            <div className={style.contentPrincipalTienda}>
+                <form onSubmit={handleSubmit(customSubmit)} className={style.formReactTienda}>
+                    <div className={style.formControlTienda}>
+                        <label className={style.labelesTienda}>Nombre</label>
+                        <input
+                            className={style.inputsTienda}
+                            name="name"
+                            placeholder="Ingrese su nombre"
+                            onChange={handleInput}
+                            type="text"
+                            {...register("name", {
+                                required: true,
+                                maxLength: 30,
+                            })}
+                        />
+                        {errors.name?.type === "required" && (
+                            <p className={style.failTienda}>El campo no puede estar vacío</p>
+                        )}
+                        {errors.name?.type === "maxLength" && (
+                            <p className={style.failTienda}>El máximo de caracteres es 30</p>
+                        )}
+                    </div>
 
-                <div className={style.formControlTienda}>
-                    <label className={style.labelesTienda}>Apellido</label>
-                    <input
-                    className={style.inputsTienda}
-                    name="lastName"
-                    placeholder="Apellido"
-                    onChange={handleInput}
-                    type="text"
-                    {...register("lastName", {
-                        required: true,
-                        maxLength: 30,
-                    })}
-                    />
-                    {errors.lastName?.type === "required" && (
-                        <p className={style.failTienda}>El campo no puede estar vacío</p>
-                    )}
-                    {errors.lastName?.type === "maxLength" && (
-                        <p className={style.failTienda}>El máximo de caracteres es 30</p>
-                    )}
-                </div>
+                    <div className={style.formControlTienda}>
+                        <label className={style.labelesTienda}>Apellido</label>
+                        <input
+                            className={style.inputsTienda}
+                            name="lastName"
+                            placeholder="Ingrese su apellido"
+                            onChange={handleInput}
+                            type="text"
+                            {...register("lastName", {
+                                required: true,
+                                maxLength: 30,
+                            })}
+                        />
+                        {errors.lastName?.type === "required" && (
+                            <p className={style.failTienda}>El campo no puede estar vacío</p>
+                        )}
+                        {errors.lastName?.type === "maxLength" && (
+                            <p className={style.failTienda}>El máximo de caracteres es 30</p>
+                        )}
+                    </div>
 
-                <div className={style.formControlTienda}>
-                    <label className={style.labelesTienda}>Email</label>
-                    <input
-                    className={style.inputsTienda}
-                    name="user_mail"
-                    placeholder="Ingrese correo"
-                    onChange={handleInput}
-                    type="text"
-                    {...register("user_mail", {
-                        pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/i,
-                        required: true,
-                    })}
-                    />
-                    {errors.user_mail?.type === "pattern" && (
-                        <p className={style.failTienda}>Tiene que ser un email correcto</p>
-                    )}
-                    {errors.user_mail?.type === "required" && (
-                        <p className={style.failTienda}>El correo es requerido</p>
-                    )}
-                </div>
+                    <div className={style.formControlTienda}>
+                        <label className={style.labelesTienda}>Email</label>
+                        <input
+                            className={style.inputsTienda}
+                            name="user_mail"
+                            placeholder="Ingrese su Email"
+                            onChange={handleInput}
+                            type="text"
+                            {...register("user_mail", {
+                                pattern: /^([^\s@]+@(gmail\.com|hotmail\.com|yahoo\.com))$/i,
+                                required: true,
+                            })}
+                            />
+                        {errors.user_mail?.type === "pattern" && (
+                            <p className={style.failTienda}>Tiene que ser un email correcto</p>
+                        )}
+                        {errors.user_mail?.type === "required" && (
+                            <p className={style.failTienda}>El correo es requerido</p>
+                        )}
+                    </div>
 
-                <div className={style.formControlTienda}>
-                    <label className={style.labelesTienda}>
-                        Teléfono (Cód. Área + número)
-                    </label>
-                    <input
-                    className={style.inputsTienda}
-                    name="phone"
-                    placeholder="11 12345678"
-                    onChange={handleInput}
-                    type="number"
-                    {...register("telefono", {
-                        required: {
-                        value: true,
-                        message: "El campo no puede estar vacio",
-                        },
-                    })}
-                    />
-                    {errors.telefono && (
-                        <p className={style.failTienda}>{errors.telefono.message}</p>
-                    )}
-                </div>
-                <button className={style.botonTienda} type="submit" disabled={loading}>
-                    {" "}
-                    {loading ? "Enviando..." : "Enviar"}
-                </button>
-            </form>
-        </div>
+                    <div className={style.formControlTienda}>
+                        <label className={style.labelesTienda}>
+                            Teléfono (Cód. Área + número)
+                        </label>
+                        <input
+                            className={`${style.inputsTienda} ${
+                                errors.phone ? style.error : style.success
+                              }`}
+                            name="phone"
+                            placeholder="11 12345678"
+                            onChange={handleInput}
+                            type="number" 
+                            {...register("telefono", {
+                                required: {
+                                    value:
+                                    /^\+(?:[0-9]?){1,3}[-. (]*(?:[0-9]{1,})[-. )]*(?:[0-9]{1,})[-. ]*(?:[0-9]{1,})$/,
+                                    message:
+                                    "Ingrese un número de teléfono válido (ejemplo: +54 9 11 12345678)",
+                                },
+                            })}
+                        />
+                        {errors.phone && (
+                            <p className={style.failTienda}>{errors.phone.message}</p>
+                        )}
+                        {errors.phone?.type === "maxLength" && (
+                            <p className={style.failTienda}> Ingrese un contacto válido</p>
+                        )}
+                    </div>
+                    <button className={style.botonTienda} type="submit" disabled={loading}>
+                        {" "}
+                        {loading ? "Enviando..." : "Enviar"}
+                    </button>
+                </form>
+            </div>
         </>
     );
 };

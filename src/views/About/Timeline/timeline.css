@@ -141,7 +141,7 @@
 .timeline-container {
   width: 100%;
   position: relative;
-  padding: 80px 0;
+  padding: 9% 0;
   background-attachment: fixed;
   background-size: cover;
 }
@@ -165,9 +165,9 @@
 
 .timeline-header__title {
   color: #EB5D0B;
-  font-size: 46px;
+  font-size: 50px;
   font-family: 'Wicked Grit', sans-serif;
-  font-weight: normal;
+  font-weight: normal; 
   margin: 0;
 }
 
