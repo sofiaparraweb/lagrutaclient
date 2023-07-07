@@ -1,5 +1,4 @@
 import { User } from "@auth0/auth0-spa-js";
-import { useRadio } from "@chakra-ui/react";
 import axios from "axios";
 import Swal from "sweetalert2";
 
@@ -14,7 +13,7 @@ export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
 export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
 export const GET_CART = "GET_CART";
 export const ADD_TO_CART = "ADD_TO_CART";
-export const CARGAR_PRODUCTOS = 'CARGAR_PRODUCTOS';
+// export const CARGAR_PRODUCTOS = 'CARGAR_PRODUCTOS';
 export const QUITAR_PRODUCTOS = 'QUITAR_PRODUCTOS';
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
@@ -37,6 +36,7 @@ export const FORM_PADRINO = "FORM_PADRINO";
 export const FORM_DONACION = "FORM_DONACION";
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const DELETE_USER = "DELETE_USER";
+export const GET_DETAIL_PRODUCTS = "GET_DETAIL_PRODUCTS"
 
 export const url = "http://localhost:3001";
 //export const url = "https://lagruta.onrender.com";

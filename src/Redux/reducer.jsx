@@ -23,7 +23,8 @@ import {
   POST_DONACIONES,
   FORM_VOLUNTARIO,
   GET_ALL_USERS,
-  DELETE_USER
+  DELETE_USER,
+  GET_DETAIL_PRODUCTS
 } from "./actions";
 
 const initialstate = {
@@ -123,11 +124,11 @@ function rootReducer(state = initialstate, action) {
         Carrito: state.Carrito.filter((cart) => cart.userId !== action.payload),
       };
 
-    case PUT_AMOUNT_CART:
-      return {
-        ...state,
-        CarritoProductos: action.payload,
-      };
+    // case PUT_AMOUNT_CART:
+    //   return {
+    //     ...state,
+    //     CarritoProductos: action.payload,
+    //   };
     
     // --------------------------------------------------NOTICIAS--------------------------------------------------  
     case GET_ALL_ACTIVITY:
