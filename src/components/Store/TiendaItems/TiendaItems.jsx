@@ -38,11 +38,16 @@ const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes
   
   const handleSubmit = async (event) => {
     event.preventDefault()
-    await axios.post('https://lagruta.onrender.com/review/post', review)
-    //await axios.post('http://localhost:3001/review/post', review)
-    .then(res=>alert("Gracias por opinar sobre nuestro producto!"))
-    .catch((error) => alert(error))
-  }
+    try {
+      console.log(holis)
+      await axios.post('https://lagruta.onrender.com/review/post', review)
+      //await axios.post('http://localhost:3001/review/post', review)
+      .then(res=>alert("Gracias por opinar sobre nuestro producto!"))
+      .catch((error) => alert(error))
+    } catch (error) {
+      console.log(error);
+    }
+  } 
   
   const toggleModal = () => {  // --------------------------------------------------MODAL CON DETALLE PRODUCTOS
     setIsModalOpen(!isModalOpen);
