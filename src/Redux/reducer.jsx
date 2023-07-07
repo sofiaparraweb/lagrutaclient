@@ -21,7 +21,10 @@ import {
   POST_NEWS_DASHBOARD,
   SET_USER_ID,
   POST_DONACIONES,
-  FORM_VOLUNTARIO
+  FORM_VOLUNTARIO,
+  GET_ALL_USERS,
+  DELETE_USER,
+  GET_DETAIL_PRODUCTS
 } from "./actions";
 
 const initialstate = {
@@ -39,6 +42,7 @@ const initialstate = {
   userId: "",
   userInfo: [],
   forms: [], 
+  allUsers: [],
 };
 
 function rootReducer(state = initialstate, action) {
@@ -55,6 +59,12 @@ function rootReducer(state = initialstate, action) {
       return {
         ...state,
         allProductTypes: action.payload,
+      };
+
+    case GET_DETAIL_PRODUCTS:
+      return {
+        ...state,
+        ProductsDetail: action.payload,
       };
     
     case FILTER_BY_NAME:
@@ -114,11 +124,11 @@ function rootReducer(state = initialstate, action) {
         Carrito: state.Carrito.filter((cart) => cart.userId !== action.payload),
       };
 
-    case POST_PAGO_TIENDA:
-      return {
-        ...state,
-        CarritoProductos: action.payload,
-      };
+    // case PUT_AMOUNT_CART:
+    //   return {
+    //     ...state,
+    //     CarritoProductos: action.payload,
+    //   };
     
     // --------------------------------------------------NOTICIAS--------------------------------------------------  
     case GET_ALL_ACTIVITY:
@@ -181,6 +191,19 @@ function rootReducer(state = initialstate, action) {
         ...state,
       };
 
+      case GET_ALL_USERS:
+        return {
+          ...state,
+          allUsers: action.payload
+        }
+        case DELETE_USER:
+        return {
+          ...state,
+          allUsers: state.allUsers.filter(
+            (us) => us.id !== action.payload
+          ),
+        };
+    
     // --------------------------------------------------DONACIONES--------------------------------------------------
     case POST_DONACIONES:
       return {

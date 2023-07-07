@@ -1,170 +1,198 @@
-.Home{
-    margin-top: 65px;
-    margin-bottom: 100px;
+.Home {
+  margin-top: 5%; /* Utilizamos porcentaje para ajustar proporcionalmente en diferentes dispositivos */
+  margin-bottom: 100px;
 }
 
-/* ----------------------------------LOADING---------------------------------- */
 .loading-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-  
-.loading-image {
-    animation: rotate 1s linear infinite;
-    max-width: 200px;
-}
-  
-@keyframes rotate {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-/* -----------------------------------IMAGEN LA GRUTA----------------------------------- */
+.loading-image {
+  animation: rotate 1s linear infinite;
+  max-width: 200px;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .imageHomeContainer {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 img[alt="lagruta"] {
-    max-width: 100%;
-    max-height: 300px;
-    margin: auto;
-    margin-top: -80px;
-    margin-bottom: 40px;
+  max-width: 100%;
+  max-height: 300px;
+  margin: auto;
+  margin-top: -80px;
+  margin-bottom: 40px;
 }
 
 .frase {
-    font-family: 'Wicked Grit', sans-serif;
-    font-size: 24px;
-    color: #B9362C;
-    text-align: center;
-    margin: 40px 0;
-    padding: 0 40px;
-  }
-  
-
-/* -----------------------------------NOTICIAS----------------------------------- */
+  font-family: 'Wicked Grit', sans-serif;
+  font-size: 24px;
+  color: #B9362C;
+  text-align: center;
+  margin: 40px 0;
+  padding: 0 40px;
+}
 
 .NoticiasContenedor {
-    position: relative;
-    align-items: center;
-    border: none;
-    box-shadow: 0px 0px 20px -5px rgba(0,0,0,0.61);
+  position: relative;
+  align-items: center;
+  border: none;
+  box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.61);
 }
 
 .BotonMasNoticias {
-    position: absolute;
-    font-family: 'Roboto Condensed', sans-serif;
-    top: 96%;
-    left: 43%;
-    box-shadow: 0px 10px 10px -10px rgba(0,0,0,0.61);
-    border: solid 2px;
-    background-color: white;
-    color: #ef6d1f;
-    border-radius: 5px;
-    display: inline-block;
-    font-size: 20px;
-    font-weight: 500;
-    padding: 3px 15px;
-    text-align: center;
-    transition: background-color .3s;
+  position: absolute;
+  font-family: 'Roboto Condensed', sans-serif;
+  top: 96%;
+  left: 43%;
+  box-shadow: 0px 10px 10px -10px rgba(0, 0, 0, 0.61);
+  border: solid 2px;
+  background-color: white;
+  color: #ef6d1f;
+  border-radius: 5px;
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 3px 15px;
+  text-align: center;
+  transition: background-color .3s;
 }
 
 .BotonMasNoticias:hover {
-    transition: 1s ease; 
-    border: none;
-    text-decoration: none;
-    transform: scale(1.05);
-    background: #ef6d1f;
-    color: white;
+  transition: 1s ease;
+  border: none;
+  text-decoration: none;
+  transform: scale(1.05);
+  background: #ef6d1f;
+  color: white;
 }
 
-/* -----------------------------------UBICACION LA GRUTA----------------------------------- */
-.UbicacionContenedor{
-    display: flex;
-    flex-direction: column;
-    padding-top: 5%;
+.UbicacionContenedor {
+  display: flex;
+  flex-direction: column;
+  padding-top: 5%;
 }
 
-.UbicacionUbicacion{
-    font-family: 'Wicked Grit', sans-serif;
-    text-align: center;
-    color:#124476;
-    font-size: 30px;
-    padding: 3% 0;
+.UbicacionUbicacion {
+  font-family: 'Wicked Grit', sans-serif;
+  text-align: center;
+  color: #124476;
+  font-size: 30px;
+  padding: 3% 0;
 }
 
-.MapaUbicacion{
-    border:none;
+.MapaUbicacion {
+  border: none;
 }
 
-.ContenedorTextoUbicacion{
-    padding: 30px 0;
-    background-color: rgb(241, 241, 241);
-    font-family: 'Roboto Condensed', sans-serif;
-    font-family: 'DK Lemon Yellow Sun', sans-serif;
-    color: #191b1d;
-    font-size: 25px;
-    text-align: center;
-    padding-bottom: 10%;
-    color:#B9362C;
-
+.ContenedorTextoUbicacion {
+  padding: 30px 0;
+  background-color: rgb(241, 241, 241);
+  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'DK Lemon Yellow Sun', sans-serif;
+  color: #191b1d;
+  font-size: 25px;
+  text-align: center;
+  padding-bottom: 10%;
+  color: #B9362C;
 }
 
 .ContenedorRecuadros {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  
-  .Recuadro {
-    flex: 1;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    margin-right: 10px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .Recuadro:last-child {
-    margin-right: 0;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.Recuadro {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  margin-right: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.Recuadro:last-child {
+  margin-right: 0;
+}
+
+.RecuadrosContainer {
+  position: relative;
+}
+
+.BgImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../assets/abrazo.jpg");
+  background-size: cover;
+  opacity: 0.3;
+}
+
+.GridContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 40px;
+  opacity: 0.9;
+}
+
+.GridItem {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.61);
+}
+
+/* Media queries para ajustes en dispositivos móviles */
+
+@media (max-width: 768px) {
+  .Home {
+    margin-top: 10%;
   }
 
-/* Home.module.css */
-.RecuadrosContainer {
-    position: relative;
+  img[alt="lagruta"] {
+    max-height: 200px;
+    margin-top: -40px;
+    margin-bottom: 20px;
   }
-  
-  .BgImage {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("../../assets/abrazo.jpg");
-    background-size: cover;
-    opacity: 0.3;
+
+  .frase {
+    font-size: 18px;
+    margin: 20px 0;
+    padding: 0 20px;
   }
-  
-  .GridContainer {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px; /* Espacio entre las dos columnas */
-    padding: 40px; /* Ajusta el espaciado alrededor de los recuadros */
-    opacity: 0.9;
+
+  .BotonMasNoticias {
+    font-size: 16px;
+    padding: 2px 10px;
   }
-  
-  .GridItem {
-    background-color: rgba(255, 255, 255, 0.8); /* Fondo con transparencia */
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.61);
+
+  .UbicacionUbicacion {
+    font-size: 24px;
+    padding: 2% 0;
   }
- 
-  
+
+  .ContenedorTextoUbicacion {
+    font-size: 20px;
+  }
+
+  .Recuadro {
+    padding: 10px;
+  }
+}

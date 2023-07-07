@@ -1,5 +1,4 @@
 import { User } from "@auth0/auth0-spa-js";
-import { useRadio } from "@chakra-ui/react";
 import axios from "axios";
 import Swal from "sweetalert2";
 
@@ -14,6 +13,8 @@ export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
 export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
 export const GET_CART = "GET_CART";
 export const ADD_TO_CART = "ADD_TO_CART";
+// export const CARGAR_PRODUCTOS = 'CARGAR_PRODUCTOS';
+export const QUITAR_PRODUCTOS = 'QUITAR_PRODUCTOS';
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const DELETE_ALL_CART = "DELETE_ALL_CART";
@@ -26,16 +27,19 @@ export const CREATE_PROFILE = "CREATE_PROFILE";
 export const GET_USERID = "GET_USERID";
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
 export const POST_NEWS_DASHBOARD = "POST_NEWS_DASHBOARD";
-export const SET_USER_ID = 'SET_USER_ID';
+export const SET_USER_ID = "SET_USER_ID";
 export const POST_DONACIONES = "POST_DONACIONES";
 //export const ENVIAR_INFORMACION = "ENVIAR_INFORMACION";
-export const FORM_VOLUNTARIO = 'FORM_VOLUNTARIO';
-export const FORM_FOOTER = 'FORM_FOOTER';
-export const FORM_PADRINO = 'FORM_PADRINO';
-export const FORM_DONACION = 'FORM_DONACION';
+export const FORM_VOLUNTARIO = "FORM_VOLUNTARIO";
+export const FORM_FOOTER = "FORM_FOOTER";
+export const FORM_PADRINO = "FORM_PADRINO";
+export const FORM_DONACION = "FORM_DONACION";
+export const GET_ALL_USERS = "GET_ALL_USERS";
+export const DELETE_USER = "DELETE_USER";
+export const GET_DETAIL_PRODUCTS = "GET_DETAIL_PRODUCTS"
 
-//export const url = "http://localhost:3001";
-export const url = "https://lagruta.onrender.com";
+export const url = "http://localhost:3001";
+//export const url = "https://lagruta.onrender.com";
 // const LOCAL = "http://localhost:3001";
 
 export function getAllActivity() {
@@ -78,27 +82,33 @@ export function getActiId(id) {
     } catch (err) {
       console.error(err);
     }
-  }
-};
+  };
+}
 
-export function cleanDetail () {
-  return { type: CLEANDETAIL }
-}   
-
+export function cleanDetail() {
+  return { type: CLEANDETAIL };
+}
 
 /* -----------------------------tienda----------------------------- */
 
-export const getAllProducts = () =>{
-  return async (dispatch) =>{
+export const getAllProducts = () => {
+  return async (dispatch) => {
     const resp = await axios(`${url}/products/`);
-    return dispatch({type: GET_ALL_PRODUCTS, payload: resp.data})
-  }
-}
+    return dispatch({ type: GET_ALL_PRODUCTS, payload: resp.data });
+  };
+};
 
-export const getAllProductTypes = () =>{
-  return async (dispatch) =>{
+export const getAllProductTypes = () => {
+  return async (dispatch) => {
     const resp = await axios(`${url}/productsTypes/`);
-    return dispatch({type: GET_ALL_PRODUCTS_TYPES, payload: resp.data})
+    return dispatch({ type: GET_ALL_PRODUCTS_TYPES, payload: resp.data });
+  };
+};
+
+export const getDetailProducts = (id_products) =>{
+  return async (dispatch) =>{
+    const {data} = await axios.get(`${url}/products/${id_products}`);
+    return dispatch({type: GET_DETAIL_PRODUCTS, payload: data})
   }
 }
 
@@ -167,8 +177,8 @@ export const deleteAllCarrito = (user_id) => {
       await axios.delete(`${url}/cart/removeAll?user_id=${user_id}`);
       dispatch({ type: DELETE_ALL_CART, payload: [] });
     } catch (error) {
-      console.log(error);       
-    } 
+      console.log(error);
+    }
   };
 };
 
@@ -176,10 +186,12 @@ export const deleteAllCarrito = (user_id) => {
 export const deleteCarrito = (user_id, id) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`${url}/cart/remove?user_id=${user_id}&product_id=${id}`);
+      await axios.delete(
+        `${url}/cart/remove?user_id=${user_id}&product_id=${id}`
+      );
       dispatch({ type: DELETE_CARRITO, payload: id });
     } catch (error) {
-      console.log(error);  
+      console.log(error);
     }
   };
 };
@@ -236,6 +248,27 @@ export const createProfile = (newUser) => {
   };
 };
 
+export function getAllUsers() {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`${url}/user`);
+      return dispatch({
+        type: GET_ALL_USERS,
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+}
+
+export const deleteUser = (id) => {
+  return {
+         type: "DELETE_USER",
+         payload: id,
+     }
+ };
+
 export const getProfile = (userId) => {
   return async (dispatch) => {
     try {
@@ -254,7 +287,7 @@ export const getUserId = (email) =>{
   return async (dispatch) => {
     try {
       const response = await axios.get(`${url}/user/mail/${email}`);
-      console.log(response)
+      console.log(response);
       dispatch({
         type: GET_USERID,
         payload: response.data,
@@ -262,8 +295,8 @@ export const getUserId = (email) =>{
     } catch (error) {
       console.log(error);
     }
-  }
-};
+  };
+}
 
 export const updateProfile = (data) => {
   return async (dispatch) => {
@@ -327,17 +360,18 @@ export function create_news(payload) {
  }
 };
 
+
 /* -----------------------------formulario----------------------------- */
 
 export const formVoluntario = (formData) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post(`${url}/form/formVoluntario`, formData)
-      dispatch ({
-        type: 'FORM_VOLUNTARIO',
+      const response = await axios.post(`${url}/form/formVoluntario`, formData);
+      dispatch({
+        type: "FORM_VOLUNTARIO",
         payload: response.data,
       });
-      console.log('funcion mail voluntario')
+      console.log("funcion mail voluntario");
     } catch (error) {
       console.log(error);
     }
@@ -347,12 +381,12 @@ export const formVoluntario = (formData) => {
 export const formPadrino = (formData) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post(`${url}/form/formPadrino`, formData)
-      dispatch ({
-        type: 'FORM_PADRINO',
+      const response = await axios.post(`${url}/form/formPadrino`, formData);
+      dispatch({
+        type: "FORM_PADRINO",
         payload: response.data,
       });
-      console.log('funcion mail padrino')
+      console.log("funcion mail padrino");
     } catch (error) {
       console.log(error);
     }
@@ -362,12 +396,12 @@ export const formPadrino = (formData) => {
 export const formFooter = (formData) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post(`${url}/form/formFooter`, formData)
-      dispatch ({
-        type: 'FORM_FOOTER',
+      const response = await axios.post(`${url}/form/formFooter`, formData);
+      dispatch({
+        type: "FORM_FOOTER",
         payload: response.data,
       });
-      console.log('funcion mail footer', response);
+      console.log('funcion mail footer')
     } catch (error) {
       console.log("estoy en las actions", error);
     }
@@ -377,12 +411,12 @@ export const formFooter = (formData) => {
 export const formDonacion = (formData) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post(`${url}/form/formDonacion`, formData)
-      dispatch ({
-        type: 'FORM_DONACION',
+      const response = await axios.post(`${url}/form/formDonacion`, formData);
+      dispatch({
+        type: "FORM_DONACION",
         payload: response.data,
       });
-      console.log('funcion mail Donacion')
+      console.log("funcion mail Donacion");
     } catch (error) {
       console.log(error);
     }
