@@ -45,7 +45,7 @@ const Homes = () => {
            handlePaginate = {handlePaginate}/>
          {/* aqui van componentes de relleno, actualmente desactivados*/}
           </section>
-          <section className={style.sideContent}>
+          <section className={`${style.sideContent} sidebar-container`}>
             <Side />
           </section>
         </div>
