@@ -77,7 +77,7 @@ const Sidebar = () => {
               <Link
                 to="/"
                 className="flex items-center gap-4 py-2 px-4 text-white rounded-lg hover:no-underline  hover:text-white hover:bg-secondary-200 transition-colors">
-                <RiCalendarTodoLine className="text-primary" /> Calendario
+                <RiCalendarTodoLine className="text-primary" /> Volver a página principal
               </Link>
             </li>
           </ul>

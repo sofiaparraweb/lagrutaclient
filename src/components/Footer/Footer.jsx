@@ -7,6 +7,7 @@ import {
   FaFacebook, /*FaTwitter, FaYoutube*/ 
   FaInstagram,
 } from "react-icons/fa";
+import Swal from 'sweetalert2';
 
 const Footer = () => {
   const {
@@ -18,9 +19,20 @@ const Footer = () => {
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
-    dispatch(formFooter(data.email));
+    dispatch(formFooter(data));
     reset();
-    alert("¡Formulario enviado!");
+    Swal.fire({
+      icon: 'success',
+      title: 'Formulario enviado',
+      text: 'Muchas gracias! Nos comunicaremos en breve',
+      background: '#f3f3f3',
+      confirmButtonColor: '#B9362C',
+      customClass: {
+        title: 'my-custom-title',
+        content: 'my-custom-content',
+        confirmButton: 'my-custom-button',
+      },
+    });    
   };
 
   return (
@@ -30,7 +42,10 @@ const Footer = () => {
           <h3 className={style.title}>Conocé LA GRUTA</h3>
           <ul>
             <li className={style.itemsTex}>
-              <a href="/about">Qué hace La Gruta</a>
+              <a href="/about">Qué hacemos?</a>
+            </li>
+            <li className={style.itemsTex}>
+              <a href="/historia">Nuestra historia</a>
             </li>
             <li className={style.itemsTex}>
               <a href="/noticias">Novedades</a>
@@ -42,16 +57,16 @@ const Footer = () => {
         </div>
 
         <div className={style.footerSection}>
-          <h3 className={style.title}>Campañas</h3>
+          <h3 className={style.title}>SÉ PARTE</h3>
           <ul>
             <li className={style.itemsTex}>
               <a href="/dona">Donaciones</a>
             </li>
             <li className={style.itemsTex}>
-              <a href="/se-voluntario">Acciones solidarias</a>
+              <a href="/se-voluntario">Voluntariado</a>
             </li>
             <li className={style.itemsTex}>
-              <a href="/tienda">Colaboraciones</a>
+              <a href="/se-padrino">Colaboraciones</a>
             </li>
           </ul>
         </div>
@@ -60,12 +75,12 @@ const Footer = () => {
           <h3 className={style.title}>¡Suscríbete para más información!</h3>
           <input
             className={style.input}
-            type="email"
+            type="text"
             name="email"
             placeholder="Ingresar Email"
             {...register("email", {
-              required: true,
               pattern: /^[^\s@]+@gmail\.com$/i,
+              required: true,
             })}
           />
           {errors.email && (

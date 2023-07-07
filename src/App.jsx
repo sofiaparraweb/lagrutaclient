@@ -16,7 +16,7 @@ import CarritoContainer from "./components/Store/CarritoContainer/CarritoContain
 import PopUpDonateNow from "./components/MensajeFloat/DonateNow";
 import WP_Button from "./components/MensajeFloat/WP_Button.jsx";
 import BackToTop from "./components/BackToTop/BackToTop";
-import Timeline from "./views/About/Timeline/Timeline";
+import Timeline from "./views/About/Timeline/timeline";
 import Equipo from "./views/About/Equipo/Equipo";
 
 /* componentes usuarios */
@@ -37,10 +37,6 @@ import DashboardNoticias from "./views/DashBoard/DashboarNoticias";
 import DashboardShop from "./views/DashBoard/DashboardShop";
 import DashboardUsers from "./views/DashBoard/DashboardUsers";
 import Modifiview from "./views/DashBoard/Modifiview.jsx";
-
-
-
-
 
 const App = () => {
   const { isAuthenticated, isLoading } = useAuth0();
