@@ -39,6 +39,19 @@
   font-size: 17px;
 }
 
+@media only screen and (max-width: 1024px) {
+  .link {
+    padding: 38.5px;
+  }
+}
+
+/* Estilos para Windows */
+@media only screen and (min-width: 1025px) {
+  .link {
+    padding: 22.5px; /* Puedes ajustar estos valores según tus necesidades */
+  }
+}
+
 .link:hover {
   transition: 0.5s ease;
   text-decoration: none;
@@ -272,6 +285,8 @@ button[id="cerrariniciarNav"]:hover{
 /* -------------------------------------Administrador */
 .link[id="administradorNav"]{
   border-bottom:6px solid #3c67a4;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 .link[id="administradorNav"]:hover{
   background-color: #3c67a4;
