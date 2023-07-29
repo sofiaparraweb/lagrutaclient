@@ -95,18 +95,18 @@ const Perfil = () => {
     reset(editedProfile);
   };
 
-//   const handleProfileImageChange = (e) => {
-//     const file = e.target.files[0];
-//     const reader = new FileReader();
+  const handleProfileImageChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
 
-//     reader.onloadend = () => {
-//       setEditedProfile((prevState) => ({ ...prevState, image: reader.result }));
-//     };
+    reader.onloadend = () => {
+      setEditedProfile((prevState) => ({ ...prevState, image: reader.result }));
+    };
 
-//     if (file) {
-//   reader.readAsDataURL(file);
-// }
-// };
+    if (file) {
+  reader.readAsDataURL(file);
+}
+};
 
 return (
 <ChakraProvider>
@@ -116,14 +116,14 @@ return (
       <h1 className="perfil-title">Mi Perfil</h1>
     </div>
     <div className="perfil-content">
-      {/* <div className="perfil-image">
+      <div className="perfil-image">
         <img src={editedProfile.image} alt="profile" className="profile-image" />
         {editing && (
           <div className="image-upload">
             <input type="file" accept="image/*" onChange={handleProfileImageChange} />
           </div>
         )}
-      </div> */}
+      </div>
       <form className="perfil-form" onSubmit={handleSubmit(handleSaveProfile)}>
         <label htmlFor="fullName" className="perfil-label">
           Nombre completo
