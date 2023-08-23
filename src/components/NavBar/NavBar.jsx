@@ -1,23 +1,30 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
 import logo from "../../assets/logo.png";
 //import {HamburgerIcon} from '@chakra-ui/icons'
 import "./NavBar.css";
+import { useAuth } from "../../context/AuthContext";
 
-const NavBar = ({ isAuthenticated }) => {
-  const { loginWithRedirect, logout, user } = useAuth0();
+const NavBar = () => {
+  // const { loginWithRedirect, logout, user } = useAuth0();
+  const { user, isAuthenticated, login, logout } = useAuth(); 
   const [isHovered, setIsHovered] = useState(false);
   const [isOptionHovered, setIsOptionHovered] = useState(false);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
  
-  const handleLogout = () => {
-    logout({ returnTo: window.location.origin });
+  const handleLogout = async () => {
+    await logout();
+    window.location.href = "/";
   };
 
-  const handleLogin = () => {
-    loginWithRedirect({ appState: { targetUrl: "/perfil" } });
-    setIsLoggingIn(true);
+  const handleLogin =  () => {
+    try {
+      window.location.href = "/LogIn";
+      setIsLoggingIn(true);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleMouseEnter = () => {

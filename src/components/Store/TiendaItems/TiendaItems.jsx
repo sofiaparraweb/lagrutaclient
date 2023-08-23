@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCarrito, addToCart } from "../../../Redux/actions"
 import { Image, Input, FormLabel, Textarea, Card, Text, Heading, CardBody, CardFooter, Button, Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton, Box, Divider, Grid } from '@chakra-ui/react'
 import { Toaster, toast } from "react-hot-toast";
-import { useAuth0 } from "@auth0/auth0-react"; 
+// import { useAuth0 } from "@auth0/auth0-react"; 
+import { auth } from "../../../Firebase/Firebase";
 
 const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes, Reviews }) => {
   
@@ -15,7 +16,7 @@ const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes
   const userName = useSelector(state => state.LocalPersist.userInfo.fullName);
   const mail = useSelector(state => state.LocalPersist.userInfo.mail);
   const Cart = useSelector((state) => state.LocalPersist.Carrito.Products);
-  const { isAuthenticated } = useAuth0();
+  // const { isAuthenticated } = useAuth0();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [quantity, setQuantity] = useState(0);
   
@@ -40,8 +41,8 @@ const TiendaItems = ({ id, name, image, price, stock, description, ProductsTypes
     event.preventDefault()
     try {
       console.log(holis)
-      await axios.post('https://lagruta.onrender.com/review/post', review)
-      //await axios.post('http://localhost:3001/review/post', review)
+      // await axios.post('https://lagruta.onrender.com/review/post', review)
+      await axios.post('http://localhost:3001/review/post', review)
       .then(res=>alert("Gracias por opinar sobre nuestro producto!"))
       .catch((error) => alert(error))
     } catch (error) {

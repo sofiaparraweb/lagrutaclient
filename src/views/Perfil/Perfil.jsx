@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
 import { Button, ChakraProvider, Input, Select } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserId, updateProfile } from "../../Redux/actions";
+import { getUserId, updateUser } from "../../Redux/actions";
 import { useForm } from "react-hook-form";
 import "./Perfil.css";
 import logo from "../../assets/logo.png"
 
 const Perfil = () => {
-  const { user, isAuthenticated } = useAuth0();
+  // const { user, isAuthenticated } = useAuth0();
   const userInfo = useSelector((state) => state.LocalPersist.userInfo);
   const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm();
   
@@ -88,7 +88,7 @@ const Perfil = () => {
     formData.append("occupation", data.occupation);
     formData.append("role", data.role);
 
-    dispatch(updateProfile(formData));
+    dispatch(updateUser(formData));
     setEditing(false);
     setInitialProfile(data);
     setEditedProfile(data);
