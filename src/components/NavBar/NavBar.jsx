@@ -1,22 +1,22 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-// import { useAuth0 } from "@auth0/auth0-react";
 import logo from "../../assets/logo.png";
-//import {HamburgerIcon} from '@chakra-ui/icons'
 import "./NavBar.css";
 import { useAuth } from "../../context/AuthContext";
+import { auth } from "../../Firebase/Firebase";
 
 const NavBar = () => {
-  // const { loginWithRedirect, logout, user } = useAuth0();
-  const { user, isAuthenticated, login, logout } = useAuth(); 
+  const { user, login, logOut } = useAuth(); 
   const [isHovered, setIsHovered] = useState(false);
   const [isOptionHovered, setIsOptionHovered] = useState(false);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
- 
+  const isAuthenticated = auth.currentUser !==null
+
   const handleLogout = async () => {
-    await logout();
+    await logOut();
     window.location.href = "/";
   };
+  
 
   const handleLogin =  () => {
     try {

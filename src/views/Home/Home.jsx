@@ -18,7 +18,6 @@ const Home = () => {
   const dispatch = useDispatch();
   const user = auth.currentUser?.email;
   console.log(user)
-  // const { user, isAuthenticated, isLoading } = useAuth0();
   const allActivity = useSelector(state => state.LocalPersist.allActivity);
   const userProfile = useSelector((state) => state.LocalPersist.userProfile);
   const [isProfileCreated, setIsProfileCreated] = useState(false);

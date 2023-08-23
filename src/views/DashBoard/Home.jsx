@@ -10,6 +10,8 @@ import { getAllActivity, getAllProducts } from "../../Redux/actions.jsx";
 
 export default function Dashboard() {
   const dispatch = useDispatch();
+  const allActivity = useSelector((state) => state.LocalPersist.allActivity);
+  const allProducts = useSelector((state) => state.LocalPersist.allProducts);
 
   useEffect(() => {
     dispatch(getAllActivity());
@@ -19,8 +21,6 @@ export default function Dashboard() {
     dispatch(getAllProducts());
   }, [dispatch]);
 
-  const allActivity = useSelector((state) => state.LocalPersist.allActivity);
-  const allProducts = useSelector((state) => state.LocalPersist.allProducts);
 
   const totalNewsCount = allActivity.length; // Contar la cantidad de...
   const totalProductsCount = allProducts.length;

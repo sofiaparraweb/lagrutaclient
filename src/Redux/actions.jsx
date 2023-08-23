@@ -110,7 +110,7 @@ export function cleanDetail() {
 
 export const getAllProducts = () => {
   return async (dispatch) => {
-    const resp = await axios(`${url}/products/`);
+    const resp = await axios(`${url}/products`);
     return dispatch({ type: GET_ALL_PRODUCTS, payload: resp.data });
   };
 };
@@ -181,6 +181,7 @@ export const addToCart = (user_id, id, quantity) => {
     try {
       const response = await axios.post(`${url}/cart/add?user_id=${user_id}&product_id=${id}&quantity=${quantity}`)
       dispatch({ type: ADD_TO_CART, payload: response.data})
+      console.log('carrito creado')
     } catch (error){
       console.log(error);
     }
