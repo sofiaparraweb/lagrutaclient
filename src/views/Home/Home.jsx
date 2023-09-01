@@ -66,8 +66,8 @@ const Home = () => {
           <img src={lagruta} alt="lagruta" />
         </div>
         <FotosSlider />
-        <p className={style.frase}>“Los científicos dicen que estamos hechos de átomos, pero un pajarito me contó que estamos hechos de historias”</p>
-        <p className={style.frase}>Eduardo Galeano</p>
+        <h2 className={style.frase}>“Los científicos dicen que estamos hechos de átomos, pero un pajarito me contó que estamos hechos de historias”</h2>
+        <h2 className={style.frase}>Eduardo Galeano</h2>
         <div className={style.RecuadrosContainer}>
           <div className={style.BgImage} />
           <div className={style.GridContainer}>

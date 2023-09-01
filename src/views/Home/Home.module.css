@@ -38,11 +38,10 @@ img[alt="lagruta"] {
 }
 
 .frase {
-  font-family: 'Wicked Grit', sans-serif;
-  font-size: 24px;
+  font-size: 30px;
   color: #B9362C;
   text-align: center;
-  margin: 40px 0;
+  margin: 70px 0;
   padding: 0 40px;
 }
 
@@ -194,5 +193,11 @@ img[alt="lagruta"] {
 
   .Recuadro {
     padding: 10px;
+  }
+  .GridContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    opacity: 0.9;
   }
 }

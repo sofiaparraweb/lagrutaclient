@@ -217,7 +217,7 @@ function rootReducer(state = initialstate, action) {
       }
 
     default:
-      return state;
+      return { ...state };
   }
 }
 

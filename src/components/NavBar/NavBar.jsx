@@ -2,14 +2,26 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import logo from "../../assets/logo.png";
+// import {AiOutlineShoppingCart } from "react-icons/ai";
+// import { useDispatch, useSelector } from 'react-redux'
+// import { getCarrito } from "../../Redux/actions"
+// import { useEffect } from 'react';
 //import {HamburgerIcon} from '@chakra-ui/icons'
 import "./NavBar.css";
 
 const NavBar = ({ isAuthenticated }) => {
+
+  // const dispatch = useDispatch();
+  // const Carrito = useSelector((state) => state.LocalPersist.Carrito.Products);
+  // const user_id = useSelector(state => state.LocalPersist.userInfo.id);
   const { loginWithRedirect, logout, user } = useAuth0();
   const [isHovered, setIsHovered] = useState(false);
   const [isOptionHovered, setIsOptionHovered] = useState(false);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
+
+  // useEffect(()=>{
+  //   dispatch(getCarrito(user_id))
+  // },[user_id])
  
   const handleLogout = () => {
     logout({ returnTo: window.location.origin });
@@ -173,12 +185,20 @@ const NavBar = ({ isAuthenticated }) => {
       </div>
       <div className="rightSection">
         {isAuthenticated ? (
+          <>
+          {/* <div className="cartNavContainer" style={{padding:"0 15px"}}>
+            <NavLink to="/cart">
+              <AiOutlineShoppingCart className="IconRightNavBar" />
+              <p className="NumeroChango">{Carrito?.length || 0}</p> 
+            </NavLink>
+          </div> */}
           <button
             onClick={handleLogout}
             id="cerrariniciarNav"
             className="link logoutButton">
             Cerrar Sesión
           </button>
+          </>
         ) : (
           <button
             onClick={handleLogin}

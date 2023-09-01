@@ -1,6 +1,5 @@
 import { User } from "@auth0/auth0-spa-js";
 import axios from "axios";
-import Swal from "sweetalert2";
 
 export const GET_ALL_ACTIVITY = "GET_ALL_ACTIVITY";
 export const GET_DETAIL_ACTIVITY = "GET_DETAIL_ACTIVITY";
@@ -40,7 +39,6 @@ export const GET_DETAIL_PRODUCTS = "GET_DETAIL_PRODUCTS"
 
 export const url = "http://localhost:3001";
 //export const url = "https://lagruta.onrender.com";
-// const LOCAL = "http://localhost:3001";
 
 export function getAllActivity() {
   return async function (dispatch) {
@@ -121,7 +119,7 @@ export const filterByName = (name) => {
       console.log(error);
     }
   };
-};
+}
 
 export const filterByType = (name) => {
   return async (dispatch) => {
@@ -229,7 +227,7 @@ export const enviarDataTienda = (user_id) => {
 /* -----------------------------profile----------------------------- */
 
 export const createProfile = (newUser) => {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     try {
       const response = await axios.post(`${url}/user`, newUser);
       const userId = response.data.newUser.id;
@@ -330,7 +328,7 @@ export const deleteProduct = (product) => {
 };
 
 export function create_news(payload) {
-  return async function (dispatch) {
+  return async function () {
     try {
       var res = await axios.post(`${url}/activity/`, payload);
       return {

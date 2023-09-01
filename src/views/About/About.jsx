@@ -8,10 +8,10 @@ import Equipo from "./Equipo/Equipo";
 
 const About = () => {
   return (
-    <div className={style.container}>
+    <div className={style.containerAbout}>
       <header className={style.headerAboutLaGruta}>
         <h1>La Gruta</h1>
-        <p>Un espacio para construir juntos</p>
+        <h2>Un espacio para construir juntos</h2>
       </header>
       <div className={style.TextoAbout}>
         <p>

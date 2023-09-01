@@ -13,15 +13,13 @@ const SideBar = ({ setCurrentPage }) =>{
   const dispatch = useDispatch();
   const { isAuthenticated } = useAuth0();
   const navigate = useNavigate();
-  const Carrito = useSelector(state=>state.LocalPersist.Carrito.Products)
+  const Cart = useSelector((state) => state.LocalPersist.Carrito.Products);
   const userId = useSelector(state => state.LocalPersist.userInfo.id);
 
   useEffect(() => {
     dispatch(getCarrito(userId));
-  }, [userId]);
+  },[dispatch]);
 
-  //const cartQuantity = Carrito?.reduce((accumulator, product) => accumulator + parseInt(product.Cart_Products.quantity, 10), 0);
-  
   const handleCartClick = () => {
     if (isAuthenticated) {
       navigate('/cart');
@@ -36,7 +34,7 @@ const SideBar = ({ setCurrentPage }) =>{
       <span className={style.Changuito}>
         <button onClick={handleCartClick} >
           <AiOutlineShoppingCart size={30} />
-          {isAuthenticated ? <p className={style.NumeroChango}>{Carrito?.length || 0}</p> : <p className={style.NumeroChango}>0</p>}         
+          {isAuthenticated ? <p className={style.NumeroChango}>{Cart?.length || 0}</p> : <p className={style.NumeroChango}>0</p>}         
         </button>
       </span>
       <div className={style.ContenedorFiltroOrden}>

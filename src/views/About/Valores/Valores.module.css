@@ -61,14 +61,8 @@
   margin-bottom: 16px;
 }
 
-.ValuesList {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
 .ValueItem {
   color: #fff;
-  font-size: 25px;
+  font-size: 18px;
   margin-top: 10px;
 }
