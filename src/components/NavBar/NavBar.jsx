@@ -1,35 +1,30 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
 import logo from "../../assets/logo.png";
-// import {AiOutlineShoppingCart } from "react-icons/ai";
-// import { useDispatch, useSelector } from 'react-redux'
-// import { getCarrito } from "../../Redux/actions"
-// import { useEffect } from 'react';
-//import {HamburgerIcon} from '@chakra-ui/icons'
 import "./NavBar.css";
+import { useAuth } from "../../context/AuthContext";
+import { auth } from "../../Firebase/Firebase";
 
-const NavBar = ({ isAuthenticated }) => {
-
-  // const dispatch = useDispatch();
-  // const Carrito = useSelector((state) => state.LocalPersist.Carrito.Products);
-  // const user_id = useSelector(state => state.LocalPersist.userInfo.id);
-  const { loginWithRedirect, logout, user } = useAuth0();
+const NavBar = () => {
+  const { user, login, logOut } = useAuth(); 
   const [isHovered, setIsHovered] = useState(false);
   const [isOptionHovered, setIsOptionHovered] = useState(false);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const isAuthenticated = auth.currentUser !==null
 
-  // useEffect(()=>{
-  //   dispatch(getCarrito(user_id))
-  // },[user_id])
- 
-  const handleLogout = () => {
-    logout({ returnTo: window.location.origin });
+  const handleLogout = async () => {
+    await logOut();
+    window.location.href = "/";
   };
+  
 
-  const handleLogin = () => {
-    loginWithRedirect({ appState: { targetUrl: "/perfil" } });
-    setIsLoggingIn(true);
+  const handleLogin =  () => {
+    try {
+      window.location.href = "/LogIn";
+      setIsLoggingIn(true);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleMouseEnter = () => {

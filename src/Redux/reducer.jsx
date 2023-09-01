@@ -14,17 +14,23 @@ import {
   GET_ALL_ACTIVITY,
   GET_DETAIL_ACTIVITY,
   GET_TYPEACTY,
-  FETCH_PROFILE,
-  GET_USERID,
-  CREATE_PROFILE,
-  UPDATE_PROFILE,
+  // FETCH_PROFILE,
+  // GET_USERID,
+  // CREATE_PROFILE,
+  // UPDATE_PROFILE,
   POST_NEWS_DASHBOARD,
-  SET_USER_ID,
+  // SET_USER_ID,
   POST_DONACIONES,
   FORM_VOLUNTARIO,
   GET_ALL_USERS,
   DELETE_USER,
-  GET_DETAIL_PRODUCTS
+  GET_DETAIL_PRODUCTS,
+  GET_USER,
+  CREATE_USER,
+  GET_USER_ID,
+  UPDATE_USER,
+  SET_USER_ID,
+
 } from "./actions";
 
 const initialstate = {
@@ -39,8 +45,8 @@ const initialstate = {
   CarritoProductos: [],
   profile: null,
   donaciones: {},
-  userId: "",
-  userInfo: [],
+  userId: null,
+  userProfile: null,
   forms: [], 
   allUsers: [],
 };
@@ -156,36 +162,62 @@ function rootReducer(state = initialstate, action) {
       };
     
     // --------------------------------------------------USUARIOS--------------------------------------------------  
-    case FETCH_PROFILE:
-      return {
-        ...state,
-        profile: action.payload,
-      };
+    // case FETCH_PROFILE:
+    //   return {
+    //     ...state,
+    //     profile: action.payload,
+    //   };
 
-    case GET_USERID:
-      return {
-        ...state,
-        userInfo: action.payload,
-      }
+    // case GET_USERID:
+    //   return {
+    //     ...state,
+    //     userInfo: action.payload,
+    //   }
 
-    case CREATE_PROFILE:
-      return {
-        ...state,
-        profile: action.payload,
-      };
+    // case CREATE_PROFILE:
+    //   return {
+    //     ...state,
+    //     profile: action.payload,
+    //   };
 
-    case UPDATE_PROFILE:
-      return {
-        ...state,
-        profile: action.payload,
-      };
+    // case UPDATE_PROFILE:
+    //   return {
+    //     ...state,
+    //     profile: action.payload,
+    //   };
   
+    // case SET_USER_ID:
+    //   return {
+    //     ...state,
+    //     userId: action.payload,
+    //   };
+    case GET_USER:
+      return {
+        ...state,
+        userProfile: action.payload,
+      }
+    case CREATE_USER:
+      return {
+        ...state,
+        userProfile: action.payload,
+      };
+    case GET_USER_ID:
+      return {
+        ...state,
+        userId: action.payload,
+      }
+    case UPDATE_USER:
+      return {
+        ...state,
+        userProfile: action.payload,
+      }
     case SET_USER_ID:
       return {
         ...state,
         userId: action.payload,
       };
-  
+      //---------------
+      
     case POST_NEWS_DASHBOARD:
       return {
         ...state,

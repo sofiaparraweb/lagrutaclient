@@ -1,9 +1,8 @@
 import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import "./App.css";
-import { useAuth0 } from "@auth0/auth0-react";
 import logo from '../src/assets/logo.png'
-
+import { useState } from "react";
 
 import Home from "./views/Home/Home";
 import NavBar from "./components/NavBar/NavBar";
@@ -22,8 +21,8 @@ import Equipo from "./views/About/Equipo/Equipo";
 
 /* componentes usuarios */
 import Perfil from "./views/Perfil/Perfil";
+// import Profile from "./views/Perfil/Perfil2";
 import LogIn from "./views/LogIn/LogIn";
-import LogOut from "./views/LogIn/LogOut";
 /* import { ProtectedRoutes } from "./components/ProtectedRoutes/ProtectedRoutes";
  */
 /* donaciones */
@@ -40,19 +39,18 @@ import DashboardUsers from "./views/DashBoard/DashboardUsers";
 import Modifiview from "./views/DashBoard/Modifiview.jsx";
 
 const App = () => {
-  const { isAuthenticated, isLoading } = useAuth0();
-
-  if (isLoading) {
-    return (
-      <div className="loading-container">
-        <img
-          src={logo}
-          alt="Loading..."
-          className="loading-image"
-        />
-      </div>
-    );
-  }
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // if (isLoading) {
+  //   return (
+  //     <div className="loading-container">
+  //       <img
+  //         src={logo}
+  //         alt="Loading..."
+  //         className="loading-image"
+  //       />
+  //     </div>
+  //   );
+  // }
 
 
   const location = useLocation();
@@ -66,11 +64,22 @@ const App = () => {
 
     );
 
-
+    const handleLogin = () => {
+      // Realiza la lógica de inicio de sesión aquí
+      // Luego, cuando el inicio de sesión sea exitoso, actualiza el estado
+      setIsAuthenticated(true);
+    };
+  
+    const handleLogout = () => {
+      // Realiza la lógica de cierre de sesión aquí
+      // Luego, cuando el cierre de sesión sea exitoso, actualiza el estado
+      setIsAuthenticated(false);
+    };
+    
   return (
     <div className="App">
       
-      {isDashboardPage && <NavBar isAuthenticated={isAuthenticated} /> }
+      {isDashboardPage && <NavBar isAuthenticated={isAuthenticated} handleLogout={handleLogout}/> }
 
       <Routes>
         <Route index element={<Home />} />
@@ -86,8 +95,8 @@ const App = () => {
         <Route path="/se-padrino" element={<Padrino />} />
         <Route path="/se-voluntario" element={<Voluntario />} />
         <Route path="/perfil" element={<Perfil />} />
-        <Route path="/login" element={<LogIn />} />
-        <Route path="/logout" element={<LogOut />} />
+        <Route path="/login" element={<LogIn handleLogin={handleLogin}  />} />
+        {/* <Route path="/logout" element={<LogOut />} /> */}
         <Route path="/" element={<LayoutAdmin />}>
       {/*   <Route path="dashboard" element={
         <ProtectedRoutes redirectTo="/">

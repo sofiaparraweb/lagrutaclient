@@ -25,30 +25,79 @@
 
 .perfil-title {
   font-size: 40px;
+  font-weight: bold;
   margin-bottom: 3%;
-  color: #EB5D0B;
+  color: #17424b;
 }
 
 .perfil-content {
   display: flex;
   flex-direction: column;
-  font-family: 'DK Lemon Yellow Sun', sans-serif;
   font-size: 20px;
 }
 
 .perfil-image {
   position: relative;
-  width: 200px;
-  height: 200px;
-  margin-bottom: 20px;
+  width: 250px;
+  height: 250px;
+  margin-bottom: 10px;
 }
 
 .profile-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 50%;
+  border-radius: 30%;
 }
+
+/* ...otros estilos... */
+
+.image-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.upload-button,
+.delete-button {
+  background-color: #17424b;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* .upload-button {
+  display: inline-block;
+  background-color: #17424b;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+} */
+
+.upload-button input[type="file"] {
+  display: none;
+}
+/* 
+.delete-button {
+  display: inline-block;
+  background-color: #b38a83;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+} */
+
+/* ...otros estilos... */
 
 .image-upload {
   position: absolute;
@@ -88,8 +137,7 @@
 }
 
 .error-message {
-  color: red;
-  font-family: 'Qanelas Soft', sans-serif;
+  color: rgb(158, 48, 48);
   font-size: 12px;
 }
 
@@ -104,7 +152,7 @@
 .cancel-button {
   padding: 20px 40px; /* Ajusta el padding del botón */
   margin-left: 10px;
-  border-radius: 10px !important;
+  border-radius: 10px;
   cursor: pointer;
   font-size: 25px !important; 
   width: 45%; 

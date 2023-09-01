@@ -11,7 +11,7 @@ const FormPago = ({total}) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const Cart = useSelector((state) => state.LocalPersist.Carrito.Products);
-    const user_id = useSelector(state => state.LocalPersist.userInfo.id);
+    const user_id = useSelector(state => state.LocalPersist.userProfile.id);
 
     const { register, reset, handleSubmit, formState: { errors }} = useForm();
     const [loading, setLoading] = useState(false);

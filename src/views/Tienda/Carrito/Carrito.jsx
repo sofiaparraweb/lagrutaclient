@@ -11,7 +11,7 @@ const Carrito = ({ id, name, image, price, stock, quantityProd}) => {
 
   const dispatch = useDispatch();
   const Cart = useSelector((state) => state.LocalPersist.Carrito.Products);
-  const userId = useSelector(state => state.LocalPersist.userInfo.id);
+  const userId = useSelector(state => state.LocalPersist.userProfile.id);
   const [quantitys, setQuantity] = useState(1);
   const [subTotal, setSubTotal] = useState(0);
   const [showForm, setShowForm] = useState(false);

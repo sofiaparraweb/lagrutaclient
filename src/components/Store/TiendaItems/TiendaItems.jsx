@@ -4,19 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCarrito, addToCart } from "../../../Redux/actions"
 import { Image, Card, Text, Heading, CardBody, CardFooter, Button, Box, Grid } from '@chakra-ui/react'
 import { Toaster, toast } from "react-hot-toast";
-import { useAuth0 } from "@auth0/auth0-react"; 
-import { Link } from "react-router-dom"
+import { auth } from "../../../Firebase/Firebase";
 
 const TiendaItems = ({ id, name, image, price, stock }) => {
   
   const dispatch = useDispatch();
-  const user_id = useSelector(state => state.LocalPersist.userInfo.id);
-  const userName = useSelector(state => state.LocalPersist.userInfo.fullName);
-  const mail = useSelector(state => state.LocalPersist.userInfo.mail);
+  const user_id = useSelector(state => state.LocalPersist.userProfile.id);
+  const userName = useSelector(state => state.LocalPersist.userProfile.fullName);
+  const mail = useSelector(state => state.LocalPersist.userProfile.mail);
   const Cart = useSelector((state) => state.LocalPersist.Carrito.Products);
-  const { isAuthenticated } = useAuth0();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [quantity, setQuantity] = useState(0);
-  
+  const isAuthenticated = auth.currentUser !==null
+
   useEffect(()=>{
     if(isAuthenticated) {
       dispatch(getCarrito(user_id))
