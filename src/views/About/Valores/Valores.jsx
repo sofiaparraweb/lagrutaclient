@@ -11,19 +11,15 @@ const Valores = () => {
         <div className={style.ValuesContainer}>
           <div className={style.ValuesColumn}>
             <h2 className={style.ValuesTitle}>EN TERRITORIO</h2>
-            <ul className={style.ValuesList}>
-              <li className={style.ValueItem}>- ALEGRÍA EN EL TRABAJO</li>
-              <li className={style.ValueItem}>- RESGUARDO ABSOLUTO DE LA DIGNIDAD DE LA PERSONA</li>
-              <li className={style.ValueItem}>- RESPETO A LA IDENTIDAD CULTURAL Y SOCIAL DE INDIVIDUOS Y COMUNIDADES</li>
-            </ul>
+            <p className={style.ValueItem}>- Alegría en el trabajo</p>
+            <p className={style.ValueItem}>- Resguardo absoluto de la dignidad de la persona</p>
+            <p className={style.ValueItem}>- Respeto a la identidad cultural y social de individuos y comunidades</p>
           </div>
           <div className={style.ValuesColumn}>
             <h2 className={style.ValuesTitle}>ORGANIZACIONALES</h2>
-            <ul className={style.ValuesList}>
-              <li className={style.ValueItem}>- RESPONSABILIDAD Y TRABAJO COMPROMETIDO</li>
-              <li className={style.ValueItem}>- TRABAJO EN RED Y COLABORATIVO</li>
-              <li className={style.ValueItem}>- TRANSPARENCIA FISCAL</li>
-            </ul>
+            <p className={style.ValueItem}>- Responsabilidad y trabajo comprometido</p>
+            <p className={style.ValueItem}>- Trabajo en red y colaborativo</p>
+            <p className={style.ValueItem}>- Transparencia fiscal</p>
           </div>
         </div>
       </div>
