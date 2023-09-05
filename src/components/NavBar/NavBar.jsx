@@ -180,12 +180,20 @@ const NavBar = () => {
       </div>
       <div className="rightSection">
         {isAuthenticated ? (
+          <>
+          {/* <div className="cartNavContainer" style={{padding:"0 15px"}}>
+            <NavLink to="/cart">
+              <AiOutlineShoppingCart className="IconRightNavBar" />
+              <p className="NumeroChango">{Carrito?.length || 0}</p> 
+            </NavLink>
+          </div> */}
           <button
             onClick={handleLogout}
             id="cerrariniciarNav"
             className="link logoutButton">
             Cerrar Sesión
           </button>
+          </>
         ) : (
           <button
             onClick={handleLogin}

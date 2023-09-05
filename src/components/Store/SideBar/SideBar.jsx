@@ -19,7 +19,7 @@ const SideBar = ({ setCurrentPage }) => {
 
   useEffect(() => {
     dispatch(getCarrito(userId));
-  }, [userId]);
+  },[dispatch]);
 
   const handleCartClick = () => {
     if (user) {

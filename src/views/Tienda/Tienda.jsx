@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { getAllProducts } from '../../Redux/actions';
+import { getAllProducts} from '../../Redux/actions';
 import TiendaItemsContenedor from "../../components/Store/TiendaItemsContenedor/TiendaItemsContenedor";
 import style from "./Tienda.module.css";
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import Order from "../../components/Store/Order/Order"
 import Search from "../../components/Store/Search/Search"

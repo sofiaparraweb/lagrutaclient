@@ -1,31 +1,17 @@
-@import url('https://fonts.cdnfonts.com/css/wicked-grit');
-@import url('https://fonts.cdnfonts.com/css/dk-lemon-yellow-sun');
-
-.DonaHome {
-  position: relative;
+.dona-home {
   margin: 10px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   text-align: center;
-  font-family: 'DK Lemon Yellow Sun', sans-serif;
-  font-size: 24px;
+  font-size: 22px;
 }
 
-p#PrimerAmarillo {
-  font-size: 24px;
-  color: rgba(16, 68, 118, 255);
+.text-dona-home {
   margin-bottom: 20px;
 }
 
-p#SegundoAmarillo {
-  font-size: 24px;
-  color: rgba(16, 68, 118, 255);
-  margin-bottom: 20px;
-}
-
-.BotonParaDonar {
+.boton-para-donar {
   margin-top: 15px;
   background-color: #124476;
   color: white;
@@ -38,23 +24,22 @@ p#SegundoAmarillo {
   transition: background-color 0.3s ease;
 }
 
-.BotonParaDonar:hover {
+.boton-para-donar:hover {
   color: #B9362C;
 }
 
 @media (max-width: 767px) {
-  .DonaHome {
+  .dona-home {
     height: auto;
   }
 }
 
 @media (max-width: 479px) {
-  p#PrimerAmarillo,
-  p#SegundoAmarillo {
+  .text-dona-home {
     font-size: 90%;
   }
 
-  .BotonParaDonar {
+  .boton-para-donar {
     font-size: 20px;
     height: 80px;
     width: 80px;

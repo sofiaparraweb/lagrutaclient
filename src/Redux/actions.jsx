@@ -1,5 +1,4 @@
 import axios from "axios";
-import Swal from "sweetalert2";
 
 
 // NOTICIAS
@@ -56,7 +55,6 @@ export const FORM_DONACION = "FORM_DONACION";
 export const url = "http://localhost:3001";
 // export const url = "https://lagruta.onrender.com";
 // const LOCAL = "http://localhost:3001";
-
 
 // NOTICAS
 export function getAllActivity() {
@@ -138,7 +136,7 @@ export const filterByName = (name) => {
       console.log(error);
     }
   };
-};
+}
 
 export const filterByType = (name) => {
   return async (dispatch) => {
@@ -406,7 +404,7 @@ export const deleteProduct = (product) => {
 };
 
 export function create_news(payload) {
-  return async function (dispatch) {
+  return async function () {
     try {
       var res = await axios.post(`${url}/activity/`, payload);
       return {
