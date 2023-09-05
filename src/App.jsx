@@ -36,6 +36,7 @@ import DashboardNoticias from "./views/DashBoard/DashboarNoticias";
 import DashboardShop from "./views/DashBoard/DashboardShop";
 import DashboardUsers from "./views/DashBoard/DashboardUsers";
 import Modifiview from "./views/DashBoard/Modifiview.jsx";
+// import Calendar from "./views/DashBoard/Calendar/Calendar";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -106,6 +107,7 @@ const App = () => {
         <Route path="shop" element={<DashboardShop />}  />
         <Route path="users" element={<DashboardUsers />}  />
         <Route path="modifi" element={<Modifiview />} />
+        {/* <Route path="calendar" element={<Calendar />} /> */}
         </Route>
       </Routes> 
       <WP_Button />

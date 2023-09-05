@@ -4,13 +4,14 @@ import axios from "axios";
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 
-import { getAllUsers, deleteUser } from "../../../Redux/actions";
+import { getAllUsers } from "../../../Redux/actions";
 
 export default function TablaUsers() {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.LocalPersist.allUsers);
   const [buttonStates, setButtonStates] = useState({});
   const [buttonTexts, setButtonTexts] = useState({});
+  const url = "http://localhost:3001";
 
   useEffect(() => {
     dispatch(getAllUsers());
@@ -24,39 +25,39 @@ export default function TablaUsers() {
     }
   }, [dispatch]);
 
-  const handleButtonClick = (id) => {
-    setButtonStates((prevState) => ({
-      ...prevState,
-      [id]: !prevState[id],
-    }));
-
-    setButtonTexts((prevTexts) => ({
-      ...prevTexts,
-      [id]: !prevTexts[id] ? "Activar" : "Bloquear",
-    }));
-
-    if (buttonStates[id]) {
-      handleDeleteUser(id);
-    }
-
-    localStorage.setItem("buttonStates", JSON.stringify(buttonStates));
-    localStorage.setItem("buttonTexts", JSON.stringify(buttonTexts));
-  };
-
-  const url = "http://localhost:3001";
-
-  const handleDeleteUser = async (id) => {
+  const handleButtonClick = async (id) => {
     try {
-      await axios.delete(`${url}/user/status/${id}`);
-      dispatch(deleteUser(id)); // Actualiza el estado de Redux
-      alert("Usuario eliminado correctamente");
+      let updatedButtonStates = { ...buttonStates };
+
+      if (buttonStates[id]) {
+        // Si el usuario está bloqueado, ejecuta la función para restaurar
+        await axios.post(`${url}/user/restore/${id}`);
+        alert("Usuario restaurado correctamente");
+        updatedButtonStates[id] = false; // Cambia el estado del usuario
+      } else {
+        // Si el usuario no está bloqueado, ejecuta la función para bloquear
+        await axios.delete(`${url}/user/status/${id}`);
+        alert("Usuario bloqueado correctamente");
+        updatedButtonStates[id] = true; // Cambia el estado del usuario
+      }
+
+      // Actualiza el estado local de los botones
+      setButtonStates(updatedButtonStates);
+
+      // Actualiza los textos de los botones
+      setButtonTexts((prevTexts) => ({
+        ...prevTexts,
+        [id]: buttonStates[id] ? "ACTIVO" : "BANEADO",
+      }));
+
+      dispatch(getAllUsers()); // Actualiza la lista de usuarios en Redux
     } catch (error) {
       console.log(error);
-      alert("Ocurrió un error al eliminar el usuario");
+      alert("Ocurrió un error al cambiar el estado del usuario");
     }
   };
 
-  console.log(userInfo);
+ 
 
   return (
     <>
@@ -67,9 +68,9 @@ export default function TablaUsers() {
       </div>
 
       {userInfo?.map((u) => (
-        <div className="bg-secondary-100 p-8 rounded-xl">
+        <div className="bg-secondary-100 p-8 rounded-xl" key={u.id}>
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center mb-4 bg-secondary-900 p-4 rounded-xl">
-            <div key={u.id}>
+            <div>
               <h5 className="md:hidden text-gray-700 font-bold mb-2">ID</h5>
               <span className="text-gray-700">{u.id}</span>
             </div>
@@ -81,9 +82,12 @@ export default function TablaUsers() {
               <h5 className="md:hidden text-gray-700 font-bold mb-2">Rol</h5>
               <span className="py-1 px-2 text-yellow-500 rounded-lg">
                 {u.Rols && u.Rols.length > 0 ? (
-                  u.Rols.map((catgory) => (
-                    <span className="py-1 px-2 bg-blue-800/30 text-gray-700 rounded-lg">
-                      {catgory.name}
+                  u.Rols.map((category) => (
+                    <span
+                      key={category.id}
+                      className="py-1 px-2 bg-blue-800/30 text-gray-700 rounded-lg"
+                    >
+                      {category.name}
                     </span>
                   ))
                 ) : (
@@ -97,21 +101,23 @@ export default function TablaUsers() {
               </h5>
               <span className="text-gray-700">{u.birthDate}</span>
             </div>
-            {/*botones banneo/activación*/}
+            {/* Botones banneo/activación */}
             <div>
               <button
-                className={`w-14 h-7 ${
-                  u.status === true
-                    ? "w-14 h-7 bg-green-700 peer-focus:outline-none peer-focus:ring-4  rounded-full peer dark:bg-green-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-white after:border-green-700 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 "
-                    : "bg-red-700 w-14 h-7 bg-green-700 peer-focus:outline-none peer-focus:ring-4  rounded-full peer dark:bg-red-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-white after:border-red-700 after:border after:rounded-full after:h-6 after:w-6 after:transition-all "
-                } relative inline-flex items-center cursor-pointer`}
+                className={`w-14 h-7 relative inline-flex items-center cursor-pointer`}
+                style={{
+                  backgroundColor: u.status ? "green" : "red",
+                  color: "white",
+                  borderRadius: "999px",
+                }}
                 onClick={() => {
                   console.log(u.id);
                   console.log(u.status);
                   handleButtonClick(u.id);
-                }}>
-                <span class="ml-20 text-ms font-medium text-black dark:text-black">
-                  {u.status ? buttonTexts[u.id] : "Bloquear"}
+                }}
+              >
+                <span className="ml-20 text-ms font-medium text-black dark:text-black">
+                  {u.status ? "ACTIVO" : "BANEADO"}
                 </span>
               </button>
             </div>
