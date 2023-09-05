@@ -26,17 +26,24 @@ function validate(name, date, description, selectedImage) {
   return errors;
 }
 
+const initialValues = {
+  image: null,
+  name: '',
+  description: '',  
+  date: '',
+  type: ''
+};
 const FormCreacion = () => {
   const dispatch = useDispatch();
-  const Types = useSelector((state) => state.LocalPersist.activityTypes);
-
+  
   const [errors, setErrors] = useState({});
   const [selectedImage, setSelectedImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
-  const [types_activity, setTypesActivity] = useState("");
+  const [typesActivity, setTypesActivity] = useState("");
+  const Types = useSelector((state) => state.LocalPersist.activityTypes);
 
   useEffect(() => {
     dispatch(getTypeActi());
@@ -83,29 +90,30 @@ const FormCreacion = () => {
       return;
     }
 
-    const formData = new FormData();
-    formData.append("img", selectedImage);
-    formData.append("name", name);
-    formData.append("description", description);
-    formData.append("date", date);
-    formData.append("typeId", types_activity);
-
+    const data = {
+      img: selectedImage,
+      name: name,
+      description: description,
+      date: date,
+      typeId: typesActivity, // Envía el ID de la categoría
+    
+    }
     try {
-      console.log(formData)
-      const res = await axios.post(`${LOCAL}/products/create/`, formData);
+      console.log(data)
+      const res = await axios.post(`${LOCAL}/products/create/`, data);
       Swal.fire({
         icon: "success",
         title: "Actividad creada con éxito",
       });
       const imgUrl = res.data;
       console.log("url de la img", imgUrl);
-
+  
       setName("");
       setSelectedImage(null);
       setPreviewImage(null);
       setDescription("");
       setDate("");
-      setTypesActivity("");
+      setTypesActivity(""); // Restablece la categoría
       setErrors({});
     } catch (err) {
       console.log("error al subir imagen", err);
@@ -182,17 +190,19 @@ const FormCreacion = () => {
               <div className="types-s">
               <select
   className={style.inputbox}
-  value={types_activity}
-  onChange={(e) => setTypesActivity(e.target.value)}>
+  value={typesActivity}
+  onChange={(e) => setTypesActivity(e.target.value)}
+>
   <option className={style.options} key="" value="">
     Seleccionar categoría
   </option>
   {Types?.map((type) => (
-    <option key={type.id} value={type.id}> {/* Cambia 'e.name' por 'type.id' */}
+    <option key={type.id} value={type.id}>
       {type.name}
     </option>
   ))}
 </select>
+
               </div>
               <button className={style.submitbtn} type="submit">
                 Publicar

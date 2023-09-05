@@ -31,15 +31,14 @@ function validate(name, date, description, selectedImage) {
 const FormularioNews = () => {
 
   const dispatch = useDispatch();
-  const Types = useSelector((state) => state.LocalPersist.activityTypes);
-
   const [errors, setErrors] = useState({});
   const [selectedImage, setSelectedImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
-  const [types_activity, setTypesActivity] = useState("");
+  const [typesActivity, setTypesActivity] = useState("");
+  const Types = useSelector((state) => state.LocalPersist.activityTypes);
 
   useEffect(() => {
     dispatch(getTypeActi());
@@ -86,16 +85,17 @@ const FormularioNews = () => {
       return;
     }
 
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("description", description);
-    formData.append("type_activity", types_activity);
-    formData.append("date", date);
-    formData.append("img", selectedImage);
-
+    const data = {
+      img: selectedImage,
+      name: name,
+      description: description,
+      date: date,
+      typeId: typesActivity ? Types.find(typeId => typeId.name === typesActivity).id : null, // Envía el ID de la categoría
+    
+    }
     try {
-      
-    dispatch(addProduct(formData));
+    console.log(data)
+    dispatch(addProduct(data));
     setName("");
     setSelectedImage(null);
     setPreviewImage(null);
@@ -131,16 +131,18 @@ const FormularioNews = () => {
                 <label class="text-white dark:text-gray-200" htmlFor="">Seleccione categoría de la publicación</label>
                 <select 
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
-                value={types_activity}
-                onChange={(e) => setTypesActivity(e.target.value)}>
+                value={typesActivity}
+                onChange={(e) => setTypesActivity(e.target.value)}
+                name="typesActivity">
+                
                 <option key="" value="">
                   {" "}
                   Seleccionar categoría
                 </option>
-                {Types?.map((e, index) => (
-                  <option key={e.id} value={e.name}>
+                {Types?.map((typesActivity) => (
+                  <option key={typesActivity.id} value={typesActivity.name}>
                     {" "}
-                    {e.name}
+                    {typesActivity.name}
                   </option>
                 ))}{" "}
                 </select>
