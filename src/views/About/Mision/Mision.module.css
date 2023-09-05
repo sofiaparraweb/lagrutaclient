@@ -1,11 +1,8 @@
-@import url('https://fonts.cdnfonts.com/css/wicked-grit');
-@import url('https://fonts.cdnfonts.com/css/dk-lemon-yellow-sun');
 
 .parallaxContent {
   position: relative;
   height: 400px;
   overflow: hidden;
-  /* margin: 20px 0; */
 }
   
 .parallax {
@@ -21,25 +18,22 @@
 }
   
 .TittleMision {
-  color: #124476;
+  color: white;
   width: fit-content;
   margin:auto;
   font-size: 35px;
   letter-spacing: 15px;
   text-transform: uppercase;
-  background-color:rgb(215,182,62, 0.77);
   text-align: center;
-  justify-content: center;
   padding: 10px 20px;
   margin-top: 170px;
-  font-family: 'Wicked Grit', sans-serif;
+  background-color:rgb(215,182,62, 0.77);
 }
   
 .Parrafos {
   color: white;
-  font-size: 25px;
+  font-size: 20px;
   padding: 45px;
-  font-family: 'DK Lemon Yellow Sun', sans-serif;
   text-align: center;
   justify-content: center;
 }

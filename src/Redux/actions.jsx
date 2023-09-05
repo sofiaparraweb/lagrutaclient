@@ -1,11 +1,13 @@
-import { User } from "@auth0/auth0-spa-js";
 import axios from "axios";
-import Swal from "sweetalert2";
 
+
+// NOTICIAS
 export const GET_ALL_ACTIVITY = "GET_ALL_ACTIVITY";
 export const GET_DETAIL_ACTIVITY = "GET_DETAIL_ACTIVITY";
 export const CLEANDETAIL = "CREALDETAIL";
 export const GET_TYPEACTY = "GET_TYPEACTY";
+
+//TIENDA
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const GET_ALL_PRODUCTS_TYPES = "GET_ALL_PRODUCTS_TYPES";
 export const FILTER_BY_NAME = "FILTER_BY_NAME";
@@ -21,27 +23,40 @@ export const DELETE_ALL_CART = "DELETE_ALL_CART";
 export const DELETE_CARRITO = "DELETE_CARRITO";
 export const CHANGE_QUANTITY = "CHANGE_QUANTITY";
 export const POST_PAGO_TIENDA = "POST_PAGO_TIENDA";
-export const FETCH_PROFILE = "FETCH_PROFILE";
-export const GET_PROFILE_MAIL = 'GET_PROFILE_MAIL';
-export const CREATE_PROFILE = "CREATE_PROFILE";
-export const GET_USERID = "GET_USERID";
-export const UPDATE_PROFILE = "UPDATE_PROFILE";
-export const POST_NEWS_DASHBOARD = "POST_NEWS_DASHBOARD";
+export const GET_DETAIL_PRODUCTS = "GET_DETAIL_PRODUCTS"
+
+//USUARIO
+// export const FETCH_PROFILE = "FETCH_PROFILE";
+// export const GET_PROFILE_MAIL = 'GET_PROFILE_MAIL';
+// export const CREATE_PROFILE = "CREATE_PROFILE";
+// export const GET_USERID = "GET_USERID";
+// export const UPDATE_PROFILE = "UPDATE_PROFILE";
+// export const SET_USER_ID = "SET_USER_ID";
+export const GET_USER= "GET_USER";
+export const CREATE_USER = "CREATE_USER";
+export const GET_USER_ID = "GET_USER_ID";
+export const UPDATE_USER = "UPDATE_USER";
 export const SET_USER_ID = "SET_USER_ID";
+
+//DASHBOARD
+export const POST_NEWS_DASHBOARD = "POST_NEWS_DASHBOARD";
 export const POST_DONACIONES = "POST_DONACIONES";
 //export const ENVIAR_INFORMACION = "ENVIAR_INFORMACION";
+export const GET_ALL_USERS = "GET_ALL_USERS";
+export const DELETE_USER = "DELETE_USER";
+
+//FORMS
 export const FORM_VOLUNTARIO = "FORM_VOLUNTARIO";
 export const FORM_FOOTER = "FORM_FOOTER";
 export const FORM_PADRINO = "FORM_PADRINO";
 export const FORM_DONACION = "FORM_DONACION";
-export const GET_ALL_USERS = "GET_ALL_USERS";
-export const DELETE_USER = "DELETE_USER";
-export const GET_DETAIL_PRODUCTS = "GET_DETAIL_PRODUCTS"
+
 
 export const url = "http://localhost:3001";
-//export const url = "https://lagruta.onrender.com";
+// export const url = "https://lagruta.onrender.com";
 // const LOCAL = "http://localhost:3001";
 
+// NOTICAS
 export function getAllActivity() {
   return async function (dispatch) {
     try {
@@ -93,7 +108,7 @@ export function cleanDetail() {
 
 export const getAllProducts = () => {
   return async (dispatch) => {
-    const resp = await axios(`${url}/products/`);
+    const resp = await axios(`${url}/products`);
     return dispatch({ type: GET_ALL_PRODUCTS, payload: resp.data });
   };
 };
@@ -121,7 +136,7 @@ export const filterByName = (name) => {
       console.log(error);
     }
   };
-};
+}
 
 export const filterByType = (name) => {
   return async (dispatch) => {
@@ -164,6 +179,7 @@ export const addToCart = (user_id, id, quantity) => {
     try {
       const response = await axios.post(`${url}/cart/add?user_id=${user_id}&product_id=${id}&quantity=${quantity}`)
       dispatch({ type: ADD_TO_CART, payload: response.data})
+      console.log('carrito creado')
     } catch (error){
       console.log(error);
     }
@@ -228,25 +244,25 @@ export const enviarDataTienda = (user_id) => {
 
 /* -----------------------------profile----------------------------- */
 
-export const createProfile = (newUser) => {
-  return async (dispatch, getState) => {
-    try {
-      const response = await axios.post(`${url}/user`, newUser);
-      const userId = response.data.newUser.id;
-      dispatch({
-        type: SET_USER_ID,
-        payload: userId,
-      });
-      dispatch({
-        type: CREATE_PROFILE,
-        payload: response.data,
-      });
-      dispatch(getProfile(userId));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
+// export const createProfile = (newUser) => {
+//   return async (dispatch, getState) => {
+//     try {
+//       const response = await axios.post(`${url}/user`, newUser);
+//       const userId = response.data.newUser.id;
+//       dispatch({
+//         type: SET_USER_ID,
+//         payload: userId,
+//       });
+//       dispatch({
+//         type: CREATE_PROFILE,
+//         payload: response.data,
+//       });
+//       dispatch(getProfile(userId));
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// };
 
 export function getAllUsers() {
   return async function (dispatch) {
@@ -269,14 +285,58 @@ export const deleteUser = (id) => {
      }
  };
 
-export const getProfile = (userId) => {
+// export const getProfile = (userId) => {
+//   return async (dispatch) => {
+//     try {
+//       const response = await axios.get(`${url}/user/${userId}`);
+//       dispatch({
+//         type: FETCH_PROFILE,
+//         payload: response.data,
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// };
+
+// export const getUserId = (email) =>{
+//   return async (dispatch) => {
+//     try {
+//       const response = await axios.get(`${url}/user/mail/${email}`);
+//       console.log(response);
+//       dispatch({
+//         type: GET_USERID,
+//         payload: response.data,
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// }
+
+// export const updateProfile = (data) => {
+//   return async (dispatch) => {
+//     try {
+//       const response = await axios.put(`${url}/user/edit`, data);
+//       dispatch({
+//         type: UPDATE_PROFILE,
+//         payload: response.data,
+//       });
+//       console.log('se ejecuto con exitot bbbb')
+//     } catch (error) {
+//       console.log({ error: error.message });
+//     }
+//   };
+// };
+
+//------------------------------------user-----------------------------------
+
+export const getUser = (email) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${url}/user/${userId}`);
-      dispatch({
-        type: FETCH_PROFILE,
-        payload: response.data,
-      });
+      const response = await axios.get(`${url}/user/email/${email}`);
+      dispatch({ type: GET_USER, payload: response.data });
+      console.log("se trajo el usuario")
     } catch (error) {
       console.log(error);
     }
@@ -286,27 +346,41 @@ export const getProfile = (userId) => {
 export const getUserId = (email) =>{
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${url}/user/mail/${email}`);
-      console.log(response);
-      dispatch({
-        type: GET_USERID,
-        payload: response.data,
-      });
+      const response = await axios.get(`${url}/user/email/${email}`);
+      console.log(response.data, 'function getUserId');
+      dispatch({ type: GET_USER_ID, payload: response.data });
     } catch (error) {
       console.log(error);
     }
   };
 }
 
-export const updateProfile = (data) => {
+export const createUser = (newUser) => {
   return async (dispatch) => {
     try {
-      const response = await axios.put(`${url}/user/edit`, data);
-      dispatch({
-        type: UPDATE_PROFILE,
-        payload: response.data,
+      const response = await axios.post(`${url}/user`, newUser);
+      console.log(newUser, 'este es el new user')
+
+      const userId = response.data.newUser.id;
+      dispatch({ type: SET_USER_ID, payload: userId });
+      dispatch({ type: CREATE_USER, payload: response.data });
+      console.log('USUARIO CREADO!!!')
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const updateUser = (data) => {
+  return async (dispatch) => {
+     try {
+      const response = await axios.put(`${url}/user/edit`, data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       });
-      console.log('se ejecuto con exitot bbbb')
+      // dispatch({ type: UPDATE_USER, payload: response.data });
+      console.log('se ejecuto con exitot bbbb', response.data)
     } catch (error) {
       console.log({ error: error.message });
     }
@@ -315,10 +389,18 @@ export const updateProfile = (data) => {
 
 /* -----------------------------dashboard----------------------------- */
 
-export const addProduct = (product) => {
-  return {
-    type: ADD_PRODUCT,
-    payload: product,
+export const addProduct = (data) => {
+  console.log(data)
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`${url}/activity/`, data, {
+        headers: { 'Content-Type': 'multipart/form-data' }}
+      );
+      dispatch({ type: ADD_PRODUCT, payload: data });
+      console.log('ACTIVIDADES CREADO!!!')
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 
@@ -330,7 +412,7 @@ export const deleteProduct = (product) => {
 };
 
 export function create_news(payload) {
-  return async function (dispatch) {
+  return async function () {
     try {
       var res = await axios.post(`${url}/activity/`, payload);
       return {

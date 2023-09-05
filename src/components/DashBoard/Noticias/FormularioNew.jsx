@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { create_news, getTypeActi } from "../../../Redux/actions";
+import { addProduct, create_news, getTypeActi } from "../../../Redux/actions";
 
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
@@ -67,7 +67,8 @@ const FormularioNews = () => {
 
 
   const handleImageChange = (e) => {
-    setSelectedImage(e.target.files[0]);
+    const file = e.target.files[0];
+    setSelectedImage(file);
     setPreviewImage(URL.createObjectURL(e.target.files[0]));
     setErrors((prevErrors) => ({
       ...prevErrors,
@@ -76,8 +77,6 @@ const FormularioNews = () => {
   };
 
   const handleSubmit = async (e) => {
-    const LOCAL = "https://lagruta.onrender.com";
-    // const LOCAL = "http://localhost:3001";
     e.preventDefault();
 
     const validationErrors = validate(name, date, description, selectedImage);
@@ -88,18 +87,15 @@ const FormularioNews = () => {
     }
 
     const formData = new FormData();
-    formData.append("img", selectedImage);
     formData.append("name", name);
     formData.append("description", description);
+    formData.append("type_activity", types_activity);
     formData.append("date", date);
-    formData.append("types_activity", types_activity);
+    formData.append("img", selectedImage);
 
     try {
-      const res = await axios.post(`${LOCAL}/activity/`, formData);
-      alert("Actividad creada con éxito");
-      const imgUrl = res.data;
-    
-
+      
+    dispatch(addProduct(formData));
     setName("");
     setSelectedImage(null);
     setPreviewImage(null);
@@ -118,7 +114,7 @@ const FormularioNews = () => {
     return ( <div>
         <section class="max-w-4xl p-6 mx-auto bg-indigo-600 rounded-md shadow-md dark:bg-gray-800 mt-20">
     <h1 class="text-xl font-bold text-white capitalize dark:text-white">Publicar nueva noticia/actividad</h1>
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} method="POST" enctype="multipart/form-data">
         <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
             <div>
                 <label class="text-white dark:text-gray-200"  htmlFor="name">Título de publicación</label>

@@ -11,7 +11,7 @@ export default function TablaTienda() {
     const dispatch = useDispatch();
 
     const allProducts = useSelector((state) => state.LocalPersist.allProducts);
-console.log(allProducts)
+    console.log(allProducts)
     useEffect(() => {
         dispatch(getAllProducts());
       }, [dispatch]);

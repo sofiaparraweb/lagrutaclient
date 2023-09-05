@@ -1,9 +1,8 @@
 import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import "./App.css";
-import { useAuth0 } from "@auth0/auth0-react";
 import logo from '../src/assets/logo.png'
-
+import { useState } from "react";
 
 import Home from "./views/Home/Home";
 import NavBar from "./components/NavBar/NavBar";
@@ -12,6 +11,7 @@ import About from "./views/About/About";
 import News from "./views/Noticias/News";
 import DetailsNews from "./components/News/DetailsNews/DetailsNews";
 import Tienda from "./views/Tienda/Tienda";
+import Detail from "./views/Detail/Detail"
 import CarritoContainer from "./components/Store/CarritoContainer/CarritoContainer";
 import PopUpDonateNow from "./components/MensajeFloat/DonateNow";
 import WP_Button from "./components/MensajeFloat/WP_Button.jsx";
@@ -21,8 +21,8 @@ import Equipo from "./views/About/Equipo/Equipo";
 
 /* componentes usuarios */
 import Perfil from "./views/Perfil/Perfil";
+// import Profile from "./views/Perfil/Perfil2";
 import LogIn from "./views/LogIn/LogIn";
-import LogOut from "./views/LogIn/LogOut";
 /* import { ProtectedRoutes } from "./components/ProtectedRoutes/ProtectedRoutes";
  */
 /* donaciones */
@@ -37,21 +37,21 @@ import DashboardNoticias from "./views/DashBoard/DashboarNoticias";
 import DashboardShop from "./views/DashBoard/DashboardShop";
 import DashboardUsers from "./views/DashBoard/DashboardUsers";
 import Modifiview from "./views/DashBoard/Modifiview.jsx";
+// import Calendar from "./views/DashBoard/Calendar/Calendar";
 
 const App = () => {
-  const { isAuthenticated, isLoading } = useAuth0();
-
-  if (isLoading) {
-    return (
-      <div className="loading-container">
-        <img
-          src={logo}
-          alt="Loading..."
-          className="loading-image"
-        />
-      </div>
-    );
-  }
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // if (isLoading) {
+  //   return (
+  //     <div className="loading-container">
+  //       <img
+  //         src={logo}
+  //         alt="Loading..."
+  //         className="loading-image"
+  //       />
+  //     </div>
+  //   );
+  // }
 
 
   const location = useLocation();
@@ -65,11 +65,22 @@ const App = () => {
 
     );
 
-
+    const handleLogin = () => {
+      // Realiza la lógica de inicio de sesión aquí
+      // Luego, cuando el inicio de sesión sea exitoso, actualiza el estado
+      setIsAuthenticated(true);
+    };
+  
+    const handleLogout = () => {
+      // Realiza la lógica de cierre de sesión aquí
+      // Luego, cuando el cierre de sesión sea exitoso, actualiza el estado
+      setIsAuthenticated(false);
+    };
+    
   return (
     <div className="App">
       
-      {isDashboardPage && <NavBar isAuthenticated={isAuthenticated} /> }
+      {isDashboardPage && <NavBar isAuthenticated={isAuthenticated} handleLogout={handleLogout}/> }
 
       <Routes>
         <Route index element={<Home />} />
@@ -79,13 +90,14 @@ const App = () => {
         <Route path="/noticias" element={<News />} />
         <Route exact path="/noticias/:id" element={<DetailsNews />} />
         <Route path="/tienda" element={<Tienda />} />
+        <Route path="/detail/:id" element={<Detail />} /> 
         <Route path="/cart" element={<CarritoContainer />} />
         <Route path="/dona" element={<DonationForm/>}/>
         <Route path="/se-padrino" element={<Padrino />} />
         <Route path="/se-voluntario" element={<Voluntario />} />
         <Route path="/perfil" element={<Perfil />} />
-        <Route path="/login" element={<LogIn />} />
-        <Route path="/logout" element={<LogOut />} />
+        <Route path="/login" element={<LogIn handleLogin={handleLogin}  />} />
+        {/* <Route path="/logout" element={<LogOut />} /> */}
         <Route path="/" element={<LayoutAdmin />}>
       {/*   <Route path="dashboard" element={
         <ProtectedRoutes redirectTo="/">
@@ -97,6 +109,7 @@ const App = () => {
         <Route path="shop" element={<DashboardShop />}  />
         <Route path="users" element={<DashboardUsers />}  />
         <Route path="modifi" element={<Modifiview />} />
+        {/* <Route path="calendar" element={<Calendar />} /> */}
         </Route>
       </Routes> 
       <WP_Button />

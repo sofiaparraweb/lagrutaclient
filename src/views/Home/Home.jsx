@@ -1,5 +1,6 @@
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import LastNews from "../../components/News/HeaderNews/LastNews";
 import { Link } from "react-router-dom";
 import style from "./Home.module.css";
@@ -9,54 +10,76 @@ import FotosSlider from "./FotosSlider/FotosSlider";
 import Headerslider from "./FotosSlider/HeaderSlider";
 import lagruta from '../../assets/lagruta.png';
 import PedirInfo from './Informacion/informacion';
-import { getAllActivity, createProfile, getProfile, getUserId } from "../../Redux/actions.jsx";
-import { useAuth0 } from "@auth0/auth0-react";
-import { useRef } from 'react';
-import logo from "../../assets/logo.png";
+import { getAllActivity, createUser, getUser, getUserId } from "../../Redux/actions.jsx";
+import axios from "axios";
+import { auth } from "../../Firebase/Firebase"; // Import the Firebase authentication instance
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const user = auth.currentUser?.email;
+  console.log(user)
   const allActivity = useSelector(state => state.LocalPersist.allActivity);
-  const userInfo = useSelector(state => state.LocalPersist.userInfo?.id);
-  console.log(userInfo)
-  const isProfileCreatedRef = useRef(false);
+  const userProfile = useSelector((state) => state.LocalPersist.userProfile);
+  const [isProfileCreated, setIsProfileCreated] = useState(false);
 
+  // const url = "https://lagruta.onrender.com";
+   const url = "http://localhost:3001";
+  
   useEffect(() => {
-    if (isAuthenticated && user && !isProfileCreatedRef.current) {
-      const newUser = {
-        fullName: user.name,
-        mail: user.email,
-      };
-      dispatch(createProfile(newUser));
-      isProfileCreatedRef.current = true;
-    }
-  }, [dispatch, isAuthenticated, user]);
+    if (user) {
+      // Primero veo si el usuario ya existe en la bdd
+      axios.get(`${url}/user/email/${user}`)
+        .then(response => {
+          const existingUser = response.data;
+          if (!existingUser) {
+            // Si el usuario no existe en el back crea el perfil
+            const newUser = {
+              fullName: user,
+              email: user,
+            };
+            dispatch(createUser(newUser))
+            .then(() => {
+              // Cuando ya está creado, lo traigo para poner los datos en userProfile/userId
+              dispatch(getUser(user));
+              dispatch(getUserId(user));
+              setIsProfileCreated(true);
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        } else {
+          // Si el usuario ya existe, traigo los datos
+          dispatch(getUser(user));
+          dispatch(getUserId(user));
+          setIsProfileCreated(true);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+}, [dispatch, user]);
 
-  useEffect(() => {
-    if (isAuthenticated && user && isProfileCreatedRef.current) {
-      dispatch(getProfile(user.userId));
-      dispatch(getUserId(user.email));
-      console.log(user.email);
-    }
-    dispatch(getAllActivity());
-  }, [dispatch, isAuthenticated, user]);
+
+useEffect(() => {
+  dispatch(getAllActivity());
+}, [dispatch]);
 
   const handleClick = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  if (isLoading) {
-    return (
-      <div className="loading-container">
-        <img
-          src={logo}
-          alt="Loading..."
-          className="loading-image"
-        />
-      </div>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div className="loading-container">
+  //       <img
+  //         src={logo}
+  //         alt="Loading..."
+  //         className="loading-image"
+  //       />
+  //     </div>
+  //   );
+  // }
 
   return (
     <div>
@@ -66,8 +89,8 @@ const Home = () => {
           <img src={lagruta} alt="lagruta" />
         </div>
         <FotosSlider />
-        <p className={style.frase}>“Los científicos dicen que estamos hechos de átomos, pero un pajarito me contó que estamos hechos de historias”</p>
-        <p className={style.frase}>Eduardo Galeano</p>
+        <h2 className={style.frase}>“Los científicos dicen que estamos hechos de átomos, pero un pajarito me contó que estamos hechos de historias”</h2>
+        <h2 className={style.frase}>Eduardo Galeano</h2>
         <div className={style.RecuadrosContainer}>
           <div className={style.BgImage} />
           <div className={style.GridContainer}>

@@ -1,11 +1,13 @@
-@import url('https://fonts.cdnfonts.com/css/wicked-grit');
-@import url('https://fonts.cdnfonts.com/css/dk-lemon-yellow-sun');
 
 .perfil-container {
-  max-width: 1000px;
-  margin-top: 100px;
+  max-width: 600px;
+  margin: auto;
+  margin-top: 120px;
+  margin-bottom: 120px;
   padding: 20px;
   position: relative;
+  background-color: whitesmoke;
+  border-radius: 10px;
 }
 
 .perfil-header {
@@ -24,31 +26,78 @@
 .perfil-title {
   font-size: 40px;
   font-weight: bold;
-  font-family: 'Wicked Grit', sans-serif;
   margin-bottom: 3%;
-  color: #EB5D0B;
+  color: #17424b;
 }
 
 .perfil-content {
   display: flex;
   flex-direction: column;
-  font-family: 'DK Lemon Yellow Sun', sans-serif;
   font-size: 20px;
 }
 
 .perfil-image {
   position: relative;
-  width: 200px;
-  height: 200px;
-  margin-bottom: 20px;
+  width: 250px;
+  height: 250px;
+  margin-bottom: 10px;
 }
 
 .profile-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 50%;
+  border-radius: 30%;
 }
+
+/* ...otros estilos... */
+
+.image-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.upload-button,
+.delete-button {
+  background-color: #17424b;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* .upload-button {
+  display: inline-block;
+  background-color: #17424b;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+} */
+
+.upload-button input[type="file"] {
+  display: none;
+}
+/* 
+.delete-button {
+  display: inline-block;
+  background-color: #b38a83;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+} */
+
+/* ...otros estilos... */
 
 .image-upload {
   position: absolute;
@@ -74,7 +123,6 @@
 }
 
 .perfil-label {
-  font-weight: bold;
   color: #124476;
 }
 
@@ -84,19 +132,19 @@
   border: 1px solid #ccc;
   outline: none;
   color: black;
+  background-color: white !important;
   font-size: 16px !important;
 }
 
 .error-message {
-  color: red;
+  color: rgb(158, 48, 48);
   font-size: 12px;
-  margin-top: 5px;
 }
 
 .button-group {
   display: flex;
   justify-content: flex-end;
-  margin-top: 20px;
+  margin: 30px 0;
 }
 
 .edit-button,
@@ -104,9 +152,9 @@
 .cancel-button {
   padding: 20px 40px; /* Ajusta el padding del botón */
   margin-left: 10px;
-  border-radius: 10px !important;
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 30px !important; 
+  font-size: 25px !important; 
   width: 45%; 
   height: auto; 
   letter-spacing: 1.5px;
@@ -114,15 +162,15 @@
 
 .edit-button {
   color: #EB5D0B !important;
-  background-color: #fff;
+  background-color: white !important;
 }
 
 .save-button {
   color: #38693a !important;
-  background-color: #fff !important;
+  background-color: white !important;
 }
 
 .cancel-button {
   color: #7d3e3e !important;
-  background-color: #fff !important;
+  background-color: white !important;
 }

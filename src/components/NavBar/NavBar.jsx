@@ -1,23 +1,30 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
 import logo from "../../assets/logo.png";
-//import {HamburgerIcon} from '@chakra-ui/icons'
 import "./NavBar.css";
+import { useAuth } from "../../context/AuthContext";
+import { auth } from "../../Firebase/Firebase";
 
-const NavBar = ({ isAuthenticated }) => {
-  const { loginWithRedirect, logout, user } = useAuth0();
+const NavBar = () => {
+  const { user, login, logOut } = useAuth(); 
   const [isHovered, setIsHovered] = useState(false);
   const [isOptionHovered, setIsOptionHovered] = useState(false);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
- 
-  const handleLogout = () => {
-    logout({ returnTo: window.location.origin });
-  };
+  const isAuthenticated = auth.currentUser !==null
 
-  const handleLogin = () => {
-    loginWithRedirect({ appState: { targetUrl: "/perfil" } });
-    setIsLoggingIn(true);
+  const handleLogout = async () => {
+    await logOut();
+    window.location.href = "/";
+  };
+  
+
+  const handleLogin =  () => {
+    try {
+      window.location.href = "/LogIn";
+      setIsLoggingIn(true);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleMouseEnter = () => {
@@ -173,12 +180,20 @@ const NavBar = ({ isAuthenticated }) => {
       </div>
       <div className="rightSection">
         {isAuthenticated ? (
+          <>
+          {/* <div className="cartNavContainer" style={{padding:"0 15px"}}>
+            <NavLink to="/cart">
+              <AiOutlineShoppingCart className="IconRightNavBar" />
+              <p className="NumeroChango">{Carrito?.length || 0}</p> 
+            </NavLink>
+          </div> */}
           <button
             onClick={handleLogout}
             id="cerrariniciarNav"
             className="link logoutButton">
             Cerrar Sesión
           </button>
+          </>
         ) : (
           <button
             onClick={handleLogin}

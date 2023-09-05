@@ -72,8 +72,8 @@ const FormCreacion = () => {
   };
 
   const handleSubmit = async (e) => {
-    const LOCAL = "https://lagruta.onrender.com";
-    // const LOCAL = "http://localhost:3001";
+    // const LOCAL = "https://lagruta.onrender.com";
+    const LOCAL = "http://localhost:3001";
     e.preventDefault();
 
     const validationErrors = validate(name, date, description, selectedImage);
@@ -88,9 +88,10 @@ const FormCreacion = () => {
     formData.append("name", name);
     formData.append("description", description);
     formData.append("date", date);
-    formData.append("types_activity", types_activity);
+    formData.append("typeId", types_activity);
 
     try {
+      console.log(formData)
       const res = await axios.post(`${LOCAL}/products/create/`, formData);
       Swal.fire({
         icon: "success",
@@ -179,21 +180,19 @@ const FormCreacion = () => {
                 Seleccione categoría de la noticia
               </label>
               <div className="types-s">
-                <select
-                  className={style.inputbox}
-                  value={types_activity}
-                  onChange={(e) => setTypesActivity(e.target.value)}>
-                  <option className={style.options} key="" value="">
-                    {" "}
-                    Seleccionar categoría
-                  </option>
-                  {Types?.map((e, index) => (
-                    <option key={e.id} value={e.name}>
-                      {" "}
-                      {e.name}
-                    </option>
-                  ))}{" "}
-                </select>
+              <select
+  className={style.inputbox}
+  value={types_activity}
+  onChange={(e) => setTypesActivity(e.target.value)}>
+  <option className={style.options} key="" value="">
+    Seleccionar categoría
+  </option>
+  {Types?.map((type) => (
+    <option key={type.id} value={type.id}> {/* Cambia 'e.name' por 'type.id' */}
+      {type.name}
+    </option>
+  ))}
+</select>
               </div>
               <button className={style.submitbtn} type="submit">
                 Publicar
