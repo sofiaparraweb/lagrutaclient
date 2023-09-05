@@ -56,27 +56,51 @@ const DonationForm = () => {
 
   return (
     <>
-      <div className={style.containerPrincipal}>
-        <div className={style.containerSecundario}>
-          <div className={style.container1}>
+      <div className={style.containerPrincipalDona}>
+        <div className={style.containerSecundarioDona}>
+          <div className={style.container1Dona}>
             <img src={dona1} alt="img" className={style.imgDonacion} />
           </div>
+          <div className="GridTwoColumns" style={{margin:"20px"}}>
+            <div className={style.parrafoDona1}>
+              <h2>DESNUTRICIÓN </h2>
+              <p>
+                La desnutrición aguda, la forma más letal de la malnutrición,
+                afecta a 47 millones de niñas y niños menores de 5 años en todo
+                el mundo. En 2021, 5,4 millones de chicas y chicos recibieron
+                tratamiento que salvó sus vidas.
+              </p>
+            </div>
+            <div className={style.parrafoDona1}>
+              <h2>EDUCACIÓN</h2>
+              <p>
+                En nuestro país, cerca de 93.000 adolescentes que residen en
+                ámbitos rurales no tienen acceso a la educación secundaria, de
+                los cuales más de 65.000 pertenecen a contextos rurales
+                dispersos. La falta de secundarias en las comunidades hace que
+                las chicas y chicos deban trasladarse a otras localidades o
+                recorrer muchos kilómetros por día.
+              </p>
+            </div>
+          </div>
+          <div className={style.parrafoDona1}>
+            <h2>¡DONÁ AHORA!</h2>
+            <p>
+              LA GRUTA está presente para ayudar a las niñas y niños que nos
+              necesitan HOY.
+            </p>
+          </div>
+
           {showForm ? (
             <FormDona selectedOption={selectedOption} customValue={customValue} />
           ) : (
             <form className={style.contenForm} onSubmit={handleSubmit}>
-              <h3 className={style.title1}>¡DONÁ AHORA!</h3>
 
-              <p className={style.parrafoDona}>
-                LA GRUTA está presente para ayudar a las niñas y niños que nos
-                necesitan HOY.
-              </p>
+              <h3 className={style.title2Dona}>Selecciona y doná</h3>
 
-              <h3 className={style.title2}>Selecciona y doná</h3>
-
-              <label className={style.labels}>
+              <label className={style.labelsDona}>
                 <input
-                  className={style.inputs}
+                  className={style.inputsDona}
                   name="amount"
                   type="radio"
                   value="15000"
@@ -86,9 +110,9 @@ const DonationForm = () => {
                 ARS 15.000
               </label>
 
-              <label className={style.labels}>
+              <label className={style.labelsDona}>
                 <input
-                  className={style.inputs}
+                  className={style.inputsDona}
                   name="amount"
                   type="radio"
                   value="10000"
@@ -98,9 +122,9 @@ const DonationForm = () => {
                 ARS 10.000
               </label>
 
-              <label className={style.labels}>
+              <label className={style.labelsDona}>
                 <input
-                  className={style.inputs}
+                  className={style.inputsDona}
                   name="amount"
                   type="radio"
                   value="5000"
@@ -110,9 +134,9 @@ const DonationForm = () => {
                 ARS 5.000
               </label>
 
-              <label className={style.labels}>
+              <label className={style.labelsDona}>
                 <input
-                 className={style.inputs}
+                 className={style.inputsDona}
                   name="amount"
                   type="radio"
                   value="otraOpcion"
@@ -124,8 +148,8 @@ const DonationForm = () => {
 
               {showInput && (
                 <label className={style.labelOtro}>
-                  <div className={style.inputContainer}>
-                    <span className={style.currency}>ARS</span>
+                  <div className={style.inputContainerDona}>
+                    <span className={style.currencyDona}>ARS</span>
                     <input
                       className={style.inputOtro}
                       name="amount"
@@ -150,23 +174,7 @@ const DonationForm = () => {
             </form>
           )}
 
-              <p className={style.parrafo2}>
-                <p>DESNUTRICIÓN </p>
-                La desnutrición aguda, la forma más letal de la malnutrición,
-                afecta a 47 millones de niñas y niños menores de 5 años en todo
-                el mundo. En 2021, 5,4 millones de chicas y chicos recibieron
-                tratamiento que salvó sus vidas.
-              </p>
-              <p className={style.parrafo2}>
-                <p>EDUCACIÓN</p>
-                En nuestro país, cerca de 93.000 adolescentes que residen en
-                ámbitos rurales no tienen acceso a la educación secundaria, de
-                los cuales más de 65.000 pertenecen a contextos rurales
-                dispersos. La falta de secundarias en las comunidades hace que
-                las chicas y chicos deban trasladarse a otras localidades o
-                recorrer muchos kilómetros por día.
-              </p>
-            </div>
+        </div>
       </div>
     </>
   );

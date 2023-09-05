@@ -11,6 +11,7 @@ import About from "./views/About/About";
 import News from "./views/Noticias/News";
 import DetailsNews from "./components/News/DetailsNews/DetailsNews";
 import Tienda from "./views/Tienda/Tienda";
+import Detail from "./views/Detail/Detail"
 import CarritoContainer from "./components/Store/CarritoContainer/CarritoContainer";
 import PopUpDonateNow from "./components/MensajeFloat/DonateNow";
 import WP_Button from "./components/MensajeFloat/WP_Button.jsx";
@@ -89,6 +90,7 @@ const App = () => {
         <Route path="/noticias" element={<News />} />
         <Route exact path="/noticias/:id" element={<DetailsNews />} />
         <Route path="/tienda" element={<Tienda />} />
+        <Route path="/detail/:id" element={<Detail />} /> 
         <Route path="/cart" element={<CarritoContainer />} />
         <Route path="/dona" element={<DonationForm/>}/>
         <Route path="/se-padrino" element={<Padrino />} />

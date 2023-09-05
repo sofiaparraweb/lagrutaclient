@@ -11,15 +11,14 @@
 
 
 // FUENTES
-// titulos-
+// titulos- h1
 // @import url('https://fonts.cdnfonts.com/css/wicked-grit');
 // font-family: 'Wicked Grit', sans-serif;
 
-// subtitulos:
+// subtitulos: h2
 // @import url('https://fonts.cdnfonts.com/css/dk-lemon-yellow-sun');
-//font-family: 'DK Lemon Yellow Sun', sans-serif;
+// font-family: 'DK Lemon Yellow Sun', sans-serif;
 
-// Texto general: 
+// Texto general: p
 // @import url('https://fonts.cdnfonts.com/css/qanelas-soft');
 // font-family: 'Qanelas Soft', sans-serif;
-

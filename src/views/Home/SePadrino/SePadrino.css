@@ -1,0 +1,48 @@
+.se-padrino-home {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-size: 22px;
+}
+
+.se-padrino-texto {
+  margin-top: 20%;
+}
+
+.boton-sePadrino-home {
+  margin-top: 15px;
+  background-color: #B9362C;
+  color: white;
+  height: 50px;
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.boton-sePadrino-home:hover {
+  color: #124476;
+}
+
+@media (max-width: 768px) {
+  .se-padrino-home {
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .se-padrino-texto {
+    font-size: 90%;
+  }
+
+  .boton-sePadrino-home {
+    font-size: 20px;
+    height: 80px;
+    width: 80px;
+    background-size: 80px;
+  }
+}

@@ -1,9 +1,13 @@
 
 .perfil-container {
-  max-width: 1000px;
-  margin-top: 100px;
+  max-width: 600px;
+  margin: auto;
+  margin-top: 120px;
+  margin-bottom: 120px;
   padding: 20px;
   position: relative;
+  background-color: whitesmoke;
+  border-radius: 10px;
 }
 
 .perfil-header {
@@ -119,8 +123,7 @@
 }
 
 .perfil-label {
-  font-weight: bold;
-  color: #b38a83;
+  color: #124476;
 }
 
 .perfil-input {
@@ -129,19 +132,19 @@
   border: 1px solid #ccc;
   outline: none;
   color: black;
+  background-color: white !important;
   font-size: 16px !important;
 }
 
 .error-message {
   color: rgb(158, 48, 48);
   font-size: 12px;
-  margin-top: 5px;
 }
 
 .button-group {
   display: flex;
   justify-content: flex-end;
-  margin-top: 20px;
+  margin: 30px 0;
 }
 
 .edit-button,
@@ -151,23 +154,23 @@
   margin-left: 10px;
   border-radius: 10px;
   cursor: pointer;
-  font-size: 30px; 
+  font-size: 25px !important; 
   width: 45%; 
   height: auto; 
   letter-spacing: 1.5px;
 }
 
 .edit-button {
-  color: #b38a83;
-  background-color: #fff;
+  color: #EB5D0B !important;
+  background-color: white !important;
 }
 
 .save-button {
-  color: #c2bd98;
-  background-color: #fff ;
+  color: #38693a !important;
+  background-color: white !important;
 }
 
 .cancel-button {
-  color: #7d3e3e;
-  background-color: #fff;
+  color: #7d3e3e !important;
+  background-color: white !important;
 }
