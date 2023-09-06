@@ -20,8 +20,8 @@ const Detail = () =>{
 
     // const contentCount = producto.Reviews?.length;
 
-    const url = "http://localhost:3001";
-    //const url = "https://lagruta.onrender.com";
+    // const url = "http://localhost:3001";
+    const url = "https://lagruta.onrender.com";
     useEffect(() => {
         async function fetchData() {
             try {

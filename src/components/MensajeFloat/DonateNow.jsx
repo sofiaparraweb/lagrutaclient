@@ -25,9 +25,9 @@ const PopupModal = () => {
         <div className={style.modal}>
           <div className={style.modalcontent}>
             <span>
-              <h2>
+              <h1>
                 Los niños de La gruta necesitan tu ayuda para su desarrollo{" "}
-              </h2>{" "}
+              </h1>{" "}
               <button className={style.buttonModal}>Hazte Socio</button>{" "}
             </span>
           </div>

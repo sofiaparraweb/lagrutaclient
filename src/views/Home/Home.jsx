@@ -22,8 +22,8 @@ const Home = () => {
   const userProfile = useSelector((state) => state.LocalPersist.userProfile);
   const [isProfileCreated, setIsProfileCreated] = useState(false);
 
-  // const url = "https://lagruta.onrender.com";
-   const url = "http://localhost:3001";
+  const url = "https://lagruta.onrender.com";
+  //  const url = "http://localhost:3001";
   
   useEffect(() => {
     if (user) {

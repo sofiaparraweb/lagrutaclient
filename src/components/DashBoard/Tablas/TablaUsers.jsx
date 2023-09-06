@@ -11,7 +11,9 @@ export default function TablaUsers() {
   const userInfo = useSelector((state) => state.LocalPersist.allUsers);
   const [buttonStates, setButtonStates] = useState({});
   const [buttonTexts, setButtonTexts] = useState({});
-  const url = "http://localhost:3001";
+  //const url = "http://localhost:3001";
+  const url = "https://lagruta.onrender.com";
+
 
   useEffect(() => {
     dispatch(getAllUsers());

@@ -72,8 +72,8 @@ const FormCreacion = () => {
   };
 
   const handleSubmit = async (e) => {
-    // const LOCAL = "https://lagruta.onrender.com";
-    const LOCAL = "http://localhost:3001";
+    const LOCAL = "https://lagruta.onrender.com";
+    // const LOCAL = "http://localhost:3001";
     e.preventDefault();
 
     const validationErrors = validate(name, date, description, selectedImage);
