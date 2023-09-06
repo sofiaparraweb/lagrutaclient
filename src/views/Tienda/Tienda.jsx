@@ -14,7 +14,7 @@ const Tienda = () => {
   const allProd = useSelector(state => state.LocalPersist.allProducts);
 
   const [currentPage, setCurrentPage] = useState(1); 
-  const productsPerPage = 9;
+  const productsPerPage = 5;
   
   useEffect(() => {
     dispatch(getAllProducts());

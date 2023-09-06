@@ -34,10 +34,17 @@ function validate(name, price, image, description, stock, type) {
 }
 
 const FormCreacion = () => {
+  const initialValues = {
+    name: '',
+    type: '',
+    price: '',
+    description: '',  
+    image: null,
+    stock: ''
+  };
+
   const dispatch = useDispatch();
-  const allProductTypes = useSelector(
-    (state) => state.LocalPersist.allProductTypes
-  );
+  const types = useSelector((state) => state.LocalPersist.allProductTypes);
 
   const [errors, setErrors] = useState({});
   const [image, setImage] = useState(null);
@@ -46,7 +53,7 @@ const FormCreacion = () => {
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [stock, setStock] = useState("");
-  const [type, setType] = useState("");
+  const [productType, setProductType] = useState("");
 
   useEffect(() => {
     dispatch(getAllProductTypes());
@@ -94,7 +101,7 @@ const FormCreacion = () => {
       image,
       description,
       stock,
-      type
+      productType
     );
     setErrors(validationErrors);
 
@@ -102,36 +109,41 @@ const FormCreacion = () => {
       return;
     }
 
-    const formData = new FormData();
-    formData.append("image", image);
-    formData.append("name", name);
-    formData.append("price", price);
-    formData.append("description", description);
-    formData.append("stock", stock);
-    formData.append("type", type);
-
+    const data = {
+      image: image,
+      name: name,
+      price: price,
+      description: description,
+      stock: stock,
+      type: productType ? types.find(type => type.name === productType).id : null, // Envía el ID de la categoría
+    
+    }
     try {
-      const res = await axios.post(`${LOCAL}/products/create`, formData);
-      Swal.fire({
-        icon: "success",
-        title: "Producto agregado con éxito",
-      });
-      const imgUrl = res.data;
-      console.log("url de la img", imgUrl);
+    console.log(data)
+    const res = await axios.post(`${LOCAL}/products/create`, data, {
+      headers: { 'Content-Type': 'multipart/form-data' }}
+    );
+    // Swal.fire({
+    //   icon: "success",
+    //   title: "Producto agregado con éxito",
+    // });
+    // const imgUrl = res.data;
+    // console.log("url de la img", imgUrl);
+    setName("");
+    setImage(null);
+    setPreviewImage(null);
+    setDescription("");
+    setPrice("");
+    setStock("");
+    setProductType("");
+    setErrors({});
 
-      setName("");
-      setImage(null);
-      setPreviewImage(null);
-      setDescription("");
-      setPrice("");
-      setStock("");
-      setType("");
-      setErrors({});
     } catch (err) {
       console.log("error al subir imagen", err);
     }
-  };
 
+  };
+ 
   return (
     <div>
       <section class="max-w-4xl p-6 mx-auto bg-indigo-600 rounded-md shadow-md dark:bg-gray-800 mt-20">
@@ -160,13 +172,13 @@ const FormCreacion = () => {
               </label>
               <select
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
-                value={type}
-                onChange={(e) => setType(e.target.value)}>
+                value={productType}
+                onChange={(e) => setProductType(e.target.value)}>
                 <option key="" value="">
                   {" "}
                   Seleccionar categoría
                 </option>
-                {allProductTypes?.map((e) => {
+                {types?.map((e) => {
                   return (
                     <option key={e.id} value={e.name}>
                       {" "}
