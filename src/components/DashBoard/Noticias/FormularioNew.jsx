@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { create_news, getTypeActi } from "../../../Redux/actions";
+import { addProduct, create_news, getTypeActi } from "../../../Redux/actions";
 
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
@@ -31,15 +31,14 @@ function validate(name, date, description, selectedImage) {
 const FormularioNews = () => {
 
   const dispatch = useDispatch();
-  const Types = useSelector((state) => state.LocalPersist.activityTypes);
-
   const [errors, setErrors] = useState({});
   const [selectedImage, setSelectedImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
-  const [types_activity, setTypesActivity] = useState("");
+  const [typesActivity, setTypesActivity] = useState("");
+  const Types = useSelector((state) => state.LocalPersist.activityTypes);
 
   useEffect(() => {
     dispatch(getTypeActi());
@@ -67,7 +66,8 @@ const FormularioNews = () => {
 
 
   const handleImageChange = (e) => {
-    setSelectedImage(e.target.files[0]);
+    const file = e.target.files[0];
+    setSelectedImage(file);
     setPreviewImage(URL.createObjectURL(e.target.files[0]));
     setErrors((prevErrors) => ({
       ...prevErrors,
@@ -76,8 +76,6 @@ const FormularioNews = () => {
   };
 
   const handleSubmit = async (e) => {
-    // const LOCAL = "https://lagruta.onrender.com";
-    const LOCAL = "http://localhost:3001";
     e.preventDefault();
 
     const validationErrors = validate(name, date, description, selectedImage);
@@ -87,19 +85,17 @@ const FormularioNews = () => {
       return;
     }
 
-    const formData = new FormData();
-    formData.append("img", selectedImage);
-    formData.append("name", name);
-    formData.append("description", description);
-    formData.append("date", date);
-    formData.append("types_activity", types_activity);
-
-    try {
-      const res = await axios.post(`${LOCAL}/activity/`, formData);
-      alert("Actividad creada con éxito");
-      const imgUrl = res.data;
+    const data = {
+      img: selectedImage,
+      name: name,
+      description: description,
+      date: date,
+      typeId: typesActivity ? Types.find(typeId => typeId.name === typesActivity).id : null, // Envía el ID de la categoría
     
-
+    }
+    try {
+    console.log(data)
+    dispatch(addProduct(data));
     setName("");
     setSelectedImage(null);
     setPreviewImage(null);
@@ -118,7 +114,7 @@ const FormularioNews = () => {
     return ( <div>
         <section class="max-w-4xl p-6 mx-auto bg-indigo-600 rounded-md shadow-md dark:bg-gray-800 mt-20">
     <h1 class="text-xl font-bold text-white capitalize dark:text-white">Publicar nueva noticia/actividad</h1>
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} method="POST" enctype="multipart/form-data">
         <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
             <div>
                 <label class="text-white dark:text-gray-200"  htmlFor="name">Título de publicación</label>
@@ -135,16 +131,18 @@ const FormularioNews = () => {
                 <label class="text-white dark:text-gray-200" htmlFor="">Seleccione categoría de la publicación</label>
                 <select 
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
-                value={types_activity}
-                onChange={(e) => setTypesActivity(e.target.value)}>
+                value={typesActivity}
+                onChange={(e) => setTypesActivity(e.target.value)}
+                name="typesActivity">
+                
                 <option key="" value="">
                   {" "}
                   Seleccionar categoría
                 </option>
-                {Types?.map((e, index) => (
-                  <option key={e.id} value={e.name}>
+                {Types?.map((typesActivity) => (
+                  <option key={typesActivity.id} value={typesActivity.name}>
                     {" "}
-                    {e.name}
+                    {typesActivity.name}
                   </option>
                 ))}{" "}
                 </select>

@@ -1,63 +1,64 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { Button, ChakraProvider, Input, Select } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser, updateUser } from "../../Redux/actions";
+import { getUserId, updateUser } from "../../Redux/actions";
 import { useForm } from "react-hook-form";
 import "./Perfil.css";
 import logo from "../../assets/logo.png"
-import axios from "axios";
 
 const Perfil = () => {
-  
-  const mail = useSelector((state) => state.LocalPersist.userId?.email);
-  const userInfo = useSelector((state) => state.LocalPersist.userProfile);
+  const { user, isAuthenticated } = useAuth0();
+  const userInfo = useSelector((state) => state.LocalPersist.userInfo);
   const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm();
-  const defaultImageURL = "https://cdn.icon-icons.com/icons2/1369/PNG/512/-person_90382.png";
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(getUser(mail));
-  }, [dispatch]);
-
+  
   const [initialProfile, setInitialProfile] = useState({
-    image: userInfo.image || "",
-    fullName: userInfo?.fullName || "",
-    email: userInfo?.email || "",
-    birthDate: userInfo?.birthDate || "",
-    phone: userInfo?.phone || "",
-    address: userInfo?.address || "",
-    occupation: userInfo?.occupation || "",
-    role: userInfo?.role || "",
+    // image: userInfo.image,
+    fullName: userInfo.fullName,
+    mail: userInfo.mail,
+    birthDate: userInfo.birthDate,
+    phone: userInfo.phone,
+    address: userInfo.address,
+    occupation: userInfo.occupation,
+    role: userInfo.role,
   });
 
   const [editedProfile, setEditedProfile] = useState({
-    image: userInfo.image || "",
-    fullName: userInfo.fullName || "",
-    email: userInfo.email || "",
-    birthDate: userInfo.birthDate || "",
-    phone: userInfo.phone || "",
-    address: userInfo.address || "",
-    occupation: userInfo.occupation || "",
-    role: userInfo.role || "",
+    // image: userInfo.image,
+    fullName: userInfo.fullName,
+    mail: userInfo.mail,
+    birthDate: userInfo.birthDate,
+    phone: userInfo.phone,
+    address: userInfo.address,
+    occupation: userInfo.occupation,
+    role: userInfo.role,
   });
 
+  const userProfile = useSelector((state) => state.userProfile);
+  const dispatch = useDispatch();
   const isProfileFetchedRef = useRef(false);
   const [editing, setEditing] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const email = user.email;
 
-
- useEffect(() => {
-    if (userInfo) {
-      setInitialProfile(userInfo);
-      setEditedProfile(userInfo);
+  useEffect(() => {
+    if (!isProfileFetchedRef.current && isAuthenticated) {
+      dispatch(getUserId(email));
+      isProfileFetchedRef.current = true;
     }
-  }, [userInfo]);
+  }, [dispatch, isAuthenticated, email]);
+
+  useEffect(() => {
+    if (userProfile) {
+      setInitialProfile(userProfile);
+      setEditedProfile(userProfile);
+    }
+  }, [userProfile]);
 
   useEffect(() => {
     if (editedProfile) {
       // Actualizar los valores registrados con useForm cuando editedProfile cambia
       setValue("fullName", editedProfile.fullName || "");
-      setValue("email", editedProfile.email || "");
+      setValue("mail", editedProfile.mail || "");
       setValue("birthDate", editedProfile.birthDate || "");
       setValue("phone", editedProfile.phone || "");
       setValue("address", editedProfile.address || "");
@@ -76,32 +77,36 @@ const Perfil = () => {
     reset(initialProfile);
   };
 
+  const handleSaveProfile = (data) => {
+    const formData = new FormData();
+    // formData.append("image", editedProfile.image);
+    formData.append("fullName", data.fullName);
+    formData.append("mail", data.mail);
+    formData.append("birthDate", data.birthDate);
+    formData.append("phone", data.phone);
+    formData.append("address", data.address);
+    formData.append("occupation", data.occupation);
+    formData.append("role", data.role);
+
+    dispatch(updateUser(formData));
+    setEditing(false);
+    setInitialProfile(data);
+    setEditedProfile(data);
+    reset(editedProfile);
+  };
+
   const handleProfileImageChange = (e) => {
     const file = e.target.files[0];
-    setSelectedImage(file);
-    console.log(file)
-  };
+    const reader = new FileReader();
 
-  const handleSaveProfile = (formData) => {
-    console.log(formData)
-    const data = {
-      image: selectedImage,
-      name: formData.fullName,
-      email: formData.email,
-      birthDate: formData.birthDate,
-      phone: formData.phone,
-      address: formData.address,
-      occupation: formData.occupation,
-      role: formData.role,
+    reader.onloadend = () => {
+      setEditedProfile((prevState) => ({ ...prevState, image: reader.result }));
     };
-  
-    console.log(selectedImage);
-    console.log(data, 'esto mando al back');
-    dispatch(updateUser(data));
-    setInitialProfile(data);
-    setEditing(false);
-  };
 
+    if (file) {
+  reader.readAsDataURL(file);
+}
+};
 
 return (
 <ChakraProvider>
@@ -111,28 +116,15 @@ return (
       <h1 className="perfil-title">Mi Perfil</h1>
     </div>
     <div className="perfil-content">
-      <form className="perfil-form" onSubmit={handleSubmit(handleSaveProfile)}>
       <div className="perfil-image">
-              <img
-                src={selectedImage ? URL.createObjectURL(selectedImage) : editedProfile.image}
-                alt="profile"
-                className="profile-image"
-              />
-              {editing && (
-                <div className="image-buttons">
-                  <label htmlFor="image" className="upload-button">
-                    Change Image
-                    <Input
-                      type="file"
-                      id="image"
-                      name="image"
-                      onChange={handleProfileImageChange}
-                      accept="image/*"
-                    />
-                  </label>
-  </div>
-)}
-</div> 
+        <img src={editedProfile.image} alt="profile" className="profile-image" />
+        {editing && (
+          <div className="image-upload">
+            <input type="file" accept="image/*" onChange={handleProfileImageChange} />
+          </div>
+        )}
+      </div>
+      <form className="perfil-form" onSubmit={handleSubmit(handleSaveProfile)}>
         <label htmlFor="fullName" className="perfil-label">
           Nombre completo
         </label>
@@ -145,18 +137,18 @@ return (
           {...register("fullName", { required: true })}
         />
         {errors.fullName && <span className="error-message">Campo obligatorio</span>}
-        <label htmlFor="email" className="perfil-label">
+        <label htmlFor="mail" className="perfil-label">
           Correo electrónico
         </label>
         <Input
           type="email"
-          id="email"
+          id="mail"
           className="perfil-input"
-          isDisabled
-          defaultValue={editedProfile.email}
-          {...register("email", { required: true })}
+          isDisabled={!editing}
+          defaultValue={editedProfile.mail}
+          {...register("mail", { required: true })}
         />
-        {errors.email && <span className="error-message">Campo obligatorio</span>}
+        {errors.mail && <span className="error-message">Campo obligatorio</span>}
         <label htmlFor="birthDate" className="perfil-label">
           Fecha de nacimiento
         </label>
@@ -254,3 +246,4 @@ return (
 }
 
 export default Perfil;
+

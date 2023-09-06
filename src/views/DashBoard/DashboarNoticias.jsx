@@ -8,7 +8,7 @@ export default function DashboardNoticias() {
 
 
   const [currentPage, setCurrentPage] = useState(1); 
-  const noticesPerPage = 4;
+  const noticesPerPage = 5;
 
   const notices = useSelector(state => state.LocalPersist.allActivity);
 

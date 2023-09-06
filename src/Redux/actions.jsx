@@ -389,10 +389,18 @@ export const updateUser = (data) => {
 
 /* -----------------------------dashboard----------------------------- */
 
-export const addProduct = (product) => {
-  return {
-    type: ADD_PRODUCT,
-    payload: product,
+export const addProduct = (data) => {
+  console.log(data)
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`${url}/activity/`, data, {
+        headers: { 'Content-Type': 'multipart/form-data' }}
+      );
+      dispatch({ type: ADD_PRODUCT, payload: data });
+      console.log('ACTIVIDADES CREADO!!!')
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 

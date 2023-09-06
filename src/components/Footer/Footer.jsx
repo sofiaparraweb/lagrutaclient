@@ -106,11 +106,6 @@ const Footer = () => {
                 <FaFacebook />
               </a>
             </li>
-            {/*<li className={style.itemRedes}>
-              <a href="https://twitter.com/" target="_blank" rel="noreferrer">
-                <FaTwitter />
-              </a>
-            </li>*/}
             <li className={style.itemRedes}>
               <a
                 href="https://www.instagram.com/lagrutacdi/"
