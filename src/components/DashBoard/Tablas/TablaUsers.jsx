@@ -15,30 +15,35 @@ export default function TablaUsers() {
 
   useEffect(() => {
     dispatch(getAllUsers());
-
+  
     const storedButtonStates = localStorage.getItem("buttonStates");
     const storedButtonTexts = localStorage.getItem("buttonTexts");
-
+  
     if (userInfo && storedButtonStates && storedButtonTexts) {
       setButtonStates(JSON.parse(storedButtonStates));
       setButtonTexts(JSON.parse(storedButtonTexts));
+    } else if (userInfo) {
+      const initialButtonStates = {};
+      userInfo.forEach((u) => {
+        initialButtonStates[u.id] = true; // Todos los usuarios comienzan como activos
+      });
+      setButtonStates(initialButtonStates);
     }
   }, [dispatch]);
+  
 
   const handleButtonClick = async (id) => {
     try {
-      let updatedButtonStates = { ...buttonStates };
+      const updatedButtonStates = { ...buttonStates };
 
       if (buttonStates[id]) {
-        // Si el usuario está bloqueado, ejecuta la función para restaurar
-        await axios.post(`${url}/user/restore/${id}`);
-        alert("Usuario restaurado correctamente");
-        updatedButtonStates[id] = false; // Cambia el estado del usuario
-      } else {
-        // Si el usuario no está bloqueado, ejecuta la función para bloquear
         await axios.delete(`${url}/user/status/${id}`);
         alert("Usuario bloqueado correctamente");
-        updatedButtonStates[id] = true; // Cambia el estado del usuario
+        updatedButtonStates[id] = false; // Cambia el estado del usuario a baneado
+      } else {
+        await axios.post(`${url}/user/restore/${id}`);
+        alert("Usuario restaurado correctamente");
+        updatedButtonStates[id] = true; // Cambia el estado del usuario a activo
       }
 
       // Actualiza el estado local de los botones
@@ -47,17 +52,13 @@ export default function TablaUsers() {
       // Actualiza los textos de los botones
       setButtonTexts((prevTexts) => ({
         ...prevTexts,
-        [id]: buttonStates[id] ? "ACTIVO" : "BANEADO",
+        [id]: buttonStates[id] ? "BANEADO" : "ACTIVO",
       }));
-
-      dispatch(getAllUsers()); // Actualiza la lista de usuarios en Redux
     } catch (error) {
       console.log(error);
       alert("Ocurrió un error al cambiar el estado del usuario");
     }
   };
-
- 
 
   return (
     <>
@@ -70,10 +71,6 @@ export default function TablaUsers() {
       {userInfo?.map((u) => (
         <div className="bg-secondary-100 p-8 rounded-xl" key={u.id}>
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center mb-4 bg-secondary-900 p-4 rounded-xl">
-            <div>
-              <h5 className="md:hidden text-gray-700 font-bold mb-2">ID</h5>
-              <span className="text-gray-700">{u.id}</span>
-            </div>
             <div>
               <h5 className="md:hidden text-gray-700 font-bold mb-2">Nombre</h5>
               <p className="text-gray-700">{u.fullName}</p>
@@ -106,7 +103,7 @@ export default function TablaUsers() {
               <button
                 className={`w-14 h-7 relative inline-flex items-center cursor-pointer`}
                 style={{
-                  backgroundColor: u.status ? "green" : "red",
+                  backgroundColor: buttonStates[u.id] ? "green" : "red", // Cambia el color según el estado del usuario
                   color: "white",
                   borderRadius: "999px",
                 }}
@@ -117,7 +114,7 @@ export default function TablaUsers() {
                 }}
               >
                 <span className="ml-20 text-ms font-medium text-black dark:text-black">
-                  {u.status ? "ACTIVO" : "BANEADO"}
+                  {buttonStates[u.id] ? "ACTIVO" : "BANEADO"} {/* Cambia el texto del botón según el estado del usuario */}
                 </span>
               </button>
             </div>
@@ -127,3 +124,8 @@ export default function TablaUsers() {
     </>
   );
 }
+
+
+//el tema es asi... en el back, los usuarios tienen una propiedad paranoid que puede estare n true o false
+//si esta en true el usuario esta activo, si esta en false el suuario esta baneado.
+//yo necesito que 

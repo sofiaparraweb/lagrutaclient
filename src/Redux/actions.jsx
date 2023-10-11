@@ -104,6 +104,26 @@ export function cleanDetail() {
   return { type: CLEANDETAIL };
 }
 
+export function deleteActivity(id) {
+  return async function (dispatch) {
+    try {
+      const res = await axios.delete(`${url}/activity/${id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+}
+
+export function restoreActivity(id) {
+  return async function (dispatch) {
+    try {
+      const res = await axios.post(`${url}/activity/${id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+}
+
 /* -----------------------------tienda----------------------------- */
 
 export const getAllProducts = () => {

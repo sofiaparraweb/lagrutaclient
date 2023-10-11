@@ -72,7 +72,7 @@ const CardsHeader = (props) => {
   
     const renderPercentage = () => {
       const activeUsers = 20; // Cantidad de usuarios activos 
-      const totalUsers = 50; // Cantidad total de usuarios registrados 
+      const totalUsers = 50; // Cantidad total de 
       const percentage = getPercentage(activeUsers, totalUsers);
 
       let iconA = null;
