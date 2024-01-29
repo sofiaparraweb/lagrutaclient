@@ -23,6 +23,7 @@ export default function TablaNoticias() {
     dispatch(deleteActivity(id));
   };
 
+
   return (
     <div>
       <div className="bg-gray-800 px-4 py-2 flex flex-col lg:flex-row lg:items-center flex-shrink-0">

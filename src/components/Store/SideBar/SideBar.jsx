@@ -14,7 +14,7 @@ const SideBar = ({ setCurrentPage }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const Carrito = useSelector(state => state.LocalPersist.Carrito.Products);
-  const userId = useSelector(state => state.LocalPersist.userProfile.id);
+  const userId = useSelector(state => state.LocalPersist.userProfile?.id);
   const user = auth.currentUser;
 
   useEffect(() => {

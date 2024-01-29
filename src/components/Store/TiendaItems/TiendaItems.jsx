@@ -5,14 +5,16 @@ import { getCarrito, addToCart } from "../../../Redux/actions"
 import { Image, Card, Text, Heading, CardBody, CardFooter, Button, Box, Grid } from '@chakra-ui/react'
 import { Toaster, toast } from "react-hot-toast";
 import { auth } from "../../../Firebase/Firebase";
+import { Link } from 'react-router-dom';
+
 
 const TiendaItems = ({ id, name, image, price, stock }) => {
   
   const dispatch = useDispatch();
-  const user_id = useSelector(state => state.LocalPersist.userProfile.id);
-  const userName = useSelector(state => state.LocalPersist.userProfile.fullName);
-  const mail = useSelector(state => state.LocalPersist.userProfile.mail);
-  const Cart = useSelector((state) => state.LocalPersist.Carrito.Products);
+  const user_id = useSelector(state => state.LocalPersist.userProfile?.id);
+  const userName = useSelector(state => state.LocalPersist.userProfile?.fullName);
+  const mail = useSelector(state => state.LocalPersist.userProfile?.mail);
+  const Cart = useSelector((state) => state.LocalPersist.Carrito?.Products);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [quantity, setQuantity] = useState(0);
   const isAuthenticated = auth.currentUser !==null
@@ -21,7 +23,7 @@ const TiendaItems = ({ id, name, image, price, stock }) => {
     if(isAuthenticated) {
       dispatch(getCarrito(user_id))
     }
-  },[user_id])
+  },[user_id, isAuthenticated])
   
   
   const handleAdd = (event) => {  // --------------------------------------------------BOTON SUMAR
