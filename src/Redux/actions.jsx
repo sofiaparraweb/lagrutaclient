@@ -104,6 +104,26 @@ export function cleanDetail() {
   return { type: CLEANDETAIL };
 }
 
+export function deleteActivity(id) {
+  return async function (dispatch) {
+    try {
+      const res = await axios.delete(`${url}/activity/${id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+}
+
+export function restoreActivity(id) {
+  return async function (dispatch) {
+    try {
+      const res = await axios.post(`${url}/activity/${id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+}
+
 /* -----------------------------tienda----------------------------- */
 
 export const getAllProducts = () => {
@@ -335,6 +355,7 @@ export const getUser = (email) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`${url}/user/email/${email}`);
+      console.log(response)
       dispatch({ type: GET_USER, payload: response.data });
       console.log("se trajo el usuario")
     } catch (error) {
@@ -362,8 +383,8 @@ export const createUser = (newUser) => {
       console.log(newUser, 'este es el new user')
 
       const userId = response.data.newUser.id;
-      dispatch({ type: SET_USER_ID, payload: userId });
-      dispatch({ type: CREATE_USER, payload: response.data });
+      dispatch({ type: GET_USER, payload: userId });
+      dispatch({ type: CREATE_USER, payload: response.data.newUser });
       console.log('USUARIO CREADO!!!')
     } catch (error) {
       console.log(error);
@@ -379,11 +400,13 @@ export const updateUser = (data) => {
           'Content-Type': 'multipart/form-data',
         },
       });
-      // dispatch({ type: UPDATE_USER, payload: response.data });
+      dispatch({ type: UPDATE_USER, payload: response.data });
       console.log('se ejecuto con exitot bbbb', response.data)
-    } catch (error) {
-      console.log({ error: error.message });
-    }
+} catch (error) {
+  console.log({ error: error.message });
+  dispatch({ type: UPDATE_USER_ERROR, payload: error.message });
+}
+
   };
 };
 

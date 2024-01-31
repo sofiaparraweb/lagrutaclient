@@ -54,7 +54,6 @@ const Equipo = () => {
         },
   ];
   
-
   return (
     <div className="equipo">
       <h2 className="equipo__title">Nuestro Equipo</h2>
