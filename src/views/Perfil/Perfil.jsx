@@ -1,21 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
 import { Button, ChakraProvider, Input, Select } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserId, updateUser } from "../../Redux/actions";
 import { useForm } from "react-hook-form";
 import "./Perfil.css";
-import logo from "../../assets/logo.png"
+import logo from "../../assets/logo.png";
 
 const Perfil = () => {
-  const { user, isAuthenticated } = useAuth0();
-  const userInfo = useSelector((state) => state.LocalPersist.userInfo);
+  const userInfo = useSelector((state) => state.LocalPersist.userProfile);
   const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm();
+  const [editing, setEditing] = useState(false); 
   
   const [initialProfile, setInitialProfile] = useState({
     // image: userInfo.image,
     fullName: userInfo.fullName,
-    mail: userInfo.mail,
+    email: userInfo.email,
     birthDate: userInfo.birthDate,
     phone: userInfo.phone,
     address: userInfo.address,
@@ -26,7 +25,7 @@ const Perfil = () => {
   const [editedProfile, setEditedProfile] = useState({
     // image: userInfo.image,
     fullName: userInfo.fullName,
-    mail: userInfo.mail,
+    email: userInfo.email,
     birthDate: userInfo.birthDate,
     phone: userInfo.phone,
     address: userInfo.address,
@@ -37,15 +36,13 @@ const Perfil = () => {
   const userProfile = useSelector((state) => state.userProfile);
   const dispatch = useDispatch();
   const isProfileFetchedRef = useRef(false);
-  const [editing, setEditing] = useState(false);
-  const email = user.email;
 
   useEffect(() => {
-    if (!isProfileFetchedRef.current && isAuthenticated) {
-      dispatch(getUserId(email));
+    if (!isProfileFetchedRef.current) {
+      dispatch(getUserId(userInfo.email));
       isProfileFetchedRef.current = true;
     }
-  }, [dispatch, isAuthenticated, email]);
+  }, [dispatch, userInfo.email]);
 
   useEffect(() => {
     if (userProfile) {
@@ -58,7 +55,7 @@ const Perfil = () => {
     if (editedProfile) {
       // Actualizar los valores registrados con useForm cuando editedProfile cambia
       setValue("fullName", editedProfile.fullName || "");
-      setValue("mail", editedProfile.mail || "");
+      setValue("email", editedProfile.email || "");
       setValue("birthDate", editedProfile.birthDate || "");
       setValue("phone", editedProfile.phone || "");
       setValue("address", editedProfile.address || "");
@@ -81,7 +78,7 @@ const Perfil = () => {
     const formData = new FormData();
     // formData.append("image", editedProfile.image);
     formData.append("fullName", data.fullName);
-    formData.append("mail", data.mail);
+    formData.append("email", data.email);
     formData.append("birthDate", data.birthDate);
     formData.append("phone", data.phone);
     formData.append("address", data.address);
@@ -104,9 +101,9 @@ const Perfil = () => {
     };
 
     if (file) {
-  reader.readAsDataURL(file);
-}
-};
+      reader.readAsDataURL(file);
+    }
+  };
 
 return (
 <ChakraProvider>
@@ -137,18 +134,18 @@ return (
           {...register("fullName", { required: true })}
         />
         {errors.fullName && <span className="error-message">Campo obligatorio</span>}
-        <label htmlFor="mail" className="perfil-label">
+        <label htmlFor="email" className="perfil-label">
           Correo electrónico
         </label>
         <Input
           type="email"
-          id="mail"
+          id="email"
           className="perfil-input"
           isDisabled={!editing}
-          defaultValue={editedProfile.mail}
-          {...register("mail", { required: true })}
+          defaultValue={editedProfile.email}
+          {...register("email", { required: true })}
         />
-        {errors.mail && <span className="error-message">Campo obligatorio</span>}
+        {errors.email && <span className="error-message">Campo obligatorio</span>}
         <label htmlFor="birthDate" className="perfil-label">
           Fecha de nacimiento
         </label>

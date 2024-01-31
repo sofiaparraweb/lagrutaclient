@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from 'react';
 import LastNews from "../../components/News/HeaderNews/LastNews";
 import { Link } from "react-router-dom";
 import style from "./Home.module.css";
@@ -11,75 +10,50 @@ import Headerslider from "./FotosSlider/HeaderSlider";
 import lagruta from '../../assets/lagruta.png';
 import PedirInfo from './Informacion/informacion';
 import { getAllActivity, createUser, getUser, getUserId } from "../../Redux/actions.jsx";
-import axios from "axios";
 import { auth } from "../../Firebase/Firebase"; // Import the Firebase authentication instance
 
 const Home = () => {
   const dispatch = useDispatch();
-  const user = auth.currentUser?.email;
-  console.log(user)
-  const allActivity = useSelector(state => state.LocalPersist.allActivity);
-  const userProfile = useSelector((state) => state.LocalPersist.userProfile);
-  const [isProfileCreated, setIsProfileCreated] = useState(false);
+  const userEmail = auth.currentUser?.email;
+  console.log(userEmail)
+  const allActivity = useSelector((state) => state.LocalPersist.allActivity);
+  const isProfileCreated = useSelector((state) => state.LocalPersist.isProfileCreated);
 
-  const url = "https://lagruta.onrender.com";
-  //  const url = "http://localhost:3001";
-  
   useEffect(() => {
-    if (user) {
-      // Primero veo si el usuario ya existe en la bdd
-      axios.get(`${url}/user/email/${user}`)
-        .then(response => {
-          const existingUser = response.data;
+    const fetchData = async () => {
+      if (userEmail) {
+        try {
+          // Obtener el usuario existente
+          const existingUser = await dispatch(getUser(userEmail));
+          
+          // Verificar si el usuario no existe
           if (!existingUser) {
-            // Si el usuario no existe en el back crea el perfil
             const newUser = {
-              fullName: user,
-              email: user,
+              fullName: userEmail,
+              email: userEmail,
             };
-            dispatch(createUser(newUser))
-            .then(() => {
-              // Cuando ya está creado, lo traigo para poner los datos en userProfile/userId
-              dispatch(getUser(user));
-              dispatch(getUserId(user));
-              setIsProfileCreated(true);
-            })
-            .catch(error => {
-              console.log(error);
-            });
-        } else {
-          // Si el usuario ya existe, traigo los datos
-          dispatch(getUser(user));
-          dispatch(getUserId(user));
-          setIsProfileCreated(true);
+
+            // Crear un nuevo usuario
+            await dispatch(createUser(newUser));
+          }
+
+          // Obtener el ID del usuario
+          await dispatch(getUserId(userEmail));
+
+          // Obtener todas las actividades
+          await dispatch(getAllActivity());
+        } catch (error) {
+          console.error(error);
         }
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-}, [dispatch, user]);
+      }
+    };
 
-
-useEffect(() => {
-  dispatch(getAllActivity());
-}, [dispatch]);
+    fetchData();
+  }, [dispatch, userEmail]);
 
   const handleClick = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
-
-  // if (isLoading) {
-  //   return (
-  //     <div className="loading-container">
-  //       <img
-  //         src={logo}
-  //         alt="Loading..."
-  //         className="loading-image"
-  //       />
-  //     </div>
-  //   );
-  // }
 
   return (
     <div>
