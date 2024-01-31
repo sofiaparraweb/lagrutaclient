@@ -37,9 +37,9 @@ const Footer = () => {
 
   return (
     <footer className={style.mainFooter}>
-      <div className={style.container}>
+      <div className={style.containerFooter}>
         <div className={style.footerSection}>
-          <h3 className={style.title}>Conocé LA GRUTA</h3>
+          <h3 className={style.titleFooter}>Conocé LA GRUTA</h3>
           <ul>
             <li className={style.itemsTex}>
               <a href="/about">Qué hacemos?</a>
@@ -57,7 +57,7 @@ const Footer = () => {
         </div>
 
         <div className={style.footerSection}>
-          <h3 className={style.title}>SÉ PARTE</h3>
+          <h3 className={style.titleFooter}>SÉ PARTE</h3>
           <ul>
             <li className={style.itemsTex}>
               <a href="/dona">Donaciones</a>
@@ -72,9 +72,9 @@ const Footer = () => {
         </div>
 
         <form className={style.footerSection} onSubmit={handleSubmit(onSubmit)}>
-          <h3 className={style.title}>¡Suscríbete para más información!</h3>
+          <h3 className={style.titleFooter}>¡Suscríbete para más información!</h3>
           <input
-            className={style.input}
+            className={style.inputFooter}
             type="text"
             name="email"
             placeholder="Ingresar Email"

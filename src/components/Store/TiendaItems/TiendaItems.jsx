@@ -8,7 +8,7 @@ import { auth } from "../../../Firebase/Firebase";
 import { Link } from 'react-router-dom';
 
 
-const TiendaItems = ({ id, name, image, price, stock }) => {
+const TiendaItems = ({ id, name, image, price, stock }) => { 
   
   const dispatch = useDispatch();
   const user_id = useSelector(state => state.LocalPersist.userProfile?.id);

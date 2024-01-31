@@ -15,9 +15,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Provider store = {store}>
         <BrowserRouter>
           <PersistGate persistor = {persistor}>
-<AuthProvider>
-<App />
-</AuthProvider>
+            <AuthProvider>
+              <App />
+            </AuthProvider>
           </PersistGate>
         </BrowserRouter>
       </Provider>
