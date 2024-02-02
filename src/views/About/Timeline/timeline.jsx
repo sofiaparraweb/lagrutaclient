@@ -1,6 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import './timeline.css';
 import $ from 'jquery';
+import foto2013 from '../../../assets/abrazo.jpg';
+import foto2018 from '../../../assets/Parallax1.jpg';
+import foto2022 from '../../../assets/dianino.jpg' 
+import foto2023 from '../../../assets/Parallax2.jpg';
 
 const Timeline = () => {
   const timelineRef = useRef(null);
@@ -49,7 +53,7 @@ const Timeline = () => {
           <div className="timeline-item" ref={el => itemRefs.current[1] = el}>
             <div className="timeline__content">
               <div className="timeline__img-container">
-                <img className="timeline__img" src="https://www.diarioviraltucuman.com.ar/wp-content/uploads/2021/03/Pobreza-Argentina-tiene-una-de-las-tasas-mas-altas-de-la-region.jpg" alt="La Gruta 1905" />
+              <img className="timeline__img" src={foto2013} alt="La Gruta 1923" />
               </div>
               <h2 className="timeline__content-title">2013</h2>
               <p className="timeline__content-desc">Alianza con el banco de alimentos. El proyecto toma forma y nace LA GRUTA como fundación independiente</p>
@@ -76,7 +80,7 @@ const Timeline = () => {
           <div className="timeline-item" ref={el => itemRefs.current[4] = el}>
             <div className="timeline__content">
               <div className="timeline__img-container">
-                <img className="timeline__img" src="https://www.tucumanalas7.com.ar/u/fotografias/m/2019/11/21/f1280x720-94216_225891_5050.jpg" alt="La Gruta 1923" />
+                <img className="timeline__img" src={foto2018} alt="La Gruta 1923" />
               </div>
               <h2 className="timeline__content-title">2018</h2>
               <p className="timeline__content-desc">Separación de roles: comisión directiva y asamblea. Esta ultima viene a renovar la mirada en búsqueda de un objetivo global</p>
@@ -94,7 +98,7 @@ const Timeline = () => {
           <div className="timeline-item" ref={el => itemRefs.current[6] = el}>
             <div className="timeline__content">
               <div className="timeline__img-container">
-                <img className="timeline__img" src="https://www.tucumanalas7.com.ar/u/fotografias/m/2022/9/27/f1280x720-112940_244615_5050.jpg" alt="La Gruta 1923" />
+              <img className="timeline__img" src={foto2022} alt="La Gruta 1923" />
               </div>
               <h2 className="timeline__content-title">2022/2023</h2>
               <p className="timeline__content-desc">camino hacia un proyecto comunitario, dejamos de ser "el comedor" para buscar herramientas profesionales que sustenten el trabajo del barrio</p>
@@ -103,7 +107,7 @@ const Timeline = () => {
           <div className="timeline-item" ref={el => itemRefs.current[7] = el}>
             <div className="timeline__content">
               <div className="timeline__img-container">
-                <img className="timeline__img" src="https://www.izquierdadiario.es/IMG/arton153946.jpg?1585774497" alt="La Gruta 1923" />
+              <img className="timeline__img" src={foto2023} alt="La Gruta 1923" />
               </div>
               <h2 className="timeline__content-title">ACTUALIDAD</h2>
               <p className="timeline__content-desc">LA GRUTA busca lograr un crecimeinto integral de los vecinos, no solo brindando a la comunidad, sino creando junto a ella </p>

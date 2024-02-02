@@ -108,14 +108,14 @@ const NavBar = () => {
           onClick={handleClick}>
           Noticias
         </NavLink>
-        <NavLink
+        {/* <NavLink
           to="/tienda"
           className="link"
           activeclassname="active"
           id="tiendaNav"
           onClick={handleClick}>
           Tienda
-        </NavLink>
+        </NavLink> */}
         <div className="dropdownContainer">
           <div
             className={`link ${isHovered ? "active" : ""}`}

@@ -134,8 +134,13 @@
 }
 
 .timeline__img {
-  max-width: 100%;
+ 
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+    width: 100%; /* Establece el ancho al 100% del contenedor */
+    height: auto; /* Mantiene la proporción de aspecto original de la imagen */
+    max-width: 400px; /* Establece un ancho máximo para evitar que las imágenes sean demasiado grandes */
+    display: block; /* Elimina el espacio extra debajo de la imagen */
+   
 }
 
 .timeline-container {
