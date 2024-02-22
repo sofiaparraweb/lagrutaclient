@@ -1,46 +1,70 @@
 .login-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  width: 80%; /* Utilizamos porcentaje para hacerlo responsive */
+  max-width: 350px; /* Establecemos un ancho máximo */
+  margin: 120px auto; /* Auto para centrar horizontalmente y espacio en la parte superior */
+  background: #D7B63E;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 5px 20px 50px #000;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #f4f4f4;
+.form {
+  width: 100%;
   padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: 'Roboto Condensed', sans-serif;
+  text-align: center;
 }
 
 h3 {
-  margin-bottom: 10px;
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #fff;
 }
+
 
 .inputLogIn {
   width: 100%;
   padding: 10px;
-  margin: 5px 0;
+  margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 16px;
+  box-sizing: border-box;
 }
 
 button {
   width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  background-color: #007bff;
-  color: white;
+  height: 40px;
+  margin: 10px auto;
+  color: #fff;
+  background: #EB5D0B;
+  font-size: 1em;
+  font-weight: bold;
+  margin-top: 20px;
+  outline: none;
   border: none;
   border-radius: 5px;
+  transition: 0.2s ease-in;
   cursor: pointer;
-  font-size: 18px;
 }
 
-button:hover {
-  background-color: #0056b3;
+/* button:hover {
+  background: #6d44b8;
+} */
+
+.buttonLogIn {
+  background: #EB5D0B;
+
 }
+
+.buttonLogIn:hover {
+  background: #D7B63E;
+}
+
+/* #D7B63E;
+#EB5D0B;
+#B9362C;
+#124476;
+  color: white; */
+
+
